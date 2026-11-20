@@ -141,6 +141,52 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- ==============================================
+       INTRODUCTORY WORKFLOW SPLASH SCREEN (Few Seconds Preview)
+       ============================================== -->
+  <div id="intro-splash-screen" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-700 select-none">
+    <div class="max-w-5xl w-full flex flex-col items-center space-y-4">
+      
+      <!-- Top Splash Header -->
+      <div class="w-full flex items-center justify-between px-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#D84E55] to-[#F87171] flex items-center justify-center shadow-md shadow-[#D84E55]/25">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
+          </div>
+          <div>
+            <span class="text-[22px] font-bold text-[#D84E55] tracking-tight block leading-tight">odwen</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] block font-arial">Warehouse Operations Management System</span>
+          </div>
+        </div>
+
+        <button onclick="dismissSplashScreen()" class="btn-redbus text-[12px] py-2 px-4 flex items-center gap-2 shadow-xs cursor-pointer hover:shadow-md transition-all">
+          <span>Enter Dashboard</span>
+          <span class="text-[14px]">&rarr;</span>
+        </button>
+      </div>
+
+      <!-- Main Workflow Graphic -->
+      <div class="w-full bg-white rounded-2xl border border-[#E5E7EB] shadow-2xl overflow-hidden p-2 sm:p-3 relative group cursor-pointer" onclick="dismissSplashScreen()">
+        <img src="warehouse-flow.jpg" alt="Warehouse Operations Flow: 1. Receiving, 2. Placement, 3. Picking, 4. Shipment" class="w-full h-auto max-h-[72vh] object-contain rounded-xl mx-auto block" />
+      </div>
+
+      <!-- Bottom Progress Bar & Indicator -->
+      <div class="w-full px-2 space-y-1.5">
+        <div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
+          <div id="splash-progress" class="bg-[#D84E55] h-full w-0 transition-all duration-75 ease-linear rounded-full"></div>
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-[#6B7280] font-medium">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+            <span>1. Receiving &bull; 2. Placement &bull; 3. Picking &bull; 4. Shipment</span>
+          </div>
+          <span id="splash-timer-text" class="font-bold text-[#D84E55] font-arial">Opening dashboard in 4s...</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==============================================
        FULL-WIDTH TOP APPLICATION NAVIGATION BAR
        ============================================== -->
   <header class="bg-white border-b border-[#E5E7EB] sticky top-0 z-40 shadow-xs w-full">
@@ -2123,8 +2169,51 @@
       }
     }
   
-    // Initialize Floor Map Storey 1 Heat Map
+    // Introductory Splash Screen Controller
+    let splashDismissed = false;
+    function dismissSplashScreen() {
+      if (splashDismissed) return;
+      splashDismissed = true;
+      const splash = document.getElementById('intro-splash-screen');
+      if (splash) {
+        splash.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          splash.remove();
+        }, 700);
+      }
+    }
+
+    function startSplashCountdown() {
+      const splash = document.getElementById('intro-splash-screen');
+      if (!splash) return;
+      const duration = 4000; // 4 seconds preview
+      const startTime = Date.now();
+      const progressEl = document.getElementById('splash-progress');
+      const timerText = document.getElementById('splash-timer-text');
+
+      const interval = setInterval(() => {
+        if (splashDismissed) {
+          clearInterval(interval);
+          return;
+        }
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+        const pct = Math.min(100, (elapsed / duration) * 100);
+
+        if (progressEl) progressEl.style.width = pct + '%';
+        if (timerText) timerText.textContent = `Opening dashboard in ${remaining}s...`;
+
+        if (elapsed >= duration) {
+          clearInterval(interval);
+          dismissSplashScreen();
+        }
+      }, 50);
+    }
+
+    // Initialize Floor Map Storey 1 Heat Map & Splash Intro
     window.addEventListener('DOMContentLoaded', function() {
+      startSplashCountdown();
+
       if (typeof changeStorey === 'function') changeStorey(1);
 
       if (typeof openInwardOrderDetail === 'function') openInwardOrderDetail('ORD-IN-8821');
