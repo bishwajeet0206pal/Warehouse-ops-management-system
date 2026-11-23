@@ -1151,10 +1151,12 @@
               <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">12 orders</span>
               <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Moving to shelf</span>
             </div>
-            <div class="p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs">
+            <div onclick="openStoredOrdersPage()" class="p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group" title="Click to view all stored inventory orders in table format">
               <span class="text-[10px] uppercase font-bold text-[#059669] font-arial block">6. Stored</span>
               <span class="text-[20px] font-bold text-[#059669] block mt-0.5">145 orders</span>
-              <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5">In inventory</span>
+              <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5 flex items-center justify-center gap-1">
+                In inventory <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+              </span>
             </div>
           </div>
         </div>
@@ -2109,6 +2111,149 @@
 
       </div>
 
+    </div>
+
+
+    <!-- ==============================================
+         SCREEN: STORED INWARD INVENTORY ORDERS (STAGE 6 - INWARD)
+         ============================================== -->
+    <div id="screen-stored" class="screen-view hidden space-y-6">
+      <!-- Back & Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
+        <div class="flex items-center gap-3">
+          <button onclick="goToScreen(3, null, 'inward')" class="btn-redbus-secondary text-[12px] py-1.5 px-4 cursor-pointer">
+            &larr; Back to Inward Journey
+          </button>
+          <div>
+            <h1 id="stored-page-title" class="text-[22px] font-bold text-[#1F2937]">WH-01 Bhiwandi · Stored Inventory Ledger (Stage 6)</h1>
+            <p class="text-[12px] text-[#6B7280]">Complete ledger of putaway-completed receipts placed in active storage racks &amp; bin locations</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span id="stored-page-count-badge" class="text-[12px] font-bold text-[#059669] bg-[#ECFDF5] px-3.5 py-1.5 rounded-full border border-[#A7F3D0]">
+            145 Orders Stored in Inventory
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Stored Card with Search, Filter & Table -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
+        <!-- Search and Filter Toolbar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+          <div class="flex items-center gap-2 flex-1 max-w-md">
+            <div class="relative w-full">
+              <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <input type="text" id="stored-search-input" oninput="filterStoredTable()" placeholder="Search by Order ID, SKU, Supplier or Rack Slot..." class="w-full pl-9 pr-3 py-1.5 text-[12.5px] border border-gray-300 rounded-xl focus:outline-none focus:border-[#D84E55] transition-all" />
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Storage Zone:</span>
+            <select id="stored-zone-filter" onchange="filterStoredTable()" class="text-[12px] border border-gray-300 rounded-xl px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-[#D84E55]">
+              <option value="all">All Storage Zones (145)</option>
+              <option value="Rack A">Pallet Rack A (Aisle 1–4)</option>
+              <option value="Rack B">Pallet Rack B (Aisle 5–8)</option>
+              <option value="Rack C">Pallet Rack C (High-Bay)</option>
+              <option value="Heavy">Heavy Bulk Bay (H-01/H-02)</option>
+              <option value="Cage">Security Cage C-01</option>
+            </select>
+            <button onclick="alert('Exporting Stored Inventory Records (CSV) for ' + currentFacilityName)" class="btn-redbus-secondary text-[11px] py-1.5 px-3 cursor-pointer whitespace-nowrap">
+              Export CSV &darr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Table View -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[13px]">
+            <thead>
+              <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase bg-gray-50/50">
+                <th class="py-2.5 px-3">Order ID</th>
+                <th class="py-2.5 px-3">Supplier / Transporter</th>
+                <th class="py-2.5 px-3">SKU &amp; Item Description</th>
+                <th class="py-2.5 px-3">Quantity Stored</th>
+                <th class="py-2.5 px-3">Storage Rack / Slot</th>
+                <th class="py-2.5 px-3">Putaway Timestamp</th>
+                <th class="py-2.5 px-3">Assigned Handler</th>
+                <th class="py-2.5 px-3">Inventory Status</th>
+                <th class="py-2.5 px-3 text-right">Floor Map</th>
+              </tr>
+            </thead>
+            <tbody id="stored-orders-tbody" class="divide-y divide-[#F3F4F6] text-[#374151]">
+              <!-- Populated via renderStoredOrdersTable() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         SCREEN: DISPATCHED & DELIVERED ORDERS (STAGE 6 - OUTWARD)
+         ============================================== -->
+    <div id="screen-dispatched" class="screen-view hidden space-y-6">
+      <!-- Back & Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
+        <div class="flex items-center gap-3">
+          <button onclick="goToScreen(3, null, 'outward')" class="btn-redbus-secondary text-[12px] py-1.5 px-4 cursor-pointer">
+            &larr; Back to Outward Journey
+          </button>
+          <div>
+            <h1 id="dispatched-page-title" class="text-[22px] font-bold text-[#1F2937]">WH-01 Bhiwandi · Dispatched Shipments &amp; POD Archive (Stage 6)</h1>
+            <p class="text-[12px] text-[#6B7280]">Historical record of fulfilled consignments with signed customer Proof of Delivery (POD) &amp; tracking</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span id="dispatched-page-count-badge" class="text-[12px] font-bold text-[#059669] bg-[#ECFDF5] px-3.5 py-1.5 rounded-full border border-[#A7F3D0]">
+            410 Dispatches Delivered
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Dispatched Card with Search, Filter & Table -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
+        <!-- Search and Filter Toolbar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+          <div class="flex items-center gap-2 flex-1 max-w-md">
+            <div class="relative w-full">
+              <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <input type="text" id="dispatched-search-input" oninput="filterDispatchedTable()" placeholder="Search by Order ID, Consignee, Cargo or Carrier..." class="w-full pl-9 pr-3 py-1.5 text-[12.5px] border border-gray-300 rounded-xl focus:outline-none focus:border-[#D84E55] transition-all" />
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Carrier / Transporter:</span>
+            <select id="dispatched-carrier-filter" onchange="filterDispatchedTable()" class="text-[12px] border border-gray-300 rounded-xl px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-[#D84E55]">
+              <option value="all">All Carriers (410)</option>
+              <option value="Blue Dart">Blue Dart Express</option>
+              <option value="VRL">VRL Logistics</option>
+              <option value="Safexpress">Safexpress Surface</option>
+              <option value="Delhivery">Delhivery Freight</option>
+              <option value="GATI">GATI KWE Cargo</option>
+            </select>
+            <button onclick="alert('Exporting Outbound Dispatched Manifest (CSV) for ' + currentFacilityName)" class="btn-redbus-secondary text-[11px] py-1.5 px-3 cursor-pointer whitespace-nowrap">
+              Export Manifest &darr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Table View -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[13px]">
+            <thead>
+              <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase bg-gray-50/50">
+                <th class="py-2.5 px-3">Order ID</th>
+                <th class="py-2.5 px-3">Customer / Destination</th>
+                <th class="py-2.5 px-3">Cargo Items</th>
+                <th class="py-2.5 px-3">Carrier &amp; Airway Bill</th>
+                <th class="py-2.5 px-3">Dispatch &amp; Delivery Time</th>
+                <th class="py-2.5 px-3">Proof of Delivery (POD)</th>
+                <th class="py-2.5 px-3 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="dispatched-orders-tbody" class="divide-y divide-[#F3F4F6] text-[#374151]">
+              <!-- Populated via renderDispatchedOrdersTable() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -4750,7 +4895,7 @@
         code: 'WH-01',
         name: 'WH-01 Bhiwandi',
         stuckCount: 1,
-        badgeClass: 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]',
+        badgeClass: 'bg-[#FEF2F2] text-[#DC2626] border-[#FECACA]',
         stages: [
           { id: 1, name: '1. Order Received', count: 6, subtitle: 'Queued', stuck: 0 },
           { id: 2, name: '2. Wave Picking', count: 14, subtitle: 'Picking active', stuck: 0 },
@@ -4767,6 +4912,7 @@
             cargo: 'Auto Spares · 14 Transmission Gears',
             stage: 'Stage 5 · Staged at Dock (Bay 06)',
             stageNum: 5,
+            dockBay: 'Dock Bay 06',
             reason: 'Consignee e-way bill mismatch with invoice tax breakdown; manual e-way bill regen required',
             severity: 'Attention Needed',
             timeStuck: '1h 10m overdue',
@@ -4777,11 +4923,59 @@
               { stage: '3. MHE Transit', name: 'K. More', role: 'Forklift Op #04', time: '11:00' },
               { stage: '4. Staged at Dock', name: 'S. Jadhav', role: 'Gate Pass Marshall', time: '11:20', isCurrent: true }
             ],
-            supervisor: 'Arun Verma (Outbound Lead)'
+            supervisor: 'Arun Verma (Outbound Lead)',
+            aiDiagnostic: {
+              rootCause: 'Consignee tax breakdown mismatch between GST portal and ERP invoice. Automated API sync blocked.',
+              recommendation: 'Regenerate GS1-128 e-way bill with consolidated tax slab breakdown and re-issue digital gate pass.',
+              confidence: '98.4%',
+              actionShort: 'Regenerate E-Way Bill & Gate Pass'
+            }
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary', cargo: 'Clutch Plates (50 sets)', picker: 'N. Patil', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1: Order Received (6 orders)
+          { orderId: 'ORD-BW-1101', customer: 'Mahindra Logistics Hub', cargo: 'Brake Linings (40 crates)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1102', customer: 'Bajaj Auto Depot', cargo: 'Spark Plugs (15 boxes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1103', customer: 'TVS Motor Parts Regional', cargo: 'Filter Elements (25 cartons)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-BW-1104', customer: 'Hero MotoCorp Ancillary', cargo: 'Drive Chains (30 crates)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-BW-1105', customer: 'Bosch Automotive India', cargo: 'ECU Sensors (12 kits)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1106', customer: 'Ceat Tyres Distribution', cargo: 'Inner Tubes (50 bundles)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-02', pod: 'Wave Grouped' },
+
+          // Stage 2: Wave Picking (14 orders)
+          { orderId: 'ORD-BW-1111', customer: 'Ashok Leyland Depot', cargo: 'Axle Hubs (18 crates)', picker: 'R. Mane (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-BW-1112', customer: 'Eicher Motors Hub', cargo: 'Flywheels (10 units)', picker: 'S. Kadam (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-BW-1113', customer: 'Force Motors Chakan', cargo: 'Radiator Fans (22 units)', picker: 'A. Shinde (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-BW-1114', customer: 'Hyundai Mobis Depot', cargo: 'Headlamp Sets (35 boxes)', picker: 'P. Bhosale (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1115', customer: 'Honda Motorcycle Parts', cargo: 'Carburetor Assemblies (40 boxes)', picker: 'V. More (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BW-1116', customer: 'Kalyani Steels Regional', cargo: 'Forged Castings (14 crates)', picker: 'D. Salve (Heavy Bay)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Heavy Bay H-1', pod: 'MHE Transit' },
+          { orderId: 'ORD-BW-1117', customer: 'Lumax Industries', cargo: 'Lighting Wiring Harness (28 kits)', picker: 'M. Tambe (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 03 Loading' },
+          { orderId: 'ORD-BW-1118', customer: 'Minda Corp Distribution', cargo: 'Ignition Switches (45 boxes)', picker: 'K. Raut (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1119', customer: 'Gabriel India Ltd', cargo: 'Shock Absorbers (30 crates)', picker: 'G. Shinde (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BW-1120', customer: 'Sundram Fasteners', cargo: 'High-Tensile Bolts (60 bags)', picker: 'H. Jadhav (Aisle 09)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 9', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-BW-1121', customer: 'Uno Minda Systems', cargo: 'Alloy Wheels (20 cartons)', picker: 'N. Gite (Aisle 10)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 10', pod: 'Cart 04 Loading' },
+          { orderId: 'ORD-BW-1122', customer: 'Varroc Engineering', cargo: 'Polymer Trim Kits (16 sets)', picker: 'T. Gaikwad (Aisle 11)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 11', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1123', customer: 'Subros Air Conditioning', cargo: 'HVAC Ducting (25 bundles)', picker: 'L. Chavan (Aisle 12)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 12', pod: 'Picking Active (60%)' },
+          { orderId: 'ORD-BW-1124', customer: 'Endurance Technologies', cargo: 'Clutch Housings (12 crates)', picker: 'B. Jagtap (Aisle 13)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 13', pod: 'Pick Cycle Active' },
+
+          // Stage 3: Sorting & Packing (8 orders)
+          { orderId: 'ORD-BW-1131', customer: 'Toyota Kirloskar Ancillary', cargo: 'Steering Columns (15 crates)', picker: 'M. Patil (Pack Desk 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1132', customer: 'Skoda Auto Volkswagen', cargo: 'Door Lock Latches (30 boxes)', picker: 'S. Pawar (Pack Desk 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BW-1133', customer: 'Renault Nissan Logistics', cargo: 'Oil Filters (45 boxes)', picker: 'R. Koli (Pack Desk 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-BW-1134', customer: 'Schaeffler India Hub', cargo: 'Roller Bearings (22 cartons)', picker: 'P. Sonawane (Pack Desk 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1135', customer: 'SKF India Distribution', cargo: 'Wheel Bearings (28 boxes)', picker: 'A. Gurav (Pack Desk 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BW-1136', customer: 'Timken Bearings Depot', cargo: 'Tapered Bearings (18 crates)', picker: 'K. Bhagat (Pack Desk 06)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 06', pod: 'Scale Queued' },
+          { orderId: 'ORD-BW-1137', customer: 'Rane Brake Linings', cargo: 'Brake Disc Pads (40 sets)', picker: 'N. Kamble (Pack Desk 07)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 07', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1138', customer: 'Federal-Mogul Goetze', cargo: 'Piston Rings (50 boxes)', picker: 'D. Shinde (Pack Desk 08)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 08', pod: 'Bubble Wrap & Taping' },
+
+          // Stage 4: QC & Weighing (4 orders)
+          { orderId: 'ORD-BW-1141', customer: 'Mahindra CIE Automotive', cargo: 'Differential Gears (10 crates)', picker: 'S. Wagh (QC Desk 01)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1142', customer: 'Bharat Forge Hub', cargo: 'Crankshaft Blanks (8 crates)', picker: 'Y. Sawant (QC Desk 02)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1143', customer: 'GKN Driveline India', cargo: 'Constant Velocity Joints (20 boxes)', picker: 'V. Dhale (QC Desk 03)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1144', customer: 'Dana India Distribution', cargo: 'Drive Axle Kits (12 crates)', picker: 'G. Thorat (QC Desk 04)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-04', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5: Staged at Dock (2 normal + 1 issue ORD-BW-1092 = 3 orders total)
+          { orderId: 'ORD-BW-1151', customer: 'Maruti Suzuki Ancillary', cargo: 'Clutch Plates (50 sets)', picker: 'N. Patil (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-BW-1152', customer: 'Tata Motors CV Depot', cargo: 'Leaf Springs (16 bundles)', picker: 'K. Shirodkar (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Staged for VRL Freight' }
         ]
       },
       'WH-04 Pune': {
@@ -4799,8 +4993,38 @@
         ],
         issues: [],
         normalOrders: [
-          { orderId: 'ORD-PN-3012', customer: 'Bajaj Auto Chakan', cargo: 'Piston Assemblies (100 units)', picker: 'P. Joshi', stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
-          { orderId: 'ORD-PN-3004', customer: 'Thermax Ltd', cargo: 'Heat Valves (12 crates)', picker: 'M. Gaikwad', stage: '6. Dispatched & POD', pod: 'Customer Signed POD' }
+          // Stage 1 (3 orders)
+          { orderId: 'ORD-PN-3015', customer: 'Bharat Forge Mundhwa', cargo: 'Axle Forgings (20 crates)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-PN-3016', customer: 'Tata Motors Bhosari', cargo: 'Wiring Harness (30 boxes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-PN-3017', customer: 'Cummins India Kothrud', cargo: 'Engine Filters (40 cartons)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          
+          // Stage 2 (8 orders)
+          { orderId: 'ORD-PN-3021', customer: 'Kalyani Maxion Wheels', cargo: 'Steel Rims (35 units)', picker: 'R. Shinde (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (80%)' },
+          { orderId: 'ORD-PN-3022', customer: 'ZF Steering Gear', cargo: 'Tie Rods (50 sets)', picker: 'P. More (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-PN-3023', customer: 'Mahindra Heavy Chakan', cargo: 'Cabin Mounts (15 crates)', picker: 'S. Patil (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-PN-3024', customer: 'Force Motors Akurdi', cargo: 'Door Panels (22 sets)', picker: 'V. Kadam (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-PN-3025', customer: 'Lear Automotive Pune', cargo: 'Seat Frames (18 units)', picker: 'M. Pawar (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-PN-3026', customer: 'Faurecia Emission Tech', cargo: 'Silencer Baffles (25 boxes)', picker: 'D. Mane (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-PN-3027', customer: 'Motherson Sumi Systems', cargo: 'Rearview Mirrors (40 cartons)', picker: 'G. Thorat (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Tote Staging' },
+          { orderId: 'ORD-PN-3028', customer: 'Cooper Standard Pune', cargo: 'Rubber Sealing Kits (55 sets)', picker: 'K. Jagtap (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Pick Cycle Active' },
+          
+          // Stage 3 (5 orders)
+          { orderId: 'ORD-PN-3031', customer: 'Thermax Ltd Chinchwad', cargo: 'Heat Valves (12 crates)', picker: 'M. Gaikwad (Pack 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-PN-3032', customer: 'Kirloskar Oil Engines', cargo: 'Injector Nozzles (35 boxes)', picker: 'A. Gurav (Pack 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-PN-3033', customer: 'Atlas Copco Dapodi', cargo: 'Air Dryer Filters (20 boxes)', picker: 'N. Kamble (Pack 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-PN-3034', customer: 'Sandvik Mining Pune', cargo: 'Drill Bits (15 crates)', picker: 'S. Wagh (Pack 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-PN-3035', customer: 'Alfa Laval India', cargo: 'Heat Plate Gaskets (28 sets)', picker: 'Y. Sawant (Pack 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          
+          // Stage 4 (3 orders)
+          { orderId: 'ORD-PN-3041', customer: 'SKF Bearings Talegaon', cargo: 'Spherical Bearings (25 boxes)', picker: 'V. Dhale (QC Desk 1)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-PN-3042', customer: 'Schaeffler Savli Hub', cargo: 'Clutch Bearings (30 cartons)', picker: 'G. Thorat (QC Desk 2)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-PN-3043', customer: 'Bosch Chassis Systems', cargo: 'ABS Hydraulic Units (14 crates)', picker: 'N. Patil (QC Desk 3)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          
+          // Stage 5 (4 orders)
+          { orderId: 'ORD-PN-3012', customer: 'Bajaj Auto Chakan', cargo: 'Piston Assemblies (100 units)', picker: 'P. Joshi (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 01', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-PN-3051', customer: 'Tata Motors CV Pune', cargo: 'Leaf Spring Brackets (20 sets)', picker: 'R. Koli (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 02', pod: 'Staged for TCI' },
+          { orderId: 'ORD-PN-3052', customer: 'Mahindra Auto Chakan', cargo: 'Drive Shafts (15 bundles)', picker: 'S. Pawar (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 03', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-PN-3053', customer: 'Piaggio Vehicles Baramati', cargo: 'Engine Casings (12 crates)', picker: 'M. Patil (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Trailer Loading' }
         ]
       },
       'WH-07 Kolkata': {
@@ -4872,7 +5096,39 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-KL-7019', customer: 'Britannia Depot', cargo: 'Bakery Ingredients (30 sacks)', picker: 'C. Paul', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1 (5 orders)
+          { orderId: 'ORD-KL-7051', customer: 'Bata India Batanagar', cargo: 'Footwear Boxes (45 cartons)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-KL-7052', customer: 'Emami Consumer Products', cargo: 'Ayurvedic Oils (30 cases)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-KL-7053', customer: 'Berger Paints Howrah', cargo: 'Color Tinters (20 cans)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-KL-7054', customer: 'Tata Tea Distribution', cargo: 'Packaged Tea (60 sacks)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-KL-7055', customer: 'Century Plyboards Joka', cargo: 'Laminate Sheets (15 crates)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+
+          // Stage 2 (8 normal + 1 issue ORD-KL-7040 = 9 orders)
+          { orderId: 'ORD-KL-7061', customer: 'Britannia Taratala Hub', cargo: 'Biscuits (50 cartons)', picker: 'P. Ghosh (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-KL-7062', customer: 'ITC Sunfeast Depot', cargo: 'Confectionery (40 boxes)', picker: 'R. Sen (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-KL-7063', customer: 'Hindustan Unilever Garden Reach', cargo: 'Detergents (35 crates)', picker: 'A. Das (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-KL-7064', customer: 'Dabur India Dankuni', cargo: 'Herbal Pastes (28 boxes)', picker: 'S. Paul (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-KL-7065', customer: 'Marico Limited Barasat', cargo: 'Edible Oils (45 cartons)', picker: 'T. Roy (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-KL-7066', customer: 'Godrej Consumer Uluberia', cargo: 'Household FMCG (22 boxes)', picker: 'B. Majumder (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-KL-7067', customer: 'Nestle India Kalyani', cargo: 'Instant Noodles (60 cartons)', picker: 'K. Biswas (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-KL-7068', customer: 'Parle Agro Dankuni', cargo: 'Fruit Drinks (40 cases)', picker: 'M. Halder (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Tote Staging' },
+
+          // Stage 3 (3 normal + 1 issue ORD-KL-7031 = 4 orders)
+          { orderId: 'ORD-KL-7071', customer: 'Amul Milk Dairy Barasat', cargo: 'Tetra Packs (30 cases)', picker: 'N. Sarkar (Pack 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-KL-7072', customer: 'Mother Dairy Dankuni', cargo: 'Butter & Ghee (25 boxes)', picker: 'C. Roy (Pack 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-KL-7073', customer: 'Haldiram Bhujiawala', cargo: 'Snack Cartons (35 boxes)', picker: 'D. Dutta (Pack 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+
+          // Stage 4 (2 normal + 1 issue ORD-KL-7035 = 3 orders)
+          { orderId: 'ORD-KL-7081', customer: 'Linc Pens Serampore', cargo: 'Writing Instruments (50 boxes)', picker: 'P. Nandi (QC Desk 1)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-KL-7082', customer: 'Lux Industries Kolkata', cargo: 'Hosiery Products (40 cartons)', picker: 'S. Mitra (QC Desk 2)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5 (6 orders)
+          { orderId: 'ORD-KL-7091', customer: 'Spencer Retail Salt Lake', cargo: 'Groceries (80 bags)', picker: 'R. Banerjee (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 01', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-KL-7092', customer: 'Big Bazaar Sealdah', cargo: 'Apparel (35 cartons)', picker: 'T. Ghosh (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 02', pod: 'Staged for BlueDart' },
+          { orderId: 'ORD-KL-7093', customer: 'Reliance Smart New Town', cargo: 'Staples (45 crates)', picker: 'M. Kundu (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 03', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-KL-7094', customer: 'More Retail Gariahat', cargo: 'Packaged Food (25 boxes)', picker: 'A. Chatterjee (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Trailer Loading' },
+          { orderId: 'ORD-KL-7095', customer: 'D-Mart Howrah Central', cargo: 'Home Cleaning (40 cartons)', picker: 'S. Barman (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Seal Affixed' },
+          { orderId: 'ORD-KL-7096', customer: 'Smart Point Rajarhat', cargo: 'Beverages (30 cases)', picker: 'K. Mandal (Bay 06)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 06', pod: 'Gate Pass Ready' }
         ]
       },
       'WH-08 Delhi NCR': {
@@ -4909,7 +5165,84 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-DL-8101', customer: 'Havells India', cargo: 'Fans & Heaters (60 boxes)', picker: 'K. Lal', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1 (12 orders)
+          { orderId: 'ORD-DL-8121', customer: 'Samsung India Fulfilment', cargo: 'LED TV Mounts (40 units)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-DL-8122', customer: 'LG Electronics Okhla', cargo: 'Microwaves (25 units)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-DL-8123', customer: 'Voltas AC Spares Gurgaon', cargo: 'Compressor Kits (18 crates)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-DL-8124', customer: 'Havells Logistics Noida', cargo: 'Switchgear (50 boxes)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-DL-8125', customer: 'Crompton Greaves Faridabad', cargo: 'Ceiling Fans (60 units)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-DL-8126', customer: 'Orient Electric Gurgaon', cargo: 'LED Bulbs (80 cartons)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-02', pod: 'Wave Grouped' },
+          { orderId: 'ORD-DL-8127', customer: 'Usha International Okhla', cargo: 'Sewing Machines (15 units)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue D-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-DL-8128', customer: 'Bajaj Electricals Noida', cargo: 'Water Heaters (20 units)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue D-02', pod: 'Wave Grouped' },
+          { orderId: 'ORD-DL-8129', customer: 'Philips Lighting Manesar', cargo: 'Panel Lights (45 boxes)', picker: 'Floor Queue E', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue E-01', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-DL-8130', customer: 'Panasonic Life Solutions', cargo: 'Modular Switches (70 boxes)', picker: 'Floor Queue E', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue E-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-DL-8131', customer: 'Whirlpool India Faridabad', cargo: 'Refrigerator Shelves (30 sets)', picker: 'Floor Queue F', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue F-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-DL-8132', customer: 'Godrej Appliances Okhla', cargo: 'Washing Machine Motors (22 units)', picker: 'Floor Queue F', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue F-02', pod: 'Awaiting Wave Release' },
+
+          // Stage 2 (24 orders)
+          { orderId: 'ORD-DL-8141', customer: 'Amazon Delhi Hub', cargo: 'Electronics (120 units)', picker: 'A. Mehra (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-DL-8142', customer: 'Flipkart Manesar Depot', cargo: 'Wearables (80 boxes)', picker: 'B. Singh (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-DL-8143', customer: 'Blinkit SuperHub Gurgaon', cargo: 'Snacks & FMCG (90 crates)', picker: 'C. Sharma (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-DL-8144', customer: 'Zepto Darkstore Saket', cargo: 'Personal Care (60 boxes)', picker: 'D. Kumar (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-DL-8145', customer: 'Myntra Depot Bilaspur', cargo: 'Apparel (110 cartons)', picker: 'E. Verma (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-DL-8146', customer: 'Nykaa Regional Okhla', cargo: 'Cosmetics (45 cartons)', picker: 'F. Gupta (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-DL-8147', customer: 'Tata Cliq Manesar', cargo: 'Watches (30 boxes)', picker: 'G. Yadav (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Picking Active (80%)' },
+          { orderId: 'ORD-DL-8148', customer: 'Ajio Logistics Noida', cargo: 'Denims (75 cartons)', picker: 'H. Tiwari (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Tote Staging' },
+          { orderId: 'ORD-DL-8149', customer: 'Lenskart Warehouse Gurgaon', cargo: 'Optical Frames (50 cases)', picker: 'I. Joshi (Aisle 09)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 9', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-DL-8150', customer: 'Boat Lifestyle Okhla', cargo: 'Earphones (95 boxes)', picker: 'J. Malik (Aisle 10)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 10', pod: 'Cart 03 Loading' },
+          { orderId: 'ORD-DL-8151', customer: 'Noise Wearables Manesar', cargo: 'Smart Bands (60 boxes)', picker: 'K. Rathi (Aisle 11)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 11', pod: 'Picking Active (75%)' },
+          { orderId: 'ORD-DL-8152', customer: 'Realme India Depot', cargo: 'Smartphones (40 cases)', picker: 'L. Tanwar (Aisle 12)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 12', pod: 'Tote Staging' },
+          { orderId: 'ORD-DL-8153', customer: 'Xiaomi Central Warehouse', cargo: 'Tablets & Spares (55 boxes)', picker: 'M. Tomar (Aisle 13)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 13', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-DL-8154', customer: 'Oppo Mobiles Greater Noida', cargo: 'Adapters & Cables (70 boxes)', picker: 'N. Kasana (Aisle 14)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 14', pod: 'Cart 04 Loading' },
+          { orderId: 'ORD-DL-8155', customer: 'Vivo India Factory Hub', cargo: 'Display Panels (35 crates)', picker: 'O. Nagar (Aisle 15)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 15', pod: 'Picking Active (95%)' },
+          { orderId: 'ORD-DL-8156', customer: 'OnePlus Service Central', cargo: 'Battery Replacements (45 boxes)', picker: 'P. Bhati (Aisle 16)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone F, Aisle 16', pod: 'Tote Staging' },
+          { orderId: 'ORD-DL-8157', customer: 'Apple India Logistics', cargo: 'iPads (20 crates)', picker: 'Q. Chauhan (High Security)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Security Cage 1', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-DL-8158', customer: 'Dell Technologies Gurgaon', cargo: 'Monitors (30 units)', picker: 'R. Rawat (Aisle 17)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone F, Aisle 17', pod: 'Cart 05 Loading' },
+          { orderId: 'ORD-DL-8159', customer: 'HP India Depot Noida', cargo: 'Printers (25 units)', picker: 'S. Negi (Aisle 18)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone F, Aisle 18', pod: 'Picking Active (80%)' },
+          { orderId: 'ORD-DL-8160', customer: 'Lenovo Logistics Manesar', cargo: 'Laptops (35 units)', picker: 'T. Bisht (Aisle 19)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone G, Aisle 19', pod: 'Tote Staging' },
+          { orderId: 'ORD-DL-8161', customer: 'Acer India Central', cargo: 'Keyboards (50 boxes)', picker: 'U. Bhandari (Aisle 20)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone G, Aisle 20', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-DL-8162', customer: 'Asus Regional Hub', cargo: 'Gaming Mice (65 boxes)', picker: 'V. Panwar (Aisle 21)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone G, Aisle 21', pod: 'Cart 06 Loading' },
+          { orderId: 'ORD-DL-8163', customer: 'Sony India Gurgaon', cargo: 'Audio Systems (18 crates)', picker: 'W. Rana (Aisle 22)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone H, Aisle 22', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-DL-8164', customer: 'JBL Harman Okhla', cargo: 'Bluetooth Speakers (40 boxes)', picker: 'X. Semwal (Aisle 23)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone H, Aisle 23', pod: 'Tote Staging' },
+
+          // Stage 3 (15 orders)
+          { orderId: 'ORD-DL-8171', customer: 'Apollo Pharmacy Central', cargo: 'Medicines (80 boxes)', picker: 'Y. Nautiyal (Pack 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-DL-8172', customer: 'MedPlus Pharma Gurgaon', cargo: 'First Aid (50 boxes)', picker: 'Z. Bhatt (Pack 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-DL-8173', customer: 'Tata 1mg Okhla Hub', cargo: 'Supplements (65 cartons)', picker: 'AA. Uniyal (Pack 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-DL-8174', customer: 'PharmEasy Manesar Hub', cargo: 'Diagnostics (40 kits)', picker: 'AB. Gairola (Pack 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-DL-8175', customer: 'D-Mart Regional Depot', cargo: 'Staples (90 sacks)', picker: 'AC. Kandari (Pack 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-DL-8176', customer: 'Reliance Retail Ghaziabad', cargo: 'Groceries (100 bags)', picker: 'AD. Mamgain (Pack 06)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 06', pod: 'Scale Queued' },
+          { orderId: 'ORD-DL-8177', customer: 'Big Bazaar Rajouri Garden', cargo: 'Home Essentials (45 cartons)', picker: 'AE. Thapliyal (Pack 07)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 07', pod: 'Carton Strapping' },
+          { orderId: 'ORD-DL-8178', customer: 'More Retail Faridabad', cargo: 'Packaged Food (55 boxes)', picker: 'AF. Sundriyal (Pack 08)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 08', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-DL-8179', customer: 'Spencers Daily Noida', cargo: 'Beverages (40 cases)', picker: 'AG. Kothari (Pack 09)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 09', pod: 'Scale Queued' },
+          { orderId: 'ORD-DL-8180', customer: 'Nature Basket Gurgaon', cargo: 'Organic Food (30 crates)', picker: 'AH. Chamoli (Pack 10)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 10', pod: 'Carton Strapping' },
+          { orderId: 'ORD-DL-8181', customer: 'Modern Bazaar Saket', cargo: 'Gourmet Packs (25 boxes)', picker: 'AI. Raturi (Pack 11)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 11', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-DL-8182', customer: 'Le Marche Vasant Kunj', cargo: 'Cheeses & Deli (18 totes)', picker: 'AJ. Payal (Pack 12)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 12', pod: 'Scale Queued' },
+          { orderId: 'ORD-DL-8183', customer: 'Decathlon Noida Depot', cargo: 'Sporting Equipment (25 crates)', picker: 'AK. Dobhal (Pack 13)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 13', pod: 'Carton Strapping' },
+          { orderId: 'ORD-DL-8184', customer: 'Shoppers Stop Connaught Place', cargo: 'Apparel (35 cartons)', picker: 'AL. Silswal (Pack 14)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 14', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-DL-8185', customer: 'Lifestyle Vasant Kunj', cargo: 'Cosmetics (30 boxes)', picker: 'AM. Barthwal (Pack 15)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 15', pod: 'Scale Queued' },
+
+          // Stage 4 (7 normal + 1 issue ORD-DL-8114 = 8 orders)
+          { orderId: 'ORD-DL-8191', customer: 'Tata Motors CV Faridabad', cargo: 'Gearboxes (8 units)', picker: 'AN. Kukreti (QC 01)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8192', customer: 'Maruti Suzuki Manesar Hub', cargo: 'Alternators (30 boxes)', picker: 'AO. Dabral (QC 02)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8193', customer: 'Hero MotoCorp Dharuhera', cargo: 'Chain Sprockets (45 crates)', picker: 'AP. Dimri (QC 03)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8194', customer: 'Honda Cars Greater Noida', cargo: 'Brake Boosters (20 units)', picker: 'AQ. Baluni (QC 04)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-04', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8195', customer: 'Yamaha Motors Surajpur', cargo: 'Handlebars (50 units)', picker: 'AR. Badoni (QC 05)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-05', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8196', customer: 'Mahindra Heavy Kundli', cargo: 'Leaf Springs (15 bundles)', picker: 'AS. Gosain (QC 06)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-06', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-DL-8197', customer: 'Ashok Leyland Ghaziabad', cargo: 'Air Tanks (18 units)', picker: 'AT. Gairola (QC 07)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-07', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5 (11 orders)
+          { orderId: 'ORD-DL-8201', customer: 'Delhivery Surface Central', cargo: 'E-commerce Freight (120 bags)', picker: 'AU. Kotnala (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 01', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-DL-8202', customer: 'BlueDart Aviation IGI Hub', cargo: 'Priority Air Packages (50 boxes)', picker: 'AV. Khanduri (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 02', pod: 'Staged for BlueDart' },
+          { orderId: 'ORD-DL-8203', customer: 'Safexpress Manesar Logistics', cargo: 'Heavy Auto Spares (25 crates)', picker: 'AW. Maithani (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 03', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-DL-8204', customer: 'GATI KWE Cargo Okhla', cargo: 'Apparel Cargo (40 cartons)', picker: 'AX. Semwal (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Trailer Loading' },
+          { orderId: 'ORD-DL-8205', customer: 'TCI Freight Faridabad', cargo: 'Chemical Drums (15 drums)', picker: 'AY. Saklani (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Seal Affixed' },
+          { orderId: 'ORD-DL-8206', customer: 'VRL Logistics Kundli', cargo: 'Ceramic Tiles (30 crates)', picker: 'AZ. Bijalwan (Bay 06)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 06', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-DL-8207', customer: 'DTDC Express Gurgaon', cargo: 'Consumer Parcels (75 bags)', picker: 'BA. Pokhriyal (Bay 07)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 07', pod: 'Staged for DTDC' },
+          { orderId: 'ORD-DL-8208', customer: 'Trackon Couriers Noida', cargo: 'Documents & Small Cargo (60 bags)', picker: 'BB. Dhoundiyal (Bay 08)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 08', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-DL-8209', customer: 'Shadowfax Central Hub', cargo: 'Hyperlocal Bags (90 totes)', picker: 'BC. Aswal (Bay 09)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 09', pod: 'Trailer Loading' },
+          { orderId: 'ORD-DL-8210', customer: 'Xpressbees Regional Okhla', cargo: 'Footwear & Fashion (65 cartons)', picker: 'BD. Pundir (Bay 10)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 10', pod: 'Seal Affixed' },
+          { orderId: 'ORD-DL-8211', customer: 'Ecom Express Manesar', cargo: 'Apparel Parcels (85 bags)', picker: 'BE. Ghildiyal (Bay 11)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 11', pod: 'Gate Pass Ready' }
         ]
       },
       'WH-12 Ahmedabad': {
@@ -4983,7 +5316,46 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-AH-6005', customer: 'Nirma Consumer', cargo: 'Detergent Bags (50 bags)', picker: 'C. Joshi', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1 (6 orders)
+          { orderId: 'ORD-AH-6031', customer: 'Nirma Chemicals Sanand', cargo: 'Detergents (50 bags)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-AH-6032', customer: 'Cadila Healthcare Moraiya', cargo: 'Pharma Cartons (30 boxes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-AH-6033', customer: 'Torrent Pharma Indrad', cargo: 'Active Ingredients (20 drums)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-AH-6034', customer: 'Intas Pharma Matoda', cargo: 'Injectables (25 totes)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-AH-6035', customer: 'Amneal Pharma Changodar', cargo: 'Solid Dose (35 boxes)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-AH-6036', customer: 'Sun Pharma Halol', cargo: 'Capsule Blisters (40 cartons)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-02', pod: 'Wave Grouped' },
+
+          // Stage 2 (10 normal + 1 issue ORD-AH-6012 = 11 orders)
+          { orderId: 'ORD-AH-6041', customer: 'Adani Wilmar Mundra', cargo: 'Refined Oil (80 cartons)', picker: 'M. Vaghela (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-AH-6042', customer: 'Gujarat Co-op Milk (Amul)', cargo: 'Butter & Ghee (60 cases)', picker: 'R. Desai (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-AH-6043', customer: 'Sintex Plastics Kalol', cargo: 'Storage Drums (15 units)', picker: 'P. Trivedi (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-AH-6044', customer: 'Astral Pipes Santej', cargo: 'PVC Fittings (45 boxes)', picker: 'K. Patel (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-AH-6045', customer: 'Ashima Textiles Naroda', cargo: 'Grey Fabrics (25 rolls)', picker: 'J. Shah (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-AH-6046', customer: 'Mafatlal Industries Nadiad', cargo: 'Shirting Fabrics (30 rolls)', picker: 'N. Solanki (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-AH-6047', customer: 'Aegis Logistics Kandla', cargo: 'Gas Cylinders (20 units)', picker: 'B. Dave (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-AH-6048', customer: 'Tata Motors Sanand Hub', cargo: 'Body Stampings (18 crates)', picker: 'C. Joshi (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Tote Staging' },
+          { orderId: 'ORD-AH-6049', customer: 'Ford Ancillary Sanand', cargo: 'Wire Assemblies (35 boxes)', picker: 'D. Parmar (Aisle 09)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 9', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-AH-6050', customer: 'Suzuki Motor Hansalpur', cargo: 'Engine Bracket (14 crates)', picker: 'E. Barot (Aisle 10)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 10', pod: 'Cart 03 Loading' },
+
+          // Stage 3 (6 normal + 1 issue ORD-AH-6018 = 7 orders)
+          { orderId: 'ORD-AH-6061', customer: 'Havells India Vadodara', cargo: 'Switchgear (40 boxes)', picker: 'F. Makwana (Pack 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-AH-6062', customer: 'Polycab India Halol', cargo: 'Cable Spools (25 reels)', picker: 'G. Chauhan (Pack 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-AH-6063', customer: 'RR Kabel Waghodia', cargo: 'Building Wires (50 rolls)', picker: 'H. Thakor (Pack 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-AH-6064', customer: 'Apar Industries Umbergaon', cargo: 'Transformer Oils (20 barrels)', picker: 'I. Rathod (Pack 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-AH-6065', customer: 'Asian Paints Ankleshwar', cargo: 'Paints & Primers (30 buckets)', picker: 'J. Zala (Pack 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-AH-6066', customer: 'Pidilite Industries Vapi', cargo: 'Adhesives (45 cartons)', picker: 'K. Vala (Pack 06)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 06', pod: 'Scale Queued' },
+
+          // Stage 4 (4 orders)
+          { orderId: 'ORD-AH-6071', customer: 'Welspun India Anjar', cargo: 'Terry Towels (60 cartons)', picker: 'L. Mori (QC 01)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-AH-6072', customer: 'Trident Group Regional', cargo: 'Bed Linen (40 cartons)', picker: 'M. Dabhi (QC 02)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-AH-6073', customer: 'Alok Industries Vapi', cargo: 'Polyester Yarn (30 boxes)', picker: 'N. Raval (QC 03)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-AH-6074', customer: 'Raymond Silver Spark', cargo: 'Suiting Fabrics (25 rolls)', picker: 'O. Vyas (QC 04)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-04', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5 (5 normal + 1 issue ORD-AH-6025 = 6 orders)
+          { orderId: 'ORD-AH-6081', customer: 'Reliance Retail Ahmedabad', cargo: 'Consumer Goods (90 bags)', picker: 'P. Trivedi (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 01', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-AH-6082', customer: 'D-Mart Sarkhej Depot', cargo: 'Household FMCG (70 crates)', picker: 'Q. Joshi (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 02', pod: 'Staged for Delhivery' },
+          { orderId: 'ORD-AH-6083', customer: 'Croma Retail SG Highway', cargo: 'Appliances (20 crates)', picker: 'R. Shah (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 03', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-AH-6084', customer: 'Vijay Sales Ashram Road', cargo: 'Smart TVs (15 units)', picker: 'S. Patel (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Trailer Loading' },
+          { orderId: 'ORD-AH-6085', customer: 'Osia Hypermarket Naroda', cargo: 'Groceries (60 bags)', picker: 'T. Bhatt (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Seal Affixed' }
         ]
       },
       'WH-03 Bengaluru': {
@@ -5019,7 +5391,64 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-BL-3301', customer: 'Wipro Technologies', cargo: 'Server Racks (2 units)', picker: 'S. Kumar', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1 (8 orders)
+          { orderId: 'ORD-BL-3311', customer: 'Infosys Electronic City', cargo: 'Monitors (50 units)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BL-3312', customer: 'Wipro Sarjapur Campus', cargo: 'Laptops (35 units)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BL-3313', customer: 'TCS Whitefield Hub', cargo: 'Desktops (40 units)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-BL-3314', customer: 'Intel India Bellandur', cargo: 'Motherboard Test Units (15 kits)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-BL-3315', customer: 'Cisco Systems Cessna', cargo: 'Switches & Routers (25 crates)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BL-3316', customer: 'Dell Technologies Domlur', cargo: 'Docking Stations (60 boxes)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-02', pod: 'Wave Grouped' },
+          { orderId: 'ORD-BL-3317', customer: 'HP Enterprise Mahadevapura', cargo: 'Blade Servers (10 crates)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue D-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BL-3318', customer: 'IBM Manyata Tech Park', cargo: 'Storage Arrays (8 units)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue D-02', pod: 'Batch Release Pending' },
+
+          // Stage 2 (17 normal + 1 issue ORD-BL-3309 = 18 orders)
+          { orderId: 'ORD-BL-3321', customer: 'Flipkart Logistics Hub Hoskote', cargo: 'Consumer Tech (110 units)', picker: 'D. Gowda (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-BL-3322', customer: 'Amazon IN Fulfillment Attibele', cargo: 'Electronics (90 boxes)', picker: 'K. Venkatesh (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-BL-3323', customer: 'BigBasket HQ Chikkajala', cargo: 'Fresh Staples (80 crates)', picker: 'M. Swamy (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-BL-3324', customer: 'Zepto Darkstore Indiranagar', cargo: 'Snacks & Drinks (50 boxes)', picker: 'P. Murthy (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-BL-3325', customer: 'Blinkit Depot Koramangala', cargo: 'Dairy & Bakery (45 totes)', picker: 'R. Reddy (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BL-3326', customer: 'Myntra Express Bommasandra', cargo: 'Designer Footwear (70 pairs)', picker: 'S. Naidu (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-BL-3327', customer: 'Ajio Warehouse Nelamangala', cargo: 'Winter Jackets (40 cartons)', picker: 'T. Kumar (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-BL-3328', customer: 'Nykaa Regional Peenya', cargo: 'Beauty Products (55 boxes)', picker: 'U. Prasad (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Tote Staging' },
+          { orderId: 'ORD-BL-3329', customer: 'Titan Eyeplus Electronic City', cargo: 'Spectacle Frames (60 cases)', picker: 'V. Rao (Aisle 09)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 9', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BL-3330', customer: 'Fastrack Store Jayanagar', cargo: 'Smart Watches (35 units)', picker: 'W. Hegde (Aisle 10)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 10', pod: 'Cart 03 Loading' },
+          { orderId: 'ORD-BL-3331', customer: 'Croma Retail Marathahalli', cargo: 'Air Conditioners (12 units)', picker: 'X. Shettar (Aisle 11)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 11', pod: 'Picking Active (80%)' },
+          { orderId: 'ORD-BL-3332', customer: 'Reliance Digital HSR Layout', cargo: 'OLED Smart TVs (10 units)', picker: 'Y. Patil (Aisle 12)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 12', pod: 'Tote Staging' },
+          { orderId: 'ORD-BL-3333', customer: 'Vijay Sales Whitefield', cargo: 'Soundbars (25 boxes)', picker: 'Z. Kulkarni (Aisle 13)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 13', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BL-3334', customer: 'Decathlon Anubhava Hub', cargo: 'Tents & Camping (18 crates)', picker: 'AA. Joshi (Aisle 14)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 14', pod: 'Cart 04 Loading' },
+          { orderId: 'ORD-BL-3335', customer: 'IKEA Nagasandra Distribution', cargo: 'Flatpack Furniture (30 boxes)', picker: 'AB. Desai (Aisle 15)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone E, Aisle 15', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-BL-3336', customer: 'Home Centre Koramangala', cargo: 'Crockery Sets (22 cartons)', picker: 'AC. Bhat (Aisle 16)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone F, Aisle 16', pod: 'Tote Staging' },
+          { orderId: 'ORD-BL-3337', customer: 'Fabindia Central Depot', cargo: 'Handloom Curtains (35 bundles)', picker: 'AD. Nayak (Aisle 17)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone F, Aisle 17', pod: 'Pick Cycle Active' },
+
+          // Stage 3 (10 orders)
+          { orderId: 'ORD-BL-3341', customer: 'MedPlus Depot Peenya', cargo: 'Pharmaceuticals (60 cartons)', picker: 'AE. Acharya (Pack 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BL-3342', customer: 'Apollo Pharmacy Rajajinagar', cargo: 'Healthcare Devices (40 boxes)', picker: 'AF. Shenoy (Pack 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BL-3343', customer: 'Manipal Hospital Pharmacy', cargo: 'Surgical Disposables (25 crates)', picker: 'AG. Pai (Pack 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-BL-3344', customer: 'Fortis Hospital BG Road', cargo: 'Saline Solutions (30 cartons)', picker: 'AH. Kamath (Pack 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BL-3345', customer: 'Biocon Park Jigani', cargo: 'Laboratory Glassware (15 crates)', picker: 'AI. Prabhu (Pack 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BL-3346', customer: 'Syngene International Bommasandra', cargo: 'Research Reagents (20 boxes)', picker: 'AJ. Kudva (Pack 06)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 06', pod: 'Scale Queued' },
+          { orderId: 'ORD-BL-3347', customer: 'AstraZeneca Pharma Hebbal', cargo: 'Insulin Kits (35 insulated boxes)', picker: 'AK. Alva (Pack 07)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 07', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BL-3348', customer: 'Micro Labs Kudlu Gate', cargo: 'Tablet Strips (50 cartons)', picker: 'AL. Shetty (Pack 08)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 08', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BL-3349', customer: 'Strides Pharma Bannerghatta', cargo: 'Softgel Capsules (40 boxes)', picker: 'AM. Ballal (Pack 09)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 09', pod: 'Scale Queued' },
+          { orderId: 'ORD-BL-3350', customer: 'Himalaya Wellness Makali', cargo: 'Personal Care (70 cartons)', picker: 'AN. Hegde (Pack 10)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 10', pod: 'Carton Strapping' },
+
+          // Stage 4 (6 orders)
+          { orderId: 'ORD-BL-3361', customer: 'Bosch Automotive Adugodi', cargo: 'Fuel Injection Pumps (18 crates)', picker: 'AO. Rao (QC 01)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BL-3362', customer: 'Toyota Kirloskar Bidadi', cargo: 'Axle Gearings (12 crates)', picker: 'AP. Murthy (QC 02)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BL-3363', customer: 'TVS Motor Harita Depot', cargo: 'Alloy Wheels (25 cartons)', picker: 'AQ. Swamy (QC 03)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BL-3364', customer: 'Volvo Trucks Hosakote', cargo: 'Brake Calipers (15 crates)', picker: 'AR. Reddy (QC 04)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-04', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BL-3365', customer: 'Scania Commercial Vehicles', cargo: 'Radiator Cores (10 units)', picker: 'AS. Naidu (QC 05)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-05', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BL-3366', customer: 'BEML Limited Bangalore Complex', cargo: 'Hydraulic Cylinders (8 heavy crates)', picker: 'AT. Kumar (QC 06)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-06', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5 (8 orders)
+          { orderId: 'ORD-BL-3371', customer: 'Delhivery Surface Nelamangala', cargo: 'Consolidated Parcels (95 bags)', picker: 'AU. Patil (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 01', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-BL-3372', customer: 'BlueDart Air Hub Devanahalli', cargo: 'Express Cargo (45 boxes)', picker: 'AV. Joshi (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 02', pod: 'Staged for BlueDart' },
+          { orderId: 'ORD-BL-3373', customer: 'Safexpress Peenya Logistics', cargo: 'Industrial Fasteners (30 wooden cases)', picker: 'AW. Kulkarni (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 03', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-BL-3374', customer: 'GATI KWE Electronic City', cargo: 'Tech Equipment (25 crates)', picker: 'AX. Shettar (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Trailer Loading' },
+          { orderId: 'ORD-BL-3375', customer: 'TCI Freight Hosur Road', cargo: 'Auto Lubricants (20 drums)', picker: 'AY. Hegde (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Seal Affixed' },
+          { orderId: 'ORD-BL-3376', customer: 'VRL Logistics Tumkur Road', cargo: 'Consumer Appliances (35 units)', picker: 'AZ. Desai (Bay 06)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 06', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-BL-3377', customer: 'DTDC Express Peenya Hub', cargo: 'E-commerce Parcels (60 bags)', picker: 'BA. Bhat (Bay 07)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 07', pod: 'Staged for DTDC' },
+          { orderId: 'ORD-BL-3378', customer: 'Shadowfax Central Bommasandra', cargo: 'Hyperlocal Bags (75 totes)', picker: 'BB. Nayak (Bay 08)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 08', pod: 'Gate Pass Ready' }
         ]
       }
     };
@@ -5068,17 +5497,30 @@
             subStyle = 'text-[#059669] font-semibold';
           }
 
-          card.className = `p-3.5 rounded-2xl border ${cardStyle} text-center select-none shadow-2xs`;
-          card.innerHTML = `
-            ${isStuck ? `
-              <span class="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[9px] font-bold font-arial animate-pulse shadow-xs">
-                ⚠️ ${stage.stuck} STUCK
+          if (isComplete) {
+            card.className = `p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group`;
+            card.onclick = () => openDispatchedOrdersPage();
+            card.title = `Click to view all ${stage.count} delivered dispatches with PODs in table format`;
+            card.innerHTML = `
+              <span class="text-[10px] uppercase font-bold text-[#059669] font-arial block">${stage.name}</span>
+              <span class="text-[20px] font-bold text-[#059669] block mt-0.5">${stage.count} orders</span>
+              <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5 flex items-center justify-center gap-1">
+                Delivered <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
               </span>
-            ` : ''}
-            <span class="text-[10px] uppercase font-bold ${badgeStyle} font-arial block">${stage.name}</span>
-            <span class="text-[20px] font-bold ${numStyle} block mt-0.5">${stage.count} orders</span>
-            <span class="text-[11px] ${subStyle} block font-arial mt-0.5">${stage.subtitle}</span>
-          `;
+            `;
+          } else {
+            card.className = `p-3.5 rounded-2xl border ${cardStyle} text-center select-none shadow-2xs`;
+            card.innerHTML = `
+              ${isStuck ? `
+                <span class="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[9px] font-bold font-arial animate-pulse shadow-xs">
+                  ⚠️ ${stage.stuck} STUCK
+                </span>
+              ` : ''}
+              <span class="text-[10px] uppercase font-bold ${badgeStyle} font-arial block">${stage.name}</span>
+              <span class="text-[20px] font-bold ${numStyle} block mt-0.5">${stage.count} orders</span>
+              <span class="text-[11px] ${subStyle} block font-arial mt-0.5">${stage.subtitle}</span>
+            `;
+          }
           funnelContainer.appendChild(card);
         });
       }
@@ -5858,6 +6300,202 @@
       goToScreen(1);
 
     });
+
+
+    // ==============================================
+    // STAGE 6: STORED INVENTORY DATA & FUNCTIONS
+    // ==============================================
+    const storedOrdersMaster = [
+      { orderId: 'ORD-IN-8801', supplier: 'Tata AutoComp Systems (Bhiwandi)', sku: 'SKU-LED-60W · High-Bay Floodlights', qty: '450 pcs (10 Pallets)', location: 'Rack A-04 · Shelf 2', slotId: 'A4', time: 'Today, 11:20 AM', handler: 'S. Kadam (Reach Truck #02)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8798', supplier: 'Mahindra Logistics Hub (Chakan)', sku: 'SKU-BRK-102 · Heavy Brake Drums', qty: '80 crates (16 Pallets)', location: 'Rack B-02 · Shelf 1', slotId: 'B2', time: 'Today, 10:45 AM', handler: 'P. Bhosale (Reach Truck #01)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8795', supplier: 'Bajaj Auto Depot (Akurdi)', sku: 'SKU-SPK-99 · Iridium Spark Plugs', qty: '200 boxes (4 Pallets)', location: 'Rack A-01 · Shelf 3', slotId: 'A1', time: 'Today, 09:30 AM', handler: 'R. Mane (Forklift #05)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8792', supplier: 'Bosch Automotive India (Nashik)', sku: 'SKU-ECU-04 · Diesel ECU Sensors', qty: '45 kits (High Value)', location: 'Security Cage C-01', slotId: 'C1', time: 'Yesterday, 17:15', handler: 'A. Shinde (Security Marshal)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8789', supplier: 'Ceat Tyres Regional Depot', sku: 'SKU-TYR-16 · Commercial Inner Tubes', qty: '150 bundles (Bulk Bay)', location: 'Bulk Bay E-02', slotId: 'E2', time: 'Yesterday, 16:00', handler: 'D. Salve (Forklift #02)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8785', supplier: 'Hero MotoCorp Ancillary', sku: 'SKU-CHN-55 · Roller Drive Chains', qty: '90 crates (9 Pallets)', location: 'Rack C-04 · Shelf 1', slotId: 'C4', time: 'Yesterday, 14:20', handler: 'V. More (Reach Truck #03)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8782', supplier: 'TVS Motor Parts Regional', sku: 'SKU-FLT-21 · Oil Filter Cartridges', qty: '75 cartons (5 Pallets)', location: 'Rack B-06 · Shelf 2', slotId: 'B6', time: 'Yesterday, 12:40', handler: 'M. Tambe (Picker #08)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8778', supplier: 'Ashok Leyland Central Depot', sku: 'SKU-AXL-88 · Heavy Axle Hub Assemblies', qty: '50 crates (Heavy Cargo)', location: 'Heavy Bay H-01', slotId: 'H1', time: 'Yesterday, 11:10', handler: 'S. Patil (Crane Operator)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8774', supplier: 'Force Motors Chakan Plant', sku: 'SKU-RAD-12 · Radiator Cooling Fans', qty: '40 units (8 Pallets)', location: 'Rack D-02 · Shelf 1', slotId: 'D2', time: 'Yesterday, 10:00', handler: 'G. Shinde (Forklift #04)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8770', supplier: 'Hyundai Mobis Parts Hub', sku: 'SKU-LMP-03 · Projector Headlamps', qty: '60 boxes (6 Pallets)', location: 'Rack B-08 · Shelf 3', slotId: 'B8', time: '2 days ago, 18:30', handler: 'K. Raut (Reach Truck #02)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8765', supplier: 'Toyota Kirloskar Ancillary', sku: 'SKU-STR-09 · Hydraulic Steering Columns', qty: '35 crates (7 Pallets)', location: 'Heavy Bay H-02', slotId: 'H2', time: '2 days ago, 16:50', handler: 'H. Jadhav (Crane Operator)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8761', supplier: 'Skoda Auto Volkswagen India', sku: 'SKU-LCK-44 · Electronic Door Latches', qty: '110 boxes (11 Pallets)', location: 'Rack C-02 · Shelf 2', slotId: 'C2', time: '2 days ago, 15:10', handler: 'T. Gaikwad (Forklift #01)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8758', supplier: 'Renault Nissan Logistics Hub', sku: 'SKU-FLT-80 · Fuel Filter Assemblies', qty: '95 boxes (8 Pallets)', location: 'Rack A-07 · Shelf 1', slotId: 'A7', time: '2 days ago, 13:45', handler: 'L. Chavan (Reach Truck #01)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8754', supplier: 'SKF India Distribution Center', sku: 'SKU-BRG-22 · Deep Groove Ball Bearings', qty: '85 boxes (5 Pallets)', location: 'Rack A-03 · Shelf 2', slotId: 'A3', time: '2 days ago, 11:20', handler: 'B. Jagtap (Picker #04)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8750', supplier: 'Timken Bearings Depot Pune', sku: 'SKU-BRG-77 · Tapered Roller Bearings', qty: '60 crates (12 Pallets)', location: 'Rack C-05 · Shelf 3', slotId: 'C5', time: '2 days ago, 09:15', handler: 'N. Gite (Forklift #03)', status: 'Verified & Stored' }
+    ];
+
+    function openStoredOrdersPage(whName) {
+      if (whName) currentFacilityName = whName;
+      
+      const titleEl = document.getElementById('stored-page-title');
+      if (titleEl) titleEl.textContent = `${currentFacilityName} · Stored Inventory Ledger (Stage 6)`;
+
+      const badgeEl = document.getElementById('stored-page-count-badge');
+      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '145' : '145'} Orders Stored in Inventory`;
+
+      renderStoredOrdersTable();
+      goToScreen('stored');
+    }
+
+    function renderStoredOrdersTable(data) {
+      const tbody = document.getElementById('stored-orders-tbody');
+      if (!tbody) return;
+
+      const list = data || storedOrdersMaster;
+      tbody.innerHTML = '';
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" class="py-8 text-center text-gray-500 text-[13px]">No stored inventory orders found matching your criteria.</td></tr>`;
+        return;
+      }
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#F9FAFB] transition-colors';
+
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-bold text-[#1F2937] font-arial whitespace-nowrap">${item.orderId}</td>
+          <td class="py-3 px-3 font-medium text-[#1F2937]">${item.supplier}</td>
+          <td class="py-3 px-3">
+            <span class="font-medium text-[#1F2937]">${item.sku.split('·')[0]}</span>
+            <span class="text-gray-500 text-[12px] block">${item.sku.split('·')[1] || ''}</span>
+          </td>
+          <td class="py-3 px-3 font-arial font-semibold text-[#1F2937] whitespace-nowrap">${item.qty}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px] font-arial">
+              ${item.location}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-[#4B5563] text-[12px] whitespace-nowrap">${item.time}</td>
+          <td class="py-3 px-3 text-[#1F2937] font-medium text-[12px] whitespace-nowrap">${item.handler}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold border border-[#A7F3D0] text-[11px] font-arial">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              ${item.status}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <button onclick="goToScreen(3, null, 'overview');" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">
+              View Slot &rarr;
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterStoredTable() {
+      const q = (document.getElementById('stored-search-input')?.value || '').toLowerCase().trim();
+      const zone = document.getElementById('stored-zone-filter')?.value || 'all';
+
+      const filtered = storedOrdersMaster.filter(item => {
+        const matchesQuery = !q || 
+          item.orderId.toLowerCase().includes(q) ||
+          item.supplier.toLowerCase().includes(q) ||
+          item.sku.toLowerCase().includes(q) ||
+          item.location.toLowerCase().includes(q) ||
+          item.handler.toLowerCase().includes(q);
+
+        const matchesZone = zone === 'all' || item.location.includes(zone);
+        return matchesQuery && matchesZone;
+      });
+
+      renderStoredOrdersTable(filtered);
+    }
+
+
+    // ==============================================
+    // STAGE 6: DISPATCHED & POD DATA & FUNCTIONS
+    // ==============================================
+    const dispatchedOrdersMaster = [
+      { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary (Gurgaon Hub)', cargo: 'Clutch Plates (50 sets · 2 Pallets)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-882910-HYD', time: '20 Nov 2026, 05:40 PM', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1085', customer: 'Mahindra Auto Depot (Chakan Plant)', cargo: 'Heavy Alternators (24 units · 3 Crates)', carrier: 'VRL Logistics', waybill: 'VRL-TRK-MH04-8812', time: 'Today, 13:30 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1082', customer: 'Tata Motors CV Depot (Pune)', cargo: 'Leaf Springs (16 bundles · 2 Trailers)', carrier: 'Safexpress Surface', waybill: 'SAFE-MH-43-1022', time: 'Today, 12:45 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1079', customer: 'Bajaj Auto Chakan Logistics', cargo: 'Piston Assemblies (100 units · 4 Pallets)', carrier: 'Delhivery Freight', waybill: 'DEL-FRT-992014', time: 'Today, 11:20 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1075', customer: 'Force Motors Chakan Plant', cargo: 'Radiator Fans (22 units · 2 Pallets)', carrier: 'GATI KWE Cargo', waybill: 'GATI-EXP-44021', time: 'Today, 10:15 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1071', customer: 'Ashok Leyland Depot (Nagpur Hub)', cargo: 'Axle Hubs (18 crates · Heavy Load)', carrier: 'TCI Freight', waybill: 'TCI-FRT-88102', time: 'Today, 09:00 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1068', customer: 'Eicher Motors Depot (Bhopal Hub)', cargo: 'Flywheels (10 units · 2 Crates)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-441092-BHP', time: 'Yesterday, 18:30 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1065', customer: 'Hyundai Mobis Regional Depot', cargo: 'Headlamp Assemblies (35 boxes)', carrier: 'Safexpress Surface', waybill: 'SAFE-HYU-33019', time: 'Yesterday, 17:15 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1061', customer: 'Honda Motorcycle Depot (Narsapura)', cargo: 'Carburetor Assemblies (40 boxes)', carrier: 'VRL Logistics', waybill: 'VRL-HND-99104', time: 'Yesterday, 16:00 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1058', customer: 'Kalyani Steels Regional Warehouse', cargo: 'Forged Steel Castings (14 heavy crates)', carrier: 'TCI Freight', waybill: 'TCI-STEEL-22019', time: 'Yesterday, 14:40 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1054', customer: 'Lumax Industries Distribution', cargo: 'Lighting Wiring Harness (28 kits)', carrier: 'Delhivery Freight', waybill: 'DEL-LMX-77102', time: 'Yesterday, 13:20 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1050', customer: 'Gabriel India Logistics Central', cargo: 'Shock Absorbers (30 crates · 3 Pallets)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-GBR-55011', time: 'Yesterday, 11:50 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1046', customer: 'Sundram Fasteners Distribution', cargo: 'High-Tensile Fastener Bolts (60 bags)', carrier: 'TCI Freight', waybill: 'TCI-SND-44091', time: 'Yesterday, 10:30 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1042', customer: 'Uno Minda Systems Logistics', cargo: 'Alloy Wheels (20 cartons · 2 Pallets)', carrier: 'Safexpress Surface', waybill: 'SAFE-MIN-11029', time: '2 days ago, 18:00 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1038', customer: 'Subros Air Conditioning Depot', cargo: 'HVAC Ducting & Blowers (25 bundles)', carrier: 'GATI KWE Cargo', waybill: 'GATI-SBR-88201', time: '2 days ago, 15:30 IST', podStatus: 'Customer Signed POD' }
+    ];
+
+    function openDispatchedOrdersPage(whName) {
+      if (whName) currentFacilityName = whName;
+
+      const titleEl = document.getElementById('dispatched-page-title');
+      if (titleEl) titleEl.textContent = `${currentFacilityName} · Dispatched Shipments & POD Archive (Stage 6)`;
+
+      const badgeEl = document.getElementById('dispatched-page-count-badge');
+      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '410' : '410'} Dispatches Delivered`;
+
+      renderDispatchedOrdersTable();
+      goToScreen('dispatched');
+    }
+
+    function renderDispatchedOrdersTable(data) {
+      const tbody = document.getElementById('dispatched-orders-tbody');
+      if (!tbody) return;
+
+      const list = data || dispatchedOrdersMaster;
+      tbody.innerHTML = '';
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-500 text-[13px]">No dispatched shipments found matching your criteria.</td></tr>`;
+        return;
+      }
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#F9FAFB] transition-colors';
+
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-bold text-[#1F2937] font-arial whitespace-nowrap">${item.orderId}</td>
+          <td class="py-3 px-3 font-medium text-[#1F2937]">${item.customer}</td>
+          <td class="py-3 px-3 text-[#4B5563]">${item.cargo}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span class="font-medium text-[#1F2937] block">${item.carrier}</span>
+            <span class="text-gray-400 font-mono text-[11px] block">${item.waybill}</span>
+          </td>
+          <td class="py-3 px-3 text-[#4B5563] text-[12px] whitespace-nowrap">${item.time}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span onclick="openOutwardPodModal()" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold border border-[#A7F3D0] hover:bg-emerald-100 cursor-pointer shadow-2xs transition-all text-[11px] font-arial" title="Click to preview customer-signed POD">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              ${item.podStatus}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <button onclick="openOutwardPodModal()" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">
+              View Signed POD &rarr;
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterDispatchedTable() {
+      const q = (document.getElementById('dispatched-search-input')?.value || '').toLowerCase().trim();
+      const carrier = document.getElementById('dispatched-carrier-filter')?.value || 'all';
+
+      const filtered = dispatchedOrdersMaster.filter(item => {
+        const matchesQuery = !q || 
+          item.orderId.toLowerCase().includes(q) ||
+          item.customer.toLowerCase().includes(q) ||
+          item.cargo.toLowerCase().includes(q) ||
+          item.carrier.toLowerCase().includes(q) ||
+          item.waybill.toLowerCase().includes(q);
+
+        const matchesCarrier = carrier === 'all' || item.carrier.includes(carrier);
+        return matchesQuery && matchesCarrier;
+      });
+
+      renderDispatchedOrdersTable(filtered);
+    }
 
   </script>
 
