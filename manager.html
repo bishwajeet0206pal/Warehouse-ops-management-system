@@ -238,44 +238,6 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- ==============================================
-       INTRODUCTORY WORKFLOW SPLASH SCREEN (Few Seconds Preview)
-       ============================================== -->
-  <div id="intro-splash-screen" class="fixed inset-0 z-[100] bg-white w-screen h-screen overflow-hidden flex items-center justify-center transition-opacity duration-700 select-none">
-    <!-- Full-Screen Workflow Graphic (Borderless, Edge-to-Edge) -->
-    <div class="w-full h-full relative cursor-pointer flex items-center justify-center bg-white" onclick="dismissSplashScreen()">
-      <img src="warehouse-flow.jpg?v=2" alt="Warehouse Operations Flow: 1. Receiving, 2. Placement, 3. Picking, 4. Shipment" class="w-full h-full object-contain pointer-events-none" style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;" />
-      
-      <!-- Balanced Centered Branding & Entry Action (Middle of Screen) -->
-      <div class="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-center gap-2.5 bg-white/95 backdrop-blur-md px-6 py-3 rounded-2xl border border-gray-200/90 shadow-lg select-none" onclick="event.stopPropagation()">
-        <!-- Odwen Brand at the Middle -->
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#D84E55] to-[#F87171] flex items-center justify-center shadow-xs shadow-[#D84E55]/20 shrink-0">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
-          </div>
-          <div class="text-left">
-            <span class="text-[20px] font-bold text-[#D84E55] tracking-tight block leading-tight">odwen</span>
-            <span class="text-[9.5px] font-bold uppercase tracking-wider text-[#6B7280] block font-arial -mt-0.5">Warehouse Operations Flow</span>
-          </div>
-        </div>
-
-        <!-- Directly Below: Enter Dashboard Button & Auto-Timer -->
-        <div class="flex items-center gap-2.5">
-          <button onclick="dismissSplashScreen()" class="btn-redbus text-[13px] py-2 px-5 flex items-center gap-2 shadow-md cursor-pointer hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all font-bold whitespace-nowrap">
-            <span>Enter Dashboard</span>
-            <span class="text-[15px]">&rarr;</span>
-          </button>
-          <span id="splash-timer-text" class="text-[11.5px] font-semibold text-[#6B7280] font-arial whitespace-nowrap">Opening in 4s...</span>
-        </div>
-      </div>
-
-      <!-- Edge-to-Edge Bottom Progress Bar -->
-      <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-100 z-20 overflow-hidden">
-        <div id="splash-progress" class="bg-[#D84E55] h-full w-0 transition-all duration-75 ease-linear"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==============================================
        FULL-WIDTH TOP APPLICATION NAVIGATION BAR
        ============================================== -->
   <header class="bg-white border-b border-[#E5E7EB] sticky top-0 z-40 shadow-xs w-full">
@@ -1241,25 +1203,16 @@
       </div>
 
       <!-- TAB 3: OUTWARD JOURNEY (SCOPED UNDER THIS WAREHOUSE) -->
-      <div id="wh-section-outward" class="wh-tab-section hidden space-y-5">
+      <div id="wh-section-outward" class="wh-tab-section hidden space-y-4">
         
-        <!-- OUTWARD JOURNEY FUNNEL & PIPELINE OVERVIEW -->
-        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+        <!-- CARD 1: OUTWARD JOURNEY FUNNEL (MATCHING INWARD STRUCTURE 1:1) -->
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
             <div>
-              <div class="flex items-center gap-2.5">
-                <h2 class="text-[18px] font-bold text-[#1F2937]" id="outward-facility-title">Outward Journey — Orders at Each Stage</h2>
-                <span id="outward-facility-badge" class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-0.5 rounded-full border border-[#FECACA]">WH-02 Guwahati · Dispatch</span>
-              </div>
-              <p class="text-[12px] text-[#6B7280] mt-0.5" id="outward-facility-subtitle">Live pipeline tracking across 6 outward fulfillment stages with custody trail &amp; bottleneck alerts</p>
+              <h2 class="text-[17px] font-bold text-[#1F2937]" id="outward-facility-title">Outward journey — orders at each stage</h2>
+              <p class="text-[12px] text-[#6B7280]" id="outward-facility-subtitle">Pipeline volume summary across dispatch stages · All orders detailed in table below</p>
             </div>
-            
-            <div class="flex items-center gap-2">
-              <span id="outward-stuck-pill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[12px] border border-[#FDE68A]">
-                <span class="w-2 h-2 rounded-full bg-[#D97706] animate-pulse"></span>
-                <span id="outward-stuck-count-label">2 Orders Stuck</span>
-              </span>
-            </div>
+            <span id="outward-facility-badge" class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-1 rounded-full">WH-01 Dispatch Operations</span>
           </div>
 
           <!-- 6-Stage Journey Pipeline Funnel (Dynamically Populated) -->
@@ -1268,88 +1221,42 @@
           </div>
         </div>
 
-        <!-- ==============================================
-             TABLE VIEW: ISSUES WHERE MANUAL INTERVENTION IS REQUIRED
-             ============================================== -->
-        <div id="outward-issues-section" class="bg-white border-2 border-[#FECACA] rounded-2xl p-6 shadow-xs space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#FECACA]">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold text-[18px] shrink-0 border border-[#FECACA]">
-                ⚠️
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3 class="text-[16px] font-bold text-[#1F2937]">Orders Requiring Immediate Manual Intervention</h3>
-                  <span id="outward-issues-badge" class="px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]">2 ORDERS BLOCKED</span>
-                </div>
-                <p class="text-[12px] text-[#6B7280]">Halted at operational bottlenecks. Review human custody chain and execute supervisor resolution below.</p>
-              </div>
-            </div>
-
-            <span class="text-[11px] text-[#6B7280] font-arial bg-[#F9FAFB] px-3 py-1.5 rounded-xl border border-[#E5E7EB]">
-              Ops Lead in Charge: <strong class="text-[#D84E55]">Arun Verma</strong> / <strong class="text-[#1F2937]">Jaswant Singh</strong>
-            </span>
-          </div>
-
-          <!-- Issues Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-[13px]">
-              <thead>
-                <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase bg-[#FAFAFA]">
-                  <th class="py-2.5 px-3">Order / Customer</th>
-                  <th class="py-2.5 px-3">Cargo Items</th>
-                  <th class="py-2.5 px-3">Stuck Stage &amp; Bottleneck Issue</th>
-                  <th class="py-2.5 px-3">Human Handling Chain (At Each Stage)</th>
-                  <th class="py-2.5 px-3">SLA / Time Stuck</th>
-                  <th class="py-2.5 px-3 text-right">Manual Action</th>
-                </tr>
-              </thead>
-              <tbody id="outward-issues-tbody" class="divide-y divide-[#FEE2E2] text-[#374151]">
-                <!-- Dynamically rendered via renderOutwardJourney() -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- ==============================================
-             TABLE VIEW: HEALTHY ACTIVE SHIPMENTS (ON SCHEDULE)
-             ============================================== -->
-        <div id="outward-normal-section" class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
+        <!-- CARD 2: ACTIVE OUTWARD ORDERS TABLE (MATCHING INWARD STRUCTURE 1:1) -->
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
             <div>
-              <h3 class="text-[16px] font-bold text-[#1F2937]">Active Outward Dispatches (Moving On Schedule)</h3>
-              <p class="text-[12px] text-[#6B7280]">Complete table view of orders across all fulfillment stages</p>
+              <h3 class="text-[16px] font-bold text-[#1F2937]" id="outward-table-title">Active Outward Orders at WH-01 (All Stages)</h3>
+              <p class="text-[12px] text-[#6B7280]">Complete table view of all shipments currently in the dispatch pipeline</p>
             </div>
-            <span id="outward-normal-count-badge" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-1 rounded-full border border-[#A7F3D0]">
-              20 Orders Active
-            </span>
+            <span id="outward-table-count-badge" class="text-[12px] font-bold text-[#1F2937] font-arial bg-gray-100 px-3 py-1 rounded-full border border-gray-200">35 Orders Total</span>
           </div>
 
-          <!-- Outward Stage Filter Pills -->
+          <!-- Stage Filter Pills -->
           <div class="flex items-center gap-1.5 flex-wrap pt-1 text-[12px]">
             <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider mr-1">Filter by Stage:</span>
-            <button onclick="filterOutwardTable('all')" id="outward-tab-all" class="px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all">All Outward (20)</button>
-            <button onclick="filterOutwardTable(1)" id="outward-tab-1" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">1. Received (4)</button>
-            <button onclick="filterOutwardTable(2)" id="outward-tab-2" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">2. Picking (6)</button>
-            <button onclick="filterOutwardTable(3)" id="outward-tab-3" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">3. Packing (3)</button>
-            <button onclick="filterOutwardTable(4)" id="outward-tab-4" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">4. QC &amp; Weighing (2)</button>
-            <button onclick="filterOutwardTable(5)" id="outward-tab-5" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">5. Staged at Dock (5)</button>
+            <button onclick="filterOutwardTable('all')" id="outward-tab-all" class="px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all">All Active (35)</button>
+            <button onclick="filterOutwardTable(1)" id="outward-tab-1" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">1. Received (6)</button>
+            <button onclick="filterOutwardTable(2)" id="outward-tab-2" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">2. Picking (14)</button>
+            <button onclick="filterOutwardTable(3)" id="outward-tab-3" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">3. Packing (8)</button>
+            <button onclick="filterOutwardTable(4)" id="outward-tab-4" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">4. QC &amp; Weighing (4)</button>
+            <button onclick="filterOutwardTable(5)" id="outward-tab-5" class="px-3 py-1 rounded-lg font-medium bg-[#FEECEE] text-[#D84E55] hover:bg-[#FECACA] cursor-pointer transition-all font-semibold">5. Staged at Dock (3)</button>
           </div>
 
+          <!-- Single Unified Outward Table -->
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-[13px]">
               <thead>
-                <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase">
+                <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase bg-gray-50/50">
                   <th class="py-2.5 px-3">Order ID</th>
-                  <th class="py-2.5 px-3">Destination / Customer</th>
+                  <th class="py-2.5 px-3">Customer / Destination</th>
                   <th class="py-2.5 px-3">Cargo Items</th>
-                  <th class="py-2.5 px-3">Assigned Handler / Picker</th>
-                  <th class="py-2.5 px-3">Stage</th>
-                  <th class="py-2.5 px-3">Proof of Dispatch / POD</th>
+                  <th class="py-2.5 px-3">Assigned Picker / Dock Bay</th>
+                  <th class="py-2.5 px-3">Current Stage</th>
+                  <th class="py-2.5 px-3">Proof of Dispatch / Status</th>
                   <th class="py-2.5 px-3 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody id="outward-normal-tbody" class="divide-y divide-[#F3F4F6] text-[#374151]">
+              <tbody id="outward-orders-tbody" class="divide-y divide-[#F3F4F6] text-[#374151]">
                 <!-- Dynamically rendered via renderOutwardJourney() -->
               </tbody>
             </table>
@@ -4436,6 +4343,22 @@
     }
 
     const outwardOrdersMaster = {
+      'ORD-BW-1092': {
+        id: 'ORD-BW-1092',
+        customer: 'Tata Motors Parts Hub',
+        stageNum: 5,
+        stageName: 'Stage 5 · Staged at Dock (Bay 06)',
+        stageLocation: 'Dock Bay 06 (Outbound Gate)',
+        stageDesc: 'Consignee e-way bill mismatch with invoice tax breakdown · Awaiting supervisor manual e-way bill regeneration',
+        items: 'Auto Spares (14 Transmission Gears · 2 Pallets)',
+        picker: 'S. Jadhav (Gate Pass Marshall)',
+        carrier: 'VRL Logistics (Truck MH-04-AZ-8812)',
+        trackingId: 'VRL-TRK-MH04-8812',
+        cutoff: '1h 10m overdue (VRL Logistics truck waiting at outbound gate)',
+        packingNote: 'Packing confirmed: Heavy-duty wooden crating with anti-rust vapor wrap',
+        podNote: 'Gate pass held: E-way bill validation failure · Manual override pending',
+        pickerInfo: 'Current Custody: S. Jadhav (Gate Pass Marshall) · Lead: Arun Verma'
+      },
       'ORD-OUT-4521': {
         id: 'ORD-OUT-4521',
         customer: 'Acme Industries (Hyderabad)',
@@ -4825,14 +4748,14 @@
         code: 'WH-01',
         name: 'WH-01 Bhiwandi',
         stuckCount: 1,
-        badgeClass: 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]',
+        badgeClass: 'bg-[#FEF2F2] text-[#DC2626] border-[#FECACA]',
         stages: [
-          { id: 1, name: '1. Order Received', count: 6, subtitle: 'Queued', stuck: 0 },
+          { id: 1, name: '1. Order Received', count: 6, subtitle: 'Queued & verified', stuck: 0 },
           { id: 2, name: '2. Wave Picking', count: 14, subtitle: 'Picking active', stuck: 0 },
-          { id: 3, name: '3. Sorting & Packing', count: 8, subtitle: 'Boxed', stuck: 0 },
-          { id: 4, name: '4. QC & Weighing', count: 4, subtitle: 'Verified', stuck: 0 },
+          { id: 3, name: '3. Sorting & Packing', count: 8, subtitle: 'Boxed & strapped', stuck: 0 },
+          { id: 4, name: '4. QC & Weighing', count: 4, subtitle: 'Scale calibrated', stuck: 0 },
           { id: 5, name: '5. Staged at Dock', count: 3, subtitle: '1 gate pass held', stuck: 1 },
-          { id: 6, name: '6. Dispatched & POD', count: 410, subtitle: 'Delivered', stuck: 0 }
+          { id: 6, name: '6. Dispatched & POD', count: 410, subtitle: 'Customer signed POD', stuck: 0 }
         ],
         issues: [
           {
@@ -4842,6 +4765,7 @@
             cargo: 'Auto Spares · 14 Transmission Gears',
             stage: 'Stage 5 · Staged at Dock (Bay 06)',
             stageNum: 5,
+            dockBay: 'Dock Bay 06',
             reason: 'Consignee e-way bill mismatch with invoice tax breakdown; manual e-way bill regen required',
             severity: 'Attention Needed',
             timeStuck: '1h 10m overdue',
@@ -4856,7 +4780,53 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary', cargo: 'Clutch Plates (50 sets)', picker: 'N. Patil', stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
+          // Stage 1: Order Received (6 orders)
+          { orderId: 'ORD-BW-1101', customer: 'Mahindra Logistics Hub', cargo: 'Brake Linings (40 crates)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1102', customer: 'Bajaj Auto Depot', cargo: 'Spark Plugs (15 boxes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue A-02', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1103', customer: 'TVS Motor Parts Regional', cargo: 'Filter Elements (25 cartons)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-01', pod: 'Wave Grouped' },
+          { orderId: 'ORD-BW-1104', customer: 'Hero MotoCorp Ancillary', cargo: 'Drive Chains (30 crates)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue B-02', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-BW-1105', customer: 'Bosch Automotive India', cargo: 'ECU Sensors (12 kits)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-01', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-BW-1106', customer: 'Ceat Tyres Distribution', cargo: 'Inner Tubes (50 bundles)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', dockBay: 'Queue C-02', pod: 'Wave Grouped' },
+
+          // Stage 2: Wave Picking (14 orders)
+          { orderId: 'ORD-BW-1111', customer: 'Ashok Leyland Depot', cargo: 'Axle Hubs (18 crates)', picker: 'R. Mane (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 1', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-BW-1112', customer: 'Eicher Motors Hub', cargo: 'Flywheels (10 units)', picker: 'S. Kadam (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 2', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-BW-1113', customer: 'Force Motors Chakan', cargo: 'Radiator Fans (22 units)', picker: 'A. Shinde (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone A, Aisle 3', pod: 'Cart 01 Loading' },
+          { orderId: 'ORD-BW-1114', customer: 'Hyundai Mobis Depot', cargo: 'Headlamp Sets (35 boxes)', picker: 'P. Bhosale (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 4', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1115', customer: 'Honda Motorcycle Parts', cargo: 'Carburetor Assemblies (40 boxes)', picker: 'V. More (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 5', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BW-1116', customer: 'Kalyani Steels Regional', cargo: 'Forged Castings (14 crates)', picker: 'D. Salve (Heavy Bay)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Heavy Bay H-1', pod: 'MHE Active' },
+          { orderId: 'ORD-BW-1117', customer: 'Lumax Industries', cargo: 'Lighting Wiring Harness (28 kits)', picker: 'M. Tambe (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone B, Aisle 6', pod: 'Cart 03 Loading' },
+          { orderId: 'ORD-BW-1118', customer: 'Minda Corp Distribution', cargo: 'Ignition Switches (45 boxes)', picker: 'K. Raut (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 7', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1119', customer: 'Gabriel India Ltd', cargo: 'Shock Absorbers (30 crates)', picker: 'G. Shinde (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 8', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-BW-1120', customer: 'Sundram Fasteners', cargo: 'High-Tensile Bolts (60 bags)', picker: 'H. Jadhav (Aisle 09)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone C, Aisle 9', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-BW-1121', customer: 'Uno Minda Systems', cargo: 'Alloy Wheels (20 cartons)', picker: 'N. Gite (Aisle 10)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 10', pod: 'Cart 04 Loading' },
+          { orderId: 'ORD-BW-1122', customer: 'Varroc Engineering', cargo: 'Polymer Trim Kits (16 sets)', picker: 'T. Gaikwad (Aisle 11)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 11', pod: 'Tote Staging' },
+          { orderId: 'ORD-BW-1123', customer: 'Subros Air Conditioning', cargo: 'HVAC Ducting (25 bundles)', picker: 'L. Chavan (Aisle 12)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 12', pod: 'Picking Active (60%)' },
+          { orderId: 'ORD-BW-1124', customer: 'Endurance Technologies', cargo: 'Clutch Housings (12 crates)', picker: 'B. Jagtap (Aisle 13)', stageNum: 2, stage: '2. Wave Picking', dockBay: 'Zone D, Aisle 13', pod: 'Pick Cycle Active' },
+
+          // Stage 3: Sorting & Packing (8 orders)
+          { orderId: 'ORD-BW-1131', customer: 'Toyota Kirloskar Ancillary', cargo: 'Steering Columns (15 crates)', picker: 'M. Patil (Pack Desk 01)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 01', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1132', customer: 'Skoda Auto Volkswagen', cargo: 'Door Lock Latches (30 boxes)', picker: 'S. Pawar (Pack Desk 02)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 02', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BW-1133', customer: 'Renault Nissan Logistics', cargo: 'Oil Filters (45 boxes)', picker: 'R. Koli (Pack Desk 03)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 03', pod: 'Scale Queued' },
+          { orderId: 'ORD-BW-1134', customer: 'Schaeffler India Hub', cargo: 'Roller Bearings (22 cartons)', picker: 'P. Sonawane (Pack Desk 04)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 04', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1135', customer: 'SKF India Distribution', cargo: 'Wheel Bearings (28 boxes)', picker: 'A. Gurav (Pack Desk 05)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 05', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-BW-1136', customer: 'Timken Bearings Depot', cargo: 'Tapered Bearings (18 crates)', picker: 'K. Bhagat (Pack Desk 06)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 06', pod: 'Scale Queued' },
+          { orderId: 'ORD-BW-1137', customer: 'Rane Brake Linings', cargo: 'Brake Disc Pads (40 sets)', picker: 'N. Kamble (Pack Desk 07)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 07', pod: 'Carton Strapping' },
+          { orderId: 'ORD-BW-1138', customer: 'Federal-Mogul Goetze', cargo: 'Piston Rings (50 boxes)', picker: 'D. Shinde (Pack Desk 08)', stageNum: 3, stage: '3. Sorting & Packing', dockBay: 'Pack Desk 08', pod: 'Bubble Wrap & Taping' },
+
+          // Stage 4: QC & Weighing (4 orders)
+          { orderId: 'ORD-BW-1141', customer: 'Mahindra CIE Automotive', cargo: 'Differential Gears (10 crates)', picker: 'S. Wagh (QC Desk 01)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-01', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1142', customer: 'Bharat Forge Hub', cargo: 'Crankshaft Blanks (8 crates)', picker: 'Y. Sawant (QC Desk 02)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-02', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1143', customer: 'GKN Driveline India', cargo: 'Constant Velocity Joints (20 boxes)', picker: 'V. Dhale (QC Desk 03)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-03', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-BW-1144', customer: 'Dana India Distribution', cargo: 'Drive Axle Kits (12 crates)', picker: 'G. Thorat (QC Desk 04)', stageNum: 4, stage: '4. QC & Weighing', dockBay: 'Desk QC-04', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5: Staged at Dock (2 normal + 1 issue ORD-BW-1092 = 3 orders total)
+          { orderId: 'ORD-BW-1151', customer: 'Maruti Suzuki Ancillary', cargo: 'Clutch Plates (50 sets)', picker: 'N. Patil (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 04', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-BW-1152', customer: 'Tata Motors CV Depot', cargo: 'Leaf Springs (16 bundles)', picker: 'K. Shirodkar (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', dockBay: 'Dock Bay 05', pod: 'Staged for VRL Freight' },
+
+          // Stage 6: Dispatched & POD (sample completed shipments)
+          { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary', cargo: 'Clutch Plates (50 sets)', picker: 'N. Patil', stageNum: 6, stage: '6. Dispatched & POD', dockBay: 'Dock Bay 02', pod: 'Customer Signed POD' },
+          { orderId: 'ORD-BW-1085', customer: 'Mahindra Auto Depot', cargo: 'Alternators (24 units)', picker: 'R. Koli', stageNum: 6, stage: '6. Dispatched & POD', dockBay: 'Dock Bay 01', pod: 'Customer Signed POD' }
         ]
       },
       'WH-04 Pune': {
@@ -5100,225 +5070,194 @@
     };
 
     function renderOutwardJourney(whName) {
-      const facility = warehouseOutwardData[whName] || warehouseOutwardData['WH-02 Guwahati'];
+      const facility = warehouseOutwardData[whName] || warehouseOutwardData['WH-01 Bhiwandi'] || warehouseOutwardData['WH-02 Guwahati'];
       if (!facility) return;
 
       currentFacilityName = facility.name;
 
-      // 1. Update Title and Badges
+      // 1. Update Card 1: Funnel Header & Title
       const titleEl = document.getElementById('outward-facility-title');
       const badgeEl = document.getElementById('outward-facility-badge');
       const subtitleEl = document.getElementById('outward-facility-subtitle');
-      const stuckPill = document.getElementById('outward-stuck-pill');
-      const stuckCountLabel = document.getElementById('outward-stuck-count-label');
 
       if (titleEl) titleEl.textContent = `${facility.name} · Outward Journey & Dispatch Pipeline`;
       if (badgeEl) badgeEl.textContent = `${facility.name} · Dispatch Operations`;
-      if (subtitleEl) subtitleEl.textContent = `Live tracking across 6 outward fulfillment stages · ${facility.stuckCount} bottleneck(s) requiring supervisor intervention`;
-      
-      if (stuckPill && stuckCountLabel) {
-        if (facility.stuckCount > 0) {
-          stuckPill.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[12px] border border-[#FECACA] animate-pulse';
-          stuckCountLabel.textContent = `${facility.stuckCount} Orders Stuck (Action Required)`;
-        } else {
-          stuckPill.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[12px] border border-[#A7F3D0]';
-          stuckCountLabel.textContent = `All Outward Orders On Schedule`;
-        }
-      }
+      if (subtitleEl) subtitleEl.textContent = `Pipeline volume summary across 6 dispatch stages · All orders detailed in table below`;
 
-      // 2. Render Funnel Stages (Non-clickable KPI Summary Cards)
+      // 2. Render Card 1: 6-Stage Journey Pipeline Funnel (Matching Inward Journey 1:1)
       const funnelContainer = document.getElementById('outward-funnel-stages');
       if (funnelContainer) {
         funnelContainer.innerHTML = '';
         facility.stages.forEach(stage => {
           const card = document.createElement('div');
           const isStuck = stage.stuck > 0;
-          card.className = `p-3.5 rounded-2xl border ${isStuck ? 'border-2 border-[#EF4444] bg-[#FEF2F2] shadow-xs' : 'border-[#E5E7EB] bg-[#F9FAFB]'} text-center select-none shadow-2xs relative`;
+          const isComplete = stage.id === 6;
 
+          let cardStyle = 'border-[#E5E7EB] bg-[#F9FAFB]';
+          let badgeStyle = 'text-[#6B7280]';
+          let numStyle = 'text-[#1F2937]';
+          let subStyle = 'text-[#6B7280]';
+
+          if (isStuck) {
+            cardStyle = 'border-2 border-[#EF4444] bg-[#FEF2F2] shadow-xs relative';
+            badgeStyle = 'text-[#DC2626]';
+            numStyle = 'text-[#DC2626]';
+            subStyle = 'text-[#DC2626] font-semibold';
+          } else if (isComplete) {
+            cardStyle = 'border border-[#A7F3D0] bg-[#ECFDF5]';
+            badgeStyle = 'text-[#059669]';
+            numStyle = 'text-[#059669]';
+            subStyle = 'text-[#059669] font-semibold';
+          }
+
+          card.className = `p-3.5 rounded-2xl border ${cardStyle} text-center select-none shadow-2xs`;
           card.innerHTML = `
             ${isStuck ? `
               <span class="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[9px] font-bold font-arial animate-pulse shadow-xs">
                 ⚠️ ${stage.stuck} STUCK
               </span>
             ` : ''}
-            <span class="text-[10px] uppercase font-bold ${isStuck ? 'text-[#DC2626]' : 'text-[#6B7280]'} font-arial block">${stage.name}</span>
-            <span class="text-[19px] font-bold ${isStuck ? 'text-[#DC2626]' : 'text-[#1F2937]'} block mt-0.5">${stage.count} orders</span>
-            <span class="text-[11px] ${isStuck ? 'text-[#DC2626] font-semibold' : 'text-[#6B7280]'} block font-arial mt-0.5">${stage.subtitle}</span>
+            <span class="text-[10px] uppercase font-bold ${badgeStyle} font-arial block">${stage.name}</span>
+            <span class="text-[20px] font-bold ${numStyle} block mt-0.5">${stage.count} orders</span>
+            <span class="text-[11px] ${subStyle} block font-arial mt-0.5">${stage.subtitle}</span>
           `;
           funnelContainer.appendChild(card);
         });
       }
 
-      // 3. Render Issues Table (Orders requiring manual intervention)
-      const issuesSection = document.getElementById('outward-issues-section');
-      const issuesBadge = document.getElementById('outward-issues-badge');
-      const issuesTbody = document.getElementById('outward-issues-tbody');
+      // 3. Card 2: Active Outward Orders Table (Matching Inward Journey 1:1)
+      const tableTitle = document.getElementById('outward-table-title');
+      if (tableTitle) {
+        tableTitle.textContent = `Active Outward Orders at ${facility.code || facility.name} (All Stages)`;
+      }
 
-      if (issuesTbody) {
-        issuesTbody.innerHTML = '';
-        if (facility.issues && facility.issues.length > 0) {
-          if (issuesSection) issuesSection.classList.remove('hidden');
-          if (issuesBadge) {
-            issuesBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]';
-            issuesBadge.textContent = `${facility.issues.length} ORDERS BLOCKED`;
-          }
+      // Unify issues and normal orders into a single cohesive dataset
+      const issueOrders = (facility.issues || []).map(iss => ({
+        orderId: iss.orderId,
+        customer: iss.customer,
+        cargo: iss.cargo,
+        picker: iss.handlers && iss.handlers.length > 0
+          ? `${iss.handlers[iss.handlers.length - 1].name} (${iss.handlers[iss.handlers.length - 1].role})`
+          : (iss.supervisor || 'Floor Marshal'),
+        dockBay: iss.dockBay || (iss.stage && iss.stage.includes('Bay') ? iss.stage.match(/Bay\s*\d+/i)?.[0] || 'Dock Bay 06' : 'Dock Bay 06'),
+        stageNum: iss.stageNum || 5,
+        stage: iss.stage ? iss.stage.split('(')[0].replace(/Stage\s*\d+\s*[·•-]\s*/i, '').trim() : 'Staged at Dock',
+        pod: `⚠️ ${iss.timeStuck} · ${iss.reason.split(';')[0]}`,
+        isIssue: true,
+        priority: iss.priority || 'Action Required',
+        reason: iss.reason,
+        timeStuck: iss.timeStuck
+      }));
 
-          facility.issues.forEach(issue => {
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-[#FEF2F2]/60 transition-colors';
-            
-            // Format handler custody chain
-            const handlersHtml = issue.handlers.map(h => `
-              <div class="flex items-center gap-1.5 ${h.isCurrent ? 'p-1 rounded-lg bg-[#FEF2F2] border border-[#FECACA] font-semibold text-[#DC2626]' : 'text-[#4B5563]'}">
-                <span class="text-[10px] text-[#6B7280] w-28 shrink-0 font-arial">${h.stage}:</span>
-                <span class="w-1.5 h-1.5 rounded-full ${h.isCurrent ? 'bg-[#DC2626] animate-ping' : 'bg-[#9CA3AF]'} shrink-0"></span>
-                <strong class="${h.isCurrent ? 'text-[#DC2626]' : 'text-[#1F2937]'}">${h.name}</strong>
-                <span class="text-[10px] text-[#6B7280]">(${h.role})</span>
-                <span class="text-[9px] text-[#9CA3AF] ml-auto font-mono">${h.time}</span>
-                ${h.isCurrent ? '<span class="px-1 py-0.2 rounded bg-[#DC2626] text-white text-[8px] font-bold shrink-0">CURRENT CUSTODY</span>' : ''}
-              </div>
-            `).join('');
+      const normalOrders = (facility.normalOrders || []).map(ord => ({
+        ...ord,
+        isIssue: false
+      }));
 
-            tr.innerHTML = `
-              <td class="py-3.5 px-3 align-top">
-                <div class="flex items-center gap-1.5">
-                  <span class="font-bold text-[#DC2626] font-arial text-[14px]">${issue.orderId}</span>
-                  <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-800 text-[9px] font-bold font-arial">${issue.priority}</span>
-                </div>
-                <div class="font-medium text-[#1F2937] text-[13px] mt-0.5">${issue.customer}</div>
-              </td>
-              <td class="py-3.5 px-3 align-top text-[12px] text-[#4B5563]">
-                <div class="font-medium text-[#1F2937]">${issue.cargo}</div>
-                <div class="text-[10px] text-[#059669] font-medium mt-0.5">Manifest Verified</div>
-              </td>
-              <td class="py-3.5 px-3 align-top max-w-sm">
-                <span class="inline-block px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] border border-[#FECACA] mb-1 font-arial">
-                  ${issue.stage}
-                </span>
-                <div class="p-2 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] text-[11px] leading-snug">
-                  <strong class="font-bold">Bottleneck:</strong> ${issue.reason}
-                </div>
-                ${issue.aiDiagnostic ? `
-                  <div class="mt-2 p-2.5 rounded-xl bg-gradient-to-r from-[#EEF2FF] to-[#FAF5FF] border border-[#C7D2FE] space-y-1 text-[11px]">
-                    <div class="flex items-center justify-between font-bold text-[#4338CA]">
-                      <span class="flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5 text-[#6366F1]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
-                        AI Root-Cause Diagnostic
-                      </span>
-                      <span class="text-[9.5px] px-1.5 py-0.2 rounded-full bg-[#E0E7FF] text-[#3730A3]">${issue.aiDiagnostic.confidence} match</span>
-                    </div>
-                    <p class="text-[#374151] leading-tight">${issue.aiDiagnostic.rootCause}</p>
-                    <p class="text-[#4F46E5] font-semibold text-[10.5px]">↳ Suggested Fix: ${issue.aiDiagnostic.recommendation}</p>
-                  </div>
-                ` : ''}
-              </td>
-              <td class="py-3.5 px-3 align-top">
-                <div class="space-y-1 text-[11px]">
-                  ${handlersHtml}
-                  <div class="text-[10px] text-[#6B7280] pt-1 border-t border-gray-100 flex justify-between">
-                    <span>Supervisory Lead: <strong class="text-[#D84E55]">${issue.supervisor}</strong></span>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-3 align-top text-[12px]">
-                <div class="font-bold text-[#DC2626] flex items-center gap-1">
-                  <span>⏳</span> ${issue.timeStuck}
-                </div>
-                <div class="text-[10px] text-[#B45309] mt-0.5 leading-tight font-medium">
-                  ${issue.slaImpact}
-                </div>
-              </td>
-              <td class="py-3.5 px-3 align-top text-right space-y-1.5 min-w-[170px]">
-                ${issue.aiDiagnostic ? `
-                  <button onclick="resolveIssueWithAi('${issue.orderId}')" class="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-white text-[11px] font-bold shadow-2xs hover:shadow transition-all w-full flex items-center justify-center gap-1 cursor-pointer">
-                    <span>✦</span>
-                    <span>${issue.aiDiagnostic.actionShort || 'Approve AI Resolution'}</span>
-                  </button>
-                ` : ''}
-                <button onclick="resolveOutwardIssue('${issue.orderId}', '${issue.customer}')" class="btn-redbus-secondary text-[10px] py-1 px-2.5 w-full block cursor-pointer">
-                  Supervisor Manual Override &rarr;
-                </button>
-                <button onclick="contactHandler('${issue.handlers[issue.handlers.length - 1].name}', '${issue.orderId}')" class="text-[10px] text-[#6B7280] hover:text-[#1F2937] underline py-0.5 px-2 w-full block cursor-pointer">
-                  Contact Custodian (${issue.handlers[issue.handlers.length - 1].name})
-                </button>
-              </td>
-            `;
-            issuesTbody.appendChild(tr);
-          });
+      // High priority blocked orders first so supervisors see them immediately
+      const allActiveOrders = [...issueOrders, ...normalOrders];
+
+      // Update Filter Tabs with accurate dynamic counts
+      const allBtn = document.getElementById('outward-tab-all');
+      if (allBtn) {
+        allBtn.textContent = `All Active (${allActiveOrders.length})`;
+        if (currentOutwardFilter === 'all') {
+          allBtn.className = 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all';
         } else {
-          if (issuesSection) issuesSection.classList.remove('hidden');
-          if (issuesBadge) {
-            issuesBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]';
-            issuesBadge.textContent = '0 BLOCKED · ALL RESOLVED';
-          }
-          issuesTbody.innerHTML = `
-            <tr>
-              <td colspan="6" class="py-6 text-center text-[13px] text-[#059669] bg-[#ECFDF5]/40 rounded-xl">
-                <div class="font-bold text-[15px] flex items-center justify-center gap-2">
-                  <span>✓</span> All Outward Shipments Moving On Schedule
-                </div>
-                <p class="text-[11px] text-[#6B7280] mt-1">Zero outward orders currently stuck at ${facility.name}. All conveyor, picking, and dock staging queues are moving within SLA.</p>
-              </td>
-            </tr>
-          `;
+          allBtn.className = 'px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all';
         }
       }
 
-      // 4. Render Normal Active Orders with Stage Filtering
-      const normalTbody = document.getElementById('outward-normal-tbody');
-      const normalBadge = document.getElementById('outward-normal-count-badge');
-      if (normalTbody) {
-        normalTbody.innerHTML = '';
-        const allOrders = facility.normalOrders || [];
-        const filtered = currentOutwardFilter === 'all'
-          ? allOrders
-          : allOrders.filter(o => o.stageNum === currentOutwardFilter);
+      [1, 2, 3, 4, 5].forEach(stNum => {
+        const tabBtn = document.getElementById(`outward-tab-${stNum}`);
+        if (tabBtn) {
+          const countForStage = allActiveOrders.filter(o => o.stageNum === stNum).length;
+          const stageObj = (facility.stages || []).find(s => s.id === stNum);
+          const stageName = stageObj ? stageObj.name.replace(/^\d+\.\s*/, '') : `Stage ${stNum}`;
+          tabBtn.textContent = `${stNum}. ${stageName} (${countForStage})`;
 
-        if (normalBadge) {
-          normalBadge.textContent = `${filtered.length} Orders ${currentOutwardFilter === 'all' ? 'Active' : '(Filtered)'}`;
-        }
-
-        // Dynamically update Outward Stage Filter Tabs with counts
-        const allBtn = document.getElementById('outward-tab-all');
-        if (allBtn) allBtn.textContent = `All Outward (${allOrders.length})`;
-        [1, 2, 3, 4, 5].forEach(stNum => {
-          const tabBtn = document.getElementById(`outward-tab-${stNum}`);
-          if (tabBtn) {
-            const countForStage = allOrders.filter(o => o.stageNum === stNum).length;
-            const stageObj = (facility.stages || []).find(s => s.id === stNum);
-            const name = stageObj ? stageObj.name.replace(/^\d+\.\s*/, '') : `Stage ${stNum}`;
-            tabBtn.textContent = `${stNum}. ${name} (${countForStage})`;
+          const hasIssueInStage = allActiveOrders.some(o => o.stageNum === stNum && o.isIssue);
+          if (currentOutwardFilter === stNum) {
+            tabBtn.className = 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all';
+          } else if (hasIssueInStage) {
+            tabBtn.className = 'px-3 py-1 rounded-lg font-bold bg-[#FEECEE] text-[#D84E55] border border-[#FECACA] hover:bg-[#FECACA] cursor-pointer transition-all';
+          } else {
+            tabBtn.className = 'px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all';
           }
-        });
+        }
+      });
 
+      // Filter rows by selected stage
+      const filtered = currentOutwardFilter === 'all'
+        ? allActiveOrders
+        : allActiveOrders.filter(o => o.stageNum === currentOutwardFilter);
+
+      const countBadge = document.getElementById('outward-table-count-badge');
+      if (countBadge) {
+        countBadge.textContent = `${filtered.length} Orders ${currentOutwardFilter === 'all' ? 'Total' : '(Filtered)'}`;
+      }
+
+      // Render Single Unified Outward Table Body
+      const tbody = document.getElementById('outward-orders-tbody');
+      if (tbody) {
+        tbody.innerHTML = '';
         if (filtered.length === 0) {
-          normalTbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500 text-[13px]">No orders found for this outward stage.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-500 text-[13px]">No outward orders currently in this stage.</td></tr>`;
         } else {
           filtered.forEach(order => {
             const tr = document.createElement('tr');
-            tr.className = 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
+            tr.className = order.isIssue
+              ? 'hover:bg-red-50/60 bg-red-50/30 border-l-4 border-l-[#DC2626] cursor-pointer transition-colors'
+              : 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
             tr.onclick = () => openOutwardOrderDetail(order.orderId);
 
             let podClass = 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]';
-            if (order.pod.includes('Signed') || order.pod.includes('Passed')) podClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
-            else if (order.pod.includes('Ready') || order.pod.includes('Override') || order.pod.includes('Affixed') || order.pod.includes('Staged')) podClass = 'bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]';
+            if (order.isIssue) {
+              podClass = 'bg-[#FEF2F2] text-[#DC2626] border-[#FECACA] font-bold';
+            } else if (order.pod && (order.pod.includes('Signed') || order.pod.includes('Passed') || order.pod.includes('Delivered'))) {
+              podClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
+            } else if (order.pod && (order.pod.includes('Ready') || order.pod.includes('Override') || order.pod.includes('Affixed') || order.pod.includes('Staged') || order.pod.includes('Active'))) {
+              podClass = 'bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]';
+            }
+
+            let stageBadgeClass = 'bg-gray-100 text-gray-700';
+            if (order.isIssue) stageBadgeClass = 'bg-[#FEECEE] text-[#DC2626] font-bold border border-[#FECACA]';
+            else if (order.stageNum === 1) stageBadgeClass = 'bg-blue-50 text-blue-700 border border-blue-200';
+            else if (order.stageNum === 2) stageBadgeClass = 'bg-amber-50 text-amber-700 border border-amber-200';
+            else if (order.stageNum === 3) stageBadgeClass = 'bg-purple-50 text-purple-700 border border-purple-200';
+            else if (order.stageNum === 4) stageBadgeClass = 'bg-indigo-50 text-indigo-700 border border-indigo-200';
+            else if (order.stageNum === 5) stageBadgeClass = 'bg-amber-50 text-amber-800 border border-amber-300';
+            else if (order.stageNum === 6) stageBadgeClass = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+
+            const stageDisplay = order.stage.includes('.') ? order.stage : `${order.stageNum}. ${order.stage}`;
 
             tr.innerHTML = `
-              <td class="py-3 px-3 font-bold text-[#1F2937] font-arial">${order.orderId}</td>
-              <td class="py-3 px-3 font-medium">${order.customer}</td>
-              <td class="py-3 px-3">${order.cargo}</td>
-              <td class="py-3 px-3 font-arial font-semibold">${order.picker}</td>
-              <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#F3F4F6] text-[#374151] font-bold text-[11px] font-arial">${order.stage}</span></td>
+              <td class="py-3 px-3 font-bold ${order.isIssue ? 'text-[#DC2626]' : 'text-[#1F2937]'} font-arial">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span>${order.orderId}</span>
+                  ${order.isIssue ? '<span class="px-1.5 py-0.5 rounded bg-red-100 text-[#DC2626] text-[9.5px] font-bold font-arial animate-pulse shrink-0">🚨 Action Required</span>' : ''}
+                </div>
+              </td>
+              <td class="py-3 px-3 font-medium text-[#1F2937]">${order.customer}</td>
+              <td class="py-3 px-3 text-[#4B5563]">${order.cargo}</td>
+              <td class="py-3 px-3 font-arial font-semibold text-[#1F2937]">${order.dockBay || order.picker}</td>
               <td class="py-3 px-3">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial inline-block ${stageBadgeClass}">
+                  ${stageDisplay}
+                </span>
+              </td>
+              <td class="py-3 px-3">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
                   ${order.pod}
                 </span>
               </td>
               <td class="py-3 px-3 text-right">
-                <button onclick="event.stopPropagation(); openOutwardOrderDetail('${order.orderId}')" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">Inspect &rarr;</button>
+                <button onclick="event.stopPropagation(); openOutwardOrderDetail('${order.orderId}')" class="${order.isIssue ? 'btn-redbus' : 'btn-redbus-secondary'} text-[11px] py-1 px-3 cursor-pointer whitespace-nowrap shadow-xs">
+                  ${order.isIssue ? 'View Full Journey &rarr;' : 'Inspect &rarr;'}
+                </button>
               </td>
             `;
-            normalTbody.appendChild(tr);
+            tbody.appendChild(tr);
           });
         }
       }
@@ -5328,19 +5267,6 @@
 
     function filterOutwardTable(stage) {
       currentOutwardFilter = stage;
-      
-      // Update tab active classes
-      ['all', 1, 2, 3, 4, 5].forEach(st => {
-        const btn = document.getElementById('outward-tab-' + st);
-        if (btn) {
-          if (st === stage) {
-            btn.className = 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all';
-          } else {
-            btn.className = 'px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all';
-          }
-        }
-      });
-
       renderOutwardJourney(currentFacilityName);
     }
 
@@ -5866,10 +5792,8 @@
       }, 50);
     }
 
-    // Initialize Floor Map Storey 1 Heat Map & Splash Intro
+    // Initialize Floor Map Storey 1 Heat Map & Direct Dashboard Load
     window.addEventListener('DOMContentLoaded', function() {
-      startSplashCountdown();
-
       if (typeof changeStorey === 'function') changeStorey(1);
 
       if (typeof openInwardOrderDetail === 'function') openInwardOrderDetail('ORD-IN-8821');
