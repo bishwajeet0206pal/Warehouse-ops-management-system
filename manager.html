@@ -1144,106 +1144,83 @@
           <div class="flex items-center justify-between">
             <div>
               <h2 class="text-[17px] font-bold text-[#1F2937]">Inward journey — orders at each stage</h2>
-              <p class="text-[12px] text-[#6B7280]">Click any stage box to drill down into Order Detail</p>
+              <p class="text-[12px] text-[#6B7280]">Pipeline volume summary across intake stages · All orders detailed in table below</p>
             </div>
             <span class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-1 rounded-full">WH-06 Intake Operations</span>
           </div>
 
+          <!-- Summary KPI Stage Boxes (Non-clickable Summary Only) -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
-            <div onclick="openInwardOrderByStage(1)" class="p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55] cursor-pointer text-center group transition-colors">
+            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">1. Expected</span>
-              <span class="text-[19px] font-bold text-[#1F2937] group-hover:text-[#D84E55] block mt-0.5">3 orders</span>
-              <span class="text-[11px] text-[#9CA3AF] block font-arial mt-0.5">En route to hub</span>
+              <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">3 orders</span>
+              <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">En route to hub</span>
             </div>
-            <div onclick="openInwardOrderByStage(2)" class="p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55] cursor-pointer text-center group transition-colors">
+            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">2. At Dock</span>
-              <span class="text-[19px] font-bold text-[#1F2937] group-hover:text-[#D84E55] block mt-0.5">2 orders</span>
-              <span class="text-[11px] text-[#9CA3AF] block font-arial mt-0.5">Parked at bay</span>
+              <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">2 orders</span>
+              <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Parked at bay</span>
             </div>
-            <div onclick="openInwardOrderDetail('ORD-IN-8824')" class="p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55] cursor-pointer text-center group transition-colors">
+            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">3. Unloading</span>
-              <span class="text-[19px] font-bold text-[#1F2937] group-hover:text-[#D84E55] block mt-0.5">4 orders</span>
-              <span class="text-[11px] text-[#9CA3AF] block font-arial mt-0.5">Offloading cargo</span>
+              <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">4 orders</span>
+              <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Offloading cargo</span>
             </div>
-            <div onclick="openInwardOrderDetail('ORD-IN-8821')" class="p-3 rounded-xl border-2 border-[#D84E55] bg-[#FEECEE] cursor-pointer text-center group transition-colors shadow-2xs">
-              <span class="text-[10px] uppercase font-bold text-[#D84E55] font-arial block">4. QC & POD</span>
-              <span class="text-[19px] font-bold text-[#D84E55] block mt-0.5">8 orders</span>
-              <span class="text-[11px] text-[#D84E55] font-semibold block font-arial mt-0.5">Verified & signed</span>
+            <div class="p-3.5 rounded-2xl border-2 border-[#D84E55] bg-[#FEECEE] text-center select-none shadow-2xs">
+              <span class="text-[10px] uppercase font-bold text-[#D84E55] font-arial block">4. QC &amp; POD</span>
+              <span class="text-[20px] font-bold text-[#D84E55] block mt-0.5">8 orders</span>
+              <span class="text-[11px] text-[#D84E55] font-semibold block font-arial mt-0.5">Active inspection</span>
             </div>
-            <div onclick="openInwardOrderDetail('ORD-IN-8820')" class="p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55] cursor-pointer text-center group transition-colors">
+            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">5. Putaway</span>
-              <span class="text-[19px] font-bold text-[#1F2937] group-hover:text-[#D84E55] block mt-0.5">12 orders</span>
-              <span class="text-[11px] text-[#9CA3AF] block font-arial mt-0.5">Moving to shelf</span>
+              <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">12 orders</span>
+              <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Moving to shelf</span>
             </div>
-            <div onclick="openInwardOrderByStage(6)" class="p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55] cursor-pointer text-center group transition-colors">
+            <div class="p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs">
               <span class="text-[10px] uppercase font-bold text-[#059669] font-arial block">6. Stored</span>
-              <span class="text-[19px] font-bold text-[#059669] block mt-0.5">145 orders</span>
+              <span class="text-[20px] font-bold text-[#059669] block mt-0.5">145 orders</span>
               <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5">In inventory</span>
             </div>
           </div>
         </div>
 
-        <!-- Inward Active Orders Table for WH-06 -->
+        <!-- Inward Active Orders Table for WH-06 (Everything Available in Table View) -->
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-[16px] font-bold text-[#1F2937]">Active Inward Orders at WH-06</h3>
-            <span class="text-[12px] text-[#6B7280]">Showing 3 priority shipments</span>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+            <div>
+              <h3 class="text-[16px] font-bold text-[#1F2937]">Active Inward Orders at WH-06 (All Stages)</h3>
+              <p class="text-[12px] text-[#6B7280]">Complete table view of all shipments currently in the intake pipeline</p>
+            </div>
+            <span id="inward-table-count-badge" class="text-[12px] font-bold text-[#1F2937] font-arial bg-gray-100 px-3 py-1 rounded-full border border-gray-200">29 Orders Total</span>
           </div>
+
+          <!-- Stage Filter Pills -->
+          <div class="flex items-center gap-1.5 flex-wrap pt-1 text-[12px]">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider mr-1">Filter by Stage:</span>
+            <button onclick="filterInwardTable('all')" id="inward-tab-all" class="px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all">All Active (29)</button>
+            <button onclick="filterInwardTable(1)" id="inward-tab-1" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">1. Expected (3)</button>
+            <button onclick="filterInwardTable(2)" id="inward-tab-2" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">2. At Dock (2)</button>
+            <button onclick="filterInwardTable(3)" id="inward-tab-3" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">3. Unloading (4)</button>
+            <button onclick="filterInwardTable(4)" id="inward-tab-4" class="px-3 py-1 rounded-lg font-medium bg-[#FEECEE] text-[#D84E55] hover:bg-[#FECACA] cursor-pointer transition-all font-semibold">4. QC &amp; POD (8)</button>
+            <button onclick="filterInwardTable(5)" id="inward-tab-5" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">5. Putaway (12)</button>
+          </div>
+
+          <!-- Table with Zero Horizontal Scrolling -->
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-[13px]">
               <thead>
-                <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase">
+                <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-arial text-[11px] uppercase bg-gray-50/50">
                   <th class="py-2.5 px-3">Order ID</th>
                   <th class="py-2.5 px-3">Transporter</th>
-                  <th class="py-2.5 px-3">SKU & Quantity</th>
-                  <th class="py-2.5 px-3">Dock Bay</th>
-                  <th class="py-2.5 px-3">Stage</th>
-                  <th class="py-2.5 px-3">Proof of Delivery</th>
+                  <th class="py-2.5 px-3">SKU &amp; Quantity</th>
+                  <th class="py-2.5 px-3">Dock Bay / Location</th>
+                  <th class="py-2.5 px-3">Current Stage</th>
+                  <th class="py-2.5 px-3">Proof of Delivery / Intake Status</th>
                   <th class="py-2.5 px-3 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-[#F3F4F6] text-[#374151]">
-                <tr class="hover:bg-[#F9FAFB] cursor-pointer" onclick="openInwardOrderDetail('ORD-IN-8821')">
-                  <td class="py-3 px-3 font-bold text-[#D84E55] font-arial">ORD-IN-8821</td>
-                  <td class="py-3 px-3 font-medium">Bhiwandi Logistics</td>
-                  <td class="py-3 px-3">SKU-LED-60W (2,400 pcs)</td>
-                  <td class="py-3 px-3 font-arial font-semibold">Bay 04</td>
-                  <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#FEECEE] text-[#D84E55] font-bold text-[11px] font-arial">4. QC & POD</span></td>
-                  <td class="py-3 px-3" onclick="event.stopPropagation(); openPodModal()">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0] hover:bg-[#D1FAE5] transition-colors cursor-pointer">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                      Verified & Signed
-                    </span>
-                  </td>
-                  <td class="py-3 px-3 text-right"><button onclick="openInwardOrderDetail('ORD-IN-8821')" class="btn-redbus text-[11px] py-1 px-3">View Full Journey &rarr;</button></td>
-                </tr>
-                <tr class="hover:bg-[#F9FAFB] cursor-pointer" onclick="openInwardOrderDetail('ORD-IN-8824')">
-                  <td class="py-3 px-3 font-bold text-[#1F2937] font-arial">ORD-IN-8824</td>
-                  <td class="py-3 px-3 font-medium">Safexpress Surface</td>
-                  <td class="py-3 px-3">SKU-FMCG-22 (1,800 pcs)</td>
-                  <td class="py-3 px-3 font-arial font-semibold">Bay 01</td>
-                  <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[11px] font-arial">3. Unloading</span></td>
-                  <td class="py-3 px-3">
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[11px] font-arial border border-[#FDE68A]">
-                      Offloading in Progress
-                    </span>
-                  </td>
-                  <td class="py-3 px-3 text-right"><button onclick="openInwardOrderDetail('ORD-IN-8824')" class="btn-redbus-secondary text-[11px] py-1 px-3">Inspect &rarr;</button></td>
-                </tr>
-                <tr class="hover:bg-[#F9FAFB] cursor-pointer" onclick="openInwardOrderDetail('ORD-IN-8820')">
-                  <td class="py-3 px-3 font-bold text-[#1F2937] font-arial">ORD-IN-8820</td>
-                  <td class="py-3 px-3 font-medium">Delhivery Freight</td>
-                  <td class="py-3 px-3">SKU-BLK-99 (3,500 pcs)</td>
-                  <td class="py-3 px-3 font-arial font-semibold">Bay 03</td>
-                  <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial">5. Putaway</span></td>
-                  <td class="py-3 px-3" onclick="event.stopPropagation(); openPodModal()">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0] hover:bg-[#D1FAE5] transition-colors cursor-pointer">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                      Verified & Signed
-                    </span>
-                  </td>
-                  <td class="py-3 px-3 text-right"><button onclick="openInwardOrderDetail('ORD-IN-8820')" class="btn-redbus-secondary text-[11px] py-1 px-3">Inspect &rarr;</button></td>
-                </tr>
+              <tbody id="inward-orders-tbody" class="divide-y divide-[#F3F4F6] text-[#374151]">
+                <!-- Dynamically rendered via renderInwardTable() -->
               </tbody>
             </table>
           </div>
@@ -1325,14 +1302,25 @@
              TABLE VIEW: HEALTHY ACTIVE SHIPMENTS (ON SCHEDULE)
              ============================================== -->
         <div id="outward-normal-section" class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
             <div>
               <h3 class="text-[16px] font-bold text-[#1F2937]">Active Outward Dispatches (Moving On Schedule)</h3>
-              <p class="text-[12px] text-[#6B7280]">Regular fulfillment flow progressing across stages</p>
+              <p class="text-[12px] text-[#6B7280]">Complete table view of orders across all fulfillment stages</p>
             </div>
-            <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-1 rounded-full border border-[#A7F3D0]">
-              ● Standard Pipeline Flowing
+            <span id="outward-normal-count-badge" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-1 rounded-full border border-[#A7F3D0]">
+              20 Orders Active
             </span>
+          </div>
+
+          <!-- Outward Stage Filter Pills -->
+          <div class="flex items-center gap-1.5 flex-wrap pt-1 text-[12px]">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider mr-1">Filter by Stage:</span>
+            <button onclick="filterOutwardTable('all')" id="outward-tab-all" class="px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all">All Outward (20)</button>
+            <button onclick="filterOutwardTable(1)" id="outward-tab-1" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">1. Received (4)</button>
+            <button onclick="filterOutwardTable(2)" id="outward-tab-2" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">2. Picking (6)</button>
+            <button onclick="filterOutwardTable(3)" id="outward-tab-3" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">3. Packing (3)</button>
+            <button onclick="filterOutwardTable(4)" id="outward-tab-4" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">4. QC &amp; Weighing (2)</button>
+            <button onclick="filterOutwardTable(5)" id="outward-tab-5" class="px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all">5. Staged at Dock (5)</button>
           </div>
 
           <div class="overflow-x-auto">
@@ -3752,6 +3740,127 @@
     }
 
     
+    /* ==============================================
+       INWARD ORDERS MASTER DATA & ACTIVE PIPELINE (29 ORDERS)
+       ============================================== */
+    const inwardOrdersList = [
+      // Stage 1: Expected (3 orders)
+      { id: 'ORD-IN-8827', transporter: 'Gati KWE Express', sku: 'SKU-MED-40K Cold Packs', qty: '600 pcs', pallets: '12 pallets', bay: 'Bay 02 (ETA 11:30)', stageNum: 1, stageName: '1. Expected', podStatus: 'Manifest Registered', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
+      { id: 'ORD-IN-8828', transporter: 'TCI Freight Logistics', sku: 'SKU-ELEC-88 Sensors', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 03 (ETA 12:15)', stageNum: 1, stageName: '1. Expected', podStatus: 'e-Way Bill Generated', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
+      { id: 'ORD-IN-8829', transporter: 'Blue Dart Surface', sku: 'SKU-AUTO-12 Hub Belts', qty: '850 pcs', pallets: '17 pallets', bay: 'Bay 04 (ETA 13:00)', stageNum: 1, stageName: '1. Expected', podStatus: 'Advance ASN Sent', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
+
+      // Stage 2: At Dock (2 orders)
+      { id: 'ORD-IN-8825', transporter: 'V-Trans Logistics', sku: 'SKU-IND-50 Motor Spares', qty: '900 pcs', pallets: '18 pallets', bay: 'Inbound Bay 02', stageNum: 2, stageName: '2. At Dock', podStatus: 'Gate Pass Issued', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      { id: 'ORD-IN-8826', transporter: 'Spoton Logistics', sku: 'SKU-CHEM-10 Liquid Drums', qty: '450 pcs', pallets: '15 pallets', bay: 'Inbound Bay 03', stageNum: 2, stageName: '2. At Dock', podStatus: 'Parked at Bay 03', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+
+      // Stage 3: Unloading (4 orders)
+      { id: 'ORD-IN-8824', transporter: 'Safexpress Surface', sku: 'SKU-FMCG-22 Home Essentials', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', podStatus: 'Offloading in Progress', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      { id: 'ORD-IN-8823', transporter: 'DTDC Freight Supply', sku: 'SKU-PKG-15 Polybags', qty: '4,000 pcs', pallets: '20 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', podStatus: 'Pallet De-stuffing', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      { id: 'ORD-IN-8830', transporter: 'Express Cargo Transit', sku: 'SKU-TEXT-99 Yarn Spools', qty: '2,100 pcs', pallets: '42 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', podStatus: 'Forklift Offload (45%)', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      { id: 'ORD-IN-8831', transporter: 'Gati-KWE Surface', sku: 'SKU-FOOD-08 Canned Goods', qty: '1,500 pcs', pallets: '30 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', podStatus: 'De-stuffing (80%)', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+
+      // Stage 4: QC & POD (8 orders)
+      { id: 'ORD-IN-8821', transporter: 'Bhiwandi Logistics', sku: 'SKU-LED-60W UltraSlim', qty: '2,400 pcs', pallets: '48 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Verified & Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200', isPriority: true },
+      { id: 'ORD-IN-8822', transporter: 'Rivigo Surface Line', sku: 'SKU-SOLAR-04 Inverter Kits', qty: '320 pcs', pallets: '16 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Challan Stamped', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8832', transporter: 'Delhivery Freight', sku: 'SKU-PHARM-12 Sterile Vials', qty: '5,000 pcs', pallets: '25 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Seal #9901 Verified', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8833', transporter: 'Bluedart Express', sku: 'SKU-ELEC-44 Microchips', qty: '3,200 pcs', pallets: '16 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Gemini Vision Passed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8834', transporter: 'Safexpress Surface', sku: 'SKU-APPA-10 Denim Roll', qty: '1,400 pcs', pallets: '28 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Barcode Scanned', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8835', transporter: 'TCI Supply Chain', sku: 'SKU-FURN-02 Office Desks', qty: '180 pcs', pallets: '18 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Physical POD Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8836', transporter: 'Mahindra Logistics', sku: 'SKU-AUTO-77 Gaskets', qty: '950 pcs', pallets: '19 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Intake Seal Matched', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8837', transporter: 'V-Xpress Cargo', sku: 'SKU-COSM-55 Lotions', qty: '2,800 pcs', pallets: '28 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Verified & Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+
+      // Stage 5: Putaway (12 orders)
+      { id: 'ORD-IN-8820', transporter: 'Delhivery Freight', sku: 'SKU-BLK-99 Industrial Casings', qty: '3,500 pcs', pallets: '70 pallets', bay: 'Bay 03 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Shelf C6', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8819', transporter: 'Blue Dart Supply', sku: 'SKU-COMP-01 Power Units', qty: '800 pcs', pallets: '16 pallets', bay: 'Bay 02 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf B2', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8818', transporter: 'Safexpress Logistics', sku: 'SKU-TOOL-90 Wrenches', qty: '1,100 pcs', pallets: '22 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Forklift en route', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8817', transporter: 'Spoton Express', sku: 'SKU-WIRE-33 Copper Cable', qty: '2,400 pcs', pallets: '24 pallets', bay: 'Bay 04 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Allocating Bay C4', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8816', transporter: 'Gati KWE Surface', sku: 'SKU-BEV-12 Fruit Juices', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 05 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Zone A', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8815', transporter: 'Rivigo Freight', sku: 'SKU-MED-05 Bandages', qty: '6,000 pcs', pallets: '30 pallets', bay: 'Bay 06 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #02', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8814', transporter: 'TCI Freight', sku: 'SKU-CHEM-88 Resin Cans', qty: '500 pcs', pallets: '20 pallets', bay: 'Bay 07 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf C8', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8813', transporter: 'Mahindra Logistics', sku: 'SKU-ELEC-19 LED Strips', qty: '2,200 pcs', pallets: '22 pallets', bay: 'Bay 08 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #03', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8812', transporter: 'DTDC Express', sku: 'SKU-PLAS-04 Buckets', qty: '900 pcs', pallets: '18 pallets', bay: 'Bay 03 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf A6', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8811', transporter: 'V-Trans Line', sku: 'SKU-TEXT-12 Cotton Bales', qty: '400 pcs', pallets: '20 pallets', bay: 'Bay 02 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Zone C', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8810', transporter: 'Express Surface', sku: 'SKU-FOOD-21 Rice Bags', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf A1', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'ORD-IN-8809', transporter: 'Bhiwandi Logistics', sku: 'SKU-SOLAR-09 Cells', qty: '750 pcs', pallets: '15 pallets', bay: 'Bay 04 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #01', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' }
+    ];
+
+    let currentInwardFilter = 'all';
+
+    function filterInwardTable(stage) {
+      currentInwardFilter = stage;
+      
+      // Update tab active classes
+      ['all', 1, 2, 3, 4, 5].forEach(st => {
+        const btn = document.getElementById('inward-tab-' + st);
+        if (btn) {
+          if (st === stage) {
+            btn.className = 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all';
+          } else {
+            btn.className = 'px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all';
+          }
+        }
+      });
+
+      renderInwardTable();
+    }
+
+    function renderInwardTable() {
+      const tbody = document.getElementById('inward-orders-tbody');
+      const badge = document.getElementById('inward-table-count-badge');
+      if (!tbody) return;
+
+      const filtered = currentInwardFilter === 'all'
+        ? inwardOrdersList
+        : inwardOrdersList.filter(o => o.stageNum === currentInwardFilter);
+
+      if (badge) {
+        badge.textContent = `${filtered.length} Orders ${currentInwardFilter === 'all' ? 'Total' : '(Filtered)'}`;
+      }
+
+      tbody.innerHTML = '';
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500 text-[13px]">No orders found for this stage.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(order => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
+        tr.onclick = () => openInwardOrderDetail(order.id);
+
+        let stageBadgeClass = 'bg-gray-100 text-gray-700';
+        if (order.stageNum === 1) stageBadgeClass = 'bg-blue-50 text-blue-700 border border-blue-200';
+        else if (order.stageNum === 2) stageBadgeClass = 'bg-amber-50 text-amber-700 border border-amber-200';
+        else if (order.stageNum === 3) stageBadgeClass = 'bg-amber-50 text-amber-800 border border-amber-300';
+        else if (order.stageNum === 4) stageBadgeClass = 'bg-[#FEECEE] text-[#D84E55] font-bold border border-[#FECACA]';
+        else if (order.stageNum === 5) stageBadgeClass = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-bold ${order.stageNum === 4 ? 'text-[#D84E55]' : 'text-[#1F2937]'} font-arial">${order.id}</td>
+          <td class="py-3 px-3 font-medium">${order.transporter}</td>
+          <td class="py-3 px-3">${order.sku} <span class="text-gray-500 text-[11px]">(${order.qty})</span></td>
+          <td class="py-3 px-3 font-arial font-semibold">${order.bay}</td>
+          <td class="py-3 px-3">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial inline-block ${stageBadgeClass}">
+              ${order.stageName}
+            </span>
+          </td>
+          <td class="py-3 px-3" onclick="event.stopPropagation(); ${order.stageNum >= 4 ? 'openPodModal()' : ''}">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${order.podClass} ${order.stageNum >= 4 ? 'hover:shadow-2xs cursor-pointer' : ''}">
+              ${order.stageNum >= 4 ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>' : ''}
+              ${order.podStatus}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right">
+            <button onclick="event.stopPropagation(); openInwardOrderDetail('${order.id}')" class="${order.stageNum === 4 ? 'btn-redbus' : 'btn-redbus-secondary'} text-[11px] py-1 px-3 cursor-pointer">
+              ${order.stageNum === 4 ? 'View Full Journey &rarr;' : 'Inspect &rarr;'}
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
     const inwardOrdersMaster = {
       'ORD-IN-8821': {
         id: 'ORD-IN-8821',
@@ -3812,17 +3921,34 @@
       }
     };
 
-    const inwardStageSteps = [
-      { num: 1, name: '1. Expected' },
-      { num: 2, name: '2. At Dock' },
-      { num: 3, name: '3. Unloading' },
-      { num: 4, name: '4. QC & POD' },
-      { num: 5, name: '5. Putaway' },
-      { num: 6, name: '6. Stored' }
-    ];
-
     function openInwardOrderDetail(orderId) {
-      const order = inwardOrdersMaster[orderId] || inwardOrdersMaster['ORD-IN-8821'];
+      let order = inwardOrdersMaster[orderId];
+      if (!order) {
+        const found = inwardOrdersList.find(o => o.id === orderId);
+        if (found) {
+          order = {
+            id: found.id,
+            transporter: found.transporter,
+            stageNum: found.stageNum,
+            stageName: found.stageName,
+            stageLocation: found.bay,
+            stageDesc: `Operational status: ${found.podStatus} at ${found.bay}`,
+            sku: found.sku,
+            qty: found.qty,
+            pallets: found.pallets || '24 pallets',
+            matchMsg: '✓ Electronic manifest and ASN synchronized',
+            qcNote: 'Outer seal intact on arrival. Physical verification scheduled.',
+            labour: '3 workers assigned',
+            forklift: 'Reach Truck #02',
+            shelf: 'Zone B, Shelf B8 (Ground Tier)',
+            lrNo: 'LR-IN-' + found.id.replace('ORD-IN-', '') + '-88',
+            vehicleNo: 'MH-04-TR-' + (Math.floor(1000 + Math.random() * 9000)),
+            driver: 'Gurpreet Singh · +91 98200-88120'
+          };
+        } else {
+          order = inwardOrdersMaster['ORD-IN-8821'];
+        }
+      }
       
       const titleEl = document.getElementById('inward-detail-title');
       if (titleEl) titleEl.textContent = `${order.id} · ${order.transporter} Transporter`;
@@ -3865,26 +3991,6 @@
 
       const driverEl = document.getElementById('inward-driver');
       if (driverEl) driverEl.textContent = order.driver;
-
-      // Render Inward Stepper
-      const stepper = document.getElementById('inward-stepper-container');
-      if (stepper) {
-        stepper.innerHTML = '';
-        inwardStageSteps.forEach(step => {
-          const span = document.createElement('span');
-          if (step.num < order.stageNum) {
-            span.className = 'line-through text-[#10B981] font-medium';
-            span.innerHTML = `✓ ${step.name} &rarr;`;
-          } else if (step.num === order.stageNum) {
-            span.className = 'px-3 py-1 rounded-lg bg-[#FEECEE] text-[#D84E55] font-bold shadow-2xs';
-            span.innerHTML = `${step.name} &rarr;`;
-          } else {
-            span.className = 'text-[#9CA3AF]';
-            span.innerHTML = `${step.name}${step.num < 6 ? ' &rarr;' : ''}`;
-          }
-          stepper.appendChild(span);
-        });
-      }
 
       goToScreen(4);
     }
@@ -4081,9 +4187,37 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-GW-9008', customer: 'Reliance Retail (Dispur)', cargo: 'Apparel (40 cartons)', picker: 'K. Deka (Bay 01)', stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
-          { orderId: 'ORD-GW-8995', customer: 'Tata Croma (Paltan Bazar)', cargo: 'Home Appliances (8 crates)', picker: 'J. Gogoi (Bay 02)', stage: '6. Dispatched & POD', pod: 'Customer Signed POD' },
-          { orderId: 'ORD-GW-9031', customer: 'Blinkit Hub 04', cargo: 'FMCG Consumables (120 totes)', picker: 'A. Hazarika', stage: '2. Wave Picking', pod: 'In Floor Fulfillment' }
+          // Stage 1: Order Received (4 orders)
+          { orderId: 'ORD-GW-9031', customer: 'Blinkit Hub 04', cargo: 'FMCG Consumables (120 totes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-GW-9032', customer: 'Zepto Darkstore 02', cargo: 'Snacks & Beverages (65 totes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-GW-9033', customer: 'Apollo Pharmacy Dispur', cargo: 'First Aid Packs (30 cartons)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', pod: 'Wave Grouped' },
+          { orderId: 'ORD-GW-9034', customer: 'MedPlus Store Panbazar', cargo: 'Medical Diagnostics (15 kits)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', pod: 'Batch Release Pending' },
+
+          // Stage 2: Wave Picking (5 normal + 1 in issues = 6 orders)
+          { orderId: 'ORD-GW-9023', customer: 'BigBasket Regional Hub', cargo: 'Organic Staples (45 crates)', picker: 'A. Hazarika (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (70%)' },
+          { orderId: 'ORD-GW-9024', customer: 'Smart Bazaar (GS Road)', cargo: 'Personal Care (55 cartons)', picker: 'P. Bora (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (85%)' },
+          { orderId: 'ORD-GW-9025', customer: 'Vishal Mega Mart', cargo: 'Apparel & Footwear (80 boxes)', picker: 'R. Saikia (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', pod: 'Cart 04 Loading' },
+          { orderId: 'ORD-GW-9026', customer: 'V-Mart Retail Hub', cargo: 'Luggage & Backpacks (35 units)', picker: 'N. Das (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', pod: 'Tote Staging' },
+          { orderId: 'ORD-GW-9027', customer: 'Spencers Daily', cargo: 'Packaged Staples (40 bags)', picker: 'D. Kalita (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', pod: 'Pick Cycle Active' },
+
+          // Stage 3: Sorting & Packing (3 orders)
+          { orderId: 'ORD-GW-9018', customer: 'Flipkart Logistics Center', cargo: 'Tech Accessories (200 units)', picker: 'M. Nath (Pack Desk 01)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Carton Strapping' },
+          { orderId: 'ORD-GW-9019', customer: 'Myntra Express Depot', cargo: 'Branded Footwear (120 pairs)', picker: 'T. Gogoi (Pack Desk 02)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-GW-9020', customer: 'Nykaa Beauty Hub', cargo: 'Cosmetics Hampers (90 units)', picker: 'S. Barua (Pack Desk 03)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Scale Queued' },
+
+          // Stage 4: QC & Weighing (1 normal + 1 in issues = 2 orders)
+          { orderId: 'ORD-GW-9015', customer: 'Samsung Service Depot', cargo: 'Mobile Spares (45 boxes)', picker: 'L. Chetia (Desk QC-01)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5: Staged at Dock (5 orders)
+          { orderId: 'ORD-GW-9008', customer: 'Reliance Retail (Dispur)', cargo: 'Apparel (40 cartons)', picker: 'K. Deka (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-GW-9009', customer: 'Shoppers Stop (Guwahati)', cargo: 'Designer Apparel (25 cartons)', picker: 'B. Medhi (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Staged for BlueDart' },
+          { orderId: 'ORD-GW-9010', customer: 'Pantaloons Store (Six Mile)', cargo: 'Winter Wear (30 cartons)', picker: 'H. Sarma (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Trailer Handover Queued' },
+          { orderId: 'ORD-GW-9011', customer: 'Lifestyle International', cargo: 'Fashion Accessories (18 boxes)', picker: 'J. Das (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-GW-9012', customer: 'Westside Assam Branch', cargo: 'Home Decor (22 cartons)', picker: 'U. Dutta (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Seal Affixed' },
+
+          // Stage 6: Dispatched & POD (sample recent completed shipments)
+          { orderId: 'ORD-GW-8995', customer: 'Tata Croma (Paltan Bazar)', cargo: 'Home Appliances (8 crates)', picker: 'J. Gogoi (Bay 02)', stageNum: 6, stage: '6. Dispatched & POD', pod: 'Customer Signed POD' },
+          { orderId: 'ORD-GW-8996', customer: 'Vijay Sales Store', cargo: 'Microwaves & Coolers (14 units)', picker: 'P. Barman (Bay 03)', stageNum: 6, stage: '6. Dispatched & POD', pod: 'Customer Signed POD' }
         ]
       },
       'WH-06 Hyderabad': {
@@ -4174,8 +4308,52 @@
           }
         ],
         normalOrders: [
-          { orderId: 'ORD-HY-4519', customer: 'Zenith Retail (BOM)', cargo: 'Industrial Parts (12 units)', picker: 'V. Sharma (Bay 01)', stage: '6. Delivered & POD', pod: 'Customer Signed POD' },
-          { orderId: 'ORD-HY-4522', customer: 'Metro Logistics (BLR)', cargo: 'Packaged Food (25 cases)', picker: 'M. Das (Bay 03)', stage: '5. Staged at Dock', pod: 'Gate Pass Ready' }
+          // Stage 1: Order Received (8 orders)
+          { orderId: 'ORD-HY-4532', customer: 'Amazon IN Fulfilment', cargo: 'Audio Accessories (80 units)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-HY-4533', customer: 'Flipkart Hub Shamshabad', cargo: 'Smart Wearables (40 boxes)', picker: 'Floor Queue A', stageNum: 1, stage: '1. Order Received', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-HY-4534', customer: 'Reliance Digital Secunderabad', cargo: 'LED TV Mounts (25 sets)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', pod: 'Wave Grouped' },
+          { orderId: 'ORD-HY-4535', customer: 'Croma Retail Banjara Hills', cargo: 'Air Purifiers (15 units)', picker: 'Floor Queue B', stageNum: 1, stage: '1. Order Received', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-HY-4536', customer: 'Apollo Pharmacy Central', cargo: 'Nutrition Shakes (50 cartons)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', pod: 'Awaiting Wave Release' },
+          { orderId: 'ORD-HY-4537', customer: 'D-Mart Regional Depot', cargo: 'Household FMCG (110 crates)', picker: 'Floor Queue C', stageNum: 1, stage: '1. Order Received', pod: 'Wave Grouped' },
+          { orderId: 'ORD-HY-4538', customer: 'Vijetha Supermarkets', cargo: 'Snack Foods (70 boxes)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', pod: 'Batch Release Pending' },
+          { orderId: 'ORD-HY-4539', customer: 'Ratnadeep Retail', cargo: 'Beverages & Juices (90 cases)', picker: 'Floor Queue D', stageNum: 1, stage: '1. Order Received', pod: 'Wave Grouped' },
+
+          // Stage 2: Wave Picking (10 normal + 2 in issues = 12 orders)
+          { orderId: 'ORD-HY-4540', customer: 'BigBasket Fulfillment', cargo: 'Fresh Produce (45 crates)', picker: 'K. Varma (Aisle 01)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (80%)' },
+          { orderId: 'ORD-HY-4541', customer: 'Zepto Darkstore Gachibowli', cargo: 'Personal Care (35 totes)', picker: 'M. Krishna (Aisle 02)', stageNum: 2, stage: '2. Wave Picking', pod: 'Cart 02 Loading' },
+          { orderId: 'ORD-HY-4542', customer: 'Blinkit Depot Kondapur', cargo: 'Dairy & Cold Items (28 totes)', picker: 'R. Babu (Cold Bin 01)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (60%)' },
+          { orderId: 'ORD-HY-4543', customer: 'MedPlus Depot Madhapur', cargo: 'OTC Medications (50 boxes)', picker: 'T. Rao (Aisle 04)', stageNum: 2, stage: '2. Wave Picking', pod: 'Tote Staging' },
+          { orderId: 'ORD-HY-4544', customer: 'Myntra Express Hitec City', cargo: 'Fashion Footwear (60 pairs)', picker: 'P. Chary (Aisle 05)', stageNum: 2, stage: '2. Wave Picking', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-HY-4545', customer: 'Ajio Logistics Hub', cargo: 'Denim & Tops (45 boxes)', picker: 'S. Naidu (Aisle 06)', stageNum: 2, stage: '2. Wave Picking', pod: 'Cart 05 Loading' },
+          { orderId: 'ORD-HY-4546', customer: 'Nykaa Depot Begumpet', cargo: 'Cosmetics (30 cartons)', picker: 'B. Mahesh (Aisle 03)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (90%)' },
+          { orderId: 'ORD-HY-4547', customer: 'Tata Cliq Warehouse', cargo: 'Smart Watches (20 units)', picker: 'V. Goud (Aisle 07)', stageNum: 2, stage: '2. Wave Picking', pod: 'Tote Staging' },
+          { orderId: 'ORD-HY-4548', customer: 'Titan Eyeplus Depot', cargo: 'Optical Frames (40 cases)', picker: 'A. Srinivas (Aisle 08)', stageNum: 2, stage: '2. Wave Picking', pod: 'Pick Cycle Active' },
+          { orderId: 'ORD-HY-4549', customer: 'Decathlon Shamshabad', cargo: 'Sporting Equipment (18 crates)', picker: 'D. Kumar (Heavy Bay)', stageNum: 2, stage: '2. Wave Picking', pod: 'Picking Active (75%)' },
+
+          // Stage 3: Sorting & Packing (5 normal + 1 in issues = 6 orders)
+          { orderId: 'ORD-HY-4550', customer: 'Philips Healthcare Hub', cargo: 'Diagnostic Lights (12 crates)', picker: 'N. Prasad (Pack Desk 01)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Carton Strapping' },
+          { orderId: 'ORD-HY-4551', customer: 'Havells Distribution', cargo: 'Switchgear Kits (25 boxes)', picker: 'S. Begum (Pack Desk 02)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Bubble Wrap & Taping' },
+          { orderId: 'ORD-HY-4552', customer: 'Godrej Appliances Hub', cargo: 'Microwaves (8 units)', picker: 'K. Ram (Pack Desk 03)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Scale Queued' },
+          { orderId: 'ORD-HY-4553', customer: 'Voltas AC Spares Depot', cargo: 'Compressor Units (10 crates)', picker: 'G. Suresh (Pack Desk 04)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Carton Strapping' },
+          { orderId: 'ORD-HY-4554', customer: 'Blue Star Logistics', cargo: 'Copper Piping Spools (14 spools)', picker: 'L. Narsing (Pack Desk 05)', stageNum: 3, stage: '3. Sorting & Packing', pod: 'Scale Queued' },
+
+          // Stage 4: QC & Weighing (5 orders)
+          { orderId: 'ORD-HY-4555', customer: 'Samsung Service Central', cargo: 'Motherboard Spares (30 boxes)', picker: 'A. Qureshi (Desk QC-01)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-HY-4556', customer: 'LG Electronics Depot', cargo: 'Panel Inverters (15 boxes)', picker: 'J. Mohan (Desk QC-02)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-HY-4557', customer: 'Sony India Distribution', cargo: 'Headphones & Speakers (22 cases)', picker: 'M. Ali (Desk QC-03)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-HY-4558', customer: 'Whirlpool Parts Center', cargo: 'Motor Assemblies (18 crates)', picker: 'P. Rani (Desk QC-01)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+          { orderId: 'ORD-HY-4559', customer: 'Bosch Power Tools Hub', cargo: 'Drill Sets & Blades (40 boxes)', picker: 'R. Kanth (Desk QC-02)', stageNum: 4, stage: '4. QC & Weighing', pod: 'Weight Calibrated & Passed' },
+
+          // Stage 5: Staged at Dock (6 normal + 1 in issues = 7 orders)
+          { orderId: 'ORD-HY-4522', customer: 'Metro Logistics (BLR)', cargo: 'Packaged Food (25 cases)', picker: 'M. Das (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-HY-4560', customer: 'Delhivery Surface Bay', cargo: 'Consolidated E-com (95 bags)', picker: 'S. Jadhav (Bay 01)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Staged for Delhivery' },
+          { orderId: 'ORD-HY-4561', customer: 'BlueDart Air Hub Express', cargo: 'Priority Parcels (40 cartons)', picker: 'K. More (Bay 02)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
+          { orderId: 'ORD-HY-4562', customer: 'Safexpress Logistics', cargo: 'Industrial Fasteners (15 wooden cases)', picker: 'H. Shinde (Bay 03)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Trailer Handover Queued' },
+          { orderId: 'ORD-HY-4563', customer: 'GATI KWE Cargo', cargo: 'Apparel Cartons (50 boxes)', picker: 'G. Pawar (Bay 04)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Seal Affixed' },
+          { orderId: 'ORD-HY-4564', customer: 'TCI Freight Depot', cargo: 'Auto Lubricants (30 drums)', picker: 'T. Goud (Bay 05)', stageNum: 5, stage: '5. Staged at Dock', pod: 'Gate Pass Ready' },
+
+          // Stage 6: Delivered & POD
+          { orderId: 'ORD-HY-4519', customer: 'Zenith Retail (BOM)', cargo: 'Industrial Parts (12 units)', picker: 'V. Sharma (Bay 01)', stageNum: 6, stage: '6. Delivered & POD', pod: 'Customer Signed POD' }
         ]
       },
       'WH-01 Bhiwandi': {
@@ -4483,15 +4661,14 @@
         }
       }
 
-      // 2. Render Funnel Stages
+      // 2. Render Funnel Stages (Non-clickable KPI Summary Cards)
       const funnelContainer = document.getElementById('outward-funnel-stages');
       if (funnelContainer) {
         funnelContainer.innerHTML = '';
         facility.stages.forEach(stage => {
           const card = document.createElement('div');
           const isStuck = stage.stuck > 0;
-          card.className = `p-3.5 rounded-2xl border ${isStuck ? 'border-2 border-[#EF4444] bg-[#FEF2F2] shadow-xs' : 'border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#D84E55]'} cursor-pointer text-center group transition-all relative`;
-          card.onclick = () => openOutwardOrderByStage(stage.id);
+          card.className = `p-3.5 rounded-2xl border ${isStuck ? 'border-2 border-[#EF4444] bg-[#FEF2F2] shadow-xs' : 'border-[#E5E7EB] bg-[#F9FAFB]'} text-center select-none shadow-2xs relative`;
 
           card.innerHTML = `
             ${isStuck ? `
@@ -4500,8 +4677,8 @@
               </span>
             ` : ''}
             <span class="text-[10px] uppercase font-bold ${isStuck ? 'text-[#DC2626]' : 'text-[#6B7280]'} font-arial block">${stage.name}</span>
-            <span class="text-[18px] font-bold ${isStuck ? 'text-[#DC2626]' : 'text-[#1F2937] group-hover:text-[#D84E55]'} block mt-0.5">${stage.count} orders</span>
-            <span class="text-[11px] ${isStuck ? 'text-[#DC2626] font-semibold' : 'text-[#9CA3AF]'} block font-arial mt-0.5">${stage.subtitle}</span>
+            <span class="text-[19px] font-bold ${isStuck ? 'text-[#DC2626]' : 'text-[#1F2937]'} block mt-0.5">${stage.count} orders</span>
+            <span class="text-[11px] ${isStuck ? 'text-[#DC2626] font-semibold' : 'text-[#6B7280]'} block font-arial mt-0.5">${stage.subtitle}</span>
           `;
           funnelContainer.appendChild(card);
         });
@@ -4622,37 +4799,84 @@
         }
       }
 
-      // 4. Render Normal Active Orders
+      // 4. Render Normal Active Orders with Stage Filtering
       const normalTbody = document.getElementById('outward-normal-tbody');
+      const normalBadge = document.getElementById('outward-normal-count-badge');
       if (normalTbody) {
         normalTbody.innerHTML = '';
-        (facility.normalOrders || []).forEach(order => {
-          const tr = document.createElement('tr');
-          tr.className = 'hover:bg-[#F9FAFB] cursor-pointer';
-          tr.onclick = () => openOutwardOrderDetail('ORD-OUT-4521');
+        const allOrders = facility.normalOrders || [];
+        const filtered = currentOutwardFilter === 'all'
+          ? allOrders
+          : allOrders.filter(o => o.stageNum === currentOutwardFilter);
 
-          let podClass = 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]';
-          if (order.pod.includes('Signed')) podClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
-          else if (order.pod.includes('Ready') || order.pod.includes('Override')) podClass = 'bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]';
+        if (normalBadge) {
+          normalBadge.textContent = `${filtered.length} Orders ${currentOutwardFilter === 'all' ? 'Active' : '(Filtered)'}`;
+        }
 
-          tr.innerHTML = `
-            <td class="py-3 px-3 font-bold text-[#1F2937] font-arial">${order.orderId}</td>
-            <td class="py-3 px-3 font-medium">${order.customer}</td>
-            <td class="py-3 px-3">${order.cargo}</td>
-            <td class="py-3 px-3 font-arial font-semibold">${order.picker}</td>
-            <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#F3F4F6] text-[#374151] font-bold text-[11px] font-arial">${order.stage}</span></td>
-            <td class="py-3 px-3">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
-                ${order.pod}
-              </span>
-            </td>
-            <td class="py-3 px-3 text-right">
-              <button onclick="event.stopPropagation(); openOutwardOrderDetail('ORD-OUT-4521')" class="btn-redbus-secondary text-[11px] py-1 px-3">Inspect &rarr;</button>
-            </td>
-          `;
-          normalTbody.appendChild(tr);
+        // Dynamically update Outward Stage Filter Tabs with counts
+        const allBtn = document.getElementById('outward-tab-all');
+        if (allBtn) allBtn.textContent = `All Outward (${allOrders.length})`;
+        [1, 2, 3, 4, 5].forEach(stNum => {
+          const tabBtn = document.getElementById(`outward-tab-${stNum}`);
+          if (tabBtn) {
+            const countForStage = allOrders.filter(o => o.stageNum === stNum).length;
+            const stageObj = (facility.stages || []).find(s => s.id === stNum);
+            const name = stageObj ? stageObj.name.replace(/^\d+\.\s*/, '') : `Stage ${stNum}`;
+            tabBtn.textContent = `${stNum}. ${name} (${countForStage})`;
+          }
         });
+
+        if (filtered.length === 0) {
+          normalTbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500 text-[13px]">No orders found for this outward stage.</td></tr>`;
+        } else {
+          filtered.forEach(order => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
+            tr.onclick = () => openOutwardOrderDetail('ORD-OUT-4521');
+
+            let podClass = 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]';
+            if (order.pod.includes('Signed') || order.pod.includes('Passed')) podClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
+            else if (order.pod.includes('Ready') || order.pod.includes('Override') || order.pod.includes('Affixed') || order.pod.includes('Staged')) podClass = 'bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]';
+
+            tr.innerHTML = `
+              <td class="py-3 px-3 font-bold text-[#1F2937] font-arial">${order.orderId}</td>
+              <td class="py-3 px-3 font-medium">${order.customer}</td>
+              <td class="py-3 px-3">${order.cargo}</td>
+              <td class="py-3 px-3 font-arial font-semibold">${order.picker}</td>
+              <td class="py-3 px-3"><span class="px-2.5 py-0.5 rounded-full bg-[#F3F4F6] text-[#374151] font-bold text-[11px] font-arial">${order.stage}</span></td>
+              <td class="py-3 px-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
+                  ${order.pod}
+                </span>
+              </td>
+              <td class="py-3 px-3 text-right">
+                <button onclick="event.stopPropagation(); openOutwardOrderDetail('ORD-OUT-4521')" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">Inspect &rarr;</button>
+              </td>
+            `;
+            normalTbody.appendChild(tr);
+          });
+        }
       }
+    }
+
+    let currentOutwardFilter = 'all';
+
+    function filterOutwardTable(stage) {
+      currentOutwardFilter = stage;
+      
+      // Update tab active classes
+      ['all', 1, 2, 3, 4, 5].forEach(st => {
+        const btn = document.getElementById('outward-tab-' + st);
+        if (btn) {
+          if (st === stage) {
+            btn.className = 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all';
+          } else {
+            btn.className = 'px-3 py-1 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-all';
+          }
+        }
+      });
+
+      renderOutwardJourney(currentFacilityName);
     }
 
     function resolveOutwardIssue(orderId, customer) {
@@ -4730,6 +4954,9 @@
       const targetBtn = document.getElementById('wh-tab-' + tabName);
       if (targetBtn) targetBtn.classList.add('active-tab');
 
+      if (tabName === 'inward') {
+        renderInwardTable();
+      }
       if (tabName === 'outward') {
         renderOutwardJourney(currentFacilityName);
       }
@@ -5182,6 +5409,7 @@
 
       if (typeof openInwardOrderDetail === 'function') openInwardOrderDetail('ORD-IN-8821');
       if (typeof openOutwardOrderDetail === 'function') openOutwardOrderDetail('ORD-OUT-4521');
+      if (typeof renderInwardTable === 'function') renderInwardTable();
       if (typeof renderOutwardJourney === 'function') renderOutwardJourney(currentFacilityName);
       goToScreen(1);
 
