@@ -1451,9 +1451,9 @@
                   <span class="text-[12px] text-[#4B5563] block font-mono font-medium mt-0.5" id="inward-driver-phone">+91 98231-44910</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <span class="text-[11px] text-gray-500 block uppercase font-bold">Gate Intake Timestamp</span>
-                  <strong class="text-[#1F2937]">09:15 AM (Today)</strong>
-                  <span class="text-[10.5px] text-[#059669] font-bold block">Assigned: Inbound Bay 04</span>
+                  <span class="text-[10px] text-gray-500 block uppercase font-bold font-arial">Gate Intake Timestamp</span>
+                  <strong class="text-[#1F2937] text-[13px] block mt-0.5">20 Nov 2026, 09:15 AM</strong>
+                  <span class="text-[11px] text-[#059669] font-bold block mt-0.5">Assigned: Inbound Bay 04</span>
                 </div>
               </div>
             </div>
@@ -1829,7 +1829,7 @@
 
           <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
             <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Dispatch Cutoff</span>
-            <strong id="outward-cutoff-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">Today, 16:00 IST</strong>
+            <strong id="outward-cutoff-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">20 Nov 2026, 16:00 IST</strong>
           </div>
 
           <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
@@ -2196,7 +2196,7 @@
               <div class="flex items-center gap-2">
                 <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 6</span>
                 <h3 class="text-[15px] font-bold text-gray-600">Dispatched, In-Transit &amp; POD</h3>
-                <span class="text-[11px] text-gray-400 font-arial">· Est. Today 18:30 IST</span>
+                <span class="text-[11px] text-gray-400 font-arial">· Est. 20 Nov 2026, 18:30 IST</span>
               </div>
             </div>
 
@@ -3387,7 +3387,7 @@
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 shadow-xs">
           <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">Last Audit / Custody</span>
           <strong class="text-[14px] text-[#1F2937] block mt-0.5" id="slot-modal-custody">R. Kumar (#04)</strong>
-          <span class="text-[11px] text-[#6B7280] block font-arial" id="slot-modal-audittime">Today, 11:25 AM</span>
+          <span class="text-[11px] text-[#6B7280] block font-arial" id="slot-modal-audittime">20 Nov 2026, 11:25 AM</span>
         </div>
       </div>
 
@@ -3771,7 +3771,7 @@
           packagingSummary: 'Empty',
           totalWeight: '0 kg',
           custodian: 'Pooja Gupta (Inward Lead)',
-          auditTime: 'Today, 09:15 AM',
+          auditTime: '20 Nov 2026, 09:15 AM',
           handlingNotes: 'Shelf sanitized and cleared for new inward container putaway.',
           items: []
         };
@@ -3863,7 +3863,7 @@
         packagingSummary: packaging,
         totalWeight: weight,
         custodian: 'R. Kumar (Scanner #04) / Amit Patel',
-        auditTime: 'Today, 11:25 AM',
+        auditTime: '20 Nov 2026, 11:25 AM',
         handlingNotes: 'Forklift clearance verified · Keep dry · Double-palletized with corner strapping.',
         items: [
           {
@@ -4604,7 +4604,7 @@
 
       // Parse Bay & ETA without nested brackets
       let cleanBay = 'Dock Bay 04';
-      let cleanEta = 'Today on Schedule';
+      let cleanEta = '20 Nov 2026, On Schedule';
       const rawLocation = order.stageLocation || order.bay || '';
 
       if (rawLocation.includes('ETA')) {
@@ -4746,7 +4746,7 @@
         trackingId: 'BLUEDART-882910-HYD',
         cutoff: '16:00 IST (22 min remaining)',
         packingNote: 'Packing confirmed: Yes (Double corrugated + tamper-evident tape)',
-        podNote: 'Delivered: Pending courier transit · Est. arrival Today 18:30 IST',
+        podNote: 'Delivered: Pending courier transit · Est. arrival 20 Nov 2026, 18:30 IST',
         pickerInfo: 'Assigned Picker: S. Rao (Scanner #04) · Staged at Dock Bay 02'
       },
       'ORD-OUT-4522': {
@@ -4776,7 +4776,7 @@
         picker: 'V. Sharma',
         carrier: 'Blue Dart Express Surface (Van MH-02-CP-9104)',
         trackingId: 'BLUEDART-882910-HYD',
-        cutoff: 'Delivered Today at 17:40 IST',
+        cutoff: 'Delivered 20 Nov 2026 at 17:40 IST',
         packingNote: 'Delivered in good condition · Zero carton damage acknowledged by receiver',
         podNote: 'Signed by Customer: K. Pillai (Store In-Charge) · Digital POD stored',
         pickerInfo: 'Fulfillment completed by V. Sharma · Delivered by Blue Dart'
@@ -4879,7 +4879,7 @@
       if (zoneVal) zoneVal.textContent = order.stageLocation || order.dockBay || 'Zone B, Shelf B4';
 
       const cutoffVal = document.getElementById('outward-cutoff-val');
-      if (cutoffVal) cutoffVal.textContent = order.cutoff || 'Today, 16:00 IST';
+      if (cutoffVal) cutoffVal.textContent = order.cutoff || '20 Nov 2026, 16:00 IST';
 
       const stageDesc = document.getElementById('outward-stage-desc');
       if (stageDesc) stageDesc.textContent = outStageDescriptions[outStageNum] || order.stageDesc || 'Active fulfillment sequence';
@@ -6606,9 +6606,9 @@
     // STAGE 6: STORED INVENTORY DATA & FUNCTIONS
     // ==============================================
     const storedOrdersMaster = [
-      { orderId: 'ORD-IN-8801', supplier: 'Tata AutoComp Systems (Bhiwandi)', sku: 'SKU-LED-60W · High-Bay Floodlights', qty: '450 pcs (10 Pallets)', location: 'Rack A-04 · Shelf 2', slotId: 'A4', time: 'Today, 11:20 AM', handler: 'S. Kadam (Reach Truck #02)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8798', supplier: 'Mahindra Logistics Hub (Chakan)', sku: 'SKU-BRK-102 · Heavy Brake Drums', qty: '80 crates (16 Pallets)', location: 'Rack B-02 · Shelf 1', slotId: 'B2', time: 'Today, 10:45 AM', handler: 'P. Bhosale (Reach Truck #01)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8795', supplier: 'Bajaj Auto Depot (Akurdi)', sku: 'SKU-SPK-99 · Iridium Spark Plugs', qty: '200 boxes (4 Pallets)', location: 'Rack A-01 · Shelf 3', slotId: 'A1', time: 'Today, 09:30 AM', handler: 'R. Mane (Forklift #05)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8801', supplier: 'Tata AutoComp Systems (Bhiwandi)', sku: 'SKU-LED-60W · High-Bay Floodlights', qty: '450 pcs (10 Pallets)', location: 'Rack A-04 · Shelf 2', slotId: 'A4', time: '20 Nov 2026, 11:20 AM', handler: 'S. Kadam (Reach Truck #02)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8798', supplier: 'Mahindra Logistics Hub (Chakan)', sku: 'SKU-BRK-102 · Heavy Brake Drums', qty: '80 crates (16 Pallets)', location: 'Rack B-02 · Shelf 1', slotId: 'B2', time: '20 Nov 2026, 10:45 AM', handler: 'P. Bhosale (Reach Truck #01)', status: 'Verified & Stored' },
+      { orderId: 'ORD-IN-8795', supplier: 'Bajaj Auto Depot (Akurdi)', sku: 'SKU-SPK-99 · Iridium Spark Plugs', qty: '200 boxes (4 Pallets)', location: 'Rack A-01 · Shelf 3', slotId: 'A1', time: '20 Nov 2026, 09:30 AM', handler: 'R. Mane (Forklift #05)', status: 'Verified & Stored' },
       { orderId: 'ORD-IN-8792', supplier: 'Bosch Automotive India (Nashik)', sku: 'SKU-ECU-04 · Diesel ECU Sensors', qty: '45 kits (High Value)', location: 'Security Cage C-01', slotId: 'C1', time: 'Yesterday, 17:15', handler: 'A. Shinde (Security Marshal)', status: 'Verified & Stored' },
       { orderId: 'ORD-IN-8789', supplier: 'Ceat Tyres Regional Depot', sku: 'SKU-TYR-16 · Commercial Inner Tubes', qty: '150 bundles (Bulk Bay)', location: 'Bulk Bay E-02', slotId: 'E2', time: 'Yesterday, 16:00', handler: 'D. Salve (Forklift #02)', status: 'Verified & Stored' },
       { orderId: 'ORD-IN-8785', supplier: 'Hero MotoCorp Ancillary', sku: 'SKU-CHN-55 · Roller Drive Chains', qty: '90 crates (9 Pallets)', location: 'Rack C-04 · Shelf 1', slotId: 'C4', time: 'Yesterday, 14:20', handler: 'V. More (Reach Truck #03)', status: 'Verified & Stored' },
@@ -6708,11 +6708,11 @@
     // ==============================================
     const dispatchedOrdersMaster = [
       { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary (Gurgaon Hub)', cargo: 'Clutch Plates (50 sets · 2 Pallets)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-882910-HYD', time: '20 Nov 2026, 05:40 PM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1085', customer: 'Mahindra Auto Depot (Chakan Plant)', cargo: 'Heavy Alternators (24 units · 3 Crates)', carrier: 'VRL Logistics', waybill: 'VRL-TRK-MH04-8812', time: 'Today, 13:30 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1082', customer: 'Tata Motors CV Depot (Pune)', cargo: 'Leaf Springs (16 bundles · 2 Trailers)', carrier: 'Safexpress Surface', waybill: 'SAFE-MH-43-1022', time: 'Today, 12:45 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1079', customer: 'Bajaj Auto Chakan Logistics', cargo: 'Piston Assemblies (100 units · 4 Pallets)', carrier: 'Delhivery Freight', waybill: 'DEL-FRT-992014', time: 'Today, 11:20 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1075', customer: 'Force Motors Chakan Plant', cargo: 'Radiator Fans (22 units · 2 Pallets)', carrier: 'GATI KWE Cargo', waybill: 'GATI-EXP-44021', time: 'Today, 10:15 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1071', customer: 'Ashok Leyland Depot (Nagpur Hub)', cargo: 'Axle Hubs (18 crates · Heavy Load)', carrier: 'TCI Freight', waybill: 'TCI-FRT-88102', time: 'Today, 09:00 IST', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1085', customer: 'Mahindra Auto Depot (Chakan Plant)', cargo: 'Heavy Alternators (24 units · 3 Crates)', carrier: 'VRL Logistics', waybill: 'VRL-TRK-MH04-8812', time: '20 Nov 2026, 01:30 PM', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1082', customer: 'Tata Motors CV Depot (Pune)', cargo: 'Leaf Springs (16 bundles · 2 Trailers)', carrier: 'Safexpress Surface', waybill: 'SAFE-MH-43-1022', time: '20 Nov 2026, 12:45 PM', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1079', customer: 'Bajaj Auto Chakan Logistics', cargo: 'Piston Assemblies (100 units · 4 Pallets)', carrier: 'Delhivery Freight', waybill: 'DEL-FRT-992014', time: '20 Nov 2026, 11:20 AM', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1075', customer: 'Force Motors Chakan Plant', cargo: 'Radiator Fans (22 units · 2 Pallets)', carrier: 'GATI KWE Cargo', waybill: 'GATI-EXP-44021', time: '20 Nov 2026, 10:15 AM', podStatus: 'Customer Signed POD' },
+      { orderId: 'ORD-BW-1071', customer: 'Ashok Leyland Depot (Nagpur Hub)', cargo: 'Axle Hubs (18 crates · Heavy Load)', carrier: 'TCI Freight', waybill: 'TCI-FRT-88102', time: '20 Nov 2026, 09:00 AM', podStatus: 'Customer Signed POD' },
       { orderId: 'ORD-BW-1068', customer: 'Eicher Motors Depot (Bhopal Hub)', cargo: 'Flywheels (10 units · 2 Crates)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-441092-BHP', time: 'Yesterday, 18:30 IST', podStatus: 'Customer Signed POD' },
       { orderId: 'ORD-BW-1065', customer: 'Hyundai Mobis Regional Depot', cargo: 'Headlamp Assemblies (35 boxes)', carrier: 'Safexpress Surface', waybill: 'SAFE-HYU-33019', time: 'Yesterday, 17:15 IST', podStatus: 'Customer Signed POD' },
       { orderId: 'ORD-BW-1061', customer: 'Honda Motorcycle Depot (Narsapura)', cargo: 'Carburetor Assemblies (40 boxes)', carrier: 'VRL Logistics', waybill: 'VRL-HND-99104', time: 'Yesterday, 16:00 IST', podStatus: 'Customer Signed POD' },
