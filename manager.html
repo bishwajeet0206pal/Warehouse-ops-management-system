@@ -1446,9 +1446,9 @@
                   <span class="text-[10.5px] text-[#6B7280] block">24ft Container Truck</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <span class="text-[11px] text-gray-500 block uppercase font-bold">Driver Name &amp; Contact</span>
-                  <strong class="text-[#1F2937]" id="inward-driver">Harpreet Singh</strong>
-                  <span class="text-[10.5px] text-[#6B7280] block">+91 98231-44910</span>
+                  <span class="text-[10px] text-gray-500 block uppercase font-bold font-arial">Driver Name &amp; Contact</span>
+                  <strong class="text-[#1F2937] text-[13px] block mt-0.5" id="inward-driver-name">Harpreet Singh</strong>
+                  <span class="text-[12px] text-[#4B5563] block font-mono font-medium mt-0.5" id="inward-driver-phone">+91 98231-44910</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <span class="text-[11px] text-gray-500 block uppercase font-bold">Gate Intake Timestamp</span>
@@ -4700,8 +4700,28 @@
       const vehEl = document.getElementById('inward-vehicle-no');
       if (vehEl) vehEl.textContent = order.vehicleNo;
 
-      const driverEl = document.getElementById('inward-driver');
-      if (driverEl) driverEl.textContent = order.driver;
+      // Parse Driver Name and single Phone Number consistently
+      const rawDriver = order.driver || 'Harpreet Singh · +91 98231-44910';
+      let dName = rawDriver;
+      let dPhone = '+91 98231-44910';
+
+      if (rawDriver.includes('·')) {
+        const parts = rawDriver.split('·');
+        dName = parts[0].trim();
+        dPhone = parts[1].trim();
+      } else if (rawDriver.match(/\+?\d/)) {
+        const match = rawDriver.match(/\+?\d[\d\s-]{8,}/);
+        if (match) {
+          dPhone = match[0].trim();
+          dName = rawDriver.replace(dPhone, '').replace(/[-•·]/g, '').trim() || dName;
+        }
+      }
+
+      const driverNameEl = document.getElementById('inward-driver-name') || document.getElementById('inward-driver');
+      if (driverNameEl) driverNameEl.textContent = dName;
+
+      const driverPhoneEl = document.getElementById('inward-driver-phone');
+      if (driverPhoneEl) driverPhoneEl.textContent = dPhone;
 
       goToScreen(4);
     }
