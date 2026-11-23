@@ -206,17 +206,36 @@
       </div>
 
       <!-- Right Utility Menu -->
-      <div class="flex items-center gap-5 text-[14px] text-[#374151]">
-        <div class="flex items-center gap-2 hover:text-[#D84E55] cursor-pointer py-1.5 px-3 rounded-lg hover:bg-gray-50 transition-colors" onclick="toggleExceptionsPanel(true)">
+      <div class="flex items-center gap-3 sm:gap-4 text-[14px] text-[#374151]">
+        <!-- Org Hierarchy Tree Button (Beside Exceptions) -->
+        <button onclick="toggleOrgHierarchyModal(true)" class="flex items-center gap-2 text-[#374151] hover:text-[#D84E55] cursor-pointer py-1.5 px-3 rounded-lg hover:bg-gray-50 border border-[#E5E7EB] hover:border-[#D84E55]/40 transition-all shadow-2xs group" title="View Command Hierarchy Tree">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55] group-hover:scale-110 transition-transform">
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <rect x="2" y="17" width="6" height="4" rx="1"/>
+            <rect x="9" y="17" width="6" height="4" rx="1"/>
+            <rect x="16" y="17" width="6" height="4" rx="1"/>
+            <path d="M12 7v5"/>
+            <path d="M5 12h14"/>
+            <path d="M5 12v5"/>
+            <path d="M12 12v5"/>
+            <path d="M19 12v5"/>
+          </svg>
+          <span class="font-medium hidden sm:inline">Hierarchy</span>
+          <span class="px-2 py-0.5 rounded-full bg-[#F3F4F6] text-[#4B5563] text-[10px] font-bold font-arial group-hover:bg-[#FEECEE] group-hover:text-[#D84E55] transition-colors">Tree</span>
+        </button>
+
+        <!-- Exceptions Button -->
+        <div class="flex items-center gap-2 hover:text-[#D84E55] cursor-pointer py-1.5 px-3 rounded-lg hover:bg-gray-50 transition-colors" onclick="toggleExceptionsPanel(true)" title="Exceptions requiring decision">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           <span class="font-medium hidden sm:inline">Exceptions</span>
           <span class="px-2 py-0.5 rounded-full bg-[#D84E55] text-white text-[11px] font-bold font-arial animate-pulse">3</span>
         </div>
 
-        <div class="flex items-center gap-3 pl-4 border-l border-[#E5E7EB] cursor-pointer">
-          <img src="jaswant-singh.jpg" alt="Jaswant Singh" class="w-10 h-10 rounded-full object-cover border-2 border-[#D84E55]/30 shadow-xs" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-full bg-[#FEECEE] text-[#D84E55] font-bold flex items-center justify-center text-[13px]\'>JS</div>';" />
+        <div class="flex items-center gap-3 pl-3 sm:pl-4 border-l border-[#E5E7EB] cursor-pointer" onclick="toggleOrgHierarchyModal(true)" title="Jaswant Singh · Head of Warehouse Operations (Click for Hierarchy)">
+          <img src="jaswant-singh.jpg" alt="Jaswant Singh" class="w-10 h-10 rounded-full object-cover border-2 border-[#D84E55]/30 shadow-xs hover:border-[#D84E55] transition-all" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-full bg-[#FEECEE] text-[#D84E55] font-bold flex items-center justify-center text-[13px]\'>JS</div>';" />
           <div class="text-left hidden sm:block">
             <span class="font-semibold text-[#1F2937] block leading-tight text-[14px]">Jaswant Singh</span>
+            <span class="text-[11px] text-[#6B7280]">Warehouse Ops Manager</span>
           </div>
         </div>
       </div>
@@ -1506,6 +1525,28 @@
     <!-- Drawer Content (Scrollable list of exceptions) -->
     <div class="flex-1 overflow-y-auto p-5 space-y-4">
       
+      <!-- Quick Delegation Shortcut to Org Hierarchy -->
+      <div class="p-3.5 rounded-2xl bg-gradient-to-r from-[#FEF2F2] to-[#FFFBEB] border border-[#FECACA] flex items-center justify-between text-[12px] shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-white border border-[#FECACA] flex items-center justify-center text-[#D84E55] shrink-0 font-bold">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="3" width="6" height="4" rx="1"/>
+              <rect x="2" y="17" width="6" height="4" rx="1"/>
+              <rect x="9" y="17" width="6" height="4" rx="1"/>
+              <rect x="16" y="17" width="6" height="4" rx="1"/>
+              <path d="M12 7v5"/><path d="M5 12h14"/><path d="M5 12v5"/><path d="M12 12v5"/><path d="M19 12v5"/>
+            </svg>
+          </div>
+          <div>
+            <strong class="text-[#1F2937] block font-semibold">Command Hierarchy</strong>
+            <span class="text-[#6B7280] text-[11px]">View subordinates and chain of command</span>
+          </div>
+        </div>
+        <button onclick="toggleExceptionsPanel(false); toggleOrgHierarchyModal(true);" class="px-2.5 py-1 rounded-lg bg-[#D84E55] text-white font-bold text-[11px] hover:bg-[#b9373e] transition-colors shrink-0">
+          Open Tree &rarr;
+        </button>
+      </div>
+
       <!-- Exception Card 1 -->
       <div class="p-4 rounded-2xl border border-[#FECACA] bg-[#FEF2F2]/60 space-y-2.5">
         <div class="flex items-center justify-between">
@@ -1515,7 +1556,7 @@
         <p class="text-[14px] font-bold text-[#1F2937]">WH-06 Hyderabad · Truck TRK-001 delayed on NH44</p>
         <p class="text-[12px] text-[#6B7280]">Impact: Dock 04 slot idle; 9 outbound loads at risk of missed Delhivery carrier cutoff.</p>
         <div class="flex items-center gap-2 pt-2">
-          <button onclick="alert('Exception assigned to Floor Supervisor')" class="px-3 py-1.5 rounded-lg bg-[#1F2937] text-white text-[11px] font-bold hover:bg-black transition-colors">Assign</button>
+          <button onclick="toggleExceptionsPanel(false); toggleOrgHierarchyModal(true);" class="px-3 py-1.5 rounded-lg bg-[#1F2937] text-white text-[11px] font-bold hover:bg-black transition-colors" title="Select subordinate to assign">Assign Subordinate &rarr;</button>
           <button onclick="alert('Rerouted inbound volume to WH-04 Pune')" class="px-3 py-1.5 rounded-lg bg-[#D84E55] text-white text-[11px] font-bold hover:bg-[#b9373e] transition-colors">Resolve</button>
           <button onclick="alert('Escalated to Logistics Director')" class="px-3 py-1.5 rounded-lg bg-white border border-[#D1D5DB] text-[#374151] text-[11px] font-bold hover:bg-gray-50 transition-colors">Escalate</button>
         </div>
@@ -1530,6 +1571,7 @@
         <p class="text-[14px] font-bold text-[#1F2937]">WH-02 Guwahati · 4 workers absent for unloading</p>
         <p class="text-[12px] text-[#6B7280]">Impact: 2,400 units offload delayed by estimated 2.5 hours.</p>
         <div class="flex items-center gap-2 pt-2">
+          <button onclick="toggleExceptionsPanel(false); toggleOrgHierarchyModal(true);" class="px-3 py-1.5 rounded-lg bg-[#1F2937] text-white text-[11px] font-bold hover:bg-black transition-colors" title="Select subordinate to assign">Assign Subordinate &rarr;</button>
           <button onclick="alert('Standby shift approved')" class="px-3 py-1.5 rounded-lg bg-[#D84E55] text-white text-[11px] font-bold hover:bg-[#b9373e] transition-colors">Approve Standby</button>
           <button onclick="alert('Escalated to Regional Ops Head')" class="px-3 py-1.5 rounded-lg bg-white border border-[#D1D5DB] text-[#374151] text-[11px] font-bold hover:bg-gray-50 transition-colors">Escalate</button>
         </div>
@@ -1544,6 +1586,7 @@
         <p class="text-[14px] font-bold text-[#1F2937]">WH-07 Kolkata · Inward dock gate pass rejected by driver</p>
         <p class="text-[12px] text-[#6B7280]">Impact: Bay 02 blocked; inward trailer backlog forming on service road.</p>
         <div class="flex items-center gap-2 pt-2">
+          <button onclick="toggleExceptionsPanel(false); toggleOrgHierarchyModal(true);" class="px-3 py-1.5 rounded-lg bg-[#1F2937] text-white text-[11px] font-bold hover:bg-black transition-colors" title="Select subordinate to assign">Assign Subordinate &rarr;</button>
           <button onclick="alert('Pass overridden and driver checked in')" class="px-3 py-1.5 rounded-lg bg-[#D84E55] text-white text-[11px] font-bold hover:bg-[#b9373e] transition-colors">Override Pass</button>
           <button onclick="alert('Called Driver Dispatch Desk')" class="px-3 py-1.5 rounded-lg bg-white border border-[#D1D5DB] text-[#374151] text-[11px] font-bold hover:bg-gray-50 transition-colors">Contact Transporter</button>
         </div>
@@ -1593,6 +1636,480 @@
     <div class="pt-3 border-t border-[#E5E7EB] flex justify-end">
       <button onclick="closeCustomerModal()" class="btn-redbus-secondary text-[12px] py-1.5 px-4">Close</button>
     </div>
+  </div>
+
+  <!-- ==============================================
+       ORGANIZATIONAL COMMAND HIERARCHY TREE MODAL
+       Visual Chain of Command, Direct Reports & Subordinates
+       ============================================== -->
+  <div id="org-hierarchy-backdrop" onclick="toggleOrgHierarchyModal(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="org-hierarchy-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl max-h-[92vh] bg-[#F9FAFB] rounded-3xl shadow-2xl z-50 opacity-0 pointer-events-none transform scale-95 transition-all duration-300 flex flex-col overflow-hidden border border-[#E5E7EB]">
+    
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-white border-b border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-3 sticky top-0 z-20">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-[#FEECEE] text-[#D84E55] flex items-center justify-center font-bold shadow-2xs">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <rect x="2" y="17" width="6" height="4" rx="1"/>
+            <rect x="9" y="17" width="6" height="4" rx="1"/>
+            <rect x="16" y="17" width="6" height="4" rx="1"/>
+            <path d="M12 7v5"/><path d="M5 12h14"/><path d="M5 12v5"/><path d="M12 12v5"/><path d="M19 12v5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-[19px] font-bold text-[#1F2937]">Warehouse Operations Command Hierarchy</h2>
+            <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]">ACTIVE ROSTER</span>
+          </div>
+          <p class="text-[12px] text-[#6B7280] font-arial">Visual reporting tree: Who is in supreme command & subordinate field reporting lines</p>
+        </div>
+      </div>
+
+      <!-- Level Filter & Actions -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="bg-[#F3F4F6] p-1 rounded-xl flex items-center gap-1 text-[11px] font-medium text-[#4B5563]">
+          <button onclick="filterOrgTree('all')" id="org-filter-all" class="px-2.5 py-1 rounded-lg bg-white text-[#1F2937] font-bold shadow-2xs">All Levels</button>
+          <button onclick="filterOrgTree('l1')" id="org-filter-l1" class="px-2.5 py-1 rounded-lg hover:text-[#1F2937]">L1: In Command</button>
+          <button onclick="filterOrgTree('l2')" id="org-filter-l2" class="px-2.5 py-1 rounded-lg hover:text-[#1F2937]">L2: Leads</button>
+          <button onclick="filterOrgTree('l3')" id="org-filter-l3" class="px-2.5 py-1 rounded-lg hover:text-[#1F2937]">L3: Supervisors</button>
+        </div>
+        <button onclick="toggleOrgHierarchyModal(false)" class="w-9 h-9 rounded-xl hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer ml-1">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Stats Bar -->
+    <div class="px-6 py-2.5 bg-[#F3F4F6]/70 border-b border-[#E5E7EB] flex items-center justify-between flex-wrap gap-3 text-[12px] text-[#4B5563]">
+      <div class="flex items-center gap-4 flex-wrap">
+        <span class="flex items-center gap-1.5"><strong class="text-[#D84E55] font-bold">1</strong> In Supreme Command</span>
+        <span class="text-[#D1D5DB]">|</span>
+        <span class="flex items-center gap-1.5"><strong class="text-[#1F2937] font-bold">3</strong> Direct Subordinate Leads</span>
+        <span class="text-[#D1D5DB]">|</span>
+        <span class="flex items-center gap-1.5"><strong class="text-[#1F2937] font-bold">6</strong> Field Supervisors</span>
+        <span class="text-[#D1D5DB]">|</span>
+        <span class="flex items-center gap-1.5"><strong class="text-[#059669] font-bold">160</strong> Total Span of Control</span>
+      </div>
+      <div class="flex items-center gap-2 text-[11px] text-[#6B7280]">
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#D84E55]"></span> In Command</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#3B82F6]"></span> Direct Reports</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#10B981]"></span> Floor Marshals</span>
+      </div>
+    </div>
+
+    <!-- Scrollable Tree Canvas -->
+    <div class="flex-1 overflow-y-auto overflow-x-auto p-6 lg:p-8 space-y-6">
+
+      <!-- ==============================================
+           LEVEL 1: SUPREME COMMAND (APEX LEADER)
+           ============================================== -->
+      <div class="org-level-node" id="node-level-1">
+        <div class="text-center mb-3">
+          <span class="text-[11px] font-bold tracking-wider text-[#6B7280] uppercase font-arial bg-white border border-[#E5E7EB] px-3 py-1 rounded-full shadow-2xs">
+            Level 1 · Operational Authority & Supreme Command
+          </span>
+        </div>
+
+        <!-- Apex Leader Card: Jaswant Singh -->
+        <div class="max-w-md mx-auto bg-white border-2 border-[#D84E55] rounded-3xl p-5 shadow-xl hover:shadow-2xl transition-all relative group">
+          <!-- Command Crown Banner -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#D84E55] to-[#E23744] text-white px-3.5 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1.5 shadow-md">
+            <span>👑 IN COMMAND</span>
+            <span class="opacity-80">·</span>
+            <span>APEX LEADER</span>
+          </div>
+
+          <div class="flex items-start gap-4 pt-1">
+            <div class="relative shrink-0">
+              <img src="jaswant-singh.jpg" alt="Jaswant Singh" class="w-18 h-18 rounded-2xl object-cover border-3 border-[#D84E55] shadow-md" onerror="this.outerHTML='<div class=\'w-18 h-18 rounded-2xl bg-[#FEECEE] text-[#D84E55] font-bold flex items-center justify-center text-[18px]\'>JS</div>';" />
+              <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#10B981] border-2 border-white flex items-center justify-center text-white text-[10px]" title="On Duty">✓</span>
+            </div>
+
+            <div class="flex-1 min-w-0 space-y-1">
+              <div class="flex items-center justify-between">
+                <h3 class="text-[17px] font-bold text-[#1F2937] leading-tight">Jaswant Singh</h3>
+                <span class="px-2 py-0.5 rounded-md bg-[#FEECEE] text-[#D84E55] text-[10px] font-bold">L1 LEADER</span>
+              </div>
+              <p class="text-[13px] font-semibold text-[#D84E55]">Head of Warehouse Operations (Operations Manager)</p>
+              
+              <!-- Tenure in Organization -->
+              <div class="flex items-center gap-1.5 text-[12px] text-[#4B5563] pt-0.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Tenure: <strong class="text-[#1F2937]">6 Years, 4 Months</strong></span>
+                <span class="text-[10px] text-[#6B7280]">(Joined Jul 2020)</span>
+              </div>
+
+              <div class="pt-2 border-t border-[#F3F4F6] flex items-center justify-between text-[11px] text-[#6B7280]">
+                <span>Span: <strong class="text-[#1F2937]">8 Regional Distribution Centers</strong></span>
+                <span>Subordinates: <strong class="text-[#D84E55]">3 Direct Leads</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Roles & Actions Bar -->
+          <div class="mt-3.5 pt-3 border-t border-[#E5E7EB] flex items-center justify-between">
+            <span class="text-[11px] text-[#4B5563] bg-[#F9FAFB] px-2.5 py-1 rounded-lg border border-[#E5E7EB]">
+              Mandate: P&amp;L, SLA Sign-off, Escalations &amp; Safety Compliance
+            </span>
+            <button onclick="alert('Jaswant Singh · Head of Operations direct command line: +91 98200-XXXXX')" class="px-2.5 py-1 rounded-lg bg-[#1F2937] text-white text-[11px] font-bold hover:bg-black transition-colors shrink-0 ml-2">
+              Command Desk
+            </button>
+          </div>
+        </div>
+
+        <!-- Trunk Connector Down from L1 -->
+        <div class="flex flex-col items-center">
+          <div class="w-0.5 h-8 bg-[#CBD5E1]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#D84E55] border-2 border-white shadow-xs -mt-1"></div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           LEVEL 2: DIVISION LEADS (DIRECT SUBORDINATES)
+           ============================================== -->
+      <div class="org-level-node" id="node-level-2">
+        <div class="text-center mb-2">
+          <span class="text-[11px] font-bold tracking-wider text-[#6B7280] uppercase font-arial bg-white border border-[#E5E7EB] px-3 py-1 rounded-full shadow-2xs">
+            Level 2 · Division Operations Leads (Direct Subordinates to Jaswant Singh)
+          </span>
+        </div>
+
+        <!-- Horizontal Distribution Tree Bar -->
+        <div class="relative max-w-5xl mx-auto hidden lg:block">
+          <div class="h-0.5 bg-[#CBD5E1] mx-24"></div>
+          <div class="flex justify-between items-center -mt-1 px-24">
+            <div class="w-2.5 h-2.5 rounded-full bg-[#3B82F6]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#3B82F6]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#3B82F6]"></div>
+          </div>
+        </div>
+
+        <!-- 3 Division Columns -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-3 max-w-6xl mx-auto">
+          
+          <!-- BRANCH 1: Shift Operations & Floor Command -->
+          <div class="space-y-4">
+            <!-- Lead 1: Vikram Malhotra -->
+            <div class="bg-white border border-[#BFDBFE] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all relative">
+              <div class="flex items-center justify-between pb-2 border-b border-[#F3F4F6] mb-2.5">
+                <span class="px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[10px] font-bold flex items-center gap-1">
+                  <span>🎖️ SUBORDINATE</span>
+                  <span>·</span>
+                  <span>REPORTS TO JASWANT</span>
+                </span>
+                <span class="text-[11px] font-bold text-[#1F2937]">L2 LEAD</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Vikram Malhotra" class="w-14 h-14 rounded-xl object-cover border-2 border-[#3B82F6] shrink-0" onerror="this.outerHTML='<div class=\'w-14 h-14 rounded-xl bg-[#EFF6FF] text-[#2563EB] font-bold flex items-center justify-center text-[15px]\'>VM</div>';" />
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-[15px] font-bold text-[#1F2937] leading-tight">Vikram Malhotra</h4>
+                  <p class="text-[12px] font-semibold text-[#2563EB]">Shift In-Charge &amp; Floor Operations Lead</p>
+                  
+                  <div class="flex items-center gap-1.5 text-[11px] text-[#4B5563] pt-1">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Tenure: <strong class="text-[#1F2937]">4 Years, 2 Months</strong></span>
+                  </div>
+                  <span class="text-[10px] text-[#6B7280] block">Joined September 2022</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2 border-t border-[#F3F4F6] text-[11px] text-[#4B5563] space-y-1">
+                <div class="flex justify-between"><span>Subordinate Team:</span> <strong class="text-[#1F2937]">2 Supervisors · 14 Crew</strong></div>
+                <div class="flex justify-between"><span>Focus:</span> <span class="text-[#6B7280]">Shift Rotations &amp; MHE Readiness</span></div>
+              </div>
+              <button onclick="alert('Exception delegated to Vikram Malhotra (Shift Lead)')" class="mt-2.5 w-full py-1.5 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1D4ED8] rounded-lg text-[11px] font-bold transition-colors">
+                Delegate Exception &rarr;
+              </button>
+            </div>
+
+            <!-- Stem Down to Subordinates -->
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+              <span class="text-[9px] font-bold text-[#9CA3AF] uppercase">Subordinates</span>
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+            </div>
+
+            <!-- SUBORDINATES TO VIKRAM (Level 3) -->
+            <div class="space-y-3">
+              <!-- Subordinate 1.1: Rajesh Kumar -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#3B82F6] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Vikram</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80" alt="Rajesh Kumar" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>RK</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Rajesh Kumar</h5>
+                    <p class="text-[11px] text-[#4B5563]">Dock Master &amp; Safety Marshal</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">2 Yrs, 5 Mos</strong> (Jun 2024)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>8 Dock Handlers</strong></span>
+                  <span class="text-[#059669] font-medium">● Active on Bays</span>
+                </div>
+              </div>
+
+              <!-- Subordinate 1.2: Deepak Sharma -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#3B82F6] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Vikram</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80" alt="Deepak Sharma" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>DS</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Deepak Sharma</h5>
+                    <p class="text-[11px] text-[#4B5563]">Senior MHE &amp; Reach Truck Lead</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">2 Yrs, 0 Mos</strong> (Nov 2024)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>6 Certified Operators</strong></span>
+                  <span class="text-[#059669] font-medium">● High-Bay Operations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BRANCH 2: Inbound Logistics & Inventory Control -->
+          <div class="space-y-4">
+            <!-- Lead 2: Sunita Rao -->
+            <div class="bg-white border border-[#A7F3D0] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all relative">
+              <div class="flex items-center justify-between pb-2 border-b border-[#F3F4F6] mb-2.5">
+                <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] text-[10px] font-bold flex items-center gap-1">
+                  <span>🎖️ SUBORDINATE</span>
+                  <span>·</span>
+                  <span>REPORTS TO JASWANT</span>
+                </span>
+                <span class="text-[11px] font-bold text-[#1F2937]">L2 LEAD</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" alt="Sunita Rao" class="w-14 h-14 rounded-xl object-cover border-2 border-[#10B981] shrink-0" onerror="this.outerHTML='<div class=\'w-14 h-14 rounded-xl bg-[#ECFDF5] text-[#059669] font-bold flex items-center justify-center text-[15px]\'>SR</div>';" />
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-[15px] font-bold text-[#1F2937] leading-tight">Sunita Rao</h4>
+                  <p class="text-[12px] font-semibold text-[#059669]">Inbound &amp; Inventory Control Lead</p>
+                  
+                  <div class="flex items-center gap-1.5 text-[11px] text-[#4B5563] pt-1">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Tenure: <strong class="text-[#1F2937]">3 Years, 8 Months</strong></span>
+                  </div>
+                  <span class="text-[10px] text-[#6B7280] block">Joined March 2023</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2 border-t border-[#F3F4F6] text-[11px] text-[#4B5563] space-y-1">
+                <div class="flex justify-between"><span>Subordinate Team:</span> <strong class="text-[#1F2937]">2 Supervisors · 22 Crew</strong></div>
+                <div class="flex justify-between"><span>Focus:</span> <span class="text-[#6B7280]">Dock Offloading &amp; Putaway Accuracy</span></div>
+              </div>
+              <button onclick="alert('Exception delegated to Sunita Rao (Inbound Lead)')" class="mt-2.5 w-full py-1.5 bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#065F46] rounded-lg text-[11px] font-bold transition-colors">
+                Delegate Exception &rarr;
+              </button>
+            </div>
+
+            <!-- Stem Down to Subordinates -->
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+              <span class="text-[9px] font-bold text-[#9CA3AF] uppercase">Subordinates</span>
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+            </div>
+
+            <!-- SUBORDINATES TO SUNITA (Level 3) -->
+            <div class="space-y-3">
+              <!-- Subordinate 2.1: Pooja Gupta -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#10B981] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Sunita</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80" alt="Pooja Gupta" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>PG</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Pooja Gupta</h5>
+                    <p class="text-[11px] text-[#4B5563]">Inward Quality &amp; GRN Supervisor</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">1 Yr, 9 Mos</strong> (Feb 2025)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>10 QC Handlers</strong></span>
+                  <span class="text-[#059669] font-medium">● ASN Inward Scan</span>
+                </div>
+              </div>
+
+              <!-- Subordinate 2.2: Amit Patel -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#10B981] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Sunita</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80" alt="Amit Patel" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>AP</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Amit Patel</h5>
+                    <p class="text-[11px] text-[#4B5563]">Putaway &amp; Slotting Supervisor</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">1 Yr, 4 Mos</strong> (Jul 2025)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>12 Putaway Staff</strong></span>
+                  <span class="text-[#059669] font-medium">● Racks 1-3 Zone A</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BRANCH 3: Outbound Logistics & Order Fulfillment -->
+          <div class="space-y-4">
+            <!-- Lead 3: Arun Verma -->
+            <div class="bg-white border border-[#DDD6FE] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all relative">
+              <div class="flex items-center justify-between pb-2 border-b border-[#F3F4F6] mb-2.5">
+                <span class="px-2 py-0.5 rounded-full bg-[#F5F3FF] text-[#7C3AED] text-[10px] font-bold flex items-center gap-1">
+                  <span>🎖️ SUBORDINATE</span>
+                  <span>·</span>
+                  <span>REPORTS TO JASWANT</span>
+                </span>
+                <span class="text-[11px] font-bold text-[#1F2937]">L2 LEAD</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" alt="Arun Verma" class="w-14 h-14 rounded-xl object-cover border-2 border-[#8B5CF6] shrink-0" onerror="this.outerHTML='<div class=\'w-14 h-14 rounded-xl bg-[#F5F3FF] text-[#7C3AED] font-bold flex items-center justify-center text-[15px]\'>AV</div>';" />
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-[15px] font-bold text-[#1F2937] leading-tight">Arun Verma</h4>
+                  <p class="text-[12px] font-semibold text-[#7C3AED]">Outbound &amp; Logistics Fulfillment Lead</p>
+                  
+                  <div class="flex items-center gap-1.5 text-[11px] text-[#4B5563] pt-1">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Tenure: <strong class="text-[#1F2937]">3 Years, 1 Month</strong></span>
+                  </div>
+                  <span class="text-[10px] text-[#6B7280] block">Joined October 2023</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2 border-t border-[#F3F4F6] text-[11px] text-[#4B5563] space-y-1">
+                <div class="flex justify-between"><span>Subordinate Team:</span> <strong class="text-[#1F2937]">2 Supervisors · 32 Crew</strong></div>
+                <div class="flex justify-between"><span>Focus:</span> <span class="text-[#6B7280]">Wave Picking &amp; Transporter Dispatch</span></div>
+              </div>
+              <button onclick="alert('Exception delegated to Arun Verma (Outbound Lead)')" class="mt-2.5 w-full py-1.5 bg-[#F5F3FF] hover:bg-[#EDE9FE] text-[#6D28D9] rounded-lg text-[11px] font-bold transition-colors">
+                Delegate Exception &rarr;
+              </button>
+            </div>
+
+            <!-- Stem Down to Subordinates -->
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+              <span class="text-[9px] font-bold text-[#9CA3AF] uppercase">Subordinates</span>
+              <div class="w-0.5 h-4 bg-[#CBD5E1]"></div>
+            </div>
+
+            <!-- SUBORDINATES TO ARUN (Level 3) -->
+            <div class="space-y-3">
+              <!-- Subordinate 3.1: Manoj Tiwari -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#8B5CF6] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Arun</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80" alt="Manoj Tiwari" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>MT</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Manoj Tiwari</h5>
+                    <p class="text-[11px] text-[#4B5563]">Wave Picking &amp; Batching Supervisor</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">2 Yrs, 3 Mos</strong> (Aug 2024)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>18 Order Pickers</strong></span>
+                  <span class="text-[#059669] font-medium">● Wave 04 Active</span>
+                </div>
+              </div>
+
+              <!-- Subordinate 3.2: Kavita Desai -->
+              <div class="bg-white border border-[#E5E7EB] rounded-xl p-3 shadow-xs hover:border-[#8B5CF6] transition-all">
+                <div class="flex items-center justify-between pb-1.5 border-b border-[#F3F4F6] mb-2 text-[10px]">
+                  <span class="text-[#6B7280] font-medium">↳ Subordinate to Arun</span>
+                  <span class="px-1.5 py-0.2 bg-[#F3F4F6] rounded text-[#4B5563] font-bold">L3 SUPERVISOR</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80" alt="Kavita Desai" class="w-11 h-11 rounded-lg object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\'w-11 h-11 rounded-lg bg-gray-100 text-gray-700 font-bold flex items-center justify-center text-[12px]\'>KD</div>';" />
+                  <div class="flex-1 min-w-0">
+                    <h5 class="text-[13px] font-bold text-[#1F2937]">Kavita Desai</h5>
+                    <p class="text-[11px] text-[#4B5563]">Packaging, Staging &amp; POD In-Charge</p>
+                    <div class="text-[10px] text-[#6B7280]">Tenure: <strong class="text-[#1F2937]">1 Yr, 2 Mos</strong> (Sep 2025)</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#F3F4F6] flex justify-between text-[10px] text-[#6B7280]">
+                  <span>Crew: <strong>14 Dispatch Handlers</strong></span>
+                  <span class="text-[#059669] font-medium">● Gate Staging</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==============================================
+           LEVEL 4: ON-GROUND FIELD WORKFORCE SUMMARY
+           ============================================== -->
+      <div class="org-level-node bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs max-w-6xl mx-auto" id="node-level-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#E5E7EB]">
+          <div>
+            <span class="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider block font-arial">Level 4 · Frontline Field Crew &amp; Floor Associates</span>
+            <span class="text-[13px] font-bold text-[#1F2937]">Subordinate Execution Force Reporting to Supervisory Marshals</span>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px]">106 Floor Associates Active</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-3 text-center text-[11px]">
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">8</span>
+            <span class="text-[#6B7280] block text-[10px]">Dock Handlers</span>
+            <span class="text-[9px] text-[#3B82F6] font-bold">↳ Rajesh Kumar</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">6</span>
+            <span class="text-[#6B7280] block text-[10px]">MHE Operators</span>
+            <span class="text-[9px] text-[#3B82F6] font-bold">↳ Deepak Sharma</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">10</span>
+            <span class="text-[#6B7280] block text-[10px]">Inward QC Staff</span>
+            <span class="text-[9px] text-[#10B981] font-bold">↳ Pooja Gupta</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">12</span>
+            <span class="text-[#6B7280] block text-[10px]">Putaway Crew</span>
+            <span class="text-[9px] text-[#10B981] font-bold">↳ Amit Patel</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">18</span>
+            <span class="text-[#6B7280] block text-[10px]">Wave Pickers</span>
+            <span class="text-[9px] text-[#8B5CF6] font-bold">↳ Manoj Tiwari</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]">
+            <span class="block text-[15px] font-bold text-[#1F2937]">14</span>
+            <span class="text-[#6B7280] block text-[10px]">Packers &amp; POD</span>
+            <span class="text-[9px] text-[#8B5CF6] font-bold">↳ Kavita Desai</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="px-6 py-3 bg-white border-t border-[#E5E7EB] flex items-center justify-between text-[12px] sticky bottom-0 z-20">
+      <div class="flex items-center gap-2 text-[#6B7280] font-arial">
+        <span>Organization: <strong class="text-[#1F2937]">Odwen Warehouse Operations Network</strong></span>
+        <span class="text-[#D1D5DB]">·</span>
+        <span>Operational Head: <strong class="text-[#D84E55]">Jaswant Singh</strong></span>
+      </div>
+      <button onclick="toggleOrgHierarchyModal(false)" class="btn-redbus py-1.5 px-5 text-[12px]">Close Hierarchy</button>
+    </div>
+
   </div>
 
   <!-- ==============================================
@@ -1675,8 +2192,68 @@
       }
     }
 
+    function toggleOrgHierarchyModal(show) {
+      const modal = document.getElementById('org-hierarchy-modal');
+      const backdrop = document.getElementById('org-hierarchy-backdrop');
+      if (show) {
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100');
+        modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+        modal.classList.add('opacity-100', 'scale-100');
+        document.body.style.overflow = 'hidden';
+      } else {
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100', 'scale-100');
+        modal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function filterOrgTree(level) {
+      const allBtn = document.getElementById('org-filter-all');
+      const l1Btn = document.getElementById('org-filter-l1');
+      const l2Btn = document.getElementById('org-filter-l2');
+      const l3Btn = document.getElementById('org-filter-l3');
+      const btns = [allBtn, l1Btn, l2Btn, l3Btn];
+
+      btns.forEach(b => {
+        if (b) b.className = 'px-2.5 py-1 rounded-lg text-[#4B5563] hover:text-[#1F2937] transition-all';
+      });
+
+      const n1 = document.getElementById('node-level-1');
+      const n2 = document.getElementById('node-level-2');
+      const n4 = document.getElementById('node-level-4');
+
+      if (level === 'all') {
+        if (allBtn) allBtn.className = 'px-2.5 py-1 rounded-lg bg-white text-[#1F2937] font-bold shadow-2xs';
+        if (n1) n1.style.display = 'block';
+        if (n2) n2.style.display = 'block';
+        if (n4) n4.style.display = 'block';
+      } else if (level === 'l1') {
+        if (l1Btn) l1Btn.className = 'px-2.5 py-1 rounded-lg bg-white text-[#D84E55] font-bold shadow-2xs';
+        if (n1) n1.style.display = 'block';
+        if (n2) n2.style.display = 'none';
+        if (n4) n4.style.display = 'none';
+      } else if (level === 'l2') {
+        if (l2Btn) l2Btn.className = 'px-2.5 py-1 rounded-lg bg-white text-[#2563EB] font-bold shadow-2xs';
+        if (n1) n1.style.display = 'none';
+        if (n2) n2.style.display = 'block';
+        if (n4) n4.style.display = 'none';
+      } else if (level === 'l3') {
+        if (l3Btn) l3Btn.className = 'px-2.5 py-1 rounded-lg bg-white text-[#10B981] font-bold shadow-2xs';
+        if (n1) n1.style.display = 'none';
+        if (n2) n2.style.display = 'block';
+        if (n4) n4.style.display = 'block';
+      }
+    }
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') toggleExceptionsPanel(false);
+      if (e.key === 'Escape') {
+        toggleExceptionsPanel(false);
+        toggleOrgHierarchyModal(false);
+        closeCustomerModal();
+      }
     });
     
     function filterWarehouseCards(type) {
