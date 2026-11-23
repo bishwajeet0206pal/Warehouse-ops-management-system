@@ -263,10 +263,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong class="text-[#DC2626]">4 orders</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">14</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-06 Hyderabad');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">14 / 16</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-06 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">88% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">12 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Idle:</span> <strong class="text-[#FBBF24]">2 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">4</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">5</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">2</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">118 UPH (+7%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -285,10 +303,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>1 order</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">28</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-01 Bhiwandi');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">28 / 30</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-01 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">93% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">25 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">3 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">8</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">12</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">5</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">126 UPH (+14%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -307,10 +343,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>2 orders</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">16</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-02 Guwahati');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">16 / 18</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-02 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#F59E0B]/30 text-[#FBBF24] font-bold text-[10px]">89% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">15 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">1 worker</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">5</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">6</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">2</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#FBBF24]">104 UPH (-5%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -329,10 +383,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>0 orders</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">22</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-04 Pune');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">22 / 24</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-04 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">92% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">20 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">2 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">6</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">9</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">3</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">122 UPH (+11%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -351,10 +423,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong class="text-[#DC2626]">3 orders</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">18</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-07 Kolkata');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">18 / 22</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-07 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#DC2626]/30 text-[#F87171] font-bold text-[10px]">82% Present (Short)</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">16 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">2 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">4</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">7</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#F87171]">1 (Bottleneck)</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#F87171]">98 UPH (-11%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -373,10 +463,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>1 order</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">34</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-08 Delhi NCR');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">34 / 36</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-08 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">94% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">31 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">3 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">10</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">14</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">6</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">130 UPH (+18%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -395,10 +503,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>3 orders</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">19</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-12 Ahmedabad');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">19 / 20</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-12 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">95% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">17 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">2 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">5</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">8</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">3</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">114 UPH (+4%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -417,10 +543,28 @@
             <div class="flex justify-between"><span>Outward stuck:</span> <strong>1 order</strong></div>
           </div>
           <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[12px]">
-            <div class="flex items-center gap-1.5 text-[#4B5563]" title="Manpower count on duty">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6B7280]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="font-bold text-[#1F2937]">26</span>
-              <span class="text-[11px] text-[#6B7280]">labour</span>
+            <div class="relative group/labour flex items-center gap-1.5 text-[#4B5563] cursor-pointer" onclick="event.stopPropagation(); goToScreen(3, 'WH-03 Bengaluru');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#D84E55]"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="font-bold text-[#1F2937]">26 / 28</span>
+              <span class="text-[11px] text-[#6B7280]">on duty</span>
+
+              <div class="absolute bottom-full left-0 mb-2.5 hidden group-hover/labour:block z-50 bg-[#1F2937] text-white text-[11px] rounded-xl p-3 shadow-2xl w-60 pointer-events-none border border-[#374151]">
+                <div class="flex justify-between items-center pb-1.5 border-b border-[#374151] mb-2">
+                  <span class="font-bold text-white text-[12px]">WH-03 Manpower</span>
+                  <span class="px-1.5 py-0.5 rounded bg-[#059669]/30 text-[#34D399] font-bold text-[10px]">93% Present</span>
+                </div>
+                <div class="space-y-1 text-[#D1D5DB]">
+                  <div class="flex justify-between"><span>Active on Floor:</span> <strong class="text-white">24 workers</strong></div>
+                  <div class="flex justify-between"><span>Standby / Break:</span> <strong class="text-[#FBBF24]">2 workers</strong></div>
+                  <div class="flex justify-between"><span>Inbound Unloading:</span> <strong class="text-white">7</strong></div>
+                  <div class="flex justify-between"><span>Picking & Packing:</span> <strong class="text-white">11</strong></div>
+                  <div class="flex justify-between"><span>Licensed MHE Drivers:</span> <strong class="text-[#60A5FA]">4</strong></div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-[#374151] flex justify-between text-[10px] text-[#9CA3AF]">
+                  <span>Pick Velocity:</span>
+                  <strong class="text-[#34D399]">124 UPH (+13%)</strong>
+                </div>
+              </div>
             </div>
             <span class="text-[#D84E55] font-bold">Open Floor Plan &rarr;</span>
           </div>
@@ -715,7 +859,67 @@
                 <span>Equipment:</span> <strong>3 / 4 Forklifts active</strong>
               </div>
               <div class="flex justify-between py-1">
-                <span>Workforce:</span> <strong>11 / 14 On duty</strong>
+                <span>Workforce:</span> <strong class="text-[#1F2937]">14 / 16 On duty <span class="text-[11px] font-normal text-[#059669] bg-[#ECFDF5] px-1.5 py-0.5 rounded-full ml-1 font-arial">88% Present</span></strong>
+              </div>
+            </div>
+
+            <!-- Workforce & Manpower Deployment Panel -->
+            <div class="pt-3 border-t border-[#E5E7EB] space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="block text-[11px] font-bold uppercase tracking-wider text-[#6B7280]">Live Manpower Deployment</span>
+                <span class="text-[10px] text-[#6B7280] bg-[#F3F4F6] px-2 py-0.5 rounded-full font-medium">Morning Shift · 06:00 - 14:00</span>
+              </div>
+
+              <!-- Quick Status Chips -->
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl p-2">
+                  <span class="block text-[15px] font-bold text-[#166534]">12</span>
+                  <span class="text-[10px] text-[#15803D] font-medium">Active on Floor</span>
+                </div>
+                <div class="bg-[#FFFBEB] border border-[#FDE68A] rounded-xl p-2">
+                  <span class="block text-[15px] font-bold text-[#B45309]">2</span>
+                  <span class="text-[10px] text-[#D97706] font-medium">Standby / Idle</span>
+                </div>
+                <div class="bg-[#EFF6FF] border border-[#BFDBFE] rounded-xl p-2">
+                  <span class="block text-[15px] font-bold text-[#1D4ED8]">118 <span class="text-[10px] font-normal">UPH</span></span>
+                  <span class="text-[10px] text-[#2563EB] font-medium">Pick Velocity</span>
+                </div>
+              </div>
+
+              <!-- Zone & Role Allocation -->
+              <div class="bg-[#F9FAFB] rounded-xl p-2.5 border border-[#E5E7EB] space-y-1.5 text-[11px]">
+                <div class="flex justify-between text-[#4B5563]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#3B82F6]"></span> Inbound / Dock Unloading:
+                  </span>
+                  <strong class="text-[#1F2937]">4 workers</strong>
+                </div>
+                <div class="flex justify-between text-[#4B5563]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span> Order Picking & Packing:
+                  </span>
+                  <strong class="text-[#1F2937]">5 workers</strong>
+                </div>
+                <div class="flex justify-between text-[#4B5563]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]"></span> Putaway & Staging:
+                  </span>
+                  <strong class="text-[#1F2937]">3 workers</strong>
+                </div>
+                <div class="flex justify-between text-[#4B5563]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span> Certified MHE / Forklift Operators:
+                  </span>
+                  <strong class="text-[#1F2937]">2 operators</strong>
+                </div>
+              </div>
+
+              <!-- Ops Manager Dynamic Recommendation / Reallocation alert -->
+              <div class="p-2.5 rounded-xl bg-[#FEF2F2] border border-[#FECACA] flex items-start gap-2 text-[11px] text-[#991B1B]">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-0.5 shrink-0 text-[#DC2626]"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div>
+                  <strong class="font-bold">Dock Congestion Alert:</strong> 6 inward loads stuck. Reallocating 2 pickers to Inbound Bay 3 will clear backlogs by 13:30.
+                </div>
               </div>
             </div>
 
