@@ -4372,7 +4372,7 @@
         sku: 'SKU-LED-60W UltraSlim Smart Bulbs',
         qty: '2,400 pcs manifest',
         pallets: '48 wooden pallets',
-        matchMsg: '✓ Arrived cargo matches electronic manifest (100% matched)',
+        matchMsg: 'Arrived cargo matches electronic manifest (100% matched)',
         qcNote: 'Condition notes: 0 damaged cartons. Outer wrap intact with seal #ODW-8821.',
         labour: '4 workers (Scanner #04 R. Kumar)',
         forklift: 'Reach Truck #3',
@@ -4391,7 +4391,7 @@
         sku: 'SKU-FMCG-22 Home Essentials',
         qty: '1,800 pcs manifest',
         pallets: '36 wooden pallets',
-        matchMsg: '✓ Vehicle arrived on schedule · Offload 60% complete',
+        matchMsg: 'Vehicle arrived on schedule · Offload 60% complete',
         qcNote: 'Outer seal #SF-4402 intact on arrival. Visual carton check in progress.',
         labour: '3 workers (Supervisor M. Das)',
         forklift: 'Forklift #1',
@@ -4410,7 +4410,7 @@
         sku: 'SKU-BLK-99 Industrial Bulk Casings',
         qty: '3,500 pcs manifest',
         pallets: '70 wooden pallets',
-        matchMsg: '✓ QC Passed · 100% accepted · POD signed at dock',
+        matchMsg: 'QC Passed · 100% accepted · POD signed at dock',
         qcNote: 'All 70 pallets barcoded and scanned. 0 discrepancies.',
         labour: '2 forklift operators (V. Sharma, P. Nair)',
         forklift: 'Reach Truck #2 & #4',
@@ -4438,7 +4438,7 @@
             sku: found.sku,
             qty: found.qty,
             pallets: found.pallets || '24 pallets',
-            matchMsg: '✓ Electronic manifest and ASN synchronized',
+            matchMsg: 'Electronic manifest and ASN synchronized',
             qcNote: 'Outer seal intact on arrival. Physical verification scheduled.',
             labour: '3 workers assigned',
             forklift: 'Reach Truck #02',
@@ -4471,7 +4471,7 @@
       if (palletsEl) palletsEl.textContent = order.pallets;
 
       const matchEl = document.getElementById('inward-match');
-      if (matchEl) matchEl.textContent = order.matchMsg;
+      if (matchEl) matchEl.textContent = (order.matchMsg || '').replace(/^[✓✔]\s*/, '');
 
       const qcEl = document.getElementById('inward-qcnote');
       if (qcEl) qcEl.textContent = order.qcNote;
@@ -4549,7 +4549,7 @@
         trackingId: 'BLUEDART-882910-HYD',
         cutoff: 'Delivered Today at 17:40 IST',
         packingNote: 'Delivered in good condition · Zero carton damage acknowledged by receiver',
-        podNote: '✓ Signed by Customer: K. Pillai (Store In-Charge) · Digital POD stored',
+        podNote: 'Signed by Customer: K. Pillai (Store In-Charge) · Digital POD stored',
         pickerInfo: 'Fulfillment completed by V. Sharma · Delivered by Blue Dart'
       }
     };
