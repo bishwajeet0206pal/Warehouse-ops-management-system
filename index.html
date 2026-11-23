@@ -1766,73 +1766,411 @@
     <div id="screen-5" class="screen-view hidden space-y-6">
       
       <!-- Back & Order Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
         <div class="flex items-center gap-3">
-          <button onclick="goToScreen(3, null, 'outward')" class="btn-redbus-secondary text-[12px] py-1.5 px-4">
+          <button onclick="goToScreen(3, null, 'outward')" class="btn-redbus-secondary text-[12px] py-1.5 px-4 cursor-pointer">
             &larr; Back to Warehouse (Outward Journey)
           </button>
           <div>
             <h1 class="text-[22px] font-bold text-[#1F2937]">Outward Order Journey Detail</h1>
+            <p class="text-[12px] text-[#6B7280]">End-to-end physical picking, packing &amp; carrier handover sequence</p>
           </div>
         </div>
-        <span id="outward-detail-title" class="text-[14px] font-bold text-[#1F2937] font-arial">ORD-OUT-4521 · Acme Industries (Hyderabad)</span>
-      </div>
-
-      <!-- Current Stage Step Flow -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs space-y-2">
-        <div class="flex items-center justify-between">
-          <span class="text-[12px] font-bold text-[#6B7280] block">Current stage: <strong id="outward-stage-label" class="text-[#D84E55]">Stage 2 · Picking Items from Shelf (Zone B, Shelf B4)</strong></span>
-          <span id="outward-stage-desc" class="text-[11px] text-[#6B7280] font-arial">Assigned Picker: S. Rao (Scanner #04)</span>
-        </div>
-        <div id="outward-stepper-container" class="flex items-center gap-3 text-[13px] font-arial text-[#6B7280] flex-wrap">
-          <!-- Dynamically populated per order -->
+        <div class="text-right">
+          <span id="outward-detail-title" class="text-[14px] font-bold text-[#1F2937] font-arial block">ORD-OUT-4521 · Acme Industries (Hyderabad)</span>
+          <span class="text-[11px] text-[#2563EB] font-bold bg-[#EFF6FF] px-2.5 py-0.5 rounded-full inline-block mt-1">Live Outbound Dispatch</span>
         </div>
       </div>
 
-      <!-- 3 Detail Boxes -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Box 1: Condition at dispatch -->
-        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs space-y-3">
-          <h2 class="text-[15px] font-bold text-[#1F2937]">Condition at dispatch</h2>
-          <div class="h-28 bg-[#F3F4F6] border border-dashed border-[#CBD5E1] rounded-xl flex items-center justify-center text-[12px] text-[#94A3B8]">
-            📦 [ Pre-Dispatch Verification Photo ]
+      <!-- Current Sequence Progression Banner -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="space-y-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#6B7280]">Current Progression:</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#3B82F6] animate-ping"></span>
+            <strong id="outward-stage-label" class="text-[15px] text-[#1F2937]">Stage 2 · Wave Picking from Shelves (Zone B, Shelf B4)</strong>
           </div>
-          <div class="text-[13px] text-[#4B5563]">
-            <span id="outward-packingnote">Packing confirmed: <strong class="text-[#10B981]">Yes (Double corrugated + tamper-evident tape)</strong></span>
-          </div>
+          <span id="outward-stage-desc" class="text-[12px] text-[#4B5563] block">Assigned picker collecting items from floor rack bins using barcode scanner · Velocity: 18 UPH</span>
         </div>
-
-        <!-- Box 2: Tracking -->
-        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs space-y-3">
-          <h2 class="text-[15px] font-bold text-[#1F2937]">Tracking</h2>
-          <div class="text-[13px] space-y-1.5 text-[#4B5563]">
-            <p><strong>Carrier:</strong> <span id="outward-carrier">Blue Dart Express</span></p>
-            <p><strong>Tracker ID:</strong> <span id="outward-trackerid">BLUEDART-882910-HYD</span></p>
-            <p><strong>Tracking link sent to customer:</strong> <strong class="text-[#10B981]">Yes (SMS + WhatsApp)</strong></p>
-            <p><strong>Pickup cutoff:</strong> <span id="outward-cutoff">16:00 IST (22 min remaining)</span></p>
-          </div>
-        </div>
-
-        <!-- Box 3: Proof of delivery -->
-        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs space-y-3">
-          <h2 class="text-[15px] font-bold text-[#1F2937]">Proof of delivery</h2>
-          <div class="h-28 bg-[#F3F4F6] border border-dashed border-[#CBD5E1] rounded-xl flex items-center justify-center text-[12px] text-[#94A3B8]">
-            ✍️ [ Cryptographic E-Signature Placeholder ]
-          </div>
-          <div class="text-[13px] text-[#4B5563]">
-            <span id="outward-podnote">Delivered: <strong class="text-[#D97706]">Pending courier transit</strong></span>
-            <p class="text-[11px] text-[#6B7280]">Est. arrival: Today, 18:30 IST</p>
-          </div>
+        <div class="flex items-center gap-3">
+          <span id="outward-badge-done" class="text-[12px] font-bold text-[#10B981] bg-[#ECFDF5] px-3 py-1 rounded-full border border-[#A7F3D0] flex items-center gap-1.5">
+            <span class="w-4 h-4 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px]">✓</span>
+            Stage 1 Completed
+          </span>
+          <span id="outward-badge-active" class="text-[12px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-3 py-1 rounded-full border border-[#BFDBFE]">
+            Stage 2 In Progress
+          </span>
         </div>
       </div>
 
-      <!-- Bottom Handover Strip -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 class="text-[15px] font-bold text-[#1F2937]">Carrier Handover Sign-Off</h2>
-          <p id="outward-picker-info" class="text-[13px] text-[#4B5563] mt-0.5">Assigned Picker: S. Rao (Scanner #04) · Staged at Dock Bay 02</p>
+      <!-- VERTICAL SEQUENCE TIMELINE CONTAINER (Continuous vertical line connecting stages) -->
+      <div class="relative pl-6 sm:pl-8 space-y-8 before:absolute before:top-4 before:bottom-4 before:left-3 sm:before:left-4 before:w-0.5 before:bg-[#CBD5E1]">
+        
+        <!-- ================= STAGE 1 (DONE) ================= -->
+        <div class="relative">
+          <!-- Timeline Node on the Vertical Spine -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
+            ✓
+          </div>
+          
+          <div class="space-y-2">
+            <!-- Stage Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#059669] uppercase tracking-wider font-arial">Stage 1</span>
+                <h3 class="text-[15px] font-bold text-[#1F2937]">Order Intake &amp; Wave Release</h3>
+                <span class="text-[11px] text-[#6B7280]">· 09:30 AM</span>
+              </div>
+            </div>
+
+            <!-- Stage 1 Card -->
+            <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative">
+              <div class="absolute top-4 right-4">
+                <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Wave Released</span>
+              </div>
+
+              <div class="text-[13px] space-y-2 text-[#4B5563] pr-12">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                    <span class="text-[11px] text-gray-500 block uppercase font-bold">Customer / Destination</span>
+                    <strong class="text-[#1F2937]" id="outward-customer">Acme Industries (Hyderabad)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                    <span class="text-[11px] text-gray-500 block uppercase font-bold">Ordered Cargo Items</span>
+                    <strong class="text-[#1F2937]" id="outward-items">Electronics · 5 Pallets (50 units)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                    <span class="text-[11px] text-gray-500 block uppercase font-bold">Wave Grouping</span>
+                    <strong class="text-[#1F2937]">Batch #W2-HYD · Released 09:30 AM</strong>
+                  </div>
+                </div>
+
+                <div class="pt-1 text-[12px] text-[#10B981] font-bold font-arial flex items-center gap-1.5">
+                  <span class="w-4 h-4 rounded-full bg-[#ECFDF5] text-[#10B981] flex items-center justify-center text-[10px]">✓</span>
+                  <span>Stock allocated in High-Bay Zone B · Picking route generated for Zebra Scanner #04</span>
+                </div>
+
+                <!-- Single-star Google AI Wave Sequencing Match -->
+                <div class="mt-2.5 p-3 rounded-xl bg-gradient-to-r from-[#EEF2FF] to-[#FAF5FF] border border-[#C7D2FE] space-y-1">
+                  <div class="flex items-center justify-between text-[11px] font-bold text-[#4338CA]">
+                    <span class="flex items-center gap-1.5">
+                      <svg class="w-3.5 h-3.5 text-[#6366F1]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+                      Google AI Wave Sequencing &amp; Path Optimization
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#E0E7FF] text-[#3730A3]">100% Path Optimized</span>
+                  </div>
+                  <p class="text-[11.5px] text-[#4B5563]">Pick path sequenced across Aisles B1–B8 with minimal forklift travel distance. Zero route bottlenecks detected.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button onclick="alert('Order ORD-OUT-4521 verified and handed over to Blue Dart.')" class="btn-redbus">Verify Pack & Hand Over &rarr;</button>
+
+        <!-- ================= STAGE 2 (CURRENT ACTIVE) ================= -->
+        <div class="relative">
+          <!-- Active Pulsing Timeline Node on the Vertical Spine -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold">
+            <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+          </div>
+
+          <div class="space-y-2">
+            <!-- Stage Header with Current Active Badge -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#EFF6FF] text-[#2563EB] uppercase tracking-wider font-arial">Stage 2</span>
+                <h3 class="text-[15px] font-bold text-[#1F2937]">Wave Picking from Shelves</h3>
+                <span class="text-[11px] text-[#2563EB] font-bold">· CURRENT STAGE</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse">
+                In Progress
+              </span>
+            </div>
+
+            <!-- Stage 2 Active Card with Live Operational Verification Widgets -->
+            <div class="bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative">
+              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-ping"></span>
+                  <strong class="text-[14px] text-[#1F2937]">Active Floor Bin Retrieval · Scanner #04 S. Rao</strong>
+                </div>
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#EEF2FF] to-[#FAF5FF] text-[#4F46E5] text-[11px] font-bold border border-[#C7D2FE]">
+                  ✦ Gemini 1.5 Flash Vision Live Verify
+                </span>
+              </div>
+
+              <!-- Terminal Scanner Container -->
+              <div class="relative bg-[#0F172A] rounded-xl overflow-hidden p-3.5 border border-[#334155] text-white space-y-2.5">
+                <div class="flex items-center justify-between text-[10px] text-[#94A3B8] pb-1 border-b border-[#334155]">
+                  <span>FLOOR SCAN: AISLE 02 / SHELF B4 · BATCH SKU-AP-100</span>
+                  <span class="text-[#34D399] font-mono">LATENCY: 0.9s · 99.8% ACCURACY</span>
+                </div>
+                
+                <div class="relative bg-[#1E293B] rounded-lg p-3 border border-indigo-500/50 flex flex-col justify-between h-22">
+                  <div class="flex justify-between items-start">
+                    <span class="px-2 py-0.5 rounded bg-indigo-500 text-white text-[9.5px] font-bold font-mono">TOTE [4/5] · GS1-128 BARCODE SCANNED</span>
+                    <span class="text-[11px] text-cyan-400 font-bold font-mono">18 UPH PICK VELOCITY</span>
+                  </div>
+                  <div class="flex justify-between items-end text-[10.5px] text-slate-300">
+                    <span>Items Picked: 42 / 50 Units (84% Completed)</span>
+                    <span class="text-[9.5px] text-slate-400">Target Shelf: Zone B, Shelf B4</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-[11.5px] pt-0.5">
+                  <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                    42 units verified against digital pick list · Carton packaging intact
+                  </span>
+                  <span class="text-[10px] text-slate-400">Picker: S. Rao (Zone B)</span>
+                </div>
+              </div>
+
+              <!-- Pick Velocity & Custody Assignment -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px]">
+                <div class="p-3 rounded-xl bg-[#EFF6FF] border border-[#BFDBFE]">
+                  <span class="text-[11px] text-[#1D4ED8] uppercase font-bold block">Pick Velocity &amp; Throughput</span>
+                  <strong class="text-[15px] text-[#1E40AF] font-arial block">18 UPH (Units Per Hour)</strong>
+                  <span class="text-[11px] text-amber-700">Sub-optimal pace (Target: 24 UPH) · 8 units remaining</span>
+                </div>
+                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+                  <span class="text-[11px] text-gray-500 uppercase font-bold block">Custodian &amp; Equipment Assignment</span>
+                  <strong class="text-[#1F2937] block" id="outward-picker-lead">S. Rao (Scanner #04) · Reach Truck #03</strong>
+                  <span class="text-[11px] text-[#059669]">Staging destination: Outbound Bay 02</span>
+                </div>
+              </div>
+
+              <!-- Custody Chain Action Strip -->
+              <div class="p-3.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span class="text-[12px] text-[#4B5563]">Picker S. Rao pulling final 8 units from Shelf B4. Conveyor staging pathway pre-cleared.</span>
+                </div>
+                <button onclick="alert('Sent priority pick notification to Scanner #04 (S. Rao).')" class="btn-redbus-secondary text-[12px] py-1.5 px-3 cursor-pointer">
+                  Ping Scanner #04 &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STAGE 3 (NOT DONE / GREYED OUT) ================= -->
+        <div class="relative opacity-65">
+          <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+            3
+          </div>
+
+          <div class="space-y-2">
+            <!-- Stage Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 3</span>
+                <h3 class="text-[15px] font-bold text-gray-600">Sorting, Consolidation &amp; Packing</h3>
+                <span class="text-[11px] text-gray-400 font-arial">· Est. 11:15 AM</span>
+              </div>
+            </div>
+
+            <!-- Stage 3 Greyed-out Card (Metadata only, NO filled operational data) -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+              <div class="absolute top-4 right-4">
+                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Picking Completion</span>
+              </div>
+
+              <!-- Metadata Parameters Only -->
+              <div class="space-y-2.5 pr-12 text-[12.5px] text-gray-500">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-700 text-[10.5px] font-bold uppercase tracking-wider">Planned Packing Metadata</span>
+                  <span class="text-[11px] text-gray-400">Pre-configured packaging parameters</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Designated Pack Station</span>
+                    <strong class="text-gray-700">Pack Desk 02 (Zone C)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Packaging Standard</span>
+                    <strong class="text-gray-700" id="outward-packingnote">Double Corrugated + Tamper Tape</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Shipping Label Status</span>
+                    <span class="text-gray-500 italic">Queued for Zebra Printer #02</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] text-gray-400 italic">No physical items at pack station yet · Pack desk scheduled upon Wave 2 pick completion</span>
+                  <button onclick="alert('Wave 2 picking must complete before initiating Packing.')" class="btn-redbus-secondary text-[11.5px] py-1 px-3 cursor-not-allowed opacity-60">
+                    Start Packing &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STAGE 4 (NOT DONE / GREYED OUT) ================= -->
+        <div class="relative opacity-65">
+          <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+            4
+          </div>
+
+          <div class="space-y-2">
+            <!-- Stage Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 4</span>
+                <h3 class="text-[15px] font-bold text-gray-600">QC, Weighing &amp; Volumetric Check</h3>
+                <span class="text-[11px] text-gray-400 font-arial">· Est. 11:45 AM</span>
+              </div>
+            </div>
+
+            <!-- Stage 4 Greyed-out Card (Metadata only, NO filled operational data) -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+              <div class="absolute top-4 right-4">
+                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Pack Clearance</span>
+              </div>
+
+              <!-- Metadata Parameters Only -->
+              <div class="space-y-2.5 pr-12 text-[12.5px] text-gray-500">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-700 text-[10.5px] font-bold uppercase tracking-wider">Weight &amp; Tolerance Specs</span>
+                  <span class="text-[11px] text-gray-400">Scale calibration tolerances</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Calibrated Bench Scale</span>
+                    <strong class="text-gray-700">Digital Bench Scale SC-01 (±50g)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Expected Gross Weight</span>
+                    <strong class="text-gray-700">42.5 kg (Tare offset verified)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Regulatory e-Way Bill</span>
+                    <span class="text-gray-500 italic">GST e-Way Match Pre-Checked</span>
+                  </div>
+                </div>
+
+                <div class="pt-1 text-[11px] text-gray-400 italic">
+                  Tare calibration verified · Ready for gross weighbridge scan once cartons are strapped and sealed.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STAGE 5 (NOT DONE / GREYED OUT) ================= -->
+        <div class="relative opacity-65">
+          <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+            5
+          </div>
+
+          <div class="space-y-2">
+            <!-- Stage Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 5</span>
+                <h3 class="text-[15px] font-bold text-gray-600">Staged at Outbound Dock &amp; Carrier Handover</h3>
+                <span class="text-[11px] text-gray-400 font-arial">· Est. 12:30 PM</span>
+              </div>
+            </div>
+
+            <!-- Stage 5 Greyed-out Card (Metadata only, NO filled operational data) -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+              <div class="absolute top-4 right-4">
+                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending QC Verification</span>
+              </div>
+
+              <!-- Metadata Parameters Only -->
+              <div class="space-y-2.5 pr-12 text-[12.5px] text-gray-500">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-700 text-[10.5px] font-bold uppercase tracking-wider">Dock Allocation &amp; Handover Plan</span>
+                  <span class="text-[11px] text-gray-400">Carrier dispatch window</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Assigned Outbound Bay</span>
+                    <strong class="text-gray-700">Dock Bay 02 (Outbound Staging)</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Logistics Carrier</span>
+                    <strong class="text-gray-700" id="outward-carrier">Blue Dart Express</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Pickup Cutoff Window</span>
+                    <strong class="text-amber-700" id="outward-cutoff">16:00 IST (22 min remaining)</strong>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] text-gray-400 italic">Bay 02 reserved for Blue Dart line-haul vehicle · Gate pass pre-authorized</span>
+                  <button onclick="alert('QC weighing clearance required before carrier handover.')" class="btn-redbus-secondary text-[11.5px] py-1 px-3 cursor-not-allowed opacity-60">
+                    Authorize Handover &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STAGE 6 (NOT DONE / GREYED OUT) ================= -->
+        <div class="relative opacity-65">
+          <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
+          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+            6
+          </div>
+
+          <div class="space-y-2">
+            <!-- Stage Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 6</span>
+                <h3 class="text-[15px] font-bold text-gray-600">Dispatched, In-Transit &amp; Customer POD</h3>
+                <span class="text-[11px] text-gray-400 font-arial">· Est. Today 18:30 IST</span>
+              </div>
+            </div>
+
+            <!-- Stage 6 Greyed-out Card (Metadata only, NO filled operational data) -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+              <div class="absolute top-4 right-4">
+                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Awaiting Carrier Handover</span>
+              </div>
+
+              <!-- Metadata Parameters Only -->
+              <div class="space-y-2.5 pr-12 text-[12.5px] text-gray-500">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-700 text-[10.5px] font-bold uppercase tracking-wider">Consignment Delivery Parameters</span>
+                  <span class="text-[11px] text-gray-400">Automated tracking &amp; POD protocol</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Airway Bill / Tracker ID</span>
+                    <strong class="text-gray-700 font-mono" id="outward-trackerid">BLUEDART-882910-HYD</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Consignee Destination</span>
+                    <strong class="text-gray-700">Acme Industries Plant 1</strong>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/70 border border-gray-200">
+                    <span class="text-[10.5px] text-gray-400 block uppercase font-bold">Proof of Delivery Protocol</span>
+                    <strong class="text-gray-700" id="outward-podnote">Pending courier transit</strong>
+                  </div>
+                </div>
+
+                <div class="pt-1 text-[11px] text-gray-400 italic">
+                  Tracking link auto-SMS and WhatsApp notification queued for customer upon Bay 02 vehicle gate-out.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -4041,16 +4379,70 @@
     ];
 
     function openOutwardOrderDetail(orderId) {
-      const order = outwardOrdersMaster[orderId] || outwardOrdersMaster['ORD-OUT-4521'];
+      let order = outwardOrdersMaster[orderId];
+      if (!order) {
+        const facility = warehouseOutwardData[currentFacilityName];
+        if (facility) {
+          const foundNorm = (facility.normalOrders || []).find(o => o.orderId === orderId);
+          const foundIssue = (facility.issues || []).find(o => o.orderId === orderId);
+          if (foundNorm) {
+            order = {
+              id: foundNorm.orderId,
+              customer: foundNorm.customer,
+              stageNum: foundNorm.stageNum || 2,
+              stageName: foundNorm.stage,
+              stageLocation: 'Assigned Outbound Zone',
+              stageDesc: `Order items: ${foundNorm.cargo}. Current status: ${foundNorm.pod}`,
+              items: foundNorm.cargo,
+              picker: foundNorm.picker,
+              carrier: 'Blue Dart Express',
+              trackingId: `BLUEDART-${foundNorm.orderId.replace('ORD-', '')}`,
+              cutoff: '16:00 IST (22 min remaining)',
+              packingNote: 'Double-corrugated packaging verified with tamper seal',
+              podNote: foundNorm.pod,
+              pickerInfo: `Assigned Handler: ${foundNorm.picker}`
+            };
+          } else if (foundIssue) {
+            order = {
+              id: foundIssue.orderId,
+              customer: foundIssue.customer,
+              stageNum: foundIssue.stageNum || 2,
+              stageName: foundIssue.stage,
+              stageLocation: 'Problem Resolution Zone',
+              stageDesc: `Bottleneck Issue: ${foundIssue.reason} (${foundIssue.timeStuck})`,
+              items: foundIssue.cargo,
+              picker: foundIssue.handlers && foundIssue.handlers.length > 0 ? foundIssue.handlers[foundIssue.handlers.length - 1].name : 'Floor Marshal',
+              carrier: 'Blue Dart Express',
+              trackingId: `BLUEDART-${foundIssue.orderId.replace('ORD-', '')}`,
+              cutoff: foundIssue.slaImpact || 'SLA Critical',
+              packingNote: 'Inspection on hold pending resolution',
+              podNote: `Blocked: ${foundIssue.reason}`,
+              pickerInfo: `Supervisory Lead: ${foundIssue.supervisor}`
+            };
+          }
+        }
+      }
+      if (!order) {
+        order = outwardOrdersMaster['ORD-OUT-4521'];
+      }
 
       const titleEl = document.getElementById('outward-detail-title');
       if (titleEl) titleEl.textContent = `${order.id} · ${order.customer}`;
 
       const stageLabel = document.getElementById('outward-stage-label');
-      if (stageLabel) stageLabel.textContent = `${order.stageName} (${order.stageLocation})`;
+      if (stageLabel) stageLabel.textContent = `${order.stageName} (${order.stageLocation || 'Outbound Area'})`;
 
       const stageDesc = document.getElementById('outward-stage-desc');
       if (stageDesc) stageDesc.textContent = order.stageDesc;
+
+      const custEl = document.getElementById('outward-customer');
+      if (custEl) custEl.textContent = order.customer;
+
+      const itemsEl = document.getElementById('outward-items');
+      if (itemsEl) itemsEl.textContent = order.items;
+
+      const leadEl = document.getElementById('outward-picker-lead');
+      if (leadEl) leadEl.textContent = order.pickerInfo || order.picker;
 
       const packEl = document.getElementById('outward-packingnote');
       if (packEl) packEl.textContent = order.packingNote;
@@ -4066,29 +4458,6 @@
 
       const podEl = document.getElementById('outward-podnote');
       if (podEl) podEl.textContent = order.podNote;
-
-      const pickEl = document.getElementById('outward-picker-info');
-      if (pickEl) pickEl.textContent = order.pickerInfo;
-
-      // Render Outward Stepper
-      const stepper = document.getElementById('outward-stepper-container');
-      if (stepper) {
-        stepper.innerHTML = '';
-        outwardStageSteps.forEach(step => {
-          const span = document.createElement('span');
-          if (step.num < order.stageNum) {
-            span.className = 'line-through text-[#10B981] font-medium';
-            span.innerHTML = `✓ ${step.name} &rarr;`;
-          } else if (step.num === order.stageNum) {
-            span.className = 'px-3 py-1 rounded-lg bg-[#FEECEE] text-[#D84E55] font-bold shadow-2xs';
-            span.innerHTML = `${step.name} &rarr;`;
-          } else {
-            span.className = 'text-[#9CA3AF]';
-            span.innerHTML = `${step.name}${step.num < 6 ? ' &rarr;' : ''}`;
-          }
-          stepper.appendChild(span);
-        });
-      }
 
       goToScreen(5);
     }
@@ -4811,7 +5180,7 @@
           filtered.forEach(order => {
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
-            tr.onclick = () => openOutwardOrderDetail('ORD-OUT-4521');
+            tr.onclick = () => openOutwardOrderDetail(order.orderId);
 
             let podClass = 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]';
             if (order.pod.includes('Signed') || order.pod.includes('Passed')) podClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
@@ -4829,7 +5198,7 @@
                 </span>
               </td>
               <td class="py-3 px-3 text-right">
-                <button onclick="event.stopPropagation(); openOutwardOrderDetail('ORD-OUT-4521')" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">Inspect &rarr;</button>
+                <button onclick="event.stopPropagation(); openOutwardOrderDetail('${order.orderId}')" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">Inspect &rarr;</button>
               </td>
             `;
             normalTbody.appendChild(tr);
