@@ -1300,24 +1300,52 @@
         </div>
       </div>
 
-      <!-- Current Sequence Progression Banner -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div class="space-y-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-[#6B7280]">Current Progression:</span>
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#3B82F6] animate-ping"></span>
-            <strong id="inward-stage-label" class="text-[15px] text-[#1F2937]">Stage 4 · QC &amp; Proof of Delivery (Dock Bay 04)</strong>
+      <!-- Current Order Progression & Stage Summary -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
+        <!-- Top Bar: Current Stage Title & Status Pill -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-gray-100">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="text-[10.5px] font-bold uppercase tracking-wider text-[#6B7280] font-arial">Current Stage:</span>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-ping"></span>
+              <h2 id="inward-stage-label" class="text-[16px] font-bold text-[#1F2937]">Stage 4 · QC &amp; Proof of Delivery</h2>
+            </div>
+            <span id="inward-stage-num-badge" class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] text-[11px] font-bold font-arial">
+              Stage 4 of 5 Active
+            </span>
           </div>
-          <span id="inward-stage-desc" class="text-[12px] text-[#4B5563] block">Physical cargo verified against manifest · Delivery challan signed</span>
+
+          <div id="inward-stage-progress-pills" class="flex items-center gap-2 flex-wrap">
+            <span id="inward-badge-done" class="text-[11px] font-bold text-[#10B981] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">
+              Stages 1–3 Completed
+            </span>
+            <span id="inward-badge-active" class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage 4 in Progress
+            </span>
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="text-[12px] font-bold text-[#10B981] bg-[#ECFDF5] px-3 py-1 rounded-full border border-[#A7F3D0] flex items-center gap-1.5">
-            <span class="w-4 h-4 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px]">✓</span>
-            Stages 1–3 Completed
-          </span>
-          <span class="text-[12px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-3 py-1 rounded-full border border-[#BFDBFE]">
-            Stage 4 In Progress
-          </span>
+
+        <!-- Structured Operational Attributes (No messy concatenated strings) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[12px]">
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Operational Status</span>
+            <strong id="inward-status-val" class="text-[#059669] font-bold text-[12.5px] block mt-0.5">Active Inspection</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Dock / Bay Location</span>
+            <strong id="inward-bay-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">Dock Bay 04</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Schedule / ETA</span>
+            <strong id="inward-eta-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">09:40 AM IST</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Activity Summary</span>
+            <span id="inward-stage-desc" class="text-[#4B5563] text-[11.5px] block mt-0.5 leading-snug">Physical cargo verified against manifest</span>
+          </div>
         </div>
       </div>
 
@@ -1762,24 +1790,52 @@
         </div>
       </div>
 
-      <!-- Current Sequence Progression Banner -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div class="space-y-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-[#6B7280]">Current Progression:</span>
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#3B82F6] animate-ping"></span>
-            <strong id="outward-stage-label" class="text-[15px] text-[#1F2937]">Stage 2 · Wave Picking from Shelves (Zone B, Shelf B4)</strong>
+      <!-- Current Outward Order Progression & Stage Summary -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
+        <!-- Top Bar: Current Stage Title & Status Pill -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-gray-100">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="text-[10.5px] font-bold uppercase tracking-wider text-[#6B7280] font-arial">Current Stage:</span>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-ping"></span>
+              <h2 id="outward-stage-label" class="text-[16px] font-bold text-[#1F2937]">Stage 2 · Wave Picking from Shelves</h2>
+            </div>
+            <span id="outward-stage-num-badge" class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] text-[11px] font-bold font-arial">
+              Stage 2 of 5 Active
+            </span>
           </div>
-          <span id="outward-stage-desc" class="text-[12px] text-[#4B5563] block">Assigned picker collecting items from floor rack bins using barcode scanner · Velocity: 18 UPH</span>
+
+          <div id="outward-stage-progress-pills" class="flex items-center gap-2 flex-wrap">
+            <span id="outward-badge-done" class="text-[11px] font-bold text-[#10B981] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">
+              Stage 1 Completed
+            </span>
+            <span id="outward-badge-active" class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage 2 in Progress
+            </span>
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span id="outward-badge-done" class="text-[12px] font-bold text-[#10B981] bg-[#ECFDF5] px-3 py-1 rounded-full border border-[#A7F3D0] flex items-center gap-1.5">
-            <span class="w-4 h-4 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px]">✓</span>
-            Stage 1 Completed
-          </span>
-          <span id="outward-badge-active" class="text-[12px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-3 py-1 rounded-full border border-[#BFDBFE]">
-            Stage 2 In Progress
-          </span>
+
+        <!-- Structured Operational Attributes -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[12px]">
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Fulfillment Status</span>
+            <strong id="outward-status-val" class="text-[#059669] font-bold text-[12.5px] block mt-0.5">Picking Active</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Fulfillment Location</span>
+            <strong id="outward-zone-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">Zone B, Shelf B4</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Dispatch Cutoff</span>
+            <strong id="outward-cutoff-val" class="text-[#1F2937] font-bold text-[12.5px] block mt-0.5">Today, 16:00 IST</strong>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200">
+            <span class="text-[10px] uppercase font-bold text-gray-500 block font-arial">Activity Summary</span>
+            <span id="outward-stage-desc" class="text-[#4B5563] text-[11.5px] block mt-0.5 leading-snug">Picker collecting items from floor bins</span>
+          </div>
         </div>
       </div>
 
@@ -4534,11 +4590,85 @@
       const titleEl = document.getElementById('inward-detail-title');
       if (titleEl) titleEl.textContent = `${order.id} · ${order.transporter} Transporter`;
 
+      const stageNumber = order.stageNum || 1;
+      const stageTitles = {
+        1: 'Stage 1 · Expected Cargo',
+        2: 'Stage 2 · Truck at Dock',
+        3: 'Stage 3 · Cargo Unloading',
+        4: 'Stage 4 · QC & Proof of Delivery',
+        5: 'Stage 5 · Putaway to Racks',
+        6: 'Stage 6 · Stored in Inventory'
+      };
+
+      const cleanStageTitle = stageTitles[stageNumber] || (order.stageName ? order.stageName.replace(/^\d+\.\s*/, `Stage ${stageNumber} · `) : `Stage ${stageNumber}`);
+
+      // Parse Bay & ETA without nested brackets
+      let cleanBay = 'Dock Bay 04';
+      let cleanEta = 'Today on Schedule';
+      const rawLocation = order.stageLocation || order.bay || '';
+
+      if (rawLocation.includes('ETA')) {
+        const bayMatch = rawLocation.match(/(Bay\s*\d+|Dock\s*Bay\s*\d+|Dock\s*\d+)/i);
+        if (bayMatch) cleanBay = bayMatch[0];
+        const etaMatch = rawLocation.match(/ETA\s*([0-9:]+)/i);
+        if (etaMatch) cleanEta = `${etaMatch[1]} IST`;
+      } else if (rawLocation) {
+        cleanBay = rawLocation;
+        cleanEta = stageNumber === 1 ? 'Expected 11:30 IST' : (stageNumber === 4 ? '09:40 AM IST' : 'Active on Site');
+      }
+
+      const cleanStatus = order.podStatus || (stageNumber === 4 ? 'Active QC Inspection' : (stageNumber === 1 ? 'Manifest Registered' : (stageNumber === 3 ? 'Unloading Active' : 'In Progress')));
+
+      const stageDescriptions = {
+        1: 'Advance shipping notice registered · En route to facility',
+        2: 'Vehicle parked at dock gate · Gate paperwork verification',
+        3: 'Offloading cartons and pallets onto intake staging area',
+        4: 'Physical cargo verified against manifest · Delivery challan signed',
+        5: 'Transporting verified pallets from bay to designated storage racks',
+        6: 'Putaway completed · Cargo stored in active racks'
+      };
+
       const stageLabel = document.getElementById('inward-stage-label');
-      if (stageLabel) stageLabel.textContent = `${order.stageName} (${order.stageLocation})`;
+      if (stageLabel) stageLabel.textContent = cleanStageTitle;
+
+      const stageNumBadge = document.getElementById('inward-stage-num-badge');
+      if (stageNumBadge) stageNumBadge.textContent = `Stage ${stageNumber} of 5 Active`;
+
+      const bayVal = document.getElementById('inward-bay-val');
+      if (bayVal) bayVal.textContent = cleanBay;
+
+      const etaVal = document.getElementById('inward-eta-val');
+      if (etaVal) etaVal.textContent = cleanEta;
+
+      const statusVal = document.getElementById('inward-status-val');
+      if (statusVal) statusVal.textContent = cleanStatus;
 
       const stageDesc = document.getElementById('inward-stage-desc');
-      if (stageDesc) stageDesc.textContent = order.stageDesc;
+      if (stageDesc) stageDesc.textContent = stageDescriptions[stageNumber] || order.stageDesc || 'Active physical fulfillment';
+
+      // Update right-side progress pills
+      const progressContainer = document.getElementById('inward-stage-progress-pills');
+      if (progressContainer) {
+        if (stageNumber === 1) {
+          progressContainer.innerHTML = `
+            <span class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage 1 in Progress
+            </span>
+            <span class="text-[11px] font-medium text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
+              4 Stages Remaining
+            </span>
+          `;
+        } else {
+          progressContainer.innerHTML = `
+            <span class="text-[11px] font-bold text-[#10B981] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">
+              Stages 1–${stageNumber - 1} Completed
+            </span>
+            <span class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage ${stageNumber} in Progress
+            </span>
+          `;
+        }
+      }
 
       const skuEl = document.getElementById('inward-sku');
       if (skuEl) skuEl.textContent = order.sku;
@@ -4695,11 +4825,68 @@
       const titleEl = document.getElementById('outward-detail-title');
       if (titleEl) titleEl.textContent = `${order.id} · ${order.customer}`;
 
+      const outStageNum = order.stageNum || 2;
+      const outStageTitles = {
+        1: 'Stage 1 · Order Received',
+        2: 'Stage 2 · Wave Picking from Shelves',
+        3: 'Stage 3 · Sorting & Packing',
+        4: 'Stage 4 · QC & Weighing Check',
+        5: 'Stage 5 · Staged at Dock',
+        6: 'Stage 6 · Dispatched & POD'
+      };
+
+      const outCleanTitle = outStageTitles[outStageNum] || (order.stageName ? order.stageName.replace(/^\d+\.\s*/, `Stage ${outStageNum} · `) : `Stage ${outStageNum}`);
+
+      const outStageDescriptions = {
+        1: 'Customer order confirmed · Wave release scheduled for floor pickers',
+        2: 'Picker collecting items from floor rack bins using barcode scanner',
+        3: 'Items sorted, wrapped with bubble cushioning, and packed into cartons',
+        4: 'Package placed on bench scale for gross weight & label verification',
+        5: 'Packed cargo staged on dock pallets · Gate pass prepared for truck',
+        6: 'Carrier dispatched cargo · Signed POD document archived'
+      };
+
       const stageLabel = document.getElementById('outward-stage-label');
-      if (stageLabel) stageLabel.textContent = `${order.stageName} (${order.stageLocation || 'Outbound Area'})`;
+      if (stageLabel) stageLabel.textContent = outCleanTitle;
+
+      const stageNumBadge = document.getElementById('outward-stage-num-badge');
+      if (stageNumBadge) stageNumBadge.textContent = `Stage ${outStageNum} of 5 Active`;
+
+      const statusVal = document.getElementById('outward-status-val');
+      if (statusVal) statusVal.textContent = order.pod || order.podNote || (outStageNum === 2 ? 'Picking Active' : (outStageNum === 5 ? 'Staged at Bay' : 'In Progress'));
+
+      const zoneVal = document.getElementById('outward-zone-val');
+      if (zoneVal) zoneVal.textContent = order.stageLocation || order.dockBay || 'Zone B, Shelf B4';
+
+      const cutoffVal = document.getElementById('outward-cutoff-val');
+      if (cutoffVal) cutoffVal.textContent = order.cutoff || 'Today, 16:00 IST';
 
       const stageDesc = document.getElementById('outward-stage-desc');
-      if (stageDesc) stageDesc.textContent = order.stageDesc;
+      if (stageDesc) stageDesc.textContent = outStageDescriptions[outStageNum] || order.stageDesc || 'Active fulfillment sequence';
+
+      // Update right-side progress pills
+      const progressContainer = document.getElementById('outward-stage-progress-pills');
+      if (progressContainer) {
+        if (outStageNum === 1) {
+          progressContainer.innerHTML = `
+            <span class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage 1 in Progress
+            </span>
+            <span class="text-[11px] font-medium text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
+              4 Stages Remaining
+            </span>
+          `;
+        } else {
+          progressContainer.innerHTML = `
+            <span class="text-[11px] font-bold text-[#10B981] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">
+              Stage${outStageNum - 1 > 1 ? `s 1–${outStageNum - 1}` : ' 1'} Completed
+            </span>
+            <span class="text-[11px] font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-0.5 rounded-full border border-[#BFDBFE]">
+              Stage ${outStageNum} in Progress
+            </span>
+          `;
+        }
+      }
 
       const custEl = document.getElementById('outward-customer');
       if (custEl) custEl.textContent = order.customer;
