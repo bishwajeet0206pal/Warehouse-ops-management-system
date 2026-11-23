@@ -1117,41 +1117,44 @@
         <!-- INWARD JOURNEY FUNNEL -->
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-3">
           <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-[17px] font-bold text-[#1F2937]">Inward journey — orders at each stage</h2>
-              <p class="text-[12px] text-[#6B7280]">Pipeline volume summary across intake stages · All orders detailed in table below</p>
-            </div>
-            <span class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-1 rounded-full">WH-06 Intake Operations</span>
+            <h2 class="text-[17px] font-bold text-[#1F2937]">Inward Journey <span class="text-gray-400 font-normal">·</span> <span id="inward-facility-title" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h2>
+            <span id="inward-facility-badge" class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-1 rounded-full">WH-01 Intake Operations</span>
           </div>
 
-          <!-- Summary KPI Stage Boxes (Non-clickable Summary Only) -->
+          <!-- Summary KPI Stage Boxes (Click 'i' for plain definition) -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
-            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+            <div class="relative p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 1)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-gray-300 bg-white text-gray-500 hover:text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 1 (Expected) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">1. Expected</span>
               <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">3 orders</span>
               <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">En route to hub</span>
             </div>
-            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+            <div class="relative p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 2)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-gray-300 bg-white text-gray-500 hover:text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 2 (At Dock) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">2. At Dock</span>
               <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">2 orders</span>
               <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Parked at bay</span>
             </div>
-            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+            <div class="relative p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 3)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-gray-300 bg-white text-gray-500 hover:text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 3 (Unloading) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">3. Unloading</span>
               <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">4 orders</span>
               <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Offloading cargo</span>
             </div>
-            <div class="p-3.5 rounded-2xl border-2 border-[#D84E55] bg-[#FEECEE] text-center select-none shadow-2xs">
+            <div class="relative p-3.5 rounded-2xl border-2 border-[#D84E55] bg-[#FEECEE] text-center select-none shadow-2xs">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 4)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-red-300 bg-white text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 4 (QC & POD) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#D84E55] font-arial block">4. QC &amp; POD</span>
               <span class="text-[20px] font-bold text-[#D84E55] block mt-0.5">8 orders</span>
               <span class="text-[11px] text-[#D84E55] font-semibold block font-arial mt-0.5">Active inspection</span>
             </div>
-            <div class="p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+            <div class="relative p-3.5 rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] text-center select-none shadow-2xs">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 5)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-gray-300 bg-white text-gray-500 hover:text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 5 (Putaway) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">5. Putaway</span>
               <span class="text-[20px] font-bold text-[#1F2937] block mt-0.5">12 orders</span>
               <span class="text-[11px] text-[#6B7280] block font-arial mt-0.5">Moving to shelf</span>
             </div>
-            <div onclick="openStoredOrdersPage()" class="p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group" title="Click to view all stored inventory orders in table format">
+            <div onclick="openStoredOrdersPage()" class="relative p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group" title="Click to view all stored inventory orders in table format">
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('inward', 6)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-emerald-300 bg-white text-[#059669] hover:border-[#059669] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 6 (Stored) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#059669] font-arial block">6. Stored</span>
               <span class="text-[20px] font-bold text-[#059669] block mt-0.5">145 orders</span>
               <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5 flex items-center justify-center gap-1">
@@ -1164,10 +1167,7 @@
         <!-- Inward Active Orders Table for WH-06 (Everything Available in Table View) -->
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
-            <div>
-              <h3 class="text-[16px] font-bold text-[#1F2937]">Active Inward Orders at WH-06 (All Stages)</h3>
-              <p class="text-[12px] text-[#6B7280]">Complete table view of all shipments currently in the intake pipeline</p>
-            </div>
+            <h3 class="text-[16px] font-bold text-[#1F2937]">Active Inward Orders <span class="text-gray-400 font-normal">·</span> <span id="inward-table-wh" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h3>
             <span id="inward-table-count-badge" class="text-[12px] font-bold text-[#1F2937] font-arial bg-gray-100 px-3 py-1 rounded-full border border-gray-200">29 Orders Total</span>
           </div>
 
@@ -1218,10 +1218,7 @@
         <!-- CARD 1: OUTWARD JOURNEY FUNNEL (MATCHING INWARD STRUCTURE 1:1) -->
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-3">
           <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-[17px] font-bold text-[#1F2937]" id="outward-facility-title">Outward journey — orders at each stage</h2>
-              <p class="text-[12px] text-[#6B7280]" id="outward-facility-subtitle">Pipeline volume summary across dispatch stages · All orders detailed in table below</p>
-            </div>
+            <h2 class="text-[17px] font-bold text-[#1F2937]">Outward Journey <span class="text-gray-400 font-normal">·</span> <span id="outward-facility-title" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h2>
             <span id="outward-facility-badge" class="text-[12px] font-bold text-[#D84E55] font-arial bg-[#FEECEE] px-3 py-1 rounded-full">WH-01 Dispatch Operations</span>
           </div>
 
@@ -1234,10 +1231,7 @@
         <!-- CARD 2: ACTIVE OUTWARD ORDERS TABLE (MATCHING INWARD STRUCTURE 1:1) -->
         <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-xs space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
-            <div>
-              <h3 class="text-[16px] font-bold text-[#1F2937]" id="outward-table-title">Active Outward Orders at WH-01 (All Stages)</h3>
-              <p class="text-[12px] text-[#6B7280]">Complete table view of all shipments currently in the dispatch pipeline</p>
-            </div>
+            <h3 class="text-[16px] font-bold text-[#1F2937]">Active Outward Orders <span class="text-gray-400 font-normal">·</span> <span id="outward-table-title" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h3>
             <span id="outward-table-count-badge" class="text-[12px] font-bold text-[#1F2937] font-arial bg-gray-100 px-3 py-1 rounded-full border border-gray-200">35 Orders Total</span>
           </div>
 
@@ -1297,8 +1291,7 @@
             &larr; Back to Warehouse (Inward Journey)
           </button>
           <div>
-            <h1 class="text-[22px] font-bold text-[#1F2937]">Inward Order Journey Detail</h1>
-            <p class="text-[12px] text-[#6B7280]">End-to-end physical receipt &amp; putaway sequence</p>
+            <h1 class="text-[20px] font-bold text-[#1F2937]">Inward Order Detail <span class="text-gray-400 font-normal">·</span> <span id="inward-detail-wh" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h1>
           </div>
         </div>
         <div class="text-right">
@@ -1710,8 +1703,7 @@
             &larr; Back to Warehouse (Outward Journey)
           </button>
           <div>
-            <h1 class="text-[22px] font-bold text-[#1F2937]">Outward Order Journey Detail</h1>
-            <p class="text-[12px] text-[#6B7280]">End-to-end physical picking, packing &amp; carrier handover sequence</p>
+            <h1 class="text-[20px] font-bold text-[#1F2937]">Outward Order Detail <span class="text-gray-400 font-normal">·</span> <span id="outward-detail-wh" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h1>
           </div>
         </div>
         <div class="text-right">
@@ -2068,7 +2060,7 @@
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial">Stage 6</span>
-                <h3 class="text-[15px] font-bold text-gray-600">Dispatched, In-Transit &amp; Customer POD</h3>
+                <h3 class="text-[15px] font-bold text-gray-600">Dispatched, In-Transit &amp; POD</h3>
                 <span class="text-[11px] text-gray-400 font-arial">· Est. Today 18:30 IST</span>
               </div>
             </div>
@@ -2125,8 +2117,7 @@
             &larr; Back to Inward Journey
           </button>
           <div>
-            <h1 id="stored-page-title" class="text-[22px] font-bold text-[#1F2937]">WH-01 Bhiwandi · Stored Inventory Ledger (Stage 6)</h1>
-            <p class="text-[12px] text-[#6B7280]">Complete ledger of putaway-completed receipts placed in active storage racks &amp; bin locations</p>
+            <h1 class="text-[20px] font-bold text-[#1F2937]">Stored Orders <span class="text-gray-400 font-normal">·</span> <span id="stored-page-title" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h1>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
@@ -2197,8 +2188,7 @@
             &larr; Back to Outward Journey
           </button>
           <div>
-            <h1 id="dispatched-page-title" class="text-[22px] font-bold text-[#1F2937]">WH-01 Bhiwandi · Dispatched Shipments &amp; POD Archive (Stage 6)</h1>
-            <p class="text-[12px] text-[#6B7280]">Historical record of fulfilled consignments with signed customer Proof of Delivery (POD) &amp; tracking</p>
+            <h1 class="text-[20px] font-bold text-[#1F2937]">Dispatched Orders <span class="text-gray-400 font-normal">·</span> <span id="dispatched-page-title" class="text-[#D84E55] font-bold">WH-01 Bhiwandi</span></h1>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
@@ -4309,6 +4299,12 @@
     }
 
     function renderInwardTable() {
+      const inFacility = document.getElementById('inward-facility-title');
+      if (inFacility) inFacility.textContent = currentFacilityName || 'WH-01 Bhiwandi';
+      const inTableWh = document.getElementById('inward-table-wh');
+      if (inTableWh) inTableWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
+      const inBadge = document.getElementById('inward-facility-badge');
+      if (inBadge) inBadge.textContent = `${currentFacilityName || 'WH-01 Bhiwandi'} · Intake Operations`;
       const tbody = document.getElementById('inward-orders-tbody');
       const badge = document.getElementById('inward-table-count-badge');
       if (!tbody) return;
@@ -4426,6 +4422,8 @@
     };
 
     function openInwardOrderDetail(orderId) {
+      const inDetailWh = document.getElementById('inward-detail-wh');
+      if (inDetailWh) inDetailWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
       let order = inwardOrdersMaster[orderId];
       if (!order) {
         const found = inwardOrdersList.find(o => o.id === orderId);
@@ -4566,6 +4564,8 @@
     ];
 
     function openOutwardOrderDetail(orderId) {
+      const outDetailWh = document.getElementById('outward-detail-wh');
+      if (outDetailWh) outDetailWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
       let order = outwardOrdersMaster[orderId];
       if (!order) {
         const facility = warehouseOutwardData[currentFacilityName];
@@ -5467,9 +5467,9 @@
       const badgeEl = document.getElementById('outward-facility-badge');
       const subtitleEl = document.getElementById('outward-facility-subtitle');
 
-      if (titleEl) titleEl.textContent = `${facility.name} · Outward Journey & Dispatch Pipeline`;
+      if (titleEl) titleEl.textContent = facility.name;
       if (badgeEl) badgeEl.textContent = `${facility.name} · Dispatch Operations`;
-      if (subtitleEl) subtitleEl.textContent = `Pipeline volume summary across 6 dispatch stages · All orders detailed in table below`;
+      if (subtitleEl) subtitleEl.textContent = '';
 
       // 2. Render Card 1: 6-Stage Journey Pipeline Funnel (Matching Inward Journey 1:1)
       const funnelContainer = document.getElementById('outward-funnel-stages');
@@ -5491,17 +5491,18 @@
             numStyle = 'text-[#DC2626]';
             subStyle = 'text-[#DC2626] font-semibold';
           } else if (isComplete) {
-            cardStyle = 'border border-[#A7F3D0] bg-[#ECFDF5]';
+            cardStyle = 'border border-[#A7F3D0] bg-[#ECFDF5] relative';
             badgeStyle = 'text-[#059669]';
             numStyle = 'text-[#059669]';
             subStyle = 'text-[#059669] font-semibold';
           }
 
           if (isComplete) {
-            card.className = `p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group`;
+            card.className = `relative p-3.5 rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] text-center select-none shadow-2xs cursor-pointer hover:border-[#059669] hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] group`;
             card.onclick = () => openDispatchedOrdersPage();
             card.title = `Click to view all ${stage.count} delivered dispatches with PODs in table format`;
             card.innerHTML = `
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('outward', 6)" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-emerald-300 bg-white text-[#059669] hover:border-[#059669] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does Stage 6 (Dispatched & POD) mean?">i</button>
               <span class="text-[10px] uppercase font-bold text-[#059669] font-arial block">${stage.name}</span>
               <span class="text-[20px] font-bold text-[#059669] block mt-0.5">${stage.count} orders</span>
               <span class="text-[11px] text-[#059669] font-semibold block font-arial mt-0.5 flex items-center justify-center gap-1">
@@ -5509,13 +5510,14 @@
               </span>
             `;
           } else {
-            card.className = `p-3.5 rounded-2xl border ${cardStyle} text-center select-none shadow-2xs`;
+            card.className = `relative p-3.5 rounded-2xl border ${cardStyle} text-center select-none shadow-2xs`;
             card.innerHTML = `
               ${isStuck ? `
-                <span class="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[9px] font-bold font-arial animate-pulse shadow-xs">
-                  ⚠️ ${stage.stuck} STUCK
+                <span class="absolute -top-2.5 left-2 px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[9px] font-bold font-arial animate-pulse shadow-xs">
+                  ${stage.stuck} STUCK
                 </span>
               ` : ''}
+              <button type="button" onclick="event.stopPropagation(); showStageDefinition('outward', ${stage.id})" class="absolute top-2 right-2 w-4 h-4 rounded-full border border-gray-300 bg-white text-gray-500 hover:text-[#D84E55] hover:border-[#D84E55] flex items-center justify-center text-[10px] font-serif font-bold italic shadow-2xs transition-all z-10 cursor-pointer" title="What does ${stage.name} mean?">i</button>
               <span class="text-[10px] uppercase font-bold ${badgeStyle} font-arial block">${stage.name}</span>
               <span class="text-[20px] font-bold ${numStyle} block mt-0.5">${stage.count} orders</span>
               <span class="text-[11px] ${subStyle} block font-arial mt-0.5">${stage.subtitle}</span>
@@ -5528,7 +5530,7 @@
       // 3. Card 2: Active Outward Orders Table (Matching Inward Journey 1:1)
       const tableTitle = document.getElementById('outward-table-title');
       if (tableTitle) {
-        tableTitle.textContent = `Active Outward Orders at ${facility.code || facility.name} (All Stages)`;
+        tableTitle.textContent = facility.name;
       }
 
       // Register and format issues
@@ -5641,24 +5643,20 @@
 
             const stageDisplay = order.stage.includes('.') ? order.stage : `${order.stageNum}. ${order.stage}`;
 
-            // Clean compact tag for status (No long reason text inline in the table)
+            // Clean compact tag for status (No icons, clean text tag)
             const statusContent = order.isIssue ? `
-              <span onclick="event.stopPropagation(); openOutwardIssueModal('${order.orderId}')" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-red-100 cursor-pointer shadow-2xs transition-all whitespace-nowrap" title="Click to view issue details">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-ping"></span>
-                ⚠️ ${order.pod}
+              <span onclick="event.stopPropagation(); openOutwardIssueModal('${order.orderId}')" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-red-100 cursor-pointer shadow-2xs transition-all whitespace-nowrap" title="Click to view issue details">
+                ${order.pod}
               </span>
             ` : `
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
                 ${order.pod}
               </span>
             `;
 
             tr.innerHTML = `
-              <td class="py-3 px-3 font-bold ${order.isIssue ? 'text-[#DC2626]' : 'text-[#1F2937]'} font-arial">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span>${order.orderId}</span>
-                  ${order.isIssue ? '<span class="px-1.5 py-0.5 rounded bg-red-100 text-[#DC2626] text-[9.5px] font-bold font-arial animate-pulse shrink-0">🚨 Action Required</span>' : ''}
-                </div>
+              <td class="py-3 px-3 font-bold ${order.isIssue ? 'text-[#DC2626]' : 'text-[#1F2937]'} font-arial whitespace-nowrap">
+                <span>${order.orderId}</span>
               </td>
               <td class="py-3 px-3 font-medium text-[#1F2937]">${order.customer}</td>
               <td class="py-3 px-3 text-[#4B5563]">${order.cargo}</td>
@@ -5821,6 +5819,22 @@
         currentFacilityName = whName;
         const subFacility = document.getElementById('subtab-facility-label');
         if (subFacility) subFacility.textContent = whName;
+        const inFacility = document.getElementById('inward-facility-title');
+        if (inFacility) inFacility.textContent = whName;
+        const inTableWh = document.getElementById('inward-table-wh');
+        if (inTableWh) inTableWh.textContent = whName;
+        const outFacility = document.getElementById('outward-facility-title');
+        if (outFacility) outFacility.textContent = whName;
+        const outTableWh = document.getElementById('outward-table-title');
+        if (outTableWh) outTableWh.textContent = whName;
+        const inDetailWh = document.getElementById('inward-detail-wh');
+        if (inDetailWh) inDetailWh.textContent = whName;
+        const outDetailWh = document.getElementById('outward-detail-wh');
+        if (outDetailWh) outDetailWh.textContent = whName;
+        const storedWh = document.getElementById('stored-page-title');
+        if (storedWh) storedWh.textContent = whName;
+        const dispWh = document.getElementById('dispatched-page-title');
+        if (dispWh) dispWh.textContent = whName;
       }
 
       // 5. If navigating to screen 3, switch to the requested warehouse sub-tab
@@ -6327,7 +6341,7 @@
       if (whName) currentFacilityName = whName;
       
       const titleEl = document.getElementById('stored-page-title');
-      if (titleEl) titleEl.textContent = `${currentFacilityName} · Stored Inventory Ledger (Stage 6)`;
+      if (titleEl) titleEl.textContent = currentFacilityName;
 
       const badgeEl = document.getElementById('stored-page-count-badge');
       if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '145' : '145'} Orders Stored in Inventory`;
@@ -6428,7 +6442,7 @@
       if (whName) currentFacilityName = whName;
 
       const titleEl = document.getElementById('dispatched-page-title');
-      if (titleEl) titleEl.textContent = `${currentFacilityName} · Dispatched Shipments & POD Archive (Stage 6)`;
+      if (titleEl) titleEl.textContent = currentFacilityName;
 
       const badgeEl = document.getElementById('dispatched-page-count-badge');
       if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '410' : '410'} Dispatches Delivered`;
@@ -6496,6 +6510,131 @@
 
       renderDispatchedOrdersTable(filtered);
     }
+
+
+    // ==============================================
+    // STAGE DEFINITIONS (Plain Everyday English, No Jargon)
+    // ==============================================
+    const STAGE_DEFINITIONS = {
+      inward: {
+        1: {
+          category: 'Inward Stage 1',
+          title: '1. Expected',
+          desc: 'Goods are on their way. The supplier or delivery truck is traveling on the road to the warehouse, but has not arrived at the gate yet.',
+          action: 'The warehouse team monitors the arrival schedule to assign a dock unloading bay as soon as the vehicle pulls up.'
+        },
+        2: {
+          category: 'Inward Stage 2',
+          title: '2. At Dock',
+          desc: 'The delivery truck has reached the warehouse and is safely parked at the gate bay, waiting to be unloaded.',
+          action: 'The driver checks in their invoice and gate papers while dock workers prepare to open the vehicle.'
+        },
+        3: {
+          category: 'Inward Stage 3',
+          title: '3. Unloading',
+          desc: 'Warehouse workers are physically taking the boxes and cargo items out of the truck and placing them on the ground floor.',
+          action: 'Workers and forklifts unload pallets, count carton boxes, and arrange them neatly in the intake staging area.'
+        },
+        4: {
+          category: 'Inward Stage 4',
+          title: '4. QC & POD (Quality Check & Delivery Receipt)',
+          desc: 'Checking the items to make sure nothing is broken or missing, and signing the delivery receipt for the driver.',
+          action: 'Inspectors check carton conditions against the manifest bill. Once verified, the delivery slip (POD) is signed and stamped.'
+        },
+        5: {
+          category: 'Inward Stage 5',
+          title: '5. Putaway',
+          desc: 'Moving the checked boxes and items to their final shelves and storage racks inside the warehouse.',
+          action: 'Forklifts and pickers scan barcodes and place goods into designated storage racks so they can be quickly found later.'
+        },
+        6: {
+          category: 'Inward Stage 6',
+          title: '6. Stored',
+          desc: 'Items are safely stored on warehouse shelves, ready to be picked and sold whenever a customer places an order.',
+          action: 'Stock is officially entered into the warehouse inventory system and is ready for customer orders.'
+        }
+      },
+      outward: {
+        1: {
+          category: 'Outward Stage 1',
+          title: '1. Order Received',
+          desc: 'A customer placed an order. It is confirmed and waiting in line for warehouse staff to start gathering the items.',
+          action: 'The system creates an order pick-list and assigns it to the warehouse floor team.'
+        },
+        2: {
+          category: 'Outward Stage 2',
+          title: '2. Wave Picking',
+          desc: 'Workers walk through the warehouse aisles to find and collect the ordered items from the shelves.',
+          action: 'Pickers follow a route map with handheld barcode scanners to take items off the shelves and place them into pick carts.'
+        },
+        3: {
+          category: 'Outward Stage 3',
+          title: '3. Sorting & Packing',
+          desc: 'Collected items are brought together, safely wrapped with bubble wrap, and packed into courier boxes.',
+          action: 'Packers box the items securely, tape the cartons shut, and stick shipping address labels on the outside.'
+        },
+        4: {
+          category: 'Outward Stage 4',
+          title: '4. QC & Weighing',
+          desc: 'Weighing the packed parcel and double-checking that the right items are inside before shipping.',
+          action: 'The box is weighed on a digital scale to ensure package weight matches the shipping invoice.'
+        },
+        5: {
+          category: 'Outward Stage 5',
+          title: '5. Staged at Dock',
+          desc: 'Packed boxes are placed near the warehouse exit gate, ready for the delivery truck to load them.',
+          action: 'Boxes are stacked by transport route while security prepares the gate pass for the outbound vehicle.'
+        },
+        6: {
+          category: 'Outward Stage 6',
+          title: '6. Dispatched & POD',
+          desc: 'The truck has picked up the order, carried it to the customer, and delivered it with a signed proof of delivery receipt.',
+          action: 'The customer has received their goods and signed the delivery receipt (POD), successfully completing the order.'
+        }
+      }
+    };
+
+    window.showStageDefinition = function(type, stageNum) {
+      const stageData = STAGE_DEFINITIONS[type] && STAGE_DEFINITIONS[type][stageNum];
+      if (!stageData) return;
+
+      const modal = document.getElementById('stage-info-modal');
+      const catEl = document.getElementById('stage-info-category');
+      const titleEl = document.getElementById('stage-info-title');
+      const descEl = document.getElementById('stage-info-desc');
+      const actEl = document.getElementById('stage-info-action');
+
+      if (catEl) catEl.textContent = stageData.category;
+      if (titleEl) titleEl.textContent = stageData.title;
+      if (descEl) descEl.textContent = stageData.desc;
+      if (actEl) actEl.textContent = stageData.action;
+
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeStageDefinitionModal = function(e) {
+      if (e && e.target && e.target.id !== 'stage-info-modal' && !e.target.closest('button')) {
+        return;
+      }
+      const modal = document.getElementById('stage-info-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    };
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('stage-info-modal');
+        if (modal && !modal.classList.contains('hidden')) {
+          closeStageDefinitionModal();
+        }
+      }
+    });
 
   </script>
 
@@ -6628,8 +6767,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
           </div>
           <div>
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Outward Proof of Delivery (Customer POD)</h3>
-            <span class="text-[12px] text-[#6B7280]">Customer signed electronic delivery receipt</span>
+            <h3 class="text-[17px] font-bold text-[#1F2937]">Proof of Delivery</h3>
           </div>
         </div>
         <button onclick="closeOutwardPodModal()" class="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 cursor-pointer">
@@ -6775,7 +6913,7 @@
             Stage 5 · Staged at Dock (Bay 06)
           </span>
           <span id="issue-modal-time-stuck" class="text-[12px] font-bold text-[#DC2626] flex items-center gap-1 font-arial">
-            ⏳ 1h 10m overdue
+            1h 10m overdue
           </span>
         </div>
         <div>
@@ -6785,7 +6923,7 @@
           </p>
         </div>
         <div class="text-[11px] text-[#B45309] font-medium pt-1 border-t border-red-200/60 flex items-center gap-1">
-          <span>⚠️ SLA Impact:</span>
+          <span>SLA Impact:</span>
           <span id="issue-modal-sla" class="font-bold">VRL Logistics truck waiting at outbound gate</span>
         </div>
       </div>
@@ -6833,6 +6971,49 @@
         </button>
         <button id="issue-modal-override-btn" class="btn-redbus text-[12px] py-2 px-5 cursor-pointer font-bold shadow-xs">
           Supervisor Manual Override &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==============================================
+       STAGE DEFINITION INFO MODAL (Plain Simple Language, No Jargon)
+       ============================================== -->
+  <div id="stage-info-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4" onclick="closeStageDefinitionModal(event)">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-[#E5E7EB] animate-in fade-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#FEECEE] text-[#D84E55] flex items-center justify-center font-serif italic font-bold text-[14px] border border-[#FECACA]">
+            i
+          </div>
+          <div>
+            <span id="stage-info-category" class="text-[10px] uppercase font-bold text-[#D84E55] font-arial tracking-wider block">Inward Stage 1</span>
+            <h3 id="stage-info-title" class="text-[16px] font-bold text-[#1F2937]">Expected</h3>
+          </div>
+        </div>
+        <button onclick="closeStageDefinitionModal()" class="w-7 h-7 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg cursor-pointer transition-colors">&times;</button>
+      </div>
+
+      <div class="space-y-3.5 text-left">
+        <div class="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-3.5 space-y-1">
+          <span class="text-[10.5px] font-bold uppercase tracking-wider text-gray-500 font-arial block">What this means:</span>
+          <p id="stage-info-desc" class="text-[13px] text-[#1F2937] leading-relaxed font-medium">
+            Goods are on their way. The supplier or truck is traveling to the warehouse, but has not arrived yet.
+          </p>
+        </div>
+
+        <div class="space-y-1 px-1">
+          <span class="text-[10.5px] font-bold uppercase tracking-wider text-gray-500 font-arial block">What is happening right now:</span>
+          <p id="stage-info-action" class="text-[12px] text-[#4B5563] leading-relaxed">
+            The warehouse team is keeping track of arrival time to assign a dock bay as soon as it arrives.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-[#E5E7EB] flex justify-end">
+        <button onclick="closeStageDefinitionModal()" class="px-5 py-2 rounded-xl bg-[#1F2937] hover:bg-black text-white font-bold text-[12px] shadow-2xs cursor-pointer transition-colors">
+          Got it
         </button>
       </div>
     </div>
