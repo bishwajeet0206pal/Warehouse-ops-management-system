@@ -2601,7 +2601,7 @@
   </div>
 
   <!-- ✦ AI TOAST NOTIFICATION CONTAINER -->
-  <div id="ai-toast" class="fixed bottom-6 right-6 z-50 max-w-md bg-[#1F2937] text-white p-4 rounded-2xl shadow-2xl border border-gray-700 opacity-0 pointer-events-none transform translate-y-4 transition-all duration-300 flex items-start gap-3">
+  <div id="ai-toast" class="fixed bottom-28 right-6 z-50 max-w-md bg-[#1F2937] text-white p-4 rounded-2xl shadow-2xl border border-gray-700 opacity-0 pointer-events-none transform translate-y-4 transition-all duration-300 flex items-start gap-3">
     <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] text-white flex items-center justify-center font-bold shrink-0 mt-0.5">
       ✦
     </div>
@@ -2612,10 +2612,10 @@
   </div>
 
   <!-- ==============================================
-       ✦ FLOATING AI BUDDY (DOCK ON LEFT SIDE)
+       ✦ FLOATING AI BUDDY (DOCK ON RIGHT-BOTTOM SIDE)
        Interactive Intelligence Orb with living animations
        ============================================== -->
-  <div id="ai-buddy-dock" class="fixed left-5 bottom-6 z-40 flex items-end gap-3 pointer-events-auto select-none">
+  <div id="ai-buddy-dock" class="fixed right-6 bottom-6 z-[60] flex items-end flex-row-reverse gap-3 pointer-events-auto select-none transition-transform duration-300 ease-in-out">
     
     <!-- Alive Animated Intelligence Orb -->
     <div class="ai-orb-container relative cursor-pointer group" onclick="toggleAiBuddyDrawer(true)" title="Click to interact with Odwen AI Buddy">
@@ -2641,11 +2641,6 @@
         <div class="ai-orb-glass-rim"></div>
         <div class="ai-orb-sheen"></div>
       </div>
-
-      <!-- Online Presence Dot -->
-      <span class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[#10B981] border-2 border-white shadow-md flex items-center justify-center">
-        <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-      </span>
     </div>
 
     <!-- Interactive Greeting / Prompt Bubble -->
@@ -2666,8 +2661,8 @@
         </button>
         <span class="text-[10px] text-[#9CA3AF] font-arial">Level 2 AI</span>
       </div>
-      <!-- Triangle pointer pointing to the orb -->
-      <div class="absolute -left-1.5 bottom-4 w-3 h-3 bg-white border-l border-b border-[#C7D2FE] transform rotate-45"></div>
+      <!-- Triangle pointer pointing to the orb on the right -->
+      <div class="absolute -right-1.5 bottom-5 w-3 h-3 bg-white border-r border-t border-[#C7D2FE] transform rotate-45"></div>
     </div>
 
   </div>
@@ -2973,18 +2968,30 @@
     function toggleExceptionsPanel(show) {
       const panel = document.getElementById('exceptions-panel');
       const backdrop = document.getElementById('exceptions-backdrop');
+      const buddyDock = document.getElementById('ai-buddy-dock');
       if (show) {
         backdrop.classList.remove('opacity-0', 'pointer-events-none');
         backdrop.classList.add('opacity-100');
         panel.classList.remove('translate-x-full');
         panel.classList.add('translate-x-0');
         document.body.style.overflow = 'hidden';
+
+        if (buddyDock) {
+          // Slide the AI buddy smoothly to the left so it stays visible beside the drawer
+          const panelWidth = panel ? (panel.offsetWidth || 500) : 500;
+          const shiftPx = Math.min(window.innerWidth - 80, panelWidth + 16);
+          buddyDock.style.transform = `translateX(-${shiftPx}px)`;
+        }
       } else {
         backdrop.classList.remove('opacity-100');
         backdrop.classList.add('opacity-0', 'pointer-events-none');
         panel.classList.remove('translate-x-0');
         panel.classList.add('translate-x-full');
         document.body.style.overflow = '';
+
+        if (buddyDock) {
+          buddyDock.style.transform = '';
+        }
       }
     }
 
@@ -3354,6 +3361,11 @@
       const backdrop = document.getElementById('ai-buddy-backdrop');
       if (!drawer || !backdrop) return;
       if (show) {
+        // If exceptions panel was open, close it cleanly without breaking interaction
+        const exceptionsPanel = document.getElementById('exceptions-panel');
+        if (exceptionsPanel && !exceptionsPanel.classList.contains('translate-x-full')) {
+          toggleExceptionsPanel(false);
+        }
         backdrop.classList.remove('opacity-0', 'pointer-events-none');
         backdrop.classList.add('opacity-100');
         drawer.classList.remove('-translate-x-full');
