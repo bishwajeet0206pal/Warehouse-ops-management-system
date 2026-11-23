@@ -1528,26 +1528,77 @@
                   </div>
                 </div>
 
-                <div class="flex items-center justify-between text-[11.5px] pt-0.5">
-                  <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    0 damaged cartons · Outer wrap intact with seal #ODW-8821
-                  </span>
-                  <span class="text-[10px] text-slate-400">Inspector: R. Kumar (Dock 04)</span>
+                <div class="flex items-center justify-between text-[11px] pt-1 border-t border-[#334155]/60 flex-wrap gap-2">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] border border-emerald-500/30">Seal: Verified</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] border border-emerald-500/30">Cartons: 0 Damage</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] border border-emerald-500/30">Wrap: Tight &amp; Dry</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] border border-emerald-500/30">GS1 Barcodes: Scanned</span>
+                  </div>
+                  <span class="text-[10px] text-slate-400 font-arial">Inspector: R. Kumar (Dock 04)</span>
                 </div>
               </div>
 
-              <!-- Delivered vs Manifest & Condition -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px]">
-                <div class="p-3 rounded-xl bg-[#F0FDF4] border border-[#BBF7D0]">
-                  <span class="text-[11px] text-[#15803D] uppercase font-bold block">Delivered vs Manifest Count</span>
-                  <strong class="text-[15px] text-[#166534] font-arial block">2,400 / 2,400 Units (100%)</strong>
-                  <span class="text-[11px] text-[#15803D]">0 shortages · 0 discrepancies</span>
+              <!-- Fixed Mandatory POD Inspection Checklist (Fixed warehouse SOP items) -->
+              <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-4 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-gray-200">
+                  <div>
+                    <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">SOP Verification Checklist</span>
+                    <h4 class="text-[13px] font-bold text-[#1F2937]">Mandatory POD &amp; Intake Inspection</h4>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] text-[11px] font-bold font-arial">
+                    6/6 Items Checked
+                  </span>
                 </div>
-                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
-                  <span class="text-[11px] text-gray-500 uppercase font-bold block">Inspection Clearance</span>
-                  <strong class="text-[#1F2937] block" id="inward-qcnote">Pre-approved for instant putaway into Rack B8</strong>
-                  <span class="text-[11px] text-[#059669]">Container Seal Match Confirmed</span>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-[12px]" id="inward-qc-checklist">
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">1. Container / Truck Seal</span>
+                      <span class="text-[11px] text-[#4B5563]">Seal #ODW-8821 Verified</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">2. Physical Carton Check</span>
+                      <span class="text-[11px] text-[#4B5563]">0 Crushed / 0 Damp</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">3. Pallet Stacking &amp; Wrap</span>
+                      <span class="text-[11px] text-[#4B5563]">Tight Wrap · Upright</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">4. Challan Quantity Match</span>
+                      <span class="text-[11px] text-[#4B5563]" id="inward-checklist-qty">2,400 / 2,400 Units (100%)</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">5. GS1-128 Barcode Scan</span>
+                      <span class="text-[11px] text-[#4B5563]">All Cartons Scanned</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
+                    <div>
+                      <span class="font-bold text-[#1F2937] block">6. Delivery Challan (POD)</span>
+                      <span class="text-[11px] text-[#4B5563]">Signed by Driver &amp; Stamped</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
+                  </div>
                 </div>
               </div>
 
@@ -1982,8 +2033,38 @@
                   </div>
                 </div>
 
-                <div class="pt-1 text-[11px] text-gray-400 italic">
-                  Tare calibration verified · Ready for gross weighbridge scan once cartons are strapped and sealed.
+                <!-- Fixed Pre-Dispatch QC Checklist -->
+                <div class="rounded-xl border border-gray-200 bg-white p-3 space-y-2 mt-2">
+                  <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+                    <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial">Pre-Dispatch QC Checklist</span>
+                    <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] text-[10px] font-bold font-arial">6/6 Items Checked</span>
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-[11.5px]">
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">1. SKU &amp; Item Count</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">2. Protective Packaging</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">3. Scale Gross Weight</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">4. Shipping Label Scan</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">5. Box Taping &amp; Straps</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+                      <span class="text-gray-700">6. GST e-Way Bill</span>
+                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4471,8 +4552,8 @@
       const matchEl = document.getElementById('inward-match');
       if (matchEl) matchEl.textContent = (order.matchMsg || '').replace(/^[✓✔]\s*/, '');
 
-      const qcEl = document.getElementById('inward-qcnote');
-      if (qcEl) qcEl.textContent = order.qcNote;
+      const chkQty = document.getElementById('inward-checklist-qty');
+      if (chkQty) chkQty.textContent = `${order.qty} (100% Match)`;
 
       const labourEl = document.getElementById('inward-labour');
       if (labourEl) labourEl.textContent = order.labour;
@@ -6705,11 +6786,45 @@
                 <td class="p-2 font-bold">SKU-LED-60W UltraSlim Smart Bulbs</td>
                 <td class="p-2">2,400 Pcs</td>
                 <td class="p-2 font-bold text-[#059669]">2,400 Pcs</td>
-                <td class="p-2 text-[#059669] font-bold">✓ Intact / 0 Damage</td>
+                <td class="p-2 text-[#059669] font-bold">Intact / 0 Damage</td>
                 <td class="p-2">48 Pallets</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Mandatory Receiving Inspection Checklist -->
+        <div class="border border-[#1F2937] rounded-md p-3 bg-gray-50/50 space-y-2">
+          <div class="flex items-center justify-between pb-1 border-b border-gray-200">
+            <span class="text-[10.5px] uppercase font-bold text-[#1F2937] tracking-wider">Mandatory Receiving Checklist</span>
+            <span class="text-[10px] text-[#059669] font-bold font-arial">6/6 Items Checked</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">Container Seal</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">Carton Condition</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">Pallet Moisture</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">Quantity Count</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">Barcode Scan</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
+              <span class="text-gray-700">POD Signature</span>
+              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
+            </div>
+          </div>
         </div>
 
         <!-- Carrier & Seal Notes -->
