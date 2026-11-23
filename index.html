@@ -2404,6 +2404,145 @@
   </div>
 
   <!-- ==============================================
+       SLOT INVENTORY POPUP (STUFFED SPACE DETAILS)
+       Zero Horizontal Scrolling · Full Table Format
+       ============================================== -->
+  <div id="slot-detail-backdrop" onclick="closeSlotDetailModal()" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="slot-detail-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl max-h-[92vh] bg-white rounded-3xl shadow-2xl z-50 opacity-0 pointer-events-none transform scale-95 transition-all duration-300 flex flex-col overflow-hidden border border-[#E5E7EB]">
+    
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-white border-b border-[#E5E7EB] flex items-center justify-between sticky top-0 z-20">
+      <div class="flex items-center gap-3">
+        <div id="slot-modal-icon-container" class="w-11 h-11 rounded-2xl bg-[#FEF2F2] text-[#D84E55] flex items-center justify-center font-bold text-[18px] border border-[#FECACA] shadow-2xs shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="text-[19px] font-bold text-[#1F2937]" id="slot-modal-title">Slot A1 · Pallet Rack</h2>
+            <span id="slot-modal-heat-badge" class="px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]">
+              96% OCCUPIED · HIGH DENSITY
+            </span>
+            <span id="slot-modal-zone-badge" class="px-2 py-0.5 rounded-full bg-gray-100 text-[#4B5563] text-[10px] font-bold font-arial">
+              ZONE A · FAST MOVING
+            </span>
+          </div>
+          <p class="text-[12px] text-[#6B7280] font-arial mt-0.5" id="slot-modal-subtitle">
+            WH-02 Guwahati · Floor 1 (Ground) · Pallet Rack A1–F8 · Aisle A, Bay 1
+          </p>
+        </div>
+      </div>
+      <button onclick="closeSlotDetailModal()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors border border-[#E5E7EB] cursor-pointer">
+        ✕
+      </button>
+    </div>
+
+    <!-- Modal Body (Scrollable vertically, NEVER horizontally) -->
+    <div class="flex-1 overflow-y-auto overflow-x-hidden p-6 space-y-5 bg-[#F9FAFB]">
+      
+      <!-- 4 Spatial & Load Summary Tiles -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 shadow-xs">
+          <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">Physical Location</span>
+          <strong class="text-[14px] text-[#1F2937] block mt-0.5" id="slot-modal-loc">Aisle A · Bay 01 · L2</strong>
+          <span class="text-[11px] text-[#9CA3AF] block font-arial">Heavy Pallet Rack</span>
+        </div>
+        
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 shadow-xs">
+          <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">Occupancy Load</span>
+          <strong class="text-[14px] text-[#1F2937] block mt-0.5" id="slot-modal-occ-load">48 / 50 Cartons</strong>
+          <span class="text-[11px] text-[#059669] font-bold block font-arial" id="slot-modal-occ-pct">96% Volume Used</span>
+        </div>
+
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 shadow-xs">
+          <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">Weight / Payload</span>
+          <strong class="text-[14px] text-[#1F2937] block mt-0.5" id="slot-modal-weight">1,152 kg</strong>
+          <span class="text-[11px] text-[#6B7280] block font-arial">Max Limit: 1,500 kg</span>
+        </div>
+
+        <div class="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 shadow-xs">
+          <span class="text-[10px] uppercase font-bold text-[#6B7280] font-arial block">Last Audit / Custody</span>
+          <strong class="text-[14px] text-[#1F2937] block mt-0.5" id="slot-modal-custody">R. Kumar (#04)</strong>
+          <span class="text-[11px] text-[#6B7280] block font-arial" id="slot-modal-audittime">Today, 11:25 AM</span>
+        </div>
+      </div>
+
+      <!-- Inventory Breakdown Section -->
+      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs space-y-3">
+        <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+          <div>
+            <h3 class="text-[15px] font-bold text-[#1F2937]">Stuffed Inventory &amp; Material Breakdown</h3>
+            <p class="text-[11.5px] text-[#6B7280]">All SKU line items, lots, quantities, and clients stored in this physical space</p>
+          </div>
+          <span id="slot-modal-item-count" class="px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]">
+            1 SKU Line Item Stored
+          </span>
+        </div>
+
+        <!-- Table Container (Strictly table-fixed, zero horizontal scroll, graceful text-wrap) -->
+        <div class="w-full overflow-hidden">
+          <table class="w-full table-fixed text-left text-[12px] border-collapse">
+            <thead>
+              <tr class="bg-[#F8FAFC] border-y border-[#E2E8F0] text-[#64748B] font-arial text-[10px] uppercase tracking-wider">
+                <th class="py-2.5 px-3 w-[30%]">SKU Name &amp; Description</th>
+                <th class="py-2.5 px-3 w-[18%]">Quantity &amp; Packaging</th>
+                <th class="py-2.5 px-3 w-[22%]">Batch / Lot &amp; Expiry</th>
+                <th class="py-2.5 px-3 w-[18%]">Client &amp; Consignment</th>
+                <th class="py-2.5 px-3 w-[12%] text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody id="slot-modal-tbody" class="divide-y divide-gray-100 text-[#334155]">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Additional Handling & Storage Compliance Guidelines -->
+      <div class="p-4 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[11.5px] text-[#64748B] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="space-y-0.5">
+          <div class="font-bold text-[#1F2937] flex items-center gap-1.5">
+            <span>🛡️</span>
+            <span id="slot-modal-handling-title">Storage Compliance &amp; Handling Protocol</span>
+          </div>
+          <p id="slot-modal-handling-desc">Forklift clearance certified · Double-palletized with corner strapping · Ambient temperature 24°C</p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200 text-[#374151] font-semibold text-[11px]">
+            Bin Barcode: <strong class="font-mono text-[#1F2937]" id="slot-modal-barcode">BIN-GW-01-A1</strong>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="px-6 py-3.5 bg-white border-t border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-3 sticky bottom-0 z-20">
+      <div class="flex items-center gap-2 text-[12px] text-[#6B7280]">
+        <span>Custodian Lead: <strong class="text-[#D84E55]">Arun Verma</strong></span>
+        <span>·</span>
+        <span>MHE Assigned: <strong class="text-[#1F2937]">Reach Truck #03</strong></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <button onclick="alert('Bin Label printed on Mobile Zebra Printer #04')" class="btn-redbus-secondary text-[11px] py-1.5 px-3.5 cursor-pointer">
+          🖨️ Print Bin QR Label
+        </button>
+        <button onclick="alert('Physical Cycle Count scheduled for next shift (Manoj Tiwari)')" class="btn-redbus-secondary text-[11px] py-1.5 px-3.5 cursor-pointer">
+          📋 Request Cycle Count
+        </button>
+        <button onclick="closeSlotDetailModal()" class="btn-redbus text-[12px] py-1.5 px-4 cursor-pointer">
+          Close
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==============================================
        SCREEN SWITCHER & SLIDE PANEL SCRIPT
        ============================================== -->
   <script>
@@ -2545,8 +2684,267 @@
         toggleOrgHierarchyModal(false);
         toggleAiOpsModal(false);
         closeCustomerModal();
+        closeSlotDetailModal();
       }
     });
+
+    function openSlotDetailModal(storeyNum, slotId, heat, pct, sku) {
+      const modal = document.getElementById('slot-detail-modal');
+      const backdrop = document.getElementById('slot-detail-backdrop');
+      if (!modal || !backdrop) return;
+
+      const storey = storeyData[storeyNum] || storeyData[1];
+      const isAvailable = heat === 'empty' || pct === '0%';
+      const rowLetter = slotId.charAt(0);
+      const colNum = slotId.substring(1);
+
+      // Title & Subtitle
+      document.getElementById('slot-modal-title').textContent = `Slot ${slotId} · ${isAvailable ? 'Available Empty Shelf' : 'Pallet Rack Space'}`;
+      document.getElementById('slot-modal-subtitle').textContent = `${currentFacilityName} · ${storey.name} · Pallet Rack A1–F8 · Aisle ${rowLetter}, Bay ${colNum} · Bin Level 2`;
+
+      // Badges
+      const heatBadge = document.getElementById('slot-modal-heat-badge');
+      const iconContainer = document.getElementById('slot-modal-icon-container');
+      if (isAvailable) {
+        heatBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]';
+        heatBadge.textContent = 'AVAILABLE · 0% OCCUPIED';
+        iconContainer.className = 'w-11 h-11 rounded-2xl bg-[#ECFDF5] text-[#059669] flex items-center justify-center font-bold text-[18px] border border-[#A7F3D0] shadow-2xs shrink-0';
+      } else if (heat === 'critical') {
+        heatBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA] animate-pulse';
+        heatBadge.textContent = `${pct} OCCUPIED · HIGH DENSITY`;
+        iconContainer.className = 'w-11 h-11 rounded-2xl bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold text-[18px] border border-[#FECACA] shadow-2xs shrink-0';
+      } else if (heat === 'medium') {
+        heatBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[11px] font-arial border border-[#FDE68A]';
+        heatBadge.textContent = `${pct} OCCUPIED · OPTIMAL`;
+        iconContainer.className = 'w-11 h-11 rounded-2xl bg-[#FFFBEB] text-[#D97706] flex items-center justify-center font-bold text-[18px] border border-[#FDE68A] shadow-2xs shrink-0';
+      } else {
+        heatBadge.className = 'px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]';
+        heatBadge.textContent = `${pct} OCCUPIED · LOW DENSITY`;
+        iconContainer.className = 'w-11 h-11 rounded-2xl bg-[#ECFDF5] text-[#059669] flex items-center justify-center font-bold text-[18px] border border-[#A7F3D0] shadow-2xs shrink-0';
+      }
+
+      document.getElementById('slot-modal-zone-badge').textContent = `ZONE ${rowLetter} · FAST MOVING`;
+
+      // 4 Summary Tiles
+      document.getElementById('slot-modal-loc').textContent = `Aisle ${rowLetter} · Bay 0${colNum} · L2`;
+      document.getElementById('slot-modal-barcode').textContent = `BIN-${currentFacilityName.substring(0,5).replace(/\s/g,'')}-${storeyNum}-${slotId}`;
+
+      // Inventory Data resolution
+      const inventory = generateSlotInventory(storeyNum, slotId, heat, pct, sku);
+      
+      document.getElementById('slot-modal-occ-load').textContent = isAvailable ? '0 / 50 Cartons' : `${inventory.totalPcs} (${inventory.packagingSummary})`;
+      document.getElementById('slot-modal-occ-pct').textContent = isAvailable ? '0% (Shelf Sanitized & Ready)' : `${pct} Space Stuffed`;
+      document.getElementById('slot-modal-weight').textContent = isAvailable ? '0 kg' : inventory.totalWeight;
+      document.getElementById('slot-modal-custody').textContent = inventory.custodian;
+      document.getElementById('slot-modal-audittime').textContent = inventory.auditTime;
+      document.getElementById('slot-modal-handling-desc').textContent = inventory.handlingNotes;
+
+      const itemCountBadge = document.getElementById('slot-modal-item-count');
+      const tbody = document.getElementById('slot-modal-tbody');
+      tbody.innerHTML = '';
+
+      if (isAvailable || inventory.items.length === 0) {
+        itemCountBadge.className = 'px-2.5 py-1 rounded-full bg-[#F3F4F6] text-[#6B7280] font-bold text-[11px] font-arial border border-[#E5E7EB]';
+        itemCountBadge.textContent = '0 Items · Shelf Empty';
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-8 px-4 text-center">
+              <div class="flex flex-col items-center justify-center space-y-2">
+                <div class="w-12 h-12 rounded-2xl bg-gray-100 text-gray-400 flex items-center justify-center text-[22px]">
+                  📦
+                </div>
+                <strong class="text-[14px] text-[#1F2937]">Slot ${slotId} is Currently Empty &amp; Available</strong>
+                <p class="text-[12px] text-[#6B7280] max-w-md mx-auto leading-relaxed">
+                  Zero items currently stuffed in this bay. Capacity available for up to 50 cartons / 1,500 kg payload. Pre-allocated for incoming container intake from Dock Bay 04.
+                </p>
+                <div class="pt-2">
+                  <button onclick="closeSlotDetailModal(); openInwardOrderDetail('ORD-IN-8821');" class="btn-redbus text-[11px] py-1.5 px-4 cursor-pointer">
+                    Allocate Inbound Putaway &rarr;
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+      } else {
+        itemCountBadge.className = 'px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]';
+        itemCountBadge.textContent = `${inventory.items.length} SKU Line Item${inventory.items.length > 1 ? 's' : ''} Stored`;
+
+        inventory.items.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-50/80 transition-colors';
+          tr.innerHTML = `
+            <td class="py-3 px-3 align-top break-words">
+              <div class="font-bold text-[#1F2937] text-[13px] font-arial">${item.sku}</div>
+              <div class="text-[11px] text-[#4B5563] mt-0.5 leading-snug">${item.name}</div>
+              <span class="inline-block px-1.5 py-0.2 rounded bg-gray-100 text-[#4B5563] text-[9.5px] mt-1 font-arial font-semibold">${item.category}</span>
+            </td>
+            <td class="py-3 px-3 align-top break-words">
+              <div class="font-bold text-[#1F2937] text-[13px]">${item.qty}</div>
+              <div class="text-[11px] text-[#6B7280] mt-0.5 leading-tight">${item.packaging}</div>
+            </td>
+            <td class="py-3 px-3 align-top break-words">
+              <div class="font-mono text-[11px] font-bold text-[#1F2937]">${item.batchLot}</div>
+              <div class="text-[10.5px] text-[#6B7280] mt-0.5">Mfg: <strong class="text-[#374151]">${item.mfgDate}</strong></div>
+              <div class="text-[10.5px] text-[#6B7280]">Exp: <strong class="text-[#374151]">${item.expDate}</strong></div>
+            </td>
+            <td class="py-3 px-3 align-top break-words">
+              <div class="font-semibold text-[#1F2937] text-[12px]">${item.client}</div>
+              <div class="text-[10.5px] text-[#6B7280] mt-0.5 font-mono">${item.inwardRef}</div>
+              <div class="text-[10px] text-[#059669] mt-0.5 font-medium">Putaway: ${item.putawayDate}</div>
+            </td>
+            <td class="py-3 px-3 align-top text-right break-words">
+              <span class="inline-block px-2 py-0.5 rounded-full ${item.statusClass} font-bold text-[10px] font-arial border">
+                ${item.status}
+              </span>
+              <div class="text-[10.5px] text-[#6B7280] mt-1 font-mono">${item.weight}</div>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Show modal
+      backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop.classList.add('opacity-100');
+      modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      modal.classList.add('opacity-100', 'scale-100');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSlotDetailModal() {
+      const modal = document.getElementById('slot-detail-modal');
+      const backdrop = document.getElementById('slot-detail-backdrop');
+      if (!modal || !backdrop) return;
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100', 'scale-100');
+      modal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      document.body.style.overflow = '';
+    }
+
+    function generateSlotInventory(storeyNum, slotId, heat, pct, sku) {
+      if (heat === 'empty' || pct === '0%') {
+        return {
+          totalPcs: '0 pcs',
+          packagingSummary: 'Empty',
+          totalWeight: '0 kg',
+          custodian: 'Pooja Gupta (Inward Lead)',
+          auditTime: 'Today, 09:15 AM',
+          handlingNotes: 'Shelf sanitized and cleared for new inward container putaway.',
+          items: []
+        };
+      }
+
+      let parsedSku = 'SKU-GEN-01';
+      let parsedQty = '40 pcs';
+      if (sku) {
+        const m = sku.match(/^(.*?)\s*\((.*?)\)$/);
+        if (m) {
+          parsedSku = m[1].trim();
+          parsedQty = m[2].trim();
+        } else {
+          parsedSku = sku;
+        }
+      }
+
+      let name = 'Commercial Industrial Freight';
+      let category = 'Industrial Goods';
+      let client = 'Odwen Contract Logistics';
+      let packaging = 'Palletized & Strapped';
+      let batch = 'LOT-2026-NOV-88' + (slotId.charCodeAt(0) % 9) + (slotId.charCodeAt(1) % 9);
+      let mfg = '10 Oct 2026';
+      let exp = 'N/A (Durable)';
+      let inwardRef = 'ORD-IN-88' + (slotId.charCodeAt(0) % 9) + '0';
+      let weight = '820 kg';
+      let status = '✓ QC Cleared · Stock Ready';
+      let statusClass = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
+
+      if (parsedSku.includes('LED-60W')) {
+        name = '60W UltraSlim LED Panel Light 2x2ft (Warm White & Daylight)';
+        category = 'Electronics · Commercial Lighting';
+        client = 'Amazon FBA Hub (Guwahati)';
+        packaging = '4 Master Wooden Pallets · 12 Cartons (4 pcs/ctn)';
+        weight = '1,152 kg (24 kg/ctn)';
+        if (slotId === 'B8') {
+          status = 'Allocated for Dispatch (ORD-GW-9014)';
+          statusClass = 'bg-[#FEF2F2] text-[#DC2626] border-[#FECACA]';
+        }
+      } else if (parsedSku.includes('SMART-FAN')) {
+        name = 'Atomberg 1200mm BLDC Smart Ceiling Fan (Matte Black)';
+        category = 'Home Appliances · Energy Star';
+        client = 'Tata Croma (Paltan Bazar)';
+        packaging = '3 Euro Pallets · 13 Master Cartons (3 units/box)';
+        weight = '468 kg';
+      } else if (parsedSku.includes('FMCG-22')) {
+        name = 'HUL Dove Body Wash & Shampoo 500ml Retail Packs';
+        category = 'FMCG · Personal Care & Groceries';
+        client = 'Blinkit Hub 04 (Dispur)';
+        packaging = '8 Plastic Totes · 48 Inner Cartons';
+        exp = 'Oct 2028 (24M Shelf Life)';
+        weight = '560 kg';
+      } else if (parsedSku.includes('HV-CABLE')) {
+        name = 'Polycab 4-Core Armored Copper Cable 16sq.mm (100m Drum)';
+        category = 'Electrical Equipment · Heavy Industrial';
+        client = 'L&T Infrastructure Projects';
+        packaging = '2 Heavy Duty Wooden Cable Drums';
+        weight = '1,420 kg (Heavy Duty Beam)';
+      } else if (parsedSku.includes('BOAT-AIR')) {
+        name = 'boAt Airdopes 141 ANC Bluetooth Wireless Earbuds (Cyan)';
+        category = 'Consumer Tech · Fast Moving';
+        client = 'Flipkart Fulfillment Center';
+        packaging = '2 Corrugated Master Cases · 60 Inner Boxes';
+        weight = '180 kg';
+      } else if (parsedSku.includes('LENS-OPT')) {
+        name = 'Canon 50mm f/1.8 STM Full-Frame Prime Camera Lenses';
+        category = 'Precision Optics · High Value / Fragile';
+        client = 'Reliance Digital Megastore';
+        packaging = 'Shock-Resistant Foam Cases · 46 units';
+        weight = '138 kg';
+        status = 'High-Value Vault Inspected';
+        statusClass = 'bg-[#EEF2FF] text-[#4F46E5] border-[#C7D2FE]';
+      } else if (parsedSku.includes('ACC')) {
+        name = 'Bosch Premium Ceramic Brake Pad Sets (Front Axle)';
+        category = 'Automotive Aftermarket Parts';
+        client = 'Maruti Suzuki Regional Parts Depot';
+        packaging = 'Metal Stacking Bins · 35 Sets';
+        weight = '420 kg';
+      } else if (parsedSku.includes('BULK')) {
+        name = 'Nilkamal Heavy Corrugated Double-Wall Shipping Cartons';
+        category = 'Packaging Materials & Consumables';
+        client = 'Odwen Internal Repackaging Store';
+        packaging = 'Bundled Flatpacks on Skid';
+        weight = '310 kg';
+      }
+
+      return {
+        totalPcs: parsedQty,
+        packagingSummary: packaging,
+        totalWeight: weight,
+        custodian: 'R. Kumar (Scanner #04) / Amit Patel',
+        auditTime: 'Today, 11:25 AM',
+        handlingNotes: 'Forklift clearance verified · Keep dry · Double-palletized with corner strapping.',
+        items: [
+          {
+            sku: parsedSku,
+            name: name,
+            category: category,
+            qty: parsedQty,
+            packaging: packaging,
+            batchLot: batch,
+            mfgDate: mfg,
+            expDate: exp,
+            client: client,
+            inwardRef: inwardRef,
+            putawayDate: '21 Nov 2026',
+            status: status,
+            statusClass: statusClass,
+            weight: weight
+          }
+        ]
+      };
+    }
 
     function toggleAiOpsModal(show) {
       const modal = document.getElementById('ai-ops-modal');
@@ -4018,7 +4416,9 @@
         };
 
         slotEl.onclick = function() {
+          hideSlotTooltip();
           selectHeatSlot(num, slot.id, slot.heat, slot.pct, slot.sku);
+          openSlotDetailModal(num, slot.id, slot.heat, slot.pct, slot.sku);
         };
 
         container.appendChild(slotEl);
