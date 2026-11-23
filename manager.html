@@ -220,46 +220,35 @@
   <!-- ==============================================
        INTRODUCTORY WORKFLOW SPLASH SCREEN (Few Seconds Preview)
        ============================================== -->
-  <div id="intro-splash-screen" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-700 select-none">
-    <div class="max-w-5xl w-full flex flex-col items-center space-y-4">
+  <div id="intro-splash-screen" class="fixed inset-0 z-[100] bg-white w-screen h-screen overflow-hidden flex items-center justify-center transition-opacity duration-700 select-none">
+    <!-- Full-Screen Workflow Graphic (Borderless, Edge-to-Edge) -->
+    <div class="w-full h-full relative cursor-pointer flex items-center justify-center bg-white" onclick="dismissSplashScreen()">
+      <img src="warehouse-flow.jpg" alt="Warehouse Operations Flow: 1. Receiving, 2. Placement, 3. Picking, 4. Shipment" class="w-full h-full object-contain pointer-events-none" />
       
-      <!-- Top Splash Header -->
-      <div class="w-full flex items-center justify-between px-2">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#D84E55] to-[#F87171] flex items-center justify-center shadow-md shadow-[#D84E55]/25">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
-          </div>
-          <div>
-            <span class="text-[22px] font-bold text-[#D84E55] tracking-tight block leading-tight">odwen</span>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] block font-arial">Warehouse Operations Management System</span>
-          </div>
+      <!-- Top-Left Subtle Brand Badge -->
+      <div class="absolute top-6 left-6 sm:top-8 sm:left-8 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-gray-200/80 shadow-xs pointer-events-none">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-[#D84E55] to-[#F87171] flex items-center justify-center shadow-xs shadow-[#D84E55]/20">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
         </div>
+        <div>
+          <span class="text-[20px] font-bold text-[#D84E55] tracking-tight block leading-tight">odwen</span>
+          <span class="text-[9.5px] font-bold uppercase tracking-wider text-[#6B7280] block font-arial">Warehouse Operations Flow</span>
+        </div>
+      </div>
 
-        <button onclick="dismissSplashScreen()" class="btn-redbus text-[12px] py-2 px-4 flex items-center gap-2 shadow-xs cursor-pointer hover:shadow-md transition-all">
+      <!-- Bottom-Right: Enter Dashboard Action Button & Auto-Timer -->
+      <div class="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-20 flex items-center gap-3" onclick="event.stopPropagation()">
+        <span id="splash-timer-text" class="text-[12px] font-bold text-[#6B7280] bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-gray-200 shadow-xs font-arial hidden sm:inline-block">Opening dashboard in 4s...</span>
+        <button onclick="dismissSplashScreen()" class="btn-redbus text-[13px] py-2.5 px-5 flex items-center gap-2 shadow-lg cursor-pointer hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all font-bold">
           <span>Enter Dashboard</span>
-          <span class="text-[14px]">&rarr;</span>
+          <span class="text-[15px]">&rarr;</span>
         </button>
       </div>
 
-      <!-- Main Workflow Graphic -->
-      <div class="w-full bg-white rounded-2xl border border-[#E5E7EB] shadow-2xl overflow-hidden p-2 sm:p-3 relative group cursor-pointer" onclick="dismissSplashScreen()">
-        <img src="warehouse-flow.jpg" alt="Warehouse Operations Flow: 1. Receiving, 2. Placement, 3. Picking, 4. Shipment" class="w-full h-auto max-h-[72vh] object-contain rounded-xl mx-auto block" />
+      <!-- Edge-to-Edge Bottom Progress Bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-100 z-20 overflow-hidden">
+        <div id="splash-progress" class="bg-[#D84E55] h-full w-0 transition-all duration-75 ease-linear"></div>
       </div>
-
-      <!-- Bottom Progress Bar & Indicator -->
-      <div class="w-full px-2 space-y-1.5">
-        <div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
-          <div id="splash-progress" class="bg-[#D84E55] h-full w-0 transition-all duration-75 ease-linear rounded-full"></div>
-        </div>
-        <div class="flex items-center justify-between text-[11px] text-[#6B7280] font-medium">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
-            <span>1. Receiving &bull; 2. Placement &bull; 3. Picking &bull; 4. Shipment</span>
-          </div>
-          <span id="splash-timer-text" class="font-bold text-[#D84E55] font-arial">Opening dashboard in 4s...</span>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -317,8 +306,9 @@
           <span class="px-2 py-0.5 rounded-full bg-[#D84E55] text-white text-[11px] font-bold font-arial animate-pulse">3</span>
         </div>
 
-        <div class="flex items-center gap-3 pl-3 sm:pl-4 border-l border-[#E5E7EB] cursor-pointer" onclick="toggleOrgHierarchyModal(true)" title="Jaswant Singh · Head of Warehouse Operations (Click for Hierarchy)">
-          <img src="jaswant-singh.jpg" alt="Jaswant Singh" class="w-10 h-10 rounded-full object-cover border-2 border-[#D84E55]/30 shadow-xs hover:border-[#D84E55] transition-all" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-full bg-[#FEECEE] text-[#D84E55] font-bold flex items-center justify-center text-[13px]\'>JS</div>';" />
+        <!-- User Profile (Unconnected to Hierarchy) -->
+        <div class="flex items-center gap-3 pl-3 sm:pl-4 border-l border-[#E5E7EB]">
+          <img src="jaswant-singh.jpg" alt="Jaswant Singh" class="w-10 h-10 rounded-full object-cover border-2 border-gray-200 shadow-xs" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-full bg-[#FEECEE] text-[#D84E55] font-bold flex items-center justify-center text-[13px]\'>JS</div>';" />
           <div class="text-left hidden sm:block">
             <span class="font-semibold text-[#1F2937] block leading-tight text-[14px]">Jaswant Singh</span>
             <span class="text-[11px] text-[#6B7280]">Warehouse Ops Manager</span>
