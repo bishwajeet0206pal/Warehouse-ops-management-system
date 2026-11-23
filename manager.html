@@ -4429,6 +4429,28 @@
       renderInwardTable();
     }
 
+    function formatCargoCell(cargoStr) {
+      if (!cargoStr) return '<span class="text-gray-400">—</span>';
+      const parenMatch = cargoStr.match(/^(.*?)\s*\((.*?)\)$/);
+      if (parenMatch) {
+        const name = parenMatch[1].trim();
+        const qty = parenMatch[2].trim();
+        return `<span class="font-medium text-[#1F2937] block leading-tight">${name}</span><span class="text-gray-500 text-[11px] block mt-0.5">${qty}</span>`;
+      }
+      if (cargoStr.includes('·')) {
+        const parts = cargoStr.split('·');
+        const first = parts[0].trim();
+        const second = parts[1].trim();
+        const numMatch = second.match(/^(\d+(?:x|\s*(?:units|cartons|boxes|crates|pallets|bales|rolls|kits))?)\s*(.*)$/i);
+        if (numMatch && numMatch[2]) {
+          const qty = /^\d+$/.test(numMatch[1]) ? `${numMatch[1]} units` : numMatch[1];
+          return `<span class="font-medium text-[#1F2937] block leading-tight">${numMatch[2]}</span><span class="text-gray-500 text-[11px] block mt-0.5">${qty}</span>`;
+        }
+        return `<span class="font-medium text-[#1F2937] block leading-tight">${first}</span><span class="text-gray-500 text-[11px] block mt-0.5">${second}</span>`;
+      }
+      return `<span class="font-medium text-[#1F2937] block leading-tight">${cargoStr}</span>`;
+    }
+
     function renderInwardTable() {
       const inFacility = document.getElementById('inward-facility-title');
       if (inFacility) inFacility.textContent = currentFacilityName || 'WH-01 Bhiwandi';
@@ -4469,7 +4491,10 @@
         tr.innerHTML = `
           <td class="py-3 px-3 font-bold ${order.stageNum === 4 ? 'text-[#D84E55]' : 'text-[#1F2937]'} font-arial">${order.id}</td>
           <td class="py-3 px-3 font-medium">${order.transporter}</td>
-          <td class="py-3 px-3">${order.sku} <span class="text-gray-500 text-[11px]">(${order.qty})</span></td>
+          <td class="py-3 px-3">
+            <span class="font-medium text-[#1F2937] block leading-tight">${order.sku}</span>
+            <span class="text-gray-500 text-[11px] block mt-0.5">${order.qty}</span>
+          </td>
           <td class="py-3 px-3 font-arial font-semibold">${order.bay}</td>
           <td class="py-3 px-3">
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial inline-block ${stageBadgeClass}">
@@ -5191,7 +5216,7 @@
             orderId: 'ORD-BW-1092',
             customer: 'Tata Motors Parts Hub',
             priority: 'Priority OEM',
-            cargo: 'Auto Spares · 14 Transmission Gears',
+            cargo: 'Transmission Gears (14 units)',
             stage: 'Stage 5 · Staged at Dock (Bay 06)',
             stageNum: 5,
             dockBay: 'Dock Bay 06',
@@ -5941,7 +5966,7 @@
                 <span>${order.orderId}</span>
               </td>
               <td class="py-3 px-3 font-medium text-[#1F2937]">${order.customer}</td>
-              <td class="py-3 px-3 text-[#4B5563]">${order.cargo}</td>
+              <td class="py-3 px-3">${formatCargoCell(order.cargo)}</td>
               <td class="py-3 px-3 font-arial font-semibold text-[#1F2937]">${order.dockBay || order.picker}</td>
               <td class="py-3 px-3">
                 <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial inline-block ${stageBadgeClass}">
@@ -6752,7 +6777,7 @@
         tr.innerHTML = `
           <td class="py-3 px-3 font-bold text-[#1F2937] font-arial whitespace-nowrap">${item.orderId}</td>
           <td class="py-3 px-3 font-medium text-[#1F2937]">${item.customer}</td>
-          <td class="py-3 px-3 text-[#4B5563]">${item.cargo}</td>
+          <td class="py-3 px-3">${formatCargoCell(item.cargo)}</td>
           <td class="py-3 px-3 whitespace-nowrap">
             <span class="font-medium text-[#1F2937] block">${item.carrier}</span>
             <span class="text-gray-400 font-mono text-[11px] block">${item.waybill}</span>
@@ -7252,7 +7277,7 @@
         </div>
         <div>
           <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block">Cargo Items</span>
-          <span id="issue-modal-cargo" class="font-bold text-[#1F2937] block mt-0.5">Auto Spares · 14 Transmission Gears</span>
+          <span id="issue-modal-cargo" class="font-bold text-[#1F2937] block mt-0.5">Transmission Gears (14 units)</span>
         </div>
       </div>
 
