@@ -275,69 +275,8 @@
         </div>
       </div>
 
-      <!-- ✦ PROACTIVE AI NETWORK RADAR BANNER (PREVENTING CARRIER SLA BREACH) -->
-      <div id="ai-radar-banner" class="rounded-2xl border border-[#C7D2FE] bg-gradient-to-r from-[#EEF2FF] via-[#F5F3FF] to-[#FAF5FF] p-4 sm:p-5 shadow-xs transition-all relative overflow-hidden">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          
-          <div class="flex items-start gap-3.5">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] text-white flex items-center justify-center font-bold shadow-md shadow-[#4F46E5]/20 shrink-0">
-              <svg class="w-5 h-5 text-white animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-              </svg>
-            </div>
-            
-            <div class="space-y-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#4F46E5] text-white font-bold text-[11px] font-arial tracking-wide">
-                  ✦ PROACTIVE AI RADAR
-                </span>
-                <span class="text-[14px] font-bold text-[#1F2937]">WH-02 Guwahati · Predicted Carrier Cutoff Breach in 90 Mins</span>
-                <span class="px-2 py-0.5 rounded bg-[#FEF2F2] text-[#DC2626] font-bold text-[10px] font-arial border border-[#FECACA]">HIGH SLA RISK</span>
-              </div>
-              <p class="text-[12.5px] text-[#4B5563] leading-relaxed max-w-4xl">
-                AI cross-checked Guwahati picking velocity against the <strong>16:30 Indigo Air Cargo cutoff</strong>. 2 orders blocked on scale tare (+3.4kg) and shelf stock deficit. At current pace, dispatch will miss the runway cutoff by 38 minutes.
-              </p>
-              
-              <!-- Explainability Dropdown / Toggle -->
-              <details class="text-[11px] text-[#6366F1] pt-0.5 cursor-pointer select-none">
-                <summary class="font-semibold hover:text-[#4F46E5] flex items-center gap-1">
-                  <span>Why AI flagged this (Google Explainable AI)</span>
-                  <span class="text-[9px]">▾</span>
-                </summary>
-                <div class="mt-2 p-3 bg-white/80 rounded-xl border border-[#E0E7FF] text-[#374151] space-y-1 text-[11.5px] max-w-3xl backdrop-blur-xs">
-                  <div class="flex items-center gap-2">
-                    <span class="text-[#059669] font-bold">✓ Historical Pattern:</span>
-                    <span>Monday afternoon Indigo cargo cutoff breaches occur when Wave 2 picking rate falls below 85 UPH (currently 42 UPH).</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-[#4F46E5] font-bold">✦ Diagnostic Discovery:</span>
-                    <span>40 cold-chain units of SKU-AP-100 discovered in Reserve Buffer R-12; Tare variance (+3.4kg) matches skid #PL-204 lot tare.</span>
-                  </div>
-                  <div class="flex items-center gap-2 text-[#6B7280] text-[10.5px]">
-                    <span>Model Confidence: <strong>96.4%</strong></span>
-                    <span>·</span>
-                    <span>Policy: Level 2 Assist (AI suggests, Jaswant Singh approves)</span>
-                  </div>
-                </div>
-              </details>
-            </div>
-          </div>
-
-          <!-- Actions -->
-          <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0 self-end lg:self-center">
-            <button onclick="goToScreen(3, 'WH-02 Guwahati', 'outward')" class="px-3.5 py-2 rounded-xl bg-white border border-[#C7D2FE] text-[#4338CA] hover:bg-[#EEF2FF] font-bold text-[12px] transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs">
-              Review in Outward Funnel &rarr;
-            </button>
-            <button onclick="applyAiRecommendation('guwahati_fix')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-white font-bold text-[12px] shadow-sm hover:shadow transition-all flex items-center gap-1.5 cursor-pointer">
-              <span>✦</span>
-              <span>Approve AI Resolution (Jaswant Sign-off)</span>
-            </button>
-          </div>
-
-        </div>
-      </div>
-
       <!-- Warehouse Cards Grid (Showing 8 cards at once in 4x2 layout) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Card 1: WH-06 Hyderabad (Critical) -->
