@@ -233,158 +233,7 @@
       height: 720px !important;
       max-height: calc(100vh - 64px) !important;
     }
-  
-    /* Scoped Styles for Ops Manager 6 Core Metrics Panel */
-    #ops-manager-metrics {
-      background: #0e0e0e;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-    }
-    #ops-manager-metrics .wrap {
-      max-width: 1220px;
-      margin: 0 auto;
-    }
-    #ops-manager-metrics h1 {
-      font-size: 22px;
-      margin: 0 0 4px;
-      color: #fff;
-      font-weight: bold;
-    }
-    #ops-manager-metrics .muted {
-      color: #9aa0ad;
-      font-size: 13px;
-      margin: 0 0 18px;
-    }
-    #ops-manager-metrics .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid #fff;
-      padding: 10px 16px;
-      margin-bottom: 18px;
-      font-size: 13px;
-      border-radius: 6px;
-      background: #141414;
-    }
-    #ops-manager-metrics .grid-metrics {
-      display: grid;
-      grid-template-columns: repeat(1, minmax(0, 1fr));
-      gap: 16px;
-    }
-    @media (min-width: 640px) {
-      #ops-manager-metrics .grid-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (min-width: 1024px) {
-      #ops-manager-metrics .grid-metrics {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    #ops-manager-metrics .card {
-      border: 1px solid #444;
-      border-radius: 8px;
-      background: #131313;
-      padding: 14px 16px;
-      position: relative;
-    }
-    #ops-manager-metrics .cardhead {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-    #ops-manager-metrics .card h3 {
-      font-size: 14px;
-      margin: 0;
-      color: #fff;
-      font-weight: bold;
-    }
-    #ops-manager-metrics .info {
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      border: 1px solid #9aa0ad;
-      color: #9aa0ad;
-      font-size: 11px;
-      text-align: center;
-      line-height: 16px;
-      cursor: help;
-      flex-shrink: 0;
-    }
-    #ops-manager-metrics .big {
-      font-size: 26px;
-      font-weight: bold;
-      margin: 8px 0 8px;
-      color: #fff;
-    }
-    #ops-manager-metrics svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    #ops-manager-metrics svg text {
-      fill: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    #ops-manager-metrics svg .s {
-      font-size: 10px;
-      fill: #9aa0ad;
-    }
-    #ops-manager-metrics svg .b {
-      fill: none;
-      stroke: #fff;
-      stroke-width: 1.3;
-    }
-    #ops-manager-metrics .insight {
-      font-size: 12px;
-      border-left: 3px solid #2DD4BF;
-      background: #102422;
-      padding: 7px 10px;
-      margin-top: 10px;
-      border-radius: 0 4px 4px 0;
-    }
-    #ops-manager-metrics .insight.warn {
-      border-left-color: #F0A3A3;
-      background: #241414;
-      color: #fff;
-    }
-    #ops-manager-metrics .drill {
-      font-size: 11px;
-      color: #2DD4BF;
-      margin-top: 10px;
-      display: block;
-      cursor: pointer;
-    }
-    #ops-manager-metrics .drill:hover {
-      text-decoration: underline;
-    }
-    #ops-manager-metrics table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-    #ops-manager-metrics th, #ops-manager-metrics td {
-      border: 1px solid #333;
-      padding: 4px 6px;
-      text-align: left;
-    }
-    #ops-manager-metrics th {
-      color: #9aa0ad;
-      font-weight: normal;
-    }
-    #ops-manager-metrics td {
-      color: #fff;
-    }
-    #ops-manager-metrics .flagred {
-      color: #F0A3A3;
-    }
-    #ops-manager-metrics .flaggreen {
-      color: #7FE0B8;
-    }
-
-  </style>
+</style>
 </head>
 <body class="flex flex-col min-h-screen">
 
@@ -468,142 +317,225 @@
             <!-- ==============================================
            OPS MANAGER DASHBOARD — 6 CORE METRICS (GRAPHS VIEW)
            ============================================== -->
-      <div id="ops-manager-metrics" class="rounded-2xl border border-[#2e2e2e] p-5 sm:p-7 shadow-lg">
-        <div class="wrap">
-
-          <div class="flex items-start justify-between gap-4 mb-1">
-            <div>
-              <h1>Ops Manager Dashboard — 6 core metrics</h1>
-              <p class="muted">Paper prototype. Each card leads with the number, then a straight &ldquo;do this&rdquo; line &mdash; not a description. Hover the <span class="info" style="display:inline-block;vertical-align:middle;">i</span> for what the metric means.</p>
-            </div>
-          </div>
-
-          <div class="topbar">
-            <span>All Warehouses (network view) &#9662;</span>
+      <!-- ==============================================
+           OPS MANAGER DASHBOARD — 6 CORE METRICS (ODWEN UI STYLE)
+           ============================================== -->
+      <div id="ops-manager-metrics" class="bg-white rounded-2xl border border-[#E5E7EB] p-5 sm:p-6 shadow-xs space-y-4">
+        
+        <!-- Header & Description -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#F3F4F6]">
+          <div>
             <div class="flex items-center gap-2">
-              <button onclick="switchMetricsTime('today', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium bg-[#333] text-white">Today</button>
-              <span class="text-[#666]">&nbsp;|&nbsp;</span>
-              <button onclick="switchMetricsTime('week', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium text-[#9aa0ad] hover:text-white">This Week</button>
-              <span class="text-[#666]">&nbsp;|&nbsp;</span>
-              <button onclick="switchMetricsTime('month', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium text-[#9aa0ad] hover:text-white">This Month</button>
+              <h2 class="text-[19px] sm:text-[21px] font-bold text-[#1F2937] tracking-tight">Ops Manager Dashboard — 6 Core Metrics</h2>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEECEE] text-[#D84E55] border border-[#FECACA]">Network Health</span>
+            </div>
+            <p class="text-[12.5px] text-[#6B7280] mt-0.5">
+              Network-level operational pulse. Each card leads with the metric and action directive. Hover <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border border-gray-400 text-[10px] text-gray-500 font-bold align-middle">i</span> for metric definitions.
+            </p>
+          </div>
+          <!-- Timeframe & Filter Controls -->
+          <div class="flex items-center gap-2">
+            <span class="text-[12px] font-bold text-[#4B5563] hidden md:inline">Timeframe:</span>
+            <div class="inline-flex rounded-xl bg-[#F4F6F8] p-1 border border-[#E5E7EB]">
+              <button onclick="switchMetricsTime('today', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-bold bg-[#1F2937] text-white shadow-2xs transition-all cursor-pointer">Today</button>
+              <button onclick="switchMetricsTime('week', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-medium text-[#4B5563] hover:text-[#1F2937] transition-all cursor-pointer">This Week</button>
+              <button onclick="switchMetricsTime('month', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-medium text-[#4B5563] hover:text-[#1F2937] transition-all cursor-pointer">This Month</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Metrics Grid — Strict Identical Card Height & Responsive 3x2 Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- Card 1: Inbound : Outbound Ratio -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">1. Inbound : Outbound Ratio</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="Goods coming in vs going out. Above 1 for too long = warehouse fills up. Below 1 for too long = stock depletes faster than it's replaced.">i</span>
+            </div>
+            
+            <div class="h-[120px] flex flex-col justify-center">
+              <div class="text-[26px] font-black text-[#1F2937] tracking-tight font-arial leading-tight mb-2">1.4 : 1</div>
+              <svg viewBox="0 0 280 65" class="w-full">
+                <text x="0" y="14" fill="#6B7280" font-size="10.5" font-weight="600" font-family="Arial, sans-serif">Inbound</text>
+                <rect x="0" y="19" width="196" height="12" rx="4" fill="#0D9488" fill-opacity="0.85"/>
+                <text x="0" y="47" fill="#6B7280" font-size="10.5" font-weight="600" font-family="Arial, sans-serif">Outbound</text>
+                <rect x="0" y="52" width="140" height="12" rx="4" fill="#0284C7" fill-opacity="0.85"/>
+              </svg>
+            </div>
+
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              West Zone running inbound-heavy &mdash; 3 sites over 85% full. Pause new bookings there, redirect to Central Zone.
+            </div>
+
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">Target: 1.0 : 1 balanced</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view warehouse-wise
+              </button>
             </div>
           </div>
 
-          <div class="grid-metrics">
-
-            <!-- 1. Inbound:Outbound Ratio -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>1. Inbound : Outbound Ratio</h3>
-                <span class="info" title="Goods coming in vs going out. Above 1 for too long = warehouse fills up. Below 1 for too long = stock depletes faster than it's replaced.">i</span>
-              </div>
-              <div class="big">1.4 : 1</div>
-              <svg viewBox="0 0 280 70">
-                <text class="s" x="0" y="15">Inbound</text>
-                <rect class="b" x="0" y="20" width="196" height="14" fill="#2DD4BF" fill-opacity="0.25"/>
-                <text class="s" x="0" y="50">Outbound</text>
-                <rect class="b" x="0" y="55" width="140" height="14" fill="#38BDF8" fill-opacity="0.25"/>
-              </svg>
-              <div class="insight warn">West Zone running inbound-heavy &mdash; 3 sites over 85% full. Pause new bookings there, redirect to Central Zone.</div>
-              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+          <!-- Card 2: Days of Inventory (DOI) -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">2. Days of Inventory (DOI)</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="At today's outflow rate, how many days current stock would last. Too low = stockout risk. Too high = stock sitting idle, tying up space.">i</span>
             </div>
 
-            <!-- 2. Days of Inventory -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>2. Days of Inventory (DOI)</h3>
-                <span class="info" title="At today's outflow rate, how many days current stock would last. Too low = stockout risk. Too high = stock sitting idle, tying up space.">i</span>
-              </div>
-              <div class="big">18 days</div>
-              <svg viewBox="0 0 280 55">
-                <line x1="0" y1="30" x2="280" y2="30" stroke="#444" stroke-width="6"/>
-                <rect x="0" y="27" width="70" height="6" fill="#F0A3A3"/>
-                <rect x="70" y="27" width="140" height="6" fill="#7FE0B8"/>
-                <rect x="210" y="27" width="70" height="6" fill="#FBBF24"/>
-                <circle cx="160" cy="30" r="7" fill="#fff" stroke="#000" stroke-width="1.5"/>
-                <text class="s" x="0" y="48">Low (risk)</text>
-                <text class="s" x="110" y="48" text-anchor="middle">Healthy</text>
-                <text class="s" x="280" y="48" text-anchor="end">High (excess)</text>
+            <div class="h-[120px] flex flex-col justify-center">
+              <div class="text-[26px] font-black text-[#1F2937] tracking-tight font-arial leading-tight mb-2">18 days</div>
+              <svg viewBox="0 0 280 50" class="w-full">
+                <line x1="0" y1="24" x2="280" y2="24" stroke="#E5E7EB" stroke-width="8" stroke-linecap="round"/>
+                <rect x="0" y="20" width="70" height="8" rx="3" fill="#FCA5A5"/>
+                <rect x="70" y="20" width="140" height="8" rx="2" fill="#86EFAC"/>
+                <rect x="210" y="20" width="70" height="8" rx="3" fill="#FDE68A"/>
+                <circle cx="160" cy="24" r="7" fill="#1F2937" stroke="#FFFFFF" stroke-width="2"/>
+                <text x="0" y="44" fill="#9CA3AF" font-size="10" font-family="Arial, sans-serif">Low (risk)</text>
+                <text x="140" y="44" fill="#059669" font-size="10" font-weight="bold" font-family="Arial, sans-serif" text-anchor="middle">Healthy</text>
+                <text x="280" y="44" fill="#D97706" font-size="10" font-family="Arial, sans-serif" text-anchor="end">High (excess)</text>
               </svg>
-              <div class="insight warn">Warehouse 4 and Warehouse 9 are under 5 days &mdash; reorder this week or risk a stockout.</div>
-              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
             </div>
 
-            <!-- 3. Fast-Expiry Priority List -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>3. Pick-First List (nearing expiry)</h3>
-                <span class="info" title="Items closest to their expiry date across the network, so staff pick these before anything else — soonest expiry first (FEFO).">i</span>
-              </div>
-              <table>
-                <thead>
-                  <tr><th>Item</th><th>Expires in</th><th>Warehouse</th></tr>
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              Warehouse 4 and Warehouse 9 are under 5 days &mdash; reorder this week or risk a stockout.
+            </div>
+
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">Optimal band: 14&ndash;25 days</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view warehouse-wise
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Pick-First List (nearing expiry) -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">3. Pick-First List (nearing expiry)</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="Items closest to their expiry date across the network, so staff pick these before anything else — soonest expiry first (FEFO).">i</span>
+            </div>
+
+            <div class="h-[120px] flex flex-col justify-center overflow-hidden">
+              <table class="w-full text-left text-[11px] border border-gray-200 rounded-lg overflow-hidden bg-white">
+                <thead class="bg-gray-50 text-gray-500 border-b border-gray-200">
+                  <tr>
+                    <th class="py-1 px-2 font-semibold">Item</th>
+                    <th class="py-1 px-2 font-semibold">Expires in</th>
+                    <th class="py-1 px-2 font-semibold">Warehouse</th>
+                  </tr>
                 </thead>
-                <tbody>
-                  <tr><td>Item A</td><td class="flagred">2 days</td><td>Warehouse 4</td></tr>
-                  <tr><td>Item B</td><td class="flagred">4 days</td><td>Warehouse 1</td></tr>
-                  <tr><td>Item C</td><td>9 days</td><td>Warehouse 7</td></tr>
-                  <tr><td>Item D</td><td>12 days</td><td>Warehouse 2</td></tr>
+                <tbody class="divide-y divide-gray-100 font-arial">
+                  <tr><td class="py-1 px-2 font-medium text-gray-800">Item A</td><td class="py-1 px-2 font-bold text-[#DC2626]">2 days</td><td class="py-1 px-2 text-gray-600">WH-04</td></tr>
+                  <tr><td class="py-1 px-2 font-medium text-gray-800">Item B</td><td class="py-1 px-2 font-bold text-[#DC2626]">4 days</td><td class="py-1 px-2 text-gray-600">WH-01</td></tr>
+                  <tr><td class="py-1 px-2 font-medium text-gray-800">Item C</td><td class="py-1 px-2 text-gray-600">9 days</td><td class="py-1 px-2 text-gray-600">WH-07</td></tr>
+                  <tr><td class="py-1 px-2 font-medium text-gray-800">Item D</td><td class="py-1 px-2 text-gray-600">12 days</td><td class="py-1 px-2 text-gray-600">WH-02</td></tr>
                 </tbody>
               </table>
-              <div class="insight warn">2 items expire within 4 days. Assign these for picking today, ahead of everything else.</div>
-              <span class="drill" onclick="goToScreen(2)">&rarr; view full list, warehouse-wise</span>
             </div>
 
-            <!-- 4. Dock-to-Stock Time -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>4. Dock-to-Stock Time</h3>
-                <span class="info" title="Time from a truck arriving to goods being scanned, checked, and placed on a shelf (GRN Done). Slow here is exactly why orders pile up for days.">i</span>
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              2 items expire within 4 days. Assign these for picking today, ahead of everything else.
+            </div>
+
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">FEFO protocol active</span>
+              <button onclick="goToScreen(2)" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view full list, warehouse-wise
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Dock-to-Stock Time -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">4. Dock-to-Stock Time</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="Time from a truck arriving to goods being scanned, checked, and placed on a shelf (GRN Done). Slow here is exactly why orders pile up for days.">i</span>
+            </div>
+
+            <div class="h-[120px] flex flex-col justify-center">
+              <div class="text-[26px] font-black text-[#1F2937] tracking-tight font-arial leading-tight mb-2">
+                6.2 hrs <span class="text-[12px] font-normal text-gray-500">(target: 4 hrs)</span>
               </div>
-              <div class="big">6.2 hrs <span style="font-size:12px;color:#9aa0ad;">(target: 4 hrs)</span></div>
-              <svg viewBox="0 0 280 55">
-                <line x1="0" y1="20" x2="280" y2="20" stroke="#444" stroke-width="10"/>
-                <rect x="0" y="15" width="170" height="10" fill="#F0A3A3"/>
-                <line x1="110" y1="5" x2="110" y2="35" stroke="#fff" stroke-width="2"/>
-                <text class="s" x="110" y="48" text-anchor="middle">target: 4 hrs</text>
-                <text class="s" x="170" y="12" text-anchor="end">actual: 6.2 hrs</text>
+              <svg viewBox="0 0 280 50" class="w-full">
+                <line x1="0" y1="20" x2="280" y2="20" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round"/>
+                <rect x="0" y="15" width="170" height="10" rx="3" fill="#EF4444"/>
+                <line x1="110" y1="5" x2="110" y2="35" stroke="#1F2937" stroke-width="2"/>
+                <text x="110" y="45" fill="#4B5563" font-size="10" font-weight="600" text-anchor="middle" font-family="Arial, sans-serif">target: 4 hrs</text>
+                <text x="170" y="11" fill="#DC2626" font-size="10" font-weight="bold" text-anchor="end" font-family="Arial, sans-serif">actual: 6.2 hrs</text>
               </svg>
-              <div class="insight warn">Warehouse 4 and 9 are driving the delay &mdash; check labour assignment at those two sites first.</div>
-              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
             </div>
 
-            <!-- 5. On-time Dispatch Rate -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>5. On-Time Dispatch Rate</h3>
-                <span class="info" title="Share of outward orders that shipped within the promised time. The customer-facing reliability number.">i</span>
-              </div>
-              <div class="big">91%</div>
-              <svg viewBox="0 0 140 90">
-                <circle cx="70" cy="45" r="35" class="b"/>
-                <path d="M70,10 A35,35 0 1 1 46,74" fill="none" stroke="#7FE0B8" stroke-width="8"/>
-                <text x="70" y="50" text-anchor="middle" font-size="16" font-weight="bold">91%</text>
-              </svg>
-              <div class="insight warn">Warehouse 6 caused most of this week's misses &mdash; late pickups. Call the transporter before tomorrow's run.</div>
-              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              Warehouse 4 and 9 are driving the delay &mdash; check labour assignment at those two sites first.
             </div>
 
-            <!-- 6. Space Utilization -->
-            <div class="card">
-              <div class="cardhead">
-                <h3>6. Space Utilization</h3>
-                <span class="info" title="Average occupancy across all warehouses. Too full = no room for new bookings. Too empty = paying rent for unused space.">i</span>
-              </div>
-              <div class="big">78%</div>
-              <svg viewBox="0 0 280 55">
-                <line x1="0" y1="20" x2="280" y2="20" stroke="#444" stroke-width="10"/>
-                <rect x="0" y="15" width="218" height="10" fill="#7FE0B8"/>
-                <line x1="252" y1="5" x2="252" y2="35" stroke="#F0A3A3" stroke-width="2"/>
-                <text class="s" x="252" y="48" text-anchor="middle">90% = near-full flag</text>
-              </svg>
-              <div class="insight warn">Warehouse 2 is at 94% &mdash; stop routing new inbound there until it clears below 85%.</div>
-              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">Network SLA: 4.0 hrs max</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view warehouse-wise
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5: On-time Dispatch Rate -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">5. On-Time Dispatch Rate</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="Share of outward orders that shipped within the promised time. The customer-facing reliability number.">i</span>
             </div>
 
+            <div class="h-[120px] flex items-center justify-center">
+              <svg viewBox="0 0 140 85" class="h-20 w-auto">
+                <circle cx="70" cy="42" r="34" fill="none" stroke="#E5E7EB" stroke-width="7"/>
+                <path d="M70,8 A34,34 0 1 1 46,71" fill="none" stroke="#10B981" stroke-width="7" stroke-linecap="round"/>
+                <text x="70" y="47" text-anchor="middle" font-size="17" font-weight="900" fill="#1F2937" font-family="Arial, sans-serif">91%</text>
+              </svg>
+            </div>
+
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              Warehouse 6 caused most of this week's misses &mdash; late pickups. Call the transporter before tomorrow's run.
+            </div>
+
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">Benchmark: &ge;95%</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view warehouse-wise
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 6: Space Utilization -->
+          <div class="bg-[#FBFBFC] hover:bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4.5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="text-[14px] font-bold text-[#1F2937]">6. Space Utilization</h3>
+              <span class="w-4.5 h-4.5 rounded-full border border-gray-300 text-gray-400 hover:text-gray-700 hover:border-gray-500 text-[10.5px] font-bold flex items-center justify-center cursor-help transition-colors" title="Average occupancy across all warehouses. Too full = no room for new bookings. Too empty = paying rent for unused space.">i</span>
+            </div>
+
+            <div class="h-[120px] flex flex-col justify-center">
+              <div class="text-[26px] font-black text-[#1F2937] tracking-tight font-arial leading-tight mb-2">78%</div>
+              <svg viewBox="0 0 280 50" class="w-full">
+                <line x1="0" y1="20" x2="280" y2="20" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round"/>
+                <rect x="0" y="15" width="218" height="10" rx="3" fill="#10B981"/>
+                <line x1="252" y1="5" x2="252" y2="35" stroke="#EF4444" stroke-width="2"/>
+                <text x="252" y="45" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle" font-family="Arial, sans-serif">90% = near-full flag</text>
+              </svg>
+            </div>
+
+            <div class="h-[46px] flex items-center px-2.5 py-1.5 rounded-xl bg-[#FEF2F2] border-l-3 border-[#EF4444] text-[#991B1B] text-[11px] leading-snug font-medium">
+              Warehouse 2 is at 94% &mdash; stop routing new inbound there until it clears below 85%.
+            </div>
+
+            <div class="pt-1 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-[11px] text-gray-400 font-medium font-arial">Optimal occupancy: 70&ndash;85%</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[11.5px] font-bold text-[#D84E55] hover:underline cursor-pointer flex items-center gap-1">
+                &rarr; view warehouse-wise
+              </button>
+            </div>
           </div>
 
         </div>
+
       </div>
 
       <!-- Back & Filter Header -->
@@ -4552,44 +4484,44 @@
        INWARD ORDERS MASTER DATA & ACTIVE PIPELINE (29 ORDERS)
        ============================================== */
     const inwardOrdersList = [
-      // Stage 1: Expected (3 orders)
-      { id: 'ORD-IN-8827', transporter: 'Gati KWE Express', sku: 'SKU-MED-40K Cold Packs', qty: '600 pcs', pallets: '12 pallets', bay: 'Bay 02 (ETA 11:30)', stageNum: 1, stageName: '1. Expected', podStatus: 'Manifest Registered', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
-      { id: 'ORD-IN-8828', transporter: 'TCI Freight Logistics', sku: 'SKU-ELEC-88 Sensors', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 03 (ETA 12:15)', stageNum: 1, stageName: '1. Expected', podStatus: 'e-Way Bill Generated', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
-      { id: 'ORD-IN-8829', transporter: 'Blue Dart Surface', sku: 'SKU-AUTO-12 Hub Belts', qty: '850 pcs', pallets: '17 pallets', bay: 'Bay 04 (ETA 13:00)', stageNum: 1, stageName: '1. Expected', podStatus: 'Advance ASN Sent', podClass: 'bg-blue-50 text-blue-700 border-blue-200' },
+      // Stage 1: Expected (3 orders) - All Pending
+      { id: 'ORD-IN-8827', transporter: 'Gati KWE Express', sku: 'SKU-MED-40K Cold Packs', qty: '600 pcs', pallets: '12 pallets', bay: 'Bay 02 (ETA 11:30)', stageNum: 1, stageName: '1. Expected', isPending: true, pendingDetail: 'Vehicle in transit to facility (ETA 11:30). Security gate pass entry, bay docking, and delivery challan signature are pending.' },
+      { id: 'ORD-IN-8828', transporter: 'TCI Freight Logistics', sku: 'SKU-ELEC-88 Sensors', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 03 (ETA 12:15)', stageNum: 1, stageName: '1. Expected', isPending: true, pendingDetail: 'Vehicle in transit (ETA 12:15). e-Way bill verified; physical arrival at security gate and unlading are pending.' },
+      { id: 'ORD-IN-8829', transporter: 'Blue Dart Surface', sku: 'SKU-AUTO-12 Hub Belts', qty: '850 pcs', pallets: '17 pallets', bay: 'Bay 04 (ETA 13:00)', stageNum: 1, stageName: '1. Expected', isPending: true, pendingDetail: 'Advance ASN synchronized. Gate check-in, dock bay allocation, and QC verification are pending.' },
 
-      // Stage 2: At Dock (2 orders)
-      { id: 'ORD-IN-8825', transporter: 'V-Trans Logistics', sku: 'SKU-IND-50 Motor Spares', qty: '900 pcs', pallets: '18 pallets', bay: 'Inbound Bay 02', stageNum: 2, stageName: '2. At Dock', podStatus: 'Gate Pass Issued', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
-      { id: 'ORD-IN-8826', transporter: 'Spoton Logistics', sku: 'SKU-CHEM-10 Liquid Drums', qty: '450 pcs', pallets: '15 pallets', bay: 'Inbound Bay 03', stageNum: 2, stageName: '2. At Dock', podStatus: 'Parked at Bay 03', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      // Stage 2: At Dock (2 orders) - All Pending
+      { id: 'ORD-IN-8825', transporter: 'V-Trans Logistics', sku: 'SKU-IND-50 Motor Spares', qty: '900 pcs', pallets: '18 pallets', bay: 'Inbound Bay 02', stageNum: 2, stageName: '2. At Dock', isPending: true, pendingDetail: 'Vehicle docked at Bay 02. Gate pass logged; pallet offloading crew assignment and QC seal verification are pending.' },
+      { id: 'ORD-IN-8826', transporter: 'Spoton Logistics', sku: 'SKU-CHEM-10 Liquid Drums', qty: '450 pcs', pallets: '15 pallets', bay: 'Inbound Bay 03', stageNum: 2, stageName: '2. At Dock', isPending: true, pendingDetail: 'Truck positioned at Bay 03. Hazmat offload checklist, de-stuffing, and delivery receipt sign-off are pending.' },
 
-      // Stage 3: Unloading (4 orders)
-      { id: 'ORD-IN-8824', transporter: 'Safexpress Surface', sku: 'SKU-FMCG-22 Home Essentials', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', podStatus: 'Offloading in Progress', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
-      { id: 'ORD-IN-8823', transporter: 'DTDC Freight Supply', sku: 'SKU-PKG-15 Polybags', qty: '4,000 pcs', pallets: '20 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', podStatus: 'Pallet De-stuffing', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
-      { id: 'ORD-IN-8830', transporter: 'Express Cargo Transit', sku: 'SKU-TEXT-99 Yarn Spools', qty: '2,100 pcs', pallets: '42 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', podStatus: 'Forklift Offload (45%)', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
-      { id: 'ORD-IN-8831', transporter: 'Gati-KWE Surface', sku: 'SKU-FOOD-08 Canned Goods', qty: '1,500 pcs', pallets: '30 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', podStatus: 'De-stuffing (80%)', podClass: 'bg-amber-50 text-amber-700 border-amber-200' },
+      // Stage 3: Unloading (4 orders) - All Pending
+      { id: 'ORD-IN-8824', transporter: 'Safexpress Surface', sku: 'SKU-FMCG-22 Home Essentials', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', isPending: true, pendingDetail: 'Pallet unloading in progress (65%). Physical carton count, damage check, and supervisor POD signature are pending.' },
+      { id: 'ORD-IN-8823', transporter: 'DTDC Freight Supply', sku: 'SKU-PKG-15 Polybags', qty: '4,000 pcs', pallets: '20 pallets', bay: 'Bay 01', stageNum: 3, stageName: '3. Unloading', isPending: true, pendingDetail: 'De-stuffing cartons onto staging floor. Barcode sorting, piece verification, and signed delivery challan are pending.' },
+      { id: 'ORD-IN-8830', transporter: 'Express Cargo Transit', sku: 'SKU-TEXT-99 Yarn Spools', qty: '2,100 pcs', pallets: '42 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', isPending: true, pendingDetail: 'Forklift offload active (45%). Staging verification, weight confirmation, and POD stamping are pending.' },
+      { id: 'ORD-IN-8831', transporter: 'Gati-KWE Surface', sku: 'SKU-FOOD-08 Canned Goods', qty: '1,500 pcs', pallets: '30 pallets', bay: 'Bay 05', stageNum: 3, stageName: '3. Unloading', isPending: true, pendingDetail: 'De-stuffing at 80%. Batch code validation, food safety scan, and driver copy sign-off are pending.' },
 
-      // Stage 4: QC & POD (8 orders)
-      { id: 'ORD-IN-8821', transporter: 'Bhiwandi Logistics', sku: 'SKU-LED-60W UltraSlim', qty: '2,400 pcs', pallets: '48 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Verified & Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200', isPriority: true },
-      { id: 'ORD-IN-8822', transporter: 'Rivigo Surface Line', sku: 'SKU-SOLAR-04 Inverter Kits', qty: '320 pcs', pallets: '16 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Challan Stamped', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8832', transporter: 'Delhivery Freight', sku: 'SKU-PHARM-12 Sterile Vials', qty: '5,000 pcs', pallets: '25 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Seal #9901 Verified', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8833', transporter: 'Bluedart Express', sku: 'SKU-ELEC-44 Microchips', qty: '3,200 pcs', pallets: '16 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Gemini Vision Passed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8834', transporter: 'Safexpress Surface', sku: 'SKU-APPA-10 Denim Roll', qty: '1,400 pcs', pallets: '28 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Barcode Scanned', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8835', transporter: 'TCI Supply Chain', sku: 'SKU-FURN-02 Office Desks', qty: '180 pcs', pallets: '18 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Physical POD Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8836', transporter: 'Mahindra Logistics', sku: 'SKU-AUTO-77 Gaskets', qty: '950 pcs', pallets: '19 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Intake Seal Matched', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8837', transporter: 'V-Xpress Cargo', sku: 'SKU-COSM-55 Lotions', qty: '2,800 pcs', pallets: '28 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', podStatus: 'Verified & Signed', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      // Stage 4: QC & POD (8 orders) - 2 Pending, 6 Done
+      { id: 'ORD-IN-8821', transporter: 'Bhiwandi Logistics', sku: 'SKU-LED-60W UltraSlim', qty: '2,400 pcs', pallets: '48 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', isPending: false, isPriority: true },
+      { id: 'ORD-IN-8822', transporter: 'Rivigo Surface Line', sku: 'SKU-SOLAR-04 Inverter Kits', qty: '320 pcs', pallets: '16 pallets', bay: 'Bay 04', stageNum: 4, stageName: '4. QC & POD', isPending: false },
+      { id: 'ORD-IN-8832', transporter: 'Delhivery Freight', sku: 'SKU-PHARM-12 Sterile Vials', qty: '5,000 pcs', pallets: '25 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', isPending: true, pendingDetail: 'Intake Seal #9901 verification in progress. Cold chain temperature log validation and supervisor signature are pending.' },
+      { id: 'ORD-IN-8833', transporter: 'Bluedart Express', sku: 'SKU-ELEC-44 Microchips', qty: '3,200 pcs', pallets: '16 pallets', bay: 'Bay 06', stageNum: 4, stageName: '4. QC & POD', isPending: false },
+      { id: 'ORD-IN-8834', transporter: 'Safexpress Surface', sku: 'SKU-APPA-10 Denim Roll', qty: '1,400 pcs', pallets: '28 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', isPending: true, pendingDetail: 'Barcode scanning 70% complete. Gross weight metrology calibration and POD endorsement are pending.' },
+      { id: 'ORD-IN-8835', transporter: 'TCI Supply Chain', sku: 'SKU-FURN-02 Office Desks', qty: '180 pcs', pallets: '18 pallets', bay: 'Bay 07', stageNum: 4, stageName: '4. QC & POD', isPending: false },
+      { id: 'ORD-IN-8836', transporter: 'Mahindra Logistics', sku: 'SKU-AUTO-77 Gaskets', qty: '950 pcs', pallets: '19 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', isPending: false },
+      { id: 'ORD-IN-8837', transporter: 'V-Xpress Cargo', sku: 'SKU-COSM-55 Lotions', qty: '2,800 pcs', pallets: '28 pallets', bay: 'Bay 08', stageNum: 4, stageName: '4. QC & POD', isPending: false },
 
-      // Stage 5: Putaway (12 orders)
-      { id: 'ORD-IN-8820', transporter: 'Delhivery Freight', sku: 'SKU-BLK-99 Industrial Casings', qty: '3,500 pcs', pallets: '70 pallets', bay: 'Bay 03 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Shelf C6', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8819', transporter: 'Blue Dart Supply', sku: 'SKU-COMP-01 Power Units', qty: '800 pcs', pallets: '16 pallets', bay: 'Bay 02 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf B2', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8818', transporter: 'Safexpress Logistics', sku: 'SKU-TOOL-90 Wrenches', qty: '1,100 pcs', pallets: '22 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Forklift en route', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8817', transporter: 'Spoton Express', sku: 'SKU-WIRE-33 Copper Cable', qty: '2,400 pcs', pallets: '24 pallets', bay: 'Bay 04 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Allocating Bay C4', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8816', transporter: 'Gati KWE Surface', sku: 'SKU-BEV-12 Fruit Juices', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 05 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Zone A', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8815', transporter: 'Rivigo Freight', sku: 'SKU-MED-05 Bandages', qty: '6,000 pcs', pallets: '30 pallets', bay: 'Bay 06 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #02', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8814', transporter: 'TCI Freight', sku: 'SKU-CHEM-88 Resin Cans', qty: '500 pcs', pallets: '20 pallets', bay: 'Bay 07 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf C8', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8813', transporter: 'Mahindra Logistics', sku: 'SKU-ELEC-19 LED Strips', qty: '2,200 pcs', pallets: '22 pallets', bay: 'Bay 08 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #03', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8812', transporter: 'DTDC Express', sku: 'SKU-PLAS-04 Buckets', qty: '900 pcs', pallets: '18 pallets', bay: 'Bay 03 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf A6', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8811', transporter: 'V-Trans Line', sku: 'SKU-TEXT-12 Cotton Bales', qty: '400 pcs', pallets: '20 pallets', bay: 'Bay 02 / Zone C', stageNum: 5, stageName: '5. Putaway', podStatus: 'Transit to Zone C', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8810', transporter: 'Express Surface', sku: 'SKU-FOOD-21 Rice Bags', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', podStatus: 'Moving to Shelf A1', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'ORD-IN-8809', transporter: 'Bhiwandi Logistics', sku: 'SKU-SOLAR-09 Cells', qty: '750 pcs', pallets: '15 pallets', bay: 'Bay 04 / Zone B', stageNum: 5, stageName: '5. Putaway', podStatus: 'Reach Truck #01', podClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' }
+      // Stage 5: Putaway (12 orders) - All Done
+      { id: 'ORD-IN-8820', transporter: 'Delhivery Freight', sku: 'SKU-BLK-99 Industrial Casings', qty: '3,500 pcs', pallets: '70 pallets', bay: 'Bay 03 / Zone C', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8819', transporter: 'Blue Dart Supply', sku: 'SKU-COMP-01 Power Units', qty: '800 pcs', pallets: '16 pallets', bay: 'Bay 02 / Zone B', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8818', transporter: 'Safexpress Logistics', sku: 'SKU-TOOL-90 Wrenches', qty: '1,100 pcs', pallets: '22 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8817', transporter: 'Spoton Express', sku: 'SKU-WIRE-33 Copper Cable', qty: '2,400 pcs', pallets: '24 pallets', bay: 'Bay 04 / Zone C', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8816', transporter: 'Gati KWE Surface', sku: 'SKU-BEV-12 Fruit Juices', qty: '1,800 pcs', pallets: '36 pallets', bay: 'Bay 05 / Zone A', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8815', transporter: 'Rivigo Freight', sku: 'SKU-MED-05 Bandages', qty: '6,000 pcs', pallets: '30 pallets', bay: 'Bay 06 / Zone B', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8814', transporter: 'TCI Freight', sku: 'SKU-CHEM-88 Resin Cans', qty: '500 pcs', pallets: '20 pallets', bay: 'Bay 07 / Zone C', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8813', transporter: 'Mahindra Logistics', sku: 'SKU-ELEC-19 LED Strips', qty: '2,200 pcs', pallets: '22 pallets', bay: 'Bay 08 / Zone B', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8812', transporter: 'DTDC Express', sku: 'SKU-PLAS-04 Buckets', qty: '900 pcs', pallets: '18 pallets', bay: 'Bay 03 / Zone A', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8811', transporter: 'V-Trans Line', sku: 'SKU-TEXT-12 Cotton Bales', qty: '400 pcs', pallets: '20 pallets', bay: 'Bay 02 / Zone C', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8810', transporter: 'Express Surface', sku: 'SKU-FOOD-21 Rice Bags', qty: '1,200 pcs', pallets: '24 pallets', bay: 'Bay 01 / Zone A', stageNum: 5, stageName: '5. Putaway', isPending: false },
+      { id: 'ORD-IN-8809', transporter: 'Bhiwandi Logistics', sku: 'SKU-SOLAR-09 Cells', qty: '750 pcs', pallets: '15 pallets', bay: 'Bay 04 / Zone B', stageNum: 5, stageName: '5. Putaway', isPending: false }
     ];
 
     let currentInwardFilter = 'all';
@@ -4662,9 +4594,18 @@
       }
 
       filtered.forEach(order => {
+        const isPending = order.isPending !== false;
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-[#F9FAFB] cursor-pointer transition-colors';
-        tr.onclick = () => openInwardOrderDetail(order.id);
+        
+        // When clicking anywhere on the row: if pending, open pending details; if done, open POD preview
+        tr.onclick = () => {
+          if (isPending) {
+            openInwardPendingModal(order.id);
+          } else {
+            openPodModal();
+          }
+        };
 
         let stageBadgeClass = 'bg-gray-100 text-gray-700';
         if (order.stageNum === 1) stageBadgeClass = 'bg-blue-50 text-blue-700 border border-blue-200';
@@ -4672,6 +4613,16 @@
         else if (order.stageNum === 3) stageBadgeClass = 'bg-amber-50 text-amber-800 border border-amber-300';
         else if (order.stageNum === 4) stageBadgeClass = 'bg-[#FEECEE] text-[#D84E55] font-bold border border-[#FECACA]';
         else if (order.stageNum === 5) stageBadgeClass = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+
+        const podPill = isPending
+          ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border bg-[#FFFBEB] text-[#D97706] border-[#FDE68A] shadow-2xs hover:shadow-xs transition-shadow">
+               <span class="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span>
+               Pending
+             </span>`
+          : `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border bg-[#ECFDF5] text-[#059669] border-[#A7F3D0] shadow-2xs hover:shadow-xs transition-shadow">
+               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+               Done
+             </span>`;
 
         tr.innerHTML = `
           <td class="py-3 px-3 font-bold ${order.stageNum === 4 ? 'text-[#D84E55]' : 'text-[#1F2937]'} font-arial">${order.id}</td>
@@ -4686,11 +4637,8 @@
               ${order.stageName}
             </span>
           </td>
-          <td class="py-3 px-3" onclick="event.stopPropagation(); ${order.stageNum >= 4 ? 'openPodModal()' : ''}">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${order.podClass} ${order.stageNum >= 4 ? 'hover:shadow-2xs cursor-pointer' : ''}">
-              ${order.stageNum >= 4 ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>' : ''}
-              ${order.podStatus}
-            </span>
+          <td class="py-3 px-3" onclick="event.stopPropagation(); ${isPending ? `openInwardPendingModal('${order.id}')` : 'openPodModal()'}">
+            ${podPill}
           </td>
           <td class="py-3 px-3 text-right">
             <button onclick="event.stopPropagation(); openInwardOrderDetail('${order.id}')" class="${order.stageNum === 4 ? 'btn-redbus' : 'btn-redbus-secondary'} text-[11px] py-1 px-3 cursor-pointer">
@@ -6295,12 +6243,10 @@
 
     function switchMetricsTime(timeframe, btn) {
       document.querySelectorAll('.ops-time-btn').forEach(b => {
-        b.classList.remove('bg-[#333]', 'text-white');
-        b.classList.add('text-[#9aa0ad]');
+        b.className = 'ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-medium text-[#4B5563] hover:text-[#1F2937] transition-all cursor-pointer';
       });
       if (btn) {
-        btn.classList.add('bg-[#333]', 'text-white');
-        btn.classList.remove('text-[#9aa0ad]');
+        btn.className = 'ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-bold bg-[#1F2937] text-white shadow-2xs transition-all cursor-pointer';
       }
     }
 
@@ -6742,6 +6688,124 @@
       if (nameEl) {
         nameEl.textContent = `${slotCode} (${isOccupied ? 'Occupied · SKU-LED-60W' : 'Available · Empty Shelf'})`;
       }
+    }
+
+    function closeInwardPendingModal() {
+      const modal = document.getElementById('inward-pending-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function openInwardPendingModal(orderId) {
+      const modal = document.getElementById('inward-pending-modal');
+      if (!modal) return;
+
+      const order = inwardOrdersList.find(o => o.id === orderId) || {
+        id: orderId,
+        transporter: 'Transporter Fleet',
+        sku: 'Commercial Goods',
+        qty: '1,000 units',
+        stageNum: 1,
+        stageName: 'Stage 1 · Expected Cargo',
+        bay: 'Dock Bay 02',
+        isPending: true,
+        pendingDetail: 'Arrival check-in and de-stuffing pending.'
+      };
+
+      const stageNum = order.stageNum || 1;
+
+      const subEl = document.getElementById('inward-pending-modal-subtitle');
+      if (subEl) subEl.textContent = `${order.id} · ${order.transporter} (${order.sku})`;
+
+      const stageEl = document.getElementById('inward-pending-modal-stage');
+      if (stageEl) stageEl.textContent = order.stageName || `Stage ${stageNum}`;
+
+      const locEl = document.getElementById('inward-pending-modal-location');
+      if (locEl) locEl.textContent = order.bay || 'Assigned Dock Bay';
+
+      const badgeEl = document.getElementById('inward-pending-modal-status-badge');
+      if (badgeEl) {
+        badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]';
+        badgeEl.textContent = 'Pending';
+      }
+
+      const summaryEl = document.getElementById('inward-pending-modal-summary');
+      if (summaryEl) {
+        if (order.pendingDetail) {
+          summaryEl.textContent = order.pendingDetail;
+        } else if (stageNum === 1) {
+          summaryEl.textContent = 'Truck is in transit to warehouse gate. Gate pass entry, dock bay allocation, cargo de-stuffing, QC inspection, and driver delivery challan signature are pending before Proof of Delivery (POD) is issued.';
+        } else if (stageNum === 2) {
+          summaryEl.textContent = 'Truck is positioned at dock bay. Unloading workforce assignment, pallet offloading, physical barcode scan, and QC inspection are pending before Proof of Delivery (POD) can be completed.';
+        } else if (stageNum === 3) {
+          summaryEl.textContent = 'Cargo is currently being offloaded and de-stuffed from the truck. Pallet count verification, physical damage inspection, serialization scanning, and authorized receipt signing are pending.';
+        } else if (stageNum === 4) {
+          summaryEl.textContent = 'Consignment is undergoing physical QC inspection and piece verification. Barcode scanning calibration and supervisor POD signature are pending.';
+        } else {
+          summaryEl.textContent = 'Intake processing and verification steps are pending before Proof of Delivery is finalized.';
+        }
+      }
+
+      const milestones = [
+        { num: 1, name: '1. Advance Shipping Notice (ASN) & Manifest Sync', detail: 'Electronic manifest and e-Way bill synchronized with WMS' },
+        { num: 2, name: '2. Security Gate Entry & Bay Docking', detail: 'Truck check-in, gate pass issued, vehicle parked at assigned bay' },
+        { num: 3, name: '3. Cargo Unloading & Pallet De-stuffing', detail: 'Physical cargo offloading from vehicle onto dock staging area' },
+        { num: 4, name: '4. QC Inspection & Seal Verification', detail: 'Tamper-evident seal match, piece count & physical damage check' },
+        { num: 5, name: '5. Signed Proof of Delivery (POD) & GRN Generation', detail: 'Supervisor sign-off, transporter copy stamped, Goods Receipt Note created' },
+        { num: 6, name: '6. Warehouse Rack Putaway', detail: 'Reach truck transit and slotting into designated warehouse storage rack' }
+      ];
+
+      const milestonesContainer = document.getElementById('inward-pending-modal-milestones');
+      if (milestonesContainer) {
+        milestonesContainer.innerHTML = '';
+        milestones.forEach(m => {
+          let statusBadge = '';
+          let icon = '';
+          let bgClass = 'bg-white border-gray-200 text-gray-700';
+
+          const currentMilestone = stageNum;
+          if (m.num < currentMilestone) {
+            bgClass = 'bg-[#ECFDF5] border-[#A7F3D0] text-[#065F46]';
+            icon = `<span class="w-5 h-5 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">✓</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-md bg-[#D1FAE5] text-[#047857] text-[10px] font-bold font-arial">COMPLETED</span>`;
+          } else if (m.num === currentMilestone) {
+            bgClass = 'bg-[#FFFBEB] border-[#FDE68A] text-[#92400E] shadow-2xs';
+            icon = `<span class="w-5 h-5 rounded-full bg-[#F59E0B] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 animate-pulse">●</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold font-arial flex items-center gap-1 border border-[#FCD34D]"><span class="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span> IN PROGRESS</span>`;
+          } else {
+            bgClass = 'bg-gray-50 border-gray-200 text-gray-400';
+            icon = `<span class="w-5 h-5 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-[10px] font-bold flex-shrink-0">○</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 text-[10px] font-semibold font-arial">UPCOMING</span>`;
+          }
+
+          const div = document.createElement('div');
+          div.className = `flex items-center justify-between p-2.5 rounded-xl border ${bgClass} text-[12px] transition-all`;
+          div.innerHTML = `
+            <div class="flex items-center gap-2.5">
+              ${icon}
+              <div>
+                <strong class="block leading-tight text-[12.5px]">${m.name}</strong>
+                <span class="text-[11px] opacity-80 block">${m.detail}</span>
+              </div>
+            </div>
+            <div>${statusBadge}</div>
+          `;
+          milestonesContainer.appendChild(div);
+        });
+      }
+
+      const inspectBtn = document.getElementById('inward-pending-modal-inspect-btn');
+      if (inspectBtn) {
+        inspectBtn.onclick = () => {
+          closeInwardPendingModal();
+          openInwardOrderDetail(order.id);
+        };
+      }
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     }
 
     function closeDispatchPendingModal() {
@@ -7441,6 +7505,65 @@
         <button onclick="alert('Downloading Proof of Delivery PDF (LR-BL-994201)...')" class="btn-redbus text-[12px] py-2 px-5 flex items-center gap-2">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Signed POD (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       INWARD INTAKE & POD PENDING STATUS MODAL
+       Shows exact intake milestone progression and what is pending
+       ============================================== -->
+  <div id="inward-pending-modal" onclick="if(event.target===this) closeInwardPendingModal()" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
+      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="text-[17px] font-bold text-[#1F2937]">Inbound Intake &amp; POD Status</h3>
+            <span id="inward-pending-modal-status-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]">Pending</span>
+          </div>
+          <span id="inward-pending-modal-subtitle" class="text-[11.5px] text-[#6B7280] font-arial block mt-0.5">ORD-IN-8827 · Gati KWE Express</span>
+        </div>
+        <button onclick="closeInwardPendingModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
+          ✕
+        </button>
+      </div>
+
+      <!-- Current Location & Stage Info -->
+      <div class="grid grid-cols-2 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Operational Stage</span>
+          <strong id="inward-pending-modal-stage" class="text-[#1F2937] text-[13px] block mt-0.5">Stage 1 · Expected Cargo</strong>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Dock Bay / Assigned Location</span>
+          <strong id="inward-pending-modal-location" class="text-[#1F2937] text-[13px] block mt-0.5">Bay 02 (ETA 11:30)</strong>
+        </div>
+      </div>
+
+      <!-- What is Pending Summary Box -->
+      <div class="p-3.5 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] space-y-1 text-[12px]">
+        <span class="text-[10.5px] font-bold text-[#B45309] uppercase tracking-wider block font-arial">What is currently pending for Proof of Delivery:</span>
+        <p id="inward-pending-modal-summary" class="text-[#92400E] leading-relaxed font-medium">
+          Vehicle is en route to gate. Gate entry, bay docking, physical offload, QC verification, and driver delivery challan signature are pending.
+        </p>
+      </div>
+
+      <!-- Fixed List of 6 Inbound Milestones -->
+      <div class="space-y-2">
+        <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block font-arial">Fixed Inbound Intake Milestones:</span>
+        <div id="inward-pending-modal-milestones" class="space-y-1.5">
+          <!-- Dynamically generated via openInwardPendingModal() -->
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2.5">
+        <button onclick="closeInwardPendingModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
+          Close
+        </button>
+        <button id="inward-pending-modal-inspect-btn" class="btn-redbus text-[12px] py-2 px-4 cursor-pointer font-bold shadow-xs">
+          Inspect Full Inward Sequence &rarr;
         </button>
       </div>
     </div>
