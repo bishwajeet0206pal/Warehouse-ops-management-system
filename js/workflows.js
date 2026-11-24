@@ -66,6 +66,10 @@
     const inwardStageChecklistsData = {
       1: {
         name: 'Manifest & ASN Ingestion',
+        pocs: [
+          { initials: 'AV', name: 'Amit Verma', role: 'EDI Manifest Specialist', station: 'Inbound Desk 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-11401', walkie: 'Ch 1 (Intake)', duty: 'On Duty' },
+          { initials: 'RN', name: 'Ramesh Nair', role: 'Inbound Shift Lead', station: 'Floor Office 1', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11402', walkie: 'Ch 1 (Intake)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Electronic ASN Sync', detail: 'Advance Shipping Notice parsed & validated against ERP purchase order' },
           { num: 2, name: 'PO Line Item Verification', detail: 'Supplier item code, SKU details, and manifest quantities matched' },
@@ -75,6 +79,10 @@
       },
       2: {
         name: 'Gate Inward & Docking',
+        pocs: [
+          { initials: 'GS', name: 'Gurpreet Singh', role: 'Gate Marshal', station: 'Security Gate 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98200-88120', walkie: 'Ch 2 (Gate)', duty: 'On Duty' },
+          { initials: 'JS', name: 'Jaswant Singh', role: 'Dock Master', station: 'Dock Apron A', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 2 (Gate)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Security Gate Check-in', detail: 'Vehicle number, transporter credentials & driver identity logged' },
           { num: 2, name: 'Gate Intake Token & LR', detail: 'Physical Lorry Receipt endorsed with gate arrival timestamp' },
@@ -84,6 +92,10 @@
       },
       3: {
         name: 'Unloading from Vehicle',
+        pocs: [
+          { initials: 'MM', name: 'Manoj Mane', role: 'Lead Forklift Operator', station: 'Dock Bay 04', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-22501', walkie: 'Ch 3 (Yard)', duty: 'On Duty' },
+          { initials: 'DP', name: 'Dinesh Patil', role: 'Apron Supervisor', station: 'Dock Control 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-22502', walkie: 'Ch 3 (Yard)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Labour Crew Deployment', detail: 'Workforce handlers and forklift operator stationed at bay apron' },
           { num: 2, name: 'Pallet De-stuffing', detail: 'Pallets offloaded from container truck bed onto intake staging area' },
@@ -93,6 +105,10 @@
       },
       4: {
         name: 'QC & Proof of Delivery (POD)',
+        pocs: [
+          { initials: 'RK', name: 'Rajesh Kumar', role: 'Senior QC Inspector', station: 'Desk QC-04', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98231-44910', walkie: 'Ch 4 (Quality)', duty: 'On Duty' },
+          { initials: 'PS', name: 'Priya Sharma', role: 'Quality Lead', station: 'QC Lab Office', shift: 'General (08:00 - 17:00)', phone: '+91 98201-33601', walkie: 'Ch 4 (Quality)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Container Seal Integrity', detail: 'Tamper-evident seal verified unbroken by intake inspector' },
           { num: 2, name: 'Physical Carton Check', detail: '0 crushed, 0 damp; pallet shrink-wrap verified upright & tight' },
@@ -104,6 +120,10 @@
       },
       5: {
         name: 'Rack Putaway & Slotting',
+        pocs: [
+          { initials: 'SP', name: 'Sachin Pawar', role: 'Reach Truck Operator', station: 'High-Bay Aisle 03', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-44701', walkie: 'Ch 5 (Putaway)', duty: 'On Duty' },
+          { initials: 'VJ', name: 'Vikram Joshi', role: 'Inventory Controller', station: 'Zone B Control', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-44702', walkie: 'Ch 5 (Putaway)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'WMS Storage Bin Allocation', detail: 'System designates optimal zone, aisle, and rack shelf location' },
           { num: 2, name: 'Reach Truck Pallet Retrieval', detail: 'High-bay reach truck retrieves verified pallets from staging bay' },
@@ -113,6 +133,10 @@
       },
       6: {
         name: 'Final Bin Storage & ERP Sync',
+        pocs: [
+          { initials: 'AK', name: 'Anand Kulkarni', role: 'WMS Inventory Clerk', station: 'System Terminal B', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-55801', walkie: 'Ch 6 (Storage)', duty: 'On Duty' },
+          { initials: 'NS', name: 'Nidhi Shinde', role: 'Warehouse Controller', station: 'Central Ops Room', shift: 'General (08:00 - 17:00)', phone: '+91 98201-55802', walkie: 'Ch 6 (Storage)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Shelf Bin Location Scan', detail: 'High-rack physical location confirmed by handheld scanner' },
           { num: 2, name: 'ERP Inventory Posting', detail: 'Units credited to live available inventory stock ledger' },
@@ -124,6 +148,10 @@
     const outwardStageChecklistsData = {
       1: {
         name: 'Order Intake & Wave Release',
+        pocs: [
+          { initials: 'KT', name: 'Kunal Tiwari', role: 'Wave Batching Specialist', station: 'Planning Desk 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-11101', walkie: 'Ch 7 (Planning)', duty: 'On Duty' },
+          { initials: 'RS', name: 'Rahul Saxena', role: 'Dispatch Planning Lead', station: 'Ops Tower 1', shift: 'General (08:00 - 17:00)', phone: '+91 98202-11102', walkie: 'Ch 7 (Planning)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'ERP Order Validation', detail: 'Customer sales order validated & inventory stock locked in WMS' },
           { num: 2, name: 'Wave Batching & Grouping', detail: 'Order batched into wave run with travel-distance optimized pick path' },
@@ -133,6 +161,10 @@
       },
       2: {
         name: 'Wave Picking from Racks',
+        pocs: [
+          { initials: 'SD', name: 'Sandeep Dsouza', role: 'Senior Wave Picker', station: 'Fast-Pick Zone C', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-22201', walkie: 'Ch 8 (Picking)', duty: 'On Duty' },
+          { initials: 'AK', name: 'Ashok Kamble', role: 'Pick Floor Marshall', station: 'Zone C Aisle Hub', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-22202', walkie: 'Ch 8 (Picking)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Aisle Navigation', detail: 'Picker dispatched to designated warehouse zone, aisle & shelf bin' },
           { num: 2, name: 'Bin Barcode Verification', detail: 'Scanner confirms correct rack shelf location before retrieval' },
@@ -142,6 +174,10 @@
       },
       3: {
         name: 'Sorting & Packing',
+        pocs: [
+          { initials: 'SG', name: 'Sunita Gaikwad', role: 'Pack Station Lead', station: 'Packing Bench 06', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-33301', walkie: 'Ch 9 (Packing)', duty: 'On Duty' },
+          { initials: 'VR', name: 'Vinay Rawat', role: 'Packline Supervisor', station: 'Conveyor Junction 2', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-33302', walkie: 'Ch 9 (Packing)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Consolidation at Pack Station', detail: 'Picked totes transferred to designated packing workbench' },
           { num: 2, name: 'Protective Cushioning', detail: 'Bubble wrap & void-fill added for fragile transport protection' },
@@ -151,6 +187,10 @@
       },
       4: {
         name: 'QC, Weighing & Manifest',
+        pocs: [
+          { initials: 'HK', name: 'Harish Karkera', role: 'Weight & Dimension Auditor', station: 'Scan Weigh Bench 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-44401', walkie: 'Ch 10 (Dispatch QC)', duty: 'On Duty' },
+          { initials: 'MD', name: 'Meera Deshmukh', role: 'Outward Compliance Lead', station: 'QC QA Station', shift: 'General (08:00 - 17:00)', phone: '+91 98202-44402', walkie: 'Ch 10 (Dispatch QC)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Digital Gross Weighing', detail: 'Accurate parcel gross weight recorded by calibrated scale' },
           { num: 2, name: 'Volumetric Cubic Scan', detail: 'Length, width, and height scanned by 3D optical dimensioner' },
@@ -160,6 +200,10 @@
       },
       5: {
         name: 'Dock Bay Staging & Marshalling',
+        pocs: [
+          { initials: 'BK', name: 'Bharat Kadam', role: 'Dock Staging Coordinator', station: 'Dock Bay 06 Staging', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-55501', walkie: 'Ch 11 (Outward Dock)', duty: 'On Duty' },
+          { initials: 'JS', name: 'Jaswant Singh', role: 'Head of Operations', station: 'Central Floor Control', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 11 (Outward Dock)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Transit to Outbound Bay', detail: 'Hand pallet truck moves packed boxes to outbound dock bay' },
           { num: 2, name: 'Route & Pincode Grouping', detail: 'Consignments sorted by carrier delivery zone and hub cluster' },
@@ -169,6 +213,10 @@
       },
       6: {
         name: 'Carrier Handover & Dispatch',
+        pocs: [
+          { initials: 'PB', name: 'Pravin Bhosle', role: 'Carrier Handover Clerk', station: 'Outbound Gate 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-66601', walkie: 'Ch 12 (Gate Handover)', duty: 'On Duty' },
+          { initials: 'JS', name: 'Jaswant Singh', role: 'Head of Operations', station: 'Central Floor Control', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 12 (Gate Handover)', duty: 'On Duty' }
+        ],
         tasks: [
           { num: 1, name: 'Vehicle Loading & Restraint', detail: 'Cargo loaded into carrier vehicle and strapped securely' },
           { num: 2, name: 'Signed Proof of Dispatch', detail: 'Transporter driver signs physical delivery challan & POD copy' },
@@ -176,6 +224,66 @@
         ]
       }
     };
+
+    function renderPocAvatarsHtml(pocs) {
+      if (!pocs || !pocs.length) return '';
+      const avatarsHtml = pocs.map((poc, idx) => {
+        const bgClass = idx === 0 ? 'bg-[#1F2937]' : 'bg-[#D84E55]';
+        return `
+          <div class="relative group/poc cursor-pointer">
+            <div class="w-6 h-6 rounded-full ${bgClass} text-white font-bold text-[9px] flex items-center justify-center font-arial ring-2 ring-white shadow-2xs select-none">
+              ${poc.initials}
+            </div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#10B981] ring-1 ring-white"></span>
+
+            <!-- Tooltip Popover (Zero Icons · Clean Pareto Layout) -->
+            <div class="pointer-events-none group-hover/poc:pointer-events-auto opacity-0 group-hover/poc:opacity-100 transition-all duration-150 absolute right-0 top-full mt-2 w-64 bg-white border border-[#E5E7EB] rounded-xl shadow-xl p-3 z-50 text-left font-arial text-[11px] text-[#1F2937]">
+              <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
+                <div>
+                  <div class="font-bold text-[12px] text-[#1F2937] leading-tight">${poc.name}</div>
+                  <div class="text-[10px] font-semibold text-[#D84E55] mt-0.5">${poc.role}</div>
+                </div>
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] shrink-0">On Duty</span>
+              </div>
+
+              <div class="py-2 space-y-1 text-[10.5px] border-b border-[#E5E7EB]">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-400 font-medium">Station</span>
+                  <span class="font-bold text-gray-700">${poc.station}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-400 font-medium">Shift</span>
+                  <span class="font-medium text-gray-700">${poc.shift}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-400 font-medium">Walkie</span>
+                  <span class="font-medium text-gray-700">${poc.walkie}</span>
+                </div>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 text-[9.5px] block font-medium">Mobile</span>
+                  <span class="font-bold text-[10.5px] text-gray-900 font-arial">${poc.phone}</span>
+                </div>
+                <button onclick="event.stopPropagation(); alert('Connecting to ${poc.name} (${poc.role}) at ${poc.phone}...')" class="px-2.5 py-0.5 rounded-lg bg-[#1F2937] hover:bg-black text-white font-bold text-[10px] cursor-pointer transition-colors shadow-2xs">
+                  Call
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="flex items-center gap-1.5">
+          <span class="text-[10px] uppercase font-bold text-gray-400 font-arial tracking-wider hidden sm:inline">POC</span>
+          <div class="flex items-center -space-x-1.5">
+            ${avatarsHtml}
+          </div>
+        </div>
+      `;
+    }
 
     function updateInwardStageChecklists(currentStageNum) {
       currentStageNum = parseInt(currentStageNum) || 1;
@@ -319,13 +427,18 @@
             `;
           }).join('');
 
+          const pocHtml = renderPocAvatarsHtml(data.pocs);
+
           checklistBox.innerHTML = `
             <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3 space-y-2">
               <div class="flex items-center justify-between pb-1.5 border-b border-gray-200 flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
                   <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
                 </div>
-                <div>${headerBadge}</div>
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  ${pocHtml}
+                  <div>${headerBadge}</div>
+                </div>
               </div>
               <div class="space-y-1.5">
                 ${tasksHtml}
@@ -478,13 +591,18 @@
             `;
           }).join('');
 
+          const pocHtml = renderPocAvatarsHtml(data.pocs);
+
           checklistBox.innerHTML = `
             <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3 space-y-2">
               <div class="flex items-center justify-between pb-1.5 border-b border-gray-200 flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
                   <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
                 </div>
-                <div>${headerBadge}</div>
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  ${pocHtml}
+                  <div>${headerBadge}</div>
+                </div>
               </div>
               <div class="space-y-1.5">
                 ${tasksHtml}
