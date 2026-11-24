@@ -202,9 +202,9 @@
           if (isDone) {
             cardEl.className = 'bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all';
           } else if (isInProgress) {
-            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all';
+            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md relative transition-all';
           } else {
-            cardEl.className = 'opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
+            cardEl.className = 'opacity-75 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
           }
         }
 
@@ -249,14 +249,8 @@
 
         // 4. Render Checklist Box
         const checklistBox = document.getElementById(`inward-stage-${s}-checklist`);
-        if (checklistBox && isUpcoming) {
-          checklistBox.style.display = 'none';
-          checklistBox.innerHTML = '';
-          continue;
-        } else if (checklistBox) {
-          checklistBox.style.display = 'block';
-        }
         if (checklistBox) {
+          checklistBox.style.display = 'block';
           const totalTasks = data.tasks.length;
           let completedCount = 0;
           let headerBadge = '';
@@ -296,26 +290,22 @@
             }
 
             return `
-              <div class="flex items-center justify-between p-2.5 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
-                <div>
-                  <span class="font-bold text-[#1F2937] block text-[12px]">${task.num}. ${task.name}</span>
-                  <span class="text-[11px] text-[#4B5563] block mt-0.5 leading-snug">${task.detail}</span>
-                </div>
+              <div class="flex items-center justify-between py-2 px-3 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
+                <span class="font-bold text-[#1F2937] text-[12px] truncate">${task.num}. ${task.name}</span>
                 ${taskBadge}
               </div>
             `;
           }).join('');
 
           checklistBox.innerHTML = `
-            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3.5 space-y-2.5">
-              <div class="flex items-center justify-between pb-2 border-b border-gray-200 flex-wrap gap-2">
-                <div class="flex items-center gap-2">
+            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3 space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-gray-200 flex-wrap gap-2">
+                <div class="flex items-center gap-1.5">
                   <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
-                  <span class="text-[11px] text-gray-400 hidden sm:inline">· Sequential Workflow</span>
                 </div>
                 <div>${headerBadge}</div>
               </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(totalTasks, 3)} gap-2">
+              <div class="space-y-1.5">
                 ${tasksHtml}
               </div>
             </div>
@@ -371,9 +361,9 @@
           if (isDone) {
             cardEl.className = 'bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all';
           } else if (isInProgress) {
-            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all';
+            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md relative transition-all';
           } else {
-            cardEl.className = 'opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
+            cardEl.className = 'opacity-75 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
           }
         }
 
@@ -418,14 +408,8 @@
 
         // 4. Render Checklist Box
         const checklistBox = document.getElementById(`outward-stage-${s}-checklist`);
-        if (checklistBox && isUpcoming) {
-          checklistBox.style.display = 'none';
-          checklistBox.innerHTML = '';
-          continue;
-        } else if (checklistBox) {
-          checklistBox.style.display = 'block';
-        }
         if (checklistBox) {
+          checklistBox.style.display = 'block';
           const totalTasks = data.tasks.length;
           let completedCount = 0;
           let headerBadge = '';
@@ -465,26 +449,22 @@
             }
 
             return `
-              <div class="flex items-center justify-between p-2.5 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
-                <div>
-                  <span class="font-bold text-[#1F2937] block text-[12px]">${task.num}. ${task.name}</span>
-                  <span class="text-[11px] text-[#4B5563] block mt-0.5 leading-snug">${task.detail}</span>
-                </div>
+              <div class="flex items-center justify-between py-2 px-3 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
+                <span class="font-bold text-[#1F2937] text-[12px] truncate">${task.num}. ${task.name}</span>
                 ${taskBadge}
               </div>
             `;
           }).join('');
 
           checklistBox.innerHTML = `
-            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3.5 space-y-2.5">
-              <div class="flex items-center justify-between pb-2 border-b border-gray-200 flex-wrap gap-2">
-                <div class="flex items-center gap-2">
+            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3 space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-gray-200 flex-wrap gap-2">
+                <div class="flex items-center gap-1.5">
                   <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
-                  <span class="text-[11px] text-gray-400 hidden sm:inline">· Sequential Workflow</span>
                 </div>
                 <div>${headerBadge}</div>
               </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(totalTasks, 3)} gap-2">
+              <div class="space-y-1.5">
                 ${tasksHtml}
               </div>
             </div>
