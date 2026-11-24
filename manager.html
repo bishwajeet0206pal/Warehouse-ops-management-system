@@ -692,212 +692,178 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           <!-- Card 1: Forklift -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Heavy Handling</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">31 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">11 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="forklift.jpg" 
                    alt="Industrial Forklift" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Heavy Handling</span>
             </div>
-            <!-- Name & Fleet -->
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Forklift</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">42 total across all warehouses</p>
-            </div>
-            <!-- Split Pills -->
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">31</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">11</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">42 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 2: Pallet Jack -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Manual Staging</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">38 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">22 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="pallet-jack.jpg" 
                    alt="Pallet Jack" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Manual Staging</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Pallet Jack</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">60 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">38</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">22</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">60 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 3: Reach Truck -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">High-Bay Stacking</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">9 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">5 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="reach-truck.jpg" 
                    alt="Reach Truck" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">High-Bay Stacking</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Reach Truck</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">14 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">9</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">5</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">14 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 4: Conveyor Belt -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Automated Sortation</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">14 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">4 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="conveyor-belt.jpg" 
                    alt="Industrial Conveyor Belt" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Automated Sortation</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Conveyor Belt</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">18 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">14</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">4</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">18 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 5: Barcode Scanner -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">AIDC & Intake QC</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">70 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">26 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="barcode-scanner.jpg" 
                    alt="Handheld Barcode Scanner" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">AIDC & Intake QC</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Barcode Scanner</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">96 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">70</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">26</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">96 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 6: Weighing Scale -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Gross Metrology</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">17 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">7 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="weighing-scale.jpg" 
                    alt="Platform Weighing Scale" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Gross Metrology</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Weighing Scale</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">24 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">17</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">7</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">24 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 7: Strapping Machine -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Carton Packing</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">10 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">6 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="strapping-machine.jpg" 
                    alt="Automatic Strapping Machine" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Carton Packing</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Strapping Machine</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">16 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">10</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">6</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">16 total across all warehouses</p>
             </div>
           </div>
 
           <!-- Card 8: Dock Leveler -->
-          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all space-y-3 group">
-            <!-- Exact Photographic / 3D Image Viewport -->
-            <div class="w-full h-32 rounded-xl bg-white border border-[#E2E8F0] overflow-hidden relative group-hover:border-[#CBD5E1] transition-colors flex items-center justify-center p-2">
+          <div class="relative bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden">
+            <!-- Top Badges in Whitespace -->
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-gray-900/70 text-white font-medium text-[10px] backdrop-blur-xs z-10">Dock Gate Bay</span>
+            <div class="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]">13 in use</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">7 idle</span>
+            </div>
+            <!-- Large Image Viewport (borderless, occupies card space) -->
+            <div class="w-full h-48 sm:h-52 flex items-center justify-center p-2 pt-6 relative my-auto">
               <img src="dock-leveler.jpg" 
                    alt="Hydraulic Dock Leveler" 
                    class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" 
                    loading="lazy" />
-              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/60 text-white font-bold text-[10px] backdrop-blur-xs">Dock Gate Bay</span>
             </div>
-            <div>
+            <!-- Name & Fleet at the bottom -->
+            <div class="pt-2 border-t border-gray-100 mt-2">
               <h3 class="text-[15px] font-bold text-[#1F2937]">Dock Leveler</h3>
-              <p class="text-[11px] text-[#6B7280] font-medium">20 total across all warehouses</p>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-center">
-                <span class="block text-[15px] font-bold text-[#059669] leading-tight">13</span>
-                <span class="text-[10px] uppercase font-bold text-[#047857]">in use</span>
-              </div>
-              <div class="py-1.5 px-2.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-center">
-                <span class="block text-[15px] font-bold text-[#DC2626] leading-tight">7</span>
-                <span class="text-[10px] uppercase font-bold text-[#B91C1C]">idle</span>
-              </div>
+              <p class="text-[11.5px] text-[#6B7280] font-medium">20 total across all warehouses</p>
             </div>
           </div>
 
