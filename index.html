@@ -315,25 +315,31 @@
     <div id="screen-1" class="screen-view space-y-5">
       
             <!-- ==============================================
-           OPS MANAGER DASHBOARD — 8 CORE METRICS (CLEAN & ORGANIZED)
-           Matching Warehouse Network & Equipment Grid (4x2 Responsive Layout)
+           OPS MANAGER DASHBOARD — 8 CORE METRICS (WEEK-ON-WEEK COMPARISON)
+           Vertical Bar Graphs · Same Weekday Comparison (Mon-Fri) · Live List Exception
            ============================================== -->
       <div id="ops-manager-metrics" class="space-y-4">
         
-        <!-- Header & Timeframe Filter -->
+        <!-- Header & Week-on-Week Same-Weekday Comparison Legend -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
-          <div>
+          <div class="flex items-center gap-3 flex-wrap">
             <h1 class="text-[22px] font-bold text-[#1F2937]">Network Health</h1>
+            <span class="text-[11.5px] font-bold text-[#4B5563] font-arial bg-gray-100 border border-gray-200 px-2.5 py-0.5 rounded-full">
+              Week-on-Week Comparison (Same Weekday)
+            </span>
           </div>
           
-          <!-- Timeframe Selector -->
-          <div class="flex items-center gap-2">
-            <span class="text-[12px] font-bold text-[#4B5563] hidden md:inline font-arial">Timeframe:</span>
-            <div class="inline-flex rounded-xl bg-[#F3F4F6] p-1 border border-[#E5E7EB]">
-              <button onclick="switchMetricsTime('today', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-bold bg-[#1F2937] text-white shadow-2xs transition-all cursor-pointer">Today</button>
-              <button onclick="switchMetricsTime('week', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-medium text-[#4B5563] hover:text-[#1F2937] transition-all cursor-pointer">This Week</button>
-              <button onclick="switchMetricsTime('month', this)" class="ops-time-btn px-3 py-1 rounded-lg text-[11.5px] font-medium text-[#4B5563] hover:text-[#1F2937] transition-all cursor-pointer">This Month</button>
-            </div>
+          <!-- Shared Chart Legend -->
+          <div class="flex items-center gap-3 text-[11.5px] font-arial bg-gray-50 border border-gray-200 px-3 py-1 rounded-xl">
+            <span class="flex items-center gap-1.5 text-gray-500 font-medium">
+              <span class="w-2.5 h-2.5 rounded-xs bg-[#94A3B8]"></span>
+              <span>Last Week (LW)</span>
+            </span>
+            <span class="text-gray-300">|</span>
+            <span class="flex items-center gap-1.5 text-gray-900 font-bold">
+              <span class="w-2.5 h-2.5 rounded-xs bg-[#D84E55]"></span>
+              <span>This Week (TW · Today)</span>
+            </span>
           </div>
         </div>
 
@@ -349,36 +355,55 @@
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">1.4 : 1</span>
-                <span class="text-[11.5px] font-medium text-[#DC2626] font-arial">+40% Inflow</span>
+                <span class="text-[11.5px] font-bold text-[#DC2626] font-arial">▲ +27% vs Last Week (1.1)</span>
               </div>
             </div>
 
-            <!-- Visual Bar Breakdown -->
-            <div class="space-y-2 py-1 my-auto">
-              <div>
-                <div class="flex justify-between text-[11px] text-[#4B5563] mb-1 font-arial">
-                  <span>Inbound</span>
-                  <span class="font-bold text-[#1F2937]">1,420 units (58%)</span>
-                </div>
-                <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                  <div class="h-full bg-[#0D9488] rounded-full" style="width: 58%"></div>
-                </div>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#DC2626]">This Fri: 1.4 : 1</span>
               </div>
-              <div>
-                <div class="flex justify-between text-[11px] text-[#4B5563] mb-1 font-arial">
-                  <span>Outbound</span>
-                  <span class="font-bold text-[#1F2937]">1,014 units (42%)</span>
-                </div>
-                <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                  <div class="h-full bg-[#0284C7] rounded-full" style="width: 42%"></div>
-                </div>
-              </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (1.0 : 1 Balanced) at y=38 -->
+                <line x1="10" y1="38" x2="215" y2="38" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="41" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">1.0</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 1.1 [h=27, y=37], TW: 1.2 [h=30, y=34]) -->
+                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#0D9488"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 1.0 [h=25, y=39], TW: 1.3 [h=32, y=32]) -->
+                <rect x="69" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#0D9488"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 1.2 [h=30, y=34], TW: 1.4 [h=35, y=29]) -->
+                <rect x="113" y="34" width="7" height="30" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#0D9488"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 1.1 [h=27, y=37], TW: 1.5 [h=38, y=26]) -->
+                <rect x="157" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="26" width="7" height="38" rx="1.5" fill="#DC2626"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 1.1 [h=27, y=37], TW: 1.4 [h=35, y=29]) -->
+                <rect x="201" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
+                <text x="212" y="24" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">1.4</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Target 1.0 : 1</span>
+              <span class="text-gray-400 font-arial font-medium">Target: 1.0 : 1 Balanced</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Facilities &rarr;
               </button>
@@ -394,48 +419,75 @@
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">18 Days</span>
-                <span class="text-[11.5px] font-medium text-[#059669] font-arial">Band 14&ndash;25d</span>
+                <span class="text-[11.5px] font-bold text-[#059669] font-arial">▲ +1d vs Last Week (17d)</span>
               </div>
             </div>
 
-            <!-- Segmented Gauge Runway -->
-            <div class="space-y-2 py-1 my-auto">
-              <div class="relative h-2.5 w-full bg-gray-100 rounded-full flex overflow-hidden">
-                <div class="h-full bg-[#FCA5A5] w-1/4" title="Low Stockout Risk (<14d)"></div>
-                <div class="h-full bg-[#86EFAC] w-1/2" title="Healthy Band (14-25d)"></div>
-                <div class="h-full bg-[#FDE68A] w-1/4" title="Excess Idle Stock (>25d)"></div>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#059669]">This Fri: 18 Days</span>
               </div>
-              <div class="flex justify-between text-[10px] text-gray-500 font-arial font-medium px-0.5">
-                <span class="text-red-500 font-bold">&lt;14d Risk</span>
-                <span class="text-emerald-700 font-bold">18d Current</span>
-                <span class="text-amber-600 font-bold">&gt;25d Excess</span>
-              </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (18d Optimal) at y=35 -->
+                <line x1="10" y1="35" x2="215" y2="35" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="38" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">18d</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 19d [h=36, y=28], TW: 17d [h=32, y=32]) -->
+                <rect x="25" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="32" width="7" height="32" rx="1.5" fill="#10B981"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 19d [h=36, y=28], TW: 18d [h=34, y=30]) -->
+                <rect x="69" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="30" width="7" height="34" rx="1.5" fill="#10B981"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 18d [h=34, y=30], TW: 18d [h=34, y=30]) -->
+                <rect x="113" y="30" width="7" height="34" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="30" width="7" height="34" rx="1.5" fill="#10B981"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 18d [h=34, y=30], TW: 19d [h=36, y=28]) -->
+                <rect x="157" y="30" width="7" height="34" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#10B981"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 17d [h=32, y=32], TW: 18d [h=34, y=30]) -->
+                <rect x="201" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="30" width="7" height="34" rx="1.5" fill="#059669"/>
+                <text x="212" y="25" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">18d</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Daily Outflow 1.8k</span>
+              <span class="text-gray-400 font-arial font-medium">Optimal Band: 14&ndash;25d</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Inventory &rarr;
               </button>
             </div>
           </div>
 
-          <!-- Card 3: Pick-First List (FEFO Expiry) -->
+          <!-- Card 3: Pick-First List (LIVE STATE - EXCEPTION: NO TIMEFRAME COMPARISON) -->
           <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
                 <h3 class="text-[14px] font-bold text-[#1F2937]">3. Pick-First List</h3>
-                <span class="px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[10.5px] font-arial border border-[#FECACA]">2 URGENT</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10.5px] font-arial border border-emerald-200">LIVE REAL-TIME</span>
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
-                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">4 Items</span>
-                <span class="text-[11.5px] font-medium text-[#DC2626] font-arial">Nearing Expiry</span>
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">4 Batches</span>
+                <span class="text-[11.5px] font-medium text-[#DC2626] font-arial">Expiring &le; 4 Days</span>
               </div>
             </div>
 
-            <!-- Clean Mini Expiry Table (4 items matching prototype) -->
+            <!-- Live Expiry Table (No Timeframe Comparison — Real-time State) -->
             <div class="my-auto py-1">
               <div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50 text-[11px] font-arial">
                 <div class="flex justify-between items-center px-2 py-1">
@@ -463,7 +515,7 @@
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">FEFO Enforcement</span>
+              <span class="text-gray-400 font-arial font-medium">Live State · No Trend</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Expiry List &rarr;
               </button>
@@ -479,29 +531,55 @@
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span class="text-[22px] font-black text-[#DC2626] font-arial leading-none">6.2 hrs</span>
-                <span class="text-[11.5px] font-medium text-gray-500 font-arial">Target &le; 4.0h</span>
+                <span class="text-[11.5px] font-bold text-[#DC2626] font-arial">▲ +1.4h vs Last Week (4.8h)</span>
               </div>
             </div>
 
-            <!-- SLA Target Comparison Bar -->
-            <div class="space-y-2 py-1 my-auto">
-              <div class="flex justify-between text-[11px] text-[#4B5563] font-arial">
-                <span>Intake &amp; Offload</span>
-                <span class="font-bold text-[#DC2626]">6.2 hrs (+55%)</span>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#DC2626]">This Fri: 6.2 hrs</span>
               </div>
-              <div class="relative h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-[#059669] via-[#F59E0B] to-[#DC2626] rounded-full" style="width: 85%"></div>
-              </div>
-              <div class="flex justify-between text-[10px] text-gray-500 font-arial">
-                <span class="text-emerald-700 font-bold">Target: &le; 4.0 hrs</span>
-                <span class="text-red-600 font-bold">Avg: 6.2 hrs</span>
-              </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (4.0 hrs SLA) at y=40 -->
+                <line x1="10" y1="40" x2="215" y2="40" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="43" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">4.0h</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 4.2h [h=25, y=39], TW: 5.1h [h=30, y=34]) -->
+                <rect x="25" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#F59E0B"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 3.9h [h=23, y=41], TW: 5.4h [h=32, y=32]) -->
+                <rect x="69" y="41" width="7" height="23" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#F59E0B"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 4.1h [h=25, y=39], TW: 5.8h [h=35, y=29]) -->
+                <rect x="113" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 4.5h [h=27, y=37], TW: 6.0h [h=36, y=28]) -->
+                <rect x="157" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#DC2626"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 4.8h [h=29, y=35], TW: 6.2h [h=38, y=26]) -->
+                <rect x="201" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="26" width="7" height="38" rx="1.5" fill="#DC2626"/>
+                <text x="212" y="21" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">6.2h</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">SLA 4.0 hrs max</span>
+              <span class="text-gray-400 font-arial font-medium">SLA Target: &le; 4.0 hrs</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 Inspect Inward &rarr;
               </button>
@@ -517,31 +595,55 @@
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">91%</span>
-                <span class="text-[11.5px] font-medium text-[#D97706] font-arial">Target &ge; 95%</span>
+                <span class="text-[11.5px] font-bold text-[#D97706] font-arial">▼ -4% vs Last Week (95%)</span>
               </div>
             </div>
 
-            <!-- Radial Gauge + Stats -->
-            <div class="space-y-1.5 py-1 my-auto">
-              <div class="flex items-center justify-between px-1">
-                <div class="shrink-0">
-                  <svg width="52" height="52" viewBox="0 0 80 80">
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#E5E7EB" stroke-width="8"/>
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#10B981" stroke-width="8" stroke-dasharray="201" stroke-dashoffset="18" stroke-linecap="round" transform="rotate(-90 40 40)"/>
-                    <text x="40" y="45" text-anchor="middle" font-size="16" font-weight="900" fill="#1F2937" font-family="Arial, sans-serif">91%</text>
-                  </svg>
-                </div>
-                <div class="space-y-1 text-[11px] font-arial text-[#4B5563] text-right">
-                  <div>On-Time: <strong class="text-[#1F2937]">418 orders</strong></div>
-                  <div>Delayed: <strong class="text-[#DC2626]">41 orders</strong></div>
-                </div>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#D97706]">This Fri: 91%</span>
               </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (95% Benchmark) at y=32 -->
+                <line x1="10" y1="32" x2="215" y2="32" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="35" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">95%</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 96% [h=35, y=29], TW: 94% [h=30, y=34]) -->
+                <rect x="25" y="29" width="7" height="35" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#10B981"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 97% [h=36, y=28], TW: 93% [h=28, y=36]) -->
+                <rect x="69" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="36" width="7" height="28" rx="1.5" fill="#10B981"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 95% [h=32, y=32], TW: 92% [h=26, y=38]) -->
+                <rect x="113" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="38" width="7" height="26" rx="1.5" fill="#F59E0B"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 96% [h=35, y=29], TW: 90% [h=22, y=42]) -->
+                <rect x="157" y="29" width="7" height="35" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="42" width="7" height="22" rx="1.5" fill="#DC2626"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 95% [h=32, y=32], TW: 91% [h=24, y=40]) -->
+                <rect x="201" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="40" width="7" height="24" rx="1.5" fill="#D97706"/>
+                <text x="212" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">91%</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Benchmark &ge;95%</span>
+              <span class="text-gray-400 font-arial font-medium">Benchmark: &ge; 95%</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 Inspect Outward &rarr;
               </button>
@@ -557,92 +659,186 @@
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
                 <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">78%</span>
-                <span class="text-[11.5px] font-medium text-[#059669] font-arial">38.4k Pallets</span>
+                <span class="text-[11.5px] font-bold text-[#059669] font-arial">▲ +2% vs Last Week (76%)</span>
               </div>
             </div>
 
-            <!-- Progress Bar -->
-            <div class="space-y-2 py-1 my-auto">
-              <div class="flex justify-between text-[11px] text-[#4B5563] font-arial">
-                <span>Pallet Capacity</span>
-                <span class="font-bold text-[#1F2937]">78% Stored</span>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#059669]">This Fri: 78%</span>
               </div>
-              <div class="relative h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
-                <div class="h-full bg-[#10B981] rounded-full" style="width: 78%"></div>
-              </div>
-              <div class="flex justify-between text-[10px] text-gray-500 font-arial">
-                <span class="text-emerald-700 font-bold">Optimal 70&ndash;85%</span>
-                <span class="text-red-500 font-bold">90% Threshold</span>
-              </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (85% Upper Band) at y=30 -->
+                <line x1="10" y1="30" x2="215" y2="30" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="33" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">85%</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 74% [h=26, y=38], TW: 76% [h=28, y=36]) -->
+                <rect x="25" y="38" width="7" height="26" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="36" width="7" height="28" rx="1.5" fill="#10B981"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 75% [h=27, y=37], TW: 77% [h=29, y=35]) -->
+                <rect x="69" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="35" width="7" height="29" rx="1.5" fill="#10B981"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 75% [h=27, y=37], TW: 77% [h=29, y=35]) -->
+                <rect x="113" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="35" width="7" height="29" rx="1.5" fill="#10B981"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 76% [h=28, y=36], TW: 78% [h=30, y=34]) -->
+                <rect x="157" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="34" width="7" height="30" rx="1.5" fill="#10B981"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 76% [h=28, y=36], TW: 78% [h=30, y=34]) -->
+                <rect x="201" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="34" width="7" height="30" rx="1.5" fill="#059669"/>
+                <text x="212" y="29" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">78%</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Free: 10.8k Pallets</span>
+              <span class="text-gray-400 font-arial font-medium">Cap: 38.4k / 49.2k Plt</span>
               <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Floor Plans &rarr;
               </button>
             </div>
           </div>
 
-          <!-- Card 7: Placeholder 1 (Configurable Metric Slot 07) -->
+          <!-- Card 7: Labour & Equipment Utilization -->
           <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[14px] font-bold text-[#1F2937]">7. Metric Placeholder</h3>
-                <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-bold text-[10.5px] font-arial border border-gray-200">PLACEHOLDER</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">7. Labour &amp; Equipment</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[10.5px] font-arial border border-[#A7F3D0]">84% · ACTIVE</span>
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
-                <span class="text-[22px] font-black text-gray-400 font-arial leading-none">Slot 07</span>
-                <span class="text-[11.5px] font-medium text-gray-400 font-arial">Configurable</span>
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">84%</span>
+                <span class="text-[11.5px] font-bold text-[#059669] font-arial">▲ +4% vs Last Week (80%)</span>
               </div>
             </div>
 
-            <!-- Placeholder Box -->
-            <div class="space-y-2 py-1 my-auto">
-              <div class="border-2 border-dashed border-gray-200 rounded-xl p-2.5 bg-gray-50/50 flex flex-col items-center justify-center text-center space-y-1">
-                <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-[11px]">+</div>
-                <span class="text-[11.5px] font-bold text-gray-600 font-arial">Custom KPI Slot</span>
-                <span class="text-[10px] text-gray-400 leading-tight">e.g. Order Pick Accuracy / DPMO</span>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#059669]">This Fri: 84% Active</span>
               </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (80% Optimal) at y=36 -->
+                <line x1="10" y1="36" x2="215" y2="36" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="39" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">80%</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 78% [h=27, y=37], TW: 82% [h=31, y=33]) -->
+                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="33" width="7" height="31" rx="1.5" fill="#0D9488"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 80% [h=29, y=35], TW: 83% [h=32, y=32]) -->
+                <rect x="69" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#0D9488"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 81% [h=30, y=34], TW: 84% [h=33, y=31]) -->
+                <rect x="113" y="34" width="7" height="30" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="31" width="7" height="33" rx="1.5" fill="#0D9488"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 82% [h=31, y=33], TW: 85% [h=34, y=30]) -->
+                <rect x="157" y="33" width="7" height="31" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="30" width="7" height="34" rx="1.5" fill="#0D9488"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 80% [h=29, y=35], TW: 84% [h=33, y=31]) -->
+                <rect x="201" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="31" width="7" height="33" rx="1.5" fill="#059669"/>
+                <text x="212" y="26" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">84%</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Slot #7 Reserved</span>
-              <span class="text-gray-400 font-bold font-arial">Available Slot</span>
+              <span class="text-gray-400 font-arial font-medium">124 / 148 MHE In-Use</span>
+              <button onclick="document.getElementById('equipment-section')?.scrollIntoView({behavior:'smooth'})" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
+                View Fleet &rarr;
+              </button>
             </div>
           </div>
 
-          <!-- Card 8: Placeholder 2 (Configurable Metric Slot 08) -->
+          <!-- Card 8: Dock Turnaround Time (TAT) -->
           <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[14px] font-bold text-[#1F2937]">8. Metric Placeholder</h3>
-                <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-bold text-[10.5px] font-arial border border-gray-200">PLACEHOLDER</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">8. Dock Turnaround (TAT)</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[10.5px] font-arial border border-[#FECACA]">48 MINS · SLOW</span>
               </div>
               <div class="flex items-baseline gap-2 mt-0.5">
-                <span class="text-[22px] font-black text-gray-400 font-arial leading-none">Slot 08</span>
-                <span class="text-[11.5px] font-medium text-gray-400 font-arial">Configurable</span>
+                <span class="text-[22px] font-black text-[#DC2626] font-arial leading-none">48 mins</span>
+                <span class="text-[11.5px] font-bold text-[#DC2626] font-arial">▲ +5m vs Last Week (43m)</span>
               </div>
             </div>
 
-            <!-- Placeholder Box -->
-            <div class="space-y-2 py-1 my-auto">
-              <div class="border-2 border-dashed border-gray-200 rounded-xl p-2.5 bg-gray-50/50 flex flex-col items-center justify-center text-center space-y-1">
-                <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-[11px]">+</div>
-                <span class="text-[11.5px] font-bold text-gray-600 font-arial">Custom KPI Slot</span>
-                <span class="text-[10px] text-gray-400 leading-tight">e.g. Dock Turnaround Time (TAT)</span>
+            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <div class="my-auto py-1">
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
+                <span>Daily vs Same Day LW</span>
+                <span class="font-bold text-[#DC2626]">This Fri: 48 mins</span>
               </div>
+              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
+                <!-- Target Line (45 mins Target) at y=35 -->
+                <line x1="10" y1="35" x2="215" y2="35" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
+                <text x="218" y="38" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">45m</text>
+                
+                <!-- Baseline -->
+                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
 
+                <!-- Mon (LW: 42m [h=27, y=37], TW: 46m [h=31, y=33]) -->
+                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
+                <rect x="33" y="33" width="7" height="31" rx="1.5" fill="#F59E0B"/>
+                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+
+                <!-- Tue (LW: 41m [h=26, y=38], TW: 47m [h=32, y=32]) -->
+                <rect x="69" y="38" width="7" height="26" rx="1.5" fill="#94A3B8"/>
+                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#F59E0B"/>
+                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+
+                <!-- Wed (LW: 43m [h=28, y=36], TW: 49m [h=35, y=29]) -->
+                <rect x="113" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
+                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
+                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+
+                <!-- Thu (LW: 44m [h=29, y=35], TW: 50m [h=36, y=28]) -->
+                <rect x="157" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
+                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#DC2626"/>
+                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+
+                <!-- Fri (Today) (LW: 43m [h=28, y=36], TW: 48m [h=34, y=30]) -->
+                <rect x="201" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
+                <rect x="209" y="30" width="7" height="34" rx="1.5" fill="#DC2626"/>
+                <text x="212" y="25" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">48m</text>
+                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+              </svg>
             </div>
 
             <!-- Footer -->
             <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
-              <span class="text-gray-400 font-arial font-medium">Slot #8 Reserved</span>
-              <span class="text-gray-400 font-bold font-arial">Available Slot</span>
+              <span class="text-gray-400 font-arial font-medium">Target: &le; 45 mins</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
+                View Dock Bays &rarr;
+              </button>
             </div>
           </div>
 
