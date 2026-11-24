@@ -233,6 +233,157 @@
       height: 720px !important;
       max-height: calc(100vh - 64px) !important;
     }
+  
+    /* Scoped Styles for Ops Manager 6 Core Metrics Panel */
+    #ops-manager-metrics {
+      background: #0e0e0e;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    #ops-manager-metrics .wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+    #ops-manager-metrics h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+      color: #fff;
+      font-weight: bold;
+    }
+    #ops-manager-metrics .muted {
+      color: #9aa0ad;
+      font-size: 13px;
+      margin: 0 0 18px;
+    }
+    #ops-manager-metrics .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #fff;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      border-radius: 6px;
+      background: #141414;
+    }
+    #ops-manager-metrics .grid-metrics {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      #ops-manager-metrics .grid-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 1024px) {
+      #ops-manager-metrics .grid-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    #ops-manager-metrics .card {
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: #131313;
+      padding: 14px 16px;
+      position: relative;
+    }
+    #ops-manager-metrics .cardhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    #ops-manager-metrics .card h3 {
+      font-size: 14px;
+      margin: 0;
+      color: #fff;
+      font-weight: bold;
+    }
+    #ops-manager-metrics .info {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1px solid #9aa0ad;
+      color: #9aa0ad;
+      font-size: 11px;
+      text-align: center;
+      line-height: 16px;
+      cursor: help;
+      flex-shrink: 0;
+    }
+    #ops-manager-metrics .big {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 8px 0 8px;
+      color: #fff;
+    }
+    #ops-manager-metrics svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    #ops-manager-metrics svg text {
+      fill: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #ops-manager-metrics svg .s {
+      font-size: 10px;
+      fill: #9aa0ad;
+    }
+    #ops-manager-metrics svg .b {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 1.3;
+    }
+    #ops-manager-metrics .insight {
+      font-size: 12px;
+      border-left: 3px solid #2DD4BF;
+      background: #102422;
+      padding: 7px 10px;
+      margin-top: 10px;
+      border-radius: 0 4px 4px 0;
+    }
+    #ops-manager-metrics .insight.warn {
+      border-left-color: #F0A3A3;
+      background: #241414;
+      color: #fff;
+    }
+    #ops-manager-metrics .drill {
+      font-size: 11px;
+      color: #2DD4BF;
+      margin-top: 10px;
+      display: block;
+      cursor: pointer;
+    }
+    #ops-manager-metrics .drill:hover {
+      text-decoration: underline;
+    }
+    #ops-manager-metrics table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+    #ops-manager-metrics th, #ops-manager-metrics td {
+      border: 1px solid #333;
+      padding: 4px 6px;
+      text-align: left;
+    }
+    #ops-manager-metrics th {
+      color: #9aa0ad;
+      font-weight: normal;
+    }
+    #ops-manager-metrics td {
+      color: #fff;
+    }
+    #ops-manager-metrics .flagred {
+      color: #F0A3A3;
+    }
+    #ops-manager-metrics .flaggreen {
+      color: #7FE0B8;
+    }
+
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -314,8 +465,149 @@
          ============================================== -->
     <div id="screen-1" class="screen-view space-y-5">
       
+            <!-- ==============================================
+           OPS MANAGER DASHBOARD — 6 CORE METRICS (GRAPHS VIEW)
+           ============================================== -->
+      <div id="ops-manager-metrics" class="rounded-2xl border border-[#2e2e2e] p-5 sm:p-7 shadow-lg">
+        <div class="wrap">
+
+          <div class="flex items-start justify-between gap-4 mb-1">
+            <div>
+              <h1>Ops Manager Dashboard — 6 core metrics</h1>
+              <p class="muted">Paper prototype. Each card leads with the number, then a straight &ldquo;do this&rdquo; line &mdash; not a description. Hover the <span class="info" style="display:inline-block;vertical-align:middle;">i</span> for what the metric means.</p>
+            </div>
+          </div>
+
+          <div class="topbar">
+            <span>All Warehouses (network view) &#9662;</span>
+            <div class="flex items-center gap-2">
+              <button onclick="switchMetricsTime('today', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium bg-[#333] text-white">Today</button>
+              <span class="text-[#666]">&nbsp;|&nbsp;</span>
+              <button onclick="switchMetricsTime('week', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium text-[#9aa0ad] hover:text-white">This Week</button>
+              <span class="text-[#666]">&nbsp;|&nbsp;</span>
+              <button onclick="switchMetricsTime('month', this)" class="ops-time-btn px-2 py-0.5 rounded font-medium text-[#9aa0ad] hover:text-white">This Month</button>
+            </div>
+          </div>
+
+          <div class="grid-metrics">
+
+            <!-- 1. Inbound:Outbound Ratio -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>1. Inbound : Outbound Ratio</h3>
+                <span class="info" title="Goods coming in vs going out. Above 1 for too long = warehouse fills up. Below 1 for too long = stock depletes faster than it's replaced.">i</span>
+              </div>
+              <div class="big">1.4 : 1</div>
+              <svg viewBox="0 0 280 70">
+                <text class="s" x="0" y="15">Inbound</text>
+                <rect class="b" x="0" y="20" width="196" height="14" fill="#2DD4BF" fill-opacity="0.25"/>
+                <text class="s" x="0" y="50">Outbound</text>
+                <rect class="b" x="0" y="55" width="140" height="14" fill="#38BDF8" fill-opacity="0.25"/>
+              </svg>
+              <div class="insight warn">West Zone running inbound-heavy &mdash; 3 sites over 85% full. Pause new bookings there, redirect to Central Zone.</div>
+              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            </div>
+
+            <!-- 2. Days of Inventory -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>2. Days of Inventory (DOI)</h3>
+                <span class="info" title="At today's outflow rate, how many days current stock would last. Too low = stockout risk. Too high = stock sitting idle, tying up space.">i</span>
+              </div>
+              <div class="big">18 days</div>
+              <svg viewBox="0 0 280 55">
+                <line x1="0" y1="30" x2="280" y2="30" stroke="#444" stroke-width="6"/>
+                <rect x="0" y="27" width="70" height="6" fill="#F0A3A3"/>
+                <rect x="70" y="27" width="140" height="6" fill="#7FE0B8"/>
+                <rect x="210" y="27" width="70" height="6" fill="#FBBF24"/>
+                <circle cx="160" cy="30" r="7" fill="#fff" stroke="#000" stroke-width="1.5"/>
+                <text class="s" x="0" y="48">Low (risk)</text>
+                <text class="s" x="110" y="48" text-anchor="middle">Healthy</text>
+                <text class="s" x="280" y="48" text-anchor="end">High (excess)</text>
+              </svg>
+              <div class="insight warn">Warehouse 4 and Warehouse 9 are under 5 days &mdash; reorder this week or risk a stockout.</div>
+              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            </div>
+
+            <!-- 3. Fast-Expiry Priority List -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>3. Pick-First List (nearing expiry)</h3>
+                <span class="info" title="Items closest to their expiry date across the network, so staff pick these before anything else — soonest expiry first (FEFO).">i</span>
+              </div>
+              <table>
+                <thead>
+                  <tr><th>Item</th><th>Expires in</th><th>Warehouse</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Item A</td><td class="flagred">2 days</td><td>Warehouse 4</td></tr>
+                  <tr><td>Item B</td><td class="flagred">4 days</td><td>Warehouse 1</td></tr>
+                  <tr><td>Item C</td><td>9 days</td><td>Warehouse 7</td></tr>
+                  <tr><td>Item D</td><td>12 days</td><td>Warehouse 2</td></tr>
+                </tbody>
+              </table>
+              <div class="insight warn">2 items expire within 4 days. Assign these for picking today, ahead of everything else.</div>
+              <span class="drill" onclick="goToScreen(2)">&rarr; view full list, warehouse-wise</span>
+            </div>
+
+            <!-- 4. Dock-to-Stock Time -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>4. Dock-to-Stock Time</h3>
+                <span class="info" title="Time from a truck arriving to goods being scanned, checked, and placed on a shelf (GRN Done). Slow here is exactly why orders pile up for days.">i</span>
+              </div>
+              <div class="big">6.2 hrs <span style="font-size:12px;color:#9aa0ad;">(target: 4 hrs)</span></div>
+              <svg viewBox="0 0 280 55">
+                <line x1="0" y1="20" x2="280" y2="20" stroke="#444" stroke-width="10"/>
+                <rect x="0" y="15" width="170" height="10" fill="#F0A3A3"/>
+                <line x1="110" y1="5" x2="110" y2="35" stroke="#fff" stroke-width="2"/>
+                <text class="s" x="110" y="48" text-anchor="middle">target: 4 hrs</text>
+                <text class="s" x="170" y="12" text-anchor="end">actual: 6.2 hrs</text>
+              </svg>
+              <div class="insight warn">Warehouse 4 and 9 are driving the delay &mdash; check labour assignment at those two sites first.</div>
+              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            </div>
+
+            <!-- 5. On-time Dispatch Rate -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>5. On-Time Dispatch Rate</h3>
+                <span class="info" title="Share of outward orders that shipped within the promised time. The customer-facing reliability number.">i</span>
+              </div>
+              <div class="big">91%</div>
+              <svg viewBox="0 0 140 90">
+                <circle cx="70" cy="45" r="35" class="b"/>
+                <path d="M70,10 A35,35 0 1 1 46,74" fill="none" stroke="#7FE0B8" stroke-width="8"/>
+                <text x="70" y="50" text-anchor="middle" font-size="16" font-weight="bold">91%</text>
+              </svg>
+              <div class="insight warn">Warehouse 6 caused most of this week's misses &mdash; late pickups. Call the transporter before tomorrow's run.</div>
+              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            </div>
+
+            <!-- 6. Space Utilization -->
+            <div class="card">
+              <div class="cardhead">
+                <h3>6. Space Utilization</h3>
+                <span class="info" title="Average occupancy across all warehouses. Too full = no room for new bookings. Too empty = paying rent for unused space.">i</span>
+              </div>
+              <div class="big">78%</div>
+              <svg viewBox="0 0 280 55">
+                <line x1="0" y1="20" x2="280" y2="20" stroke="#444" stroke-width="10"/>
+                <rect x="0" y="15" width="218" height="10" fill="#7FE0B8"/>
+                <line x1="252" y1="5" x2="252" y2="35" stroke="#F0A3A3" stroke-width="2"/>
+                <text class="s" x="252" y="48" text-anchor="middle">90% = near-full flag</text>
+              </svg>
+              <div class="insight warn">Warehouse 2 is at 94% &mdash; stop routing new inbound there until it clears below 85%.</div>
+              <span class="drill" onclick="scrollToWarehouseNetwork()">&rarr; view warehouse-wise</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       <!-- Back & Filter Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
+      <div id="warehouse-network-header" class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
         <div>
           <h1 class="text-[22px] font-bold text-[#1F2937]">Warehouse Network</h1>
         </div>
@@ -5999,6 +6291,24 @@
 
     function contactHandler(name, orderId) {
       alert(`Connecting to On-Duty Handler ${name} for ${orderId}:\n• Role: Active Outward Custodian\n• Mobile: +91 98201-XXXXX\n• Intercom: Desk QC Bay #02`);
+    }
+
+    function switchMetricsTime(timeframe, btn) {
+      document.querySelectorAll('.ops-time-btn').forEach(b => {
+        b.classList.remove('bg-[#333]', 'text-white');
+        b.classList.add('text-[#9aa0ad]');
+      });
+      if (btn) {
+        btn.classList.add('bg-[#333]', 'text-white');
+        btn.classList.remove('text-[#9aa0ad]');
+      }
+    }
+
+    function scrollToWarehouseNetwork() {
+      const target = document.getElementById('warehouse-network-header') || document.getElementById('screen-1');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     function goToScreen(screenNum, whName, subTab) {
