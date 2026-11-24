@@ -896,22 +896,22 @@
           <!-- Shared Multi-Week Legend -->
           <div class="flex items-center gap-3 text-[11.5px] font-arial bg-gray-50 border border-gray-200 px-3.5 py-1.5 rounded-xl flex-wrap">
             <span class="flex items-center gap-1.5 text-gray-900 font-bold">
-              <span class="w-4 border-t-2 border-dotted border-black inline-block"></span>
+              <span class="w-4 border-t-[1.5px] border-dotted border-black inline-block"></span>
               <span>Standard Reference Line</span>
             </span>
             <span class="text-gray-300">|</span>
             <span class="flex items-center gap-1.5 text-purple-700 font-semibold">
-              <span class="w-4 border-t-2 border-purple-600 inline-block"></span>
+              <span class="w-4 border-t-[1.5px] border-purple-600 inline-block"></span>
               <span>2 Weeks Ago</span>
             </span>
             <span class="text-gray-300">|</span>
             <span class="flex items-center gap-1.5 text-emerald-700 font-semibold">
-              <span class="w-4 border-t-2 border-emerald-600 inline-block"></span>
+              <span class="w-4 border-t-[1.5px] border-emerald-600 inline-block"></span>
               <span>Last Week</span>
             </span>
             <span class="text-gray-300">|</span>
             <span class="flex items-center gap-1.5 text-red-600 font-bold">
-              <span class="w-4 border-t-2 border-red-600 inline-block"></span>
+              <span class="w-4 border-t-[1.5px] border-red-600 inline-block"></span>
               <span>This Week</span>
             </span>
           </div>
@@ -933,20 +933,20 @@
               <!-- Card-level Legend Indicator -->
               <div class="flex items-center justify-between text-[11px] font-arial mt-2.5 mb-1 px-1 text-gray-600 flex-wrap gap-2">
                 <span class="flex items-center gap-1.5 font-bold text-gray-900">
-                  <span class="w-3.5 border-t-2 border-dotted border-black inline-block"></span>
+                  <span class="w-3.5 border-t-[1.5px] border-dotted border-black inline-block"></span>
                   <span>Standard Ref Line</span>
                 </span>
                 <div class="flex items-center gap-3">
                   <span class="flex items-center gap-1 text-purple-700 font-medium">
-                    <span class="w-3 border-t-2 border-purple-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-purple-600 inline-block"></span>
                     <span>2 Wks Ago</span>
                   </span>
                   <span class="flex items-center gap-1 text-emerald-700 font-medium">
-                    <span class="w-3 border-t-2 border-emerald-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-emerald-600 inline-block"></span>
                     <span>Last Week</span>
                   </span>
                   <span class="flex items-center gap-1 text-red-600 font-bold">
-                    <span class="w-3 border-t-2 border-red-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-red-600 inline-block"></span>
                     <span>This Week</span>
                   </span>
                 </div>
@@ -980,54 +980,54 @@
                   <text x="35" y="193" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
                   <line x1="45" y1="190" x2="520" y2="190" stroke="#CBD5E1" stroke-width="1.5"/>
 
-                  <!-- Line 1: Standard Reference Line (ONLY DOTTED LINE — BLACK DOTTED) -->
-                  <polyline points="55,160 145,131 235,148 325,124 415,113 505,170" fill="none" stroke="#111827" stroke-width="2" stroke-dasharray="3,3"/>
+                  <!-- Line 1: Standard Reference Line (THIN BLACK DOTTED) -->
+                  <polyline points="55,160 145,131 235,148 325,124 415,113 505,170" fill="none" stroke="#111827" stroke-width="1.2" stroke-dasharray="2.5,2.5"/>
                   
-                  <!-- Line 2: 2 Weeks Ago (SOLID PURPLE) -->
-                  <polyline points="55,134 145,99 235,120 325,103 415,89 505,146" fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 2: 2 Weeks Ago (THIN SOLID PURPLE) -->
+                  <polyline points="55,134 145,99 235,120 325,103 415,89 505,146" fill="none" stroke="#8B5CF6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 3: Last Week (SOLID GREEN) -->
-                  <polyline points="55,176 145,151 235,165 325,144 415,137 505,183" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 3: Last Week (THIN SOLID GREEN) -->
+                  <polyline points="55,176 145,151 235,165 325,144 415,137 505,183" fill="none" stroke="#10B981" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 4: This Week (SOLID RED) -->
-                  <polyline points="55,146 145,113 235,133 325,75 415,43 505,158" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 4: This Week (THIN SOLID RED) -->
+                  <polyline points="55,146 145,113 235,133 325,75 415,43 505,158" fill="none" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Standard Reference Markers (Black Dotted Markers) -->
-                  <circle cx="55" cy="160" r="3" fill="#111827"/>
-                  <circle cx="145" cy="131" r="3" fill="#111827"/>
-                  <circle cx="235" cy="148" r="3" fill="#111827"/>
-                  <circle cx="325" cy="124" r="3" fill="#111827"/>
-                  <circle cx="415" cy="113" r="3" fill="#111827"/>
-                  <circle cx="505" cy="170" r="3" fill="#111827"/>
+                  <!-- Standard Reference Markers (Small Black Markers) -->
+                  <circle cx="55" cy="160" r="1.8" fill="#111827"/>
+                  <circle cx="145" cy="131" r="1.8" fill="#111827"/>
+                  <circle cx="235" cy="148" r="1.8" fill="#111827"/>
+                  <circle cx="325" cy="124" r="1.8" fill="#111827"/>
+                  <circle cx="415" cy="113" r="1.8" fill="#111827"/>
+                  <circle cx="505" cy="170" r="1.8" fill="#111827"/>
 
-                  <!-- Data Points: 2 Weeks Ago (Purple Solid Circles) -->
-                  <circle cx="55" cy="134" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="145" cy="99" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="235" cy="120" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="325" cy="103" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="415" cy="89" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="505" cy="146" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Data Points: 2 Weeks Ago (Small Purple Circles) -->
+                  <circle cx="55" cy="134" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="145" cy="99" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="235" cy="120" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="325" cy="103" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="415" cy="89" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="505" cy="146" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
 
-                  <!-- Data Points: Last Week (Green Solid Circles) -->
-                  <circle cx="55" cy="176" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="145" cy="151" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="235" cy="165" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="325" cy="144" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="415" cy="137" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="505" cy="183" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Data Points: Last Week (Small Green Circles) -->
+                  <circle cx="55" cy="176" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="145" cy="151" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="235" cy="165" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="325" cy="144" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="415" cy="137" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="505" cy="183" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
 
-                  <!-- Data Points: This Week (Red Solid Circles with White Ring) -->
-                  <circle cx="55" cy="146" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <circle cx="145" cy="113" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <circle cx="235" cy="133" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <!-- Data Points: This Week (Small Red Circles) -->
+                  <circle cx="55" cy="146" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <circle cx="145" cy="113" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <circle cx="235" cy="133" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
                   
-                  <circle cx="325" cy="75" r="5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="325" y="65" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="3">1.6h</text>
+                  <circle cx="325" cy="75" r="2.8" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <text x="325" y="66" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="2.5">1.6h</text>
 
-                  <circle cx="415" cy="43" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
-                  <text x="415" y="33" text-anchor="middle" font-size="10.5" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="3">2.1h</text>
+                  <circle cx="415" cy="43" r="2.8" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <text x="415" y="34" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="2.5">2.1h</text>
 
-                  <circle cx="505" cy="158" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <circle cx="505" cy="158" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
 
                   <!-- X-Axis Stage Labels (Matching Inward Journey inside Warehouse Network) -->
                   <!-- Stage 1: Expected -->
@@ -1079,20 +1079,20 @@
               <!-- Card-level Legend Indicator -->
               <div class="flex items-center justify-between text-[11px] font-arial mt-2.5 mb-1 px-1 text-gray-600 flex-wrap gap-2">
                 <span class="flex items-center gap-1.5 font-bold text-gray-900">
-                  <span class="w-3.5 border-t-2 border-dotted border-black inline-block"></span>
+                  <span class="w-3.5 border-t-[1.5px] border-dotted border-black inline-block"></span>
                   <span>Standard Ref Line</span>
                 </span>
                 <div class="flex items-center gap-3">
                   <span class="flex items-center gap-1 text-purple-700 font-medium">
-                    <span class="w-3 border-t-2 border-purple-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-purple-600 inline-block"></span>
                     <span>2 Wks Ago</span>
                   </span>
                   <span class="flex items-center gap-1 text-emerald-700 font-medium">
-                    <span class="w-3 border-t-2 border-emerald-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-emerald-600 inline-block"></span>
                     <span>Last Week</span>
                   </span>
                   <span class="flex items-center gap-1 text-red-600 font-bold">
-                    <span class="w-3 border-t-2 border-red-600 inline-block"></span>
+                    <span class="w-3 border-t-[1.5px] border-red-600 inline-block"></span>
                     <span>This Week</span>
                   </span>
                 </div>
@@ -1118,54 +1118,54 @@
                   <text x="35" y="193" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
                   <line x1="45" y1="190" x2="520" y2="190" stroke="#CBD5E1" stroke-width="1.5"/>
 
-                  <!-- Line 1: Standard Reference Line (ONLY DOTTED LINE — BLACK DOTTED) -->
-                  <polyline points="55,157 145,118 235,140 325,164 415,146 505,172" fill="none" stroke="#111827" stroke-width="2" stroke-dasharray="3,3"/>
+                  <!-- Line 1: Standard Reference Line (THIN BLACK DOTTED) -->
+                  <polyline points="55,157 145,118 235,140 325,164 415,146 505,172" fill="none" stroke="#111827" stroke-width="1.2" stroke-dasharray="2.5,2.5"/>
                   
-                  <!-- Line 2: 2 Weeks Ago (SOLID PURPLE) -->
-                  <polyline points="55,129 145,91 235,118 325,136 415,124 505,146" fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 2: 2 Weeks Ago (THIN SOLID PURPLE) -->
+                  <polyline points="55,129 145,91 235,118 325,136 415,124 505,146" fill="none" stroke="#8B5CF6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 3: Last Week (SOLID GREEN) -->
-                  <polyline points="55,177 145,140 235,162 325,179 415,166 505,184" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 3: Last Week (THIN SOLID GREEN) -->
+                  <polyline points="55,177 145,140 235,162 325,179 415,166 505,184" fill="none" stroke="#10B981" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 4: This Week (SOLID RED) -->
-                  <polyline points="55,144 145,58 235,104 325,151 415,135 505,160" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 4: This Week (THIN SOLID RED) -->
+                  <polyline points="55,144 145,58 235,104 325,151 415,135 505,160" fill="none" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Standard Reference Markers (Black Dotted Markers) -->
-                  <circle cx="55" cy="157" r="3" fill="#111827"/>
-                  <circle cx="145" cy="118" r="3" fill="#111827"/>
-                  <circle cx="235" cy="140" r="3" fill="#111827"/>
-                  <circle cx="325" cy="164" r="3" fill="#111827"/>
-                  <circle cx="415" cy="146" r="3" fill="#111827"/>
-                  <circle cx="505" cy="172" r="3" fill="#111827"/>
+                  <!-- Standard Reference Markers (Small Black Markers) -->
+                  <circle cx="55" cy="157" r="1.8" fill="#111827"/>
+                  <circle cx="145" cy="118" r="1.8" fill="#111827"/>
+                  <circle cx="235" cy="140" r="1.8" fill="#111827"/>
+                  <circle cx="325" cy="164" r="1.8" fill="#111827"/>
+                  <circle cx="415" cy="146" r="1.8" fill="#111827"/>
+                  <circle cx="505" cy="172" r="1.8" fill="#111827"/>
 
-                  <!-- Data Points: 2 Weeks Ago (Purple Solid Circles) -->
-                  <circle cx="55" cy="129" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="145" cy="91" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="235" cy="118" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="325" cy="136" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="415" cy="124" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="505" cy="146" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Data Points: 2 Weeks Ago (Small Purple Circles) -->
+                  <circle cx="55" cy="129" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="145" cy="91" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="235" cy="118" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="325" cy="136" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="415" cy="124" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="505" cy="146" r="2" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="0.8"/>
 
-                  <!-- Data Points: Last Week (Green Solid Circles) -->
-                  <circle cx="55" cy="177" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="145" cy="140" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="235" cy="162" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="325" cy="179" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="415" cy="166" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
-                  <circle cx="505" cy="184" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Data Points: Last Week (Small Green Circles) -->
+                  <circle cx="55" cy="177" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="145" cy="140" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="235" cy="162" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="325" cy="179" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="415" cy="166" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
+                  <circle cx="505" cy="184" r="2" fill="#10B981" stroke="#FFFFFF" stroke-width="0.8"/>
 
-                  <!-- Data Points: This Week (Red Solid Circles with White Ring) -->
-                  <circle cx="55" cy="144" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <!-- Data Points: This Week (Small Red Circles) -->
+                  <circle cx="55" cy="144" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
 
-                  <circle cx="145" cy="58" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
-                  <text x="145" y="48" text-anchor="middle" font-size="10.5" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="3">1.2h</text>
+                  <circle cx="145" cy="58" r="2.8" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <text x="145" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="2.5">1.2h</text>
 
-                  <circle cx="235" cy="104" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="235" y="94" text-anchor="middle" font-size="10" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="3">0.8h</text>
+                  <circle cx="235" cy="104" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <text x="235" y="95" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif" paint-order="stroke fill" stroke="#FFFFFF" stroke-width="2.5">0.8h</text>
 
-                  <circle cx="325" cy="151" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <circle cx="415" cy="135" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <circle cx="505" cy="160" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <circle cx="325" cy="151" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <circle cx="415" cy="135" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
+                  <circle cx="505" cy="160" r="2.4" fill="#DC2626" stroke="#FFFFFF" stroke-width="1"/>
 
                   <!-- X-Axis Stage Labels (Matching Outward Journey inside Warehouse Network) -->
                   <!-- Stage 1: Order Received -->
