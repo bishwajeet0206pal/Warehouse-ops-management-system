@@ -316,7 +316,7 @@
       
             <!-- ==============================================
            OPS MANAGER DASHBOARD — 8 CORE METRICS (WEEK-ON-WEEK COMPARISON)
-           Vertical Bar Graphs · Same Weekday Comparison (Mon-Fri) · Live List Exception
+           Clean, Bold Vertical Bar Graphs · Zero Clutter · Same Weekday Comparison
            ============================================== -->
       <div id="ops-manager-metrics" class="space-y-4">
         
@@ -332,18 +332,18 @@
           <!-- Shared Chart Legend -->
           <div class="flex items-center gap-3 text-[11.5px] font-arial bg-gray-50 border border-gray-200 px-3 py-1 rounded-xl">
             <span class="flex items-center gap-1.5 text-gray-500 font-medium">
-              <span class="w-2.5 h-2.5 rounded-xs bg-[#94A3B8]"></span>
+              <span class="w-3 h-3 rounded-xs bg-[#94A3B8]"></span>
               <span>Last Week (LW)</span>
             </span>
             <span class="text-gray-300">|</span>
             <span class="flex items-center gap-1.5 text-gray-900 font-bold">
-              <span class="w-2.5 h-2.5 rounded-xs bg-[#D84E55]"></span>
+              <span class="w-3 h-3 rounded-xs bg-[#D84E55]"></span>
               <span>This Week (TW · Today)</span>
             </span>
           </div>
         </div>
 
-        <!-- 8 Metrics Cards Grid (4x2 Responsive Grid — Same card size & layout as Equipment across network) -->
+        <!-- 8 Metrics Cards Grid (4x2 Responsive Grid) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
           <!-- Card 1: Inbound : Outbound Ratio -->
@@ -359,45 +359,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#DC2626]">This Fri: 1.4 : 1</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (1.0 : 1 Balanced) at y=38 -->
-                <line x1="10" y1="38" x2="215" y2="38" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="41" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">1.0</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (1.0 Balanced) with clean label above line -->
+                <text x="10" y="44" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Target 1.0 : 1</text>
+                <line x1="8" y1="48" x2="232" y2="48" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 1.1 [h=27, y=37], TW: 1.2 [h=30, y=34]) -->
-                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#0D9488"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 1.1 [h=34, y=48], TW: 1.2 [h=38, y=44]) -->
+                <rect x="18" y="48" width="10" height="34" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="44" width="10" height="38" rx="2.5" fill="#0D9488"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 1.0 [h=25, y=39], TW: 1.3 [h=32, y=32]) -->
-                <rect x="69" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#0D9488"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 1.0 [h=32, y=50], TW: 1.3 [h=41, y=41]) -->
+                <rect x="64" y="50" width="10" height="32" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="41" width="10" height="41" rx="2.5" fill="#0D9488"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 1.2 [h=30, y=34], TW: 1.4 [h=35, y=29]) -->
-                <rect x="113" y="34" width="7" height="30" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#0D9488"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 1.2 [h=38, y=44], TW: 1.4 [h=45, y=37]) -->
+                <rect x="110" y="44" width="10" height="38" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="37" width="10" height="45" rx="2.5" fill="#0D9488"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 1.1 [h=27, y=37], TW: 1.5 [h=38, y=26]) -->
-                <rect x="157" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="26" width="7" height="38" rx="1.5" fill="#DC2626"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 1.1 [h=34, y=48], TW: 1.5 [h=48, y=34]) -->
+                <rect x="156" y="48" width="10" height="34" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="34" width="10" height="48" rx="2.5" fill="#DC2626"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 1.1 [h=27, y=37], TW: 1.4 [h=35, y=29]) -->
-                <rect x="201" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
-                <text x="212" y="24" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">1.4</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 1.1 [h=34, y=48], TW: 1.4 [h=45, y=37]) -->
+                <rect x="202" y="48" width="10" height="34" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="37" width="10" height="45" rx="2.5" fill="#DC2626"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -423,45 +418,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#059669]">This Fri: 18 Days</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (18d Optimal) at y=35 -->
-                <line x1="10" y1="35" x2="215" y2="35" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="38" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">18d</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (18d Optimal) with clean label above line -->
+                <text x="10" y="42" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Optimal: 18 Days</text>
+                <line x1="8" y1="46" x2="232" y2="46" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 19d [h=36, y=28], TW: 17d [h=32, y=32]) -->
-                <rect x="25" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="32" width="7" height="32" rx="1.5" fill="#10B981"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 19d [h=48, y=34], TW: 17d [h=43, y=39]) -->
+                <rect x="18" y="34" width="10" height="48" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="39" width="10" height="43" rx="2.5" fill="#10B981"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 19d [h=36, y=28], TW: 18d [h=34, y=30]) -->
-                <rect x="69" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="30" width="7" height="34" rx="1.5" fill="#10B981"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 19d [h=48, y=34], TW: 18d [h=46, y=36]) -->
+                <rect x="64" y="34" width="10" height="48" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="36" width="10" height="46" rx="2.5" fill="#10B981"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 18d [h=34, y=30], TW: 18d [h=34, y=30]) -->
-                <rect x="113" y="30" width="7" height="34" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="30" width="7" height="34" rx="1.5" fill="#10B981"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 18d [h=46, y=36], TW: 18d [h=46, y=36]) -->
+                <rect x="110" y="36" width="10" height="46" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="36" width="10" height="46" rx="2.5" fill="#10B981"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 18d [h=34, y=30], TW: 19d [h=36, y=28]) -->
-                <rect x="157" y="30" width="7" height="34" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#10B981"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 18d [h=46, y=36], TW: 19d [h=48, y=34]) -->
+                <rect x="156" y="36" width="10" height="46" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="34" width="10" height="48" rx="2.5" fill="#10B981"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 17d [h=32, y=32], TW: 18d [h=34, y=30]) -->
-                <rect x="201" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="30" width="7" height="34" rx="1.5" fill="#059669"/>
-                <text x="212" y="25" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">18d</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 17d [h=43, y=39], TW: 18d [h=46, y=36]) -->
+                <rect x="202" y="39" width="10" height="43" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="36" width="10" height="46" rx="2.5" fill="#059669"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -487,25 +477,25 @@
               </div>
             </div>
 
-            <!-- Live Expiry Table (No Timeframe Comparison — Real-time State) -->
+            <!-- Live Expiry Table (Clean & Spacious) -->
             <div class="my-auto py-1">
               <div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50 text-[11px] font-arial">
-                <div class="flex justify-between items-center px-2 py-1">
+                <div class="flex justify-between items-center px-2 py-1.5">
                   <span class="font-bold text-[#1F2937] truncate max-w-[110px]">Cold Packs</span>
                   <span class="text-gray-500 text-[10px]">WH-04</span>
                   <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[9.5px]">2 days</span>
                 </div>
-                <div class="flex justify-between items-center px-2 py-1">
+                <div class="flex justify-between items-center px-2 py-1.5">
                   <span class="font-bold text-[#1F2937] truncate max-w-[110px]">Headlamps</span>
                   <span class="text-gray-500 text-[10px]">WH-01</span>
                   <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[9.5px]">4 days</span>
                 </div>
-                <div class="flex justify-between items-center px-2 py-1">
+                <div class="flex justify-between items-center px-2 py-1.5">
                   <span class="font-medium text-[#1F2937] truncate max-w-[110px]">Filter Kits</span>
                   <span class="text-gray-500 text-[10px]">WH-07</span>
                   <span class="px-1.5 py-0.2 rounded bg-gray-100 text-gray-600 font-medium text-[9.5px]">9 days</span>
                 </div>
-                <div class="flex justify-between items-center px-2 py-1">
+                <div class="flex justify-between items-center px-2 py-1.5">
                   <span class="font-medium text-[#1F2937] truncate max-w-[110px]">Flywheels</span>
                   <span class="text-gray-500 text-[10px]">WH-02</span>
                   <span class="px-1.5 py-0.2 rounded bg-gray-100 text-gray-600 font-medium text-[9.5px]">12 days</span>
@@ -535,45 +525,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#DC2626]">This Fri: 6.2 hrs</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (4.0 hrs SLA) at y=40 -->
-                <line x1="10" y1="40" x2="215" y2="40" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="43" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">4.0h</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (4.0h SLA) with clean label above line -->
+                <text x="10" y="48" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Target SLA: 4.0 hrs</text>
+                <line x1="8" y1="52" x2="232" y2="52" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 4.2h [h=25, y=39], TW: 5.1h [h=30, y=34]) -->
-                <rect x="25" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#F59E0B"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 4.2h [h=33, y=49], TW: 5.1h [h=40, y=42]) -->
+                <rect x="18" y="49" width="10" height="33" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="42" width="10" height="40" rx="2.5" fill="#F59E0B"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 3.9h [h=23, y=41], TW: 5.4h [h=32, y=32]) -->
-                <rect x="69" y="41" width="7" height="23" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#F59E0B"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 3.9h [h=31, y=51], TW: 5.4h [h=43, y=39]) -->
+                <rect x="64" y="51" width="10" height="31" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="39" width="10" height="43" rx="2.5" fill="#F59E0B"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 4.1h [h=25, y=39], TW: 5.8h [h=35, y=29]) -->
-                <rect x="113" y="39" width="7" height="25" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 4.1h [h=32, y=50], TW: 5.8h [h=46, y=36]) -->
+                <rect x="110" y="50" width="10" height="32" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="36" width="10" height="46" rx="2.5" fill="#DC2626"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 4.5h [h=27, y=37], TW: 6.0h [h=36, y=28]) -->
-                <rect x="157" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#DC2626"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 4.5h [h=36, y=46], TW: 6.0h [h=48, y=34]) -->
+                <rect x="156" y="46" width="10" height="36" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="34" width="10" height="48" rx="2.5" fill="#DC2626"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 4.8h [h=29, y=35], TW: 6.2h [h=38, y=26]) -->
-                <rect x="201" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="26" width="7" height="38" rx="1.5" fill="#DC2626"/>
-                <text x="212" y="21" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">6.2h</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 4.8h [h=38, y=44], TW: 6.2h [h=50, y=32]) -->
+                <rect x="202" y="44" width="10" height="38" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="32" width="10" height="50" rx="2.5" fill="#DC2626"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -599,45 +584,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#D97706]">This Fri: 91%</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (95% Benchmark) at y=32 -->
-                <line x1="10" y1="32" x2="215" y2="32" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="35" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">95%</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (95% Benchmark) with clean label above line -->
+                <text x="10" y="38" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Benchmark: 95%</text>
+                <line x1="8" y1="42" x2="232" y2="42" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 96% [h=35, y=29], TW: 94% [h=30, y=34]) -->
-                <rect x="25" y="29" width="7" height="35" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="34" width="7" height="30" rx="1.5" fill="#10B981"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 96% [h=48, y=34], TW: 94% [h=44, y=38]) -->
+                <rect x="18" y="34" width="10" height="48" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="38" width="10" height="44" rx="2.5" fill="#10B981"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 97% [h=36, y=28], TW: 93% [h=28, y=36]) -->
-                <rect x="69" y="28" width="7" height="36" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="36" width="7" height="28" rx="1.5" fill="#10B981"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 97% [h=50, y=32], TW: 93% [h=42, y=40]) -->
+                <rect x="64" y="32" width="10" height="50" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="40" width="10" height="42" rx="2.5" fill="#10B981"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 95% [h=32, y=32], TW: 92% [h=26, y=38]) -->
-                <rect x="113" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="38" width="7" height="26" rx="1.5" fill="#F59E0B"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 95% [h=46, y=36], TW: 92% [h=40, y=42]) -->
+                <rect x="110" y="36" width="10" height="46" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="42" width="10" height="40" rx="2.5" fill="#F59E0B"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 96% [h=35, y=29], TW: 90% [h=22, y=42]) -->
-                <rect x="157" y="29" width="7" height="35" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="42" width="7" height="22" rx="1.5" fill="#DC2626"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 96% [h=48, y=34], TW: 90% [h=36, y=46]) -->
+                <rect x="156" y="34" width="10" height="48" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="46" width="10" height="36" rx="2.5" fill="#DC2626"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 95% [h=32, y=32], TW: 91% [h=24, y=40]) -->
-                <rect x="201" y="32" width="7" height="32" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="40" width="7" height="24" rx="1.5" fill="#D97706"/>
-                <text x="212" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">91%</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 95% [h=46, y=36], TW: 91% [h=38, y=44]) -->
+                <rect x="202" y="36" width="10" height="46" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="44" width="10" height="38" rx="2.5" fill="#D97706"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -663,45 +643,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#059669]">This Fri: 78%</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (85% Upper Band) at y=30 -->
-                <line x1="10" y1="30" x2="215" y2="30" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="33" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">85%</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (85% Threshold) with clean label above line -->
+                <text x="10" y="34" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Threshold: 85%</text>
+                <line x1="8" y1="38" x2="232" y2="38" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 74% [h=26, y=38], TW: 76% [h=28, y=36]) -->
-                <rect x="25" y="38" width="7" height="26" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="36" width="7" height="28" rx="1.5" fill="#10B981"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 74% [h=36, y=46], TW: 76% [h=38, y=44]) -->
+                <rect x="18" y="46" width="10" height="36" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="44" width="10" height="38" rx="2.5" fill="#10B981"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 75% [h=27, y=37], TW: 77% [h=29, y=35]) -->
-                <rect x="69" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="35" width="7" height="29" rx="1.5" fill="#10B981"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 75% [h=37, y=45], TW: 77% [h=40, y=42]) -->
+                <rect x="64" y="45" width="10" height="37" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="42" width="10" height="40" rx="2.5" fill="#10B981"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 75% [h=27, y=37], TW: 77% [h=29, y=35]) -->
-                <rect x="113" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="35" width="7" height="29" rx="1.5" fill="#10B981"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 75% [h=37, y=45], TW: 77% [h=40, y=42]) -->
+                <rect x="110" y="45" width="10" height="37" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="42" width="10" height="40" rx="2.5" fill="#10B981"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 76% [h=28, y=36], TW: 78% [h=30, y=34]) -->
-                <rect x="157" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="34" width="7" height="30" rx="1.5" fill="#10B981"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 76% [h=38, y=44], TW: 78% [h=42, y=40]) -->
+                <rect x="156" y="44" width="10" height="38" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="40" width="10" height="42" rx="2.5" fill="#10B981"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 76% [h=28, y=36], TW: 78% [h=30, y=34]) -->
-                <rect x="201" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="34" width="7" height="30" rx="1.5" fill="#059669"/>
-                <text x="212" y="29" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">78%</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 76% [h=38, y=44], TW: 78% [h=42, y=40]) -->
+                <rect x="202" y="44" width="10" height="38" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="40" width="10" height="42" rx="2.5" fill="#059669"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -727,45 +702,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#059669]">This Fri: 84% Active</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (80% Optimal) at y=36 -->
-                <line x1="10" y1="36" x2="215" y2="36" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="39" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">80%</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (80% Optimal) with clean label above line -->
+                <text x="10" y="42" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Optimal: 80%</text>
+                <line x1="8" y1="46" x2="232" y2="46" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 78% [h=27, y=37], TW: 82% [h=31, y=33]) -->
-                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="33" width="7" height="31" rx="1.5" fill="#0D9488"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 78% [h=40, y=42], TW: 82% [h=44, y=38]) -->
+                <rect x="18" y="42" width="10" height="40" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="38" width="10" height="44" rx="2.5" fill="#0D9488"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 80% [h=29, y=35], TW: 83% [h=32, y=32]) -->
-                <rect x="69" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#0D9488"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 80% [h=42, y=40], TW: 83% [h=45, y=37]) -->
+                <rect x="64" y="40" width="10" height="42" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="37" width="10" height="45" rx="2.5" fill="#0D9488"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 81% [h=30, y=34], TW: 84% [h=33, y=31]) -->
-                <rect x="113" y="34" width="7" height="30" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="31" width="7" height="33" rx="1.5" fill="#0D9488"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 81% [h=43, y=39], TW: 84% [h=46, y=36]) -->
+                <rect x="110" y="39" width="10" height="43" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="36" width="10" height="46" rx="2.5" fill="#0D9488"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 82% [h=31, y=33], TW: 85% [h=34, y=30]) -->
-                <rect x="157" y="33" width="7" height="31" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="30" width="7" height="34" rx="1.5" fill="#0D9488"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 82% [h=44, y=38], TW: 85% [h=47, y=35]) -->
+                <rect x="156" y="38" width="10" height="44" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="35" width="10" height="47" rx="2.5" fill="#0D9488"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 80% [h=29, y=35], TW: 84% [h=33, y=31]) -->
-                <rect x="201" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="31" width="7" height="33" rx="1.5" fill="#059669"/>
-                <text x="212" y="26" text-anchor="middle" font-size="8" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">84%</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 80% [h=42, y=40], TW: 84% [h=46, y=36]) -->
+                <rect x="202" y="40" width="10" height="42" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="36" width="10" height="46" rx="2.5" fill="#059669"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
@@ -791,45 +761,40 @@
               </div>
             </div>
 
-            <!-- Vertical Bar Graph: Week vs Week (Same Weekday) -->
+            <!-- Vertical Bar Graph (Enlarged, Zero Clutter) -->
             <div class="my-auto py-1">
-              <div class="flex justify-between items-center text-[10px] text-gray-400 font-arial pb-1">
-                <span>Daily vs Same Day LW</span>
-                <span class="font-bold text-[#DC2626]">This Fri: 48 mins</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 240 80" class="overflow-visible">
-                <!-- Target Line (45 mins Target) at y=35 -->
-                <line x1="10" y1="35" x2="215" y2="35" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
-                <text x="218" y="38" font-size="8" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">45m</text>
+              <svg width="100%" height="100" viewBox="0 0 240 100" class="overflow-visible">
+                <!-- Target Line (45 mins Target) with clean label above line -->
+                <text x="10" y="42" font-size="8.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="bold">Target: 45 mins</text>
+                <line x1="8" y1="46" x2="232" y2="46" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.2"/>
                 
                 <!-- Baseline -->
-                <line x1="10" y1="64" x2="230" y2="64" stroke="#E2E8F0" stroke-width="1"/>
+                <line x1="8" y1="82" x2="232" y2="82" stroke="#E2E8F0" stroke-width="1.5"/>
 
-                <!-- Mon (LW: 42m [h=27, y=37], TW: 46m [h=31, y=33]) -->
-                <rect x="25" y="37" width="7" height="27" rx="1.5" fill="#94A3B8"/>
-                <rect x="33" y="33" width="7" height="31" rx="1.5" fill="#F59E0B"/>
-                <text x="32" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Mon</text>
+                <!-- Mon (LW: 42m [h=38, y=44], TW: 46m [h=44, y=38]) -->
+                <rect x="18" y="44" width="10" height="38" rx="2.5" fill="#94A3B8"/>
+                <rect x="30" y="38" width="10" height="44" rx="2.5" fill="#F59E0B"/>
+                <text x="29" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Mon</text>
 
-                <!-- Tue (LW: 41m [h=26, y=38], TW: 47m [h=32, y=32]) -->
-                <rect x="69" y="38" width="7" height="26" rx="1.5" fill="#94A3B8"/>
-                <rect x="77" y="32" width="7" height="32" rx="1.5" fill="#F59E0B"/>
-                <text x="76" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Tue</text>
+                <!-- Tue (LW: 41m [h=37, y=45], TW: 47m [h=45, y=37]) -->
+                <rect x="64" y="45" width="10" height="37" rx="2.5" fill="#94A3B8"/>
+                <rect x="76" y="37" width="10" height="45" rx="2.5" fill="#F59E0B"/>
+                <text x="75" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Tue</text>
 
-                <!-- Wed (LW: 43m [h=28, y=36], TW: 49m [h=35, y=29]) -->
-                <rect x="113" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
-                <rect x="121" y="29" width="7" height="35" rx="1.5" fill="#DC2626"/>
-                <text x="120" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Wed</text>
+                <!-- Wed (LW: 43m [h=40, y=42], TW: 49m [h=48, y=34]) -->
+                <rect x="110" y="42" width="10" height="40" rx="2.5" fill="#94A3B8"/>
+                <rect x="122" y="34" width="10" height="48" rx="2.5" fill="#DC2626"/>
+                <text x="121" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Wed</text>
 
-                <!-- Thu (LW: 44m [h=29, y=35], TW: 50m [h=36, y=28]) -->
-                <rect x="157" y="35" width="7" height="29" rx="1.5" fill="#94A3B8"/>
-                <rect x="165" y="28" width="7" height="36" rx="1.5" fill="#DC2626"/>
-                <text x="164" y="75" text-anchor="middle" font-size="9" fill="#64748B" font-family="Arial, sans-serif">Thu</text>
+                <!-- Thu (LW: 44m [h=41, y=41], TW: 50m [h=50, y=32]) -->
+                <rect x="156" y="41" width="10" height="41" rx="2.5" fill="#94A3B8"/>
+                <rect x="168" y="32" width="10" height="50" rx="2.5" fill="#DC2626"/>
+                <text x="167" y="95" text-anchor="middle" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="600">Thu</text>
 
-                <!-- Fri (Today) (LW: 43m [h=28, y=36], TW: 48m [h=34, y=30]) -->
-                <rect x="201" y="36" width="7" height="28" rx="1.5" fill="#94A3B8"/>
-                <rect x="209" y="30" width="7" height="34" rx="1.5" fill="#DC2626"/>
-                <text x="212" y="25" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">48m</text>
-                <text x="208" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
+                <!-- Fri (Today) (LW: 43m [h=40, y=42], TW: 48m [h=47, y=35]) -->
+                <rect x="202" y="42" width="10" height="40" rx="2.5" fill="#94A3B8"/>
+                <rect x="214" y="35" width="10" height="47" rx="2.5" fill="#DC2626"/>
+                <text x="213" y="95" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">Today</text>
               </svg>
             </div>
 
