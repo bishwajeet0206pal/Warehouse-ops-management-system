@@ -86,13 +86,69 @@
       return `<span class="font-medium text-[#1F2937] block leading-tight">${cargoStr}</span>`;
     }
 
+        const warehouseInwardData = {
+      'WH-01 Bhiwandi': {
+        total: 29,
+        stages: { 1: 3, 2: 2, 3: 4, 4: 8, 5: 12, 6: 145 },
+        bayPrefix: 'Dock Bay 0'
+      },
+      'WH-02 Guwahati': {
+        total: 24,
+        stages: { 1: 2, 2: 3, 3: 3, 4: 6, 5: 10, 6: 128 },
+        bayPrefix: 'Inbound Bay 0'
+      },
+      'WH-03 Bengaluru': {
+        total: 31,
+        stages: { 1: 4, 2: 3, 3: 5, 4: 7, 5: 12, 6: 160 },
+        bayPrefix: 'Dock Bay 0'
+      },
+      'WH-04 Pune': {
+        total: 20,
+        stages: { 1: 2, 2: 2, 3: 3, 4: 5, 5: 8, 6: 110 },
+        bayPrefix: 'Dock Gate 0'
+      },
+      'WH-06 Hyderabad': {
+        total: 36,
+        stages: { 1: 5, 2: 4, 3: 6, 4: 9, 5: 12, 6: 172 },
+        bayPrefix: 'Dock Bay 0'
+      },
+      'WH-07 Kolkata': {
+        total: 27,
+        stages: { 1: 3, 2: 3, 3: 4, 4: 7, 5: 10, 6: 135 },
+        bayPrefix: 'Inbound Gate 0'
+      },
+      'WH-08 Delhi NCR': {
+        total: 33,
+        stages: { 1: 4, 2: 3, 3: 5, 4: 8, 5: 13, 6: 180 },
+        bayPrefix: 'Dock Bay 0'
+      },
+      'WH-12 Ahmedabad': {
+        total: 26,
+        stages: { 1: 3, 2: 2, 3: 4, 4: 6, 5: 11, 6: 142 },
+        bayPrefix: 'Dock Bay 0'
+      }
+    };
+
     function renderInwardTable() {
-      const inFacility = document.getElementById('inward-facility-title');
-      if (inFacility) inFacility.textContent = currentFacilityName || 'WH-01 Bhiwandi';
+      const whName = currentFacilityName || 'WH-01 Bhiwandi';
+      const inSel = document.getElementById('inward-warehouse-select');
+      if (inSel && inSel.value !== whName) inSel.value = whName;
       const inTableWh = document.getElementById('inward-table-wh');
-      if (inTableWh) inTableWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
+      if (inTableWh) inTableWh.textContent = whName;
       const inBadge = document.getElementById('inward-facility-badge');
-      if (inBadge) inBadge.textContent = `${currentFacilityName || 'WH-01 Bhiwandi'} · Intake Operations`;
+      if (inBadge) inBadge.textContent = `${whName} · Intake Operations`;
+
+      // Update KPI Stage Boxes
+      const whData = warehouseInwardData[whName] || warehouseInwardData['WH-01 Bhiwandi'];
+      if (whData && whData.stages) {
+        for (let s = 1; s <= 6; s++) {
+          const countEl = document.getElementById(`inward-kpi-count-${s}`);
+          if (countEl && whData.stages[s] !== undefined) {
+            countEl.textContent = `${whData.stages[s]} orders`;
+          }
+        }
+      }
+
       const tbody = document.getElementById('inward-orders-tbody');
       const badge = document.getElementById('inward-table-count-badge');
       if (!tbody) return;

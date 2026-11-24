@@ -1,3 +1,40 @@
+    window.onWarehouseSelectChange = function(whName) {
+      if (!whName) return;
+      currentFacilityName = whName;
+
+      // 1. Sync dropdown selects
+      const inSel = document.getElementById('inward-warehouse-select');
+      if (inSel) inSel.value = whName;
+      const outSel = document.getElementById('outward-warehouse-select');
+      if (outSel) outSel.value = whName;
+
+      // 2. Update all facility labels across page
+      const subFacility = document.getElementById('subtab-facility-label');
+      if (subFacility) subFacility.textContent = whName;
+      const inTableWh = document.getElementById('inward-table-wh');
+      if (inTableWh) inTableWh.textContent = whName;
+      const inBadge = document.getElementById('inward-facility-badge');
+      if (inBadge) inBadge.textContent = `${whName} · Intake Operations`;
+      
+      const outTableWh = document.getElementById('outward-table-title');
+      if (outTableWh) outTableWh.textContent = whName;
+      const outBadge = document.getElementById('outward-facility-badge');
+      if (outBadge) outBadge.textContent = `${whName} · Dispatch Operations`;
+
+      const inDetailWh = document.getElementById('inward-detail-wh');
+      if (inDetailWh) inDetailWh.textContent = whName;
+      const outDetailWh = document.getElementById('outward-detail-wh');
+      if (outDetailWh) outDetailWh.textContent = whName;
+      const storedWh = document.getElementById('stored-page-title');
+      if (storedWh) storedWh.textContent = whName;
+      const dispWh = document.getElementById('dispatched-page-title');
+      if (dispWh) dispWh.textContent = whName;
+
+      // 3. Re-render inward and outward journey views
+      if (typeof renderInwardTable === 'function') renderInwardTable();
+      if (typeof renderOutwardJourney === 'function') renderOutwardJourney(whName);
+    };
+
     /* =========================================================================
        FIXED WORKFLOW SOP TASK CHECKLISTS (INWARD & OUTWARD SEQUENCES)
        Each stage is composed of sequential tasks; when all tasks are complete,
@@ -39,7 +76,7 @@
           { num: 2, name: 'Physical Carton Check', detail: '0 crushed, 0 damp; pallet shrink-wrap verified upright & tight' },
           { num: 3, name: 'GS1-128 Barcode Scan', detail: 'Every pallet and master carton scanned via handheld terminal' },
           { num: 4, name: 'Challan Quantity Reconciliation', detail: 'Physical count 100% matched against vendor invoice' },
-          { num: 5, name: 'Gemini AI Vision Audit', detail: 'Visual verification of cargo packaging integrity & label OCR' },
+          { num: 5, name: 'AI Vision Audit', detail: 'Visual verification of cargo packaging integrity & label OCR' },
           { num: 6, name: 'Signed Delivery Challan (POD)', detail: 'Consignee official stamp affixed & driver receipt signed' }
         ]
       },
@@ -171,8 +208,54 @@
           }
         }
 
+        // 3b. Update Header Subtitle and Stage Pill
+        const inwardEstTimes = { 1: '08:45 AM', 2: '09:15 AM', 3: '09:40 AM', 4: '10:00 AM', 5: '10:15 AM', 6: '10:45 AM' };
+        const inSubSpan = document.getElementById(`inward-stage-sub-${s}`);
+        const inNumPill = document.getElementById(`inward-stage-num-${s}`);
+        const inTitleEl = document.getElementById(`inward-stage-title-${s}`);
+
+        if (inNumPill) {
+          if (isDone) {
+            inNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#059669] uppercase tracking-wider font-arial';
+          } else if (isInProgress) {
+            inNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#EFF6FF] text-[#2563EB] uppercase tracking-wider font-arial';
+          } else {
+            inNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial';
+          }
+        }
+
+        if (inTitleEl) {
+          inTitleEl.className = isUpcoming ? 'text-[15px] font-bold text-gray-600' : 'text-[15px] font-bold text-[#1F2937]';
+        }
+
+        if (inSubSpan) {
+          if (isDone) {
+            inSubSpan.className = 'text-[11px] text-[#059669] font-medium font-arial';
+            inSubSpan.textContent = '· Completed';
+          } else if (isInProgress) {
+            inSubSpan.className = 'text-[11px] text-[#2563EB] font-bold';
+            inSubSpan.textContent = '· CURRENT STAGE';
+          } else {
+            inSubSpan.className = 'text-[11px] text-gray-400 font-arial';
+            inSubSpan.textContent = `· Est. ${inwardEstTimes[s] || 'Upcoming'}`;
+          }
+        }
+
+        // 3c. Toggle Active vs Pending Blocks (When pending, real info is blank)
+        const inActiveBlock = document.getElementById(`inward-stage-${s}-active`);
+        const inPendingBlock = document.getElementById(`inward-stage-${s}-pending`);
+        if (inActiveBlock) inActiveBlock.style.display = isUpcoming ? 'none' : 'block';
+        if (inPendingBlock) inPendingBlock.style.display = isUpcoming ? 'block' : 'none';
+
         // 4. Render Checklist Box
         const checklistBox = document.getElementById(`inward-stage-${s}-checklist`);
+        if (checklistBox && isUpcoming) {
+          checklistBox.style.display = 'none';
+          checklistBox.innerHTML = '';
+          continue;
+        } else if (checklistBox) {
+          checklistBox.style.display = 'block';
+        }
         if (checklistBox) {
           const totalTasks = data.tasks.length;
           let completedCount = 0;
@@ -294,8 +377,54 @@
           }
         }
 
+        // 3b. Update Header Subtitle and Stage Pill
+        const outwardEstTimes = { 1: '10:15 AM', 2: '10:45 AM', 3: '11:15 AM', 4: '11:45 AM', 5: '12:30 PM', 6: '18:30 IST' };
+        const outSubSpan = document.getElementById(`outward-stage-sub-${s}`);
+        const outNumPill = document.getElementById(`outward-stage-num-${s}`);
+        const outTitleEl = document.getElementById(`outward-stage-title-${s}`);
+
+        if (outNumPill) {
+          if (isDone) {
+            outNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#059669] uppercase tracking-wider font-arial';
+          } else if (isInProgress) {
+            outNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#EFF6FF] text-[#2563EB] uppercase tracking-wider font-arial';
+          } else {
+            outNumPill.className = 'text-[11px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 uppercase tracking-wider font-arial';
+          }
+        }
+
+        if (outTitleEl) {
+          outTitleEl.className = isUpcoming ? 'text-[15px] font-bold text-gray-600' : 'text-[15px] font-bold text-[#1F2937]';
+        }
+
+        if (outSubSpan) {
+          if (isDone) {
+            outSubSpan.className = 'text-[11px] text-[#059669] font-medium font-arial';
+            outSubSpan.textContent = '· Completed';
+          } else if (isInProgress) {
+            outSubSpan.className = 'text-[11px] text-[#2563EB] font-bold';
+            outSubSpan.textContent = '· CURRENT STAGE';
+          } else {
+            outSubSpan.className = 'text-[11px] text-gray-400 font-arial';
+            outSubSpan.textContent = `· Est. ${outwardEstTimes[s] || 'Upcoming'}`;
+          }
+        }
+
+        // 3c. Toggle Active vs Pending Blocks
+        const outActiveBlock = document.getElementById(`outward-stage-${s}-active`);
+        const outPendingBlock = document.getElementById(`outward-stage-${s}-pending`);
+        if (outActiveBlock) outActiveBlock.style.display = isUpcoming ? 'none' : 'block';
+        if (outPendingBlock) outPendingBlock.style.display = isUpcoming ? 'block' : 'none';
+
         // 4. Render Checklist Box
         const checklistBox = document.getElementById(`outward-stage-${s}-checklist`);
+        if (checklistBox && isUpcoming) {
+          checklistBox.style.display = 'none';
+          checklistBox.innerHTML = '';
+          continue;
+        } else if (checklistBox) {
+          checklistBox.style.display = 'block';
+        }
         if (checklistBox) {
           const totalTasks = data.tasks.length;
           let completedCount = 0;
@@ -1564,6 +1693,9 @@
       const badgeEl = document.getElementById('outward-facility-badge');
       const subtitleEl = document.getElementById('outward-facility-subtitle');
 
+      const outSel = document.getElementById('outward-warehouse-select');
+      if (outSel && outSel.value !== facility.name) outSel.value = facility.name;
+
       if (titleEl) titleEl.textContent = facility.name;
       if (badgeEl) badgeEl.textContent = `${facility.name} · Dispatch Operations`;
       if (subtitleEl) subtitleEl.textContent = '';
@@ -1934,25 +2066,7 @@
 
       // 4. Update warehouse facility label if provided
       if (whName) {
-        currentFacilityName = whName;
-        const subFacility = document.getElementById('subtab-facility-label');
-        if (subFacility) subFacility.textContent = whName;
-        const inFacility = document.getElementById('inward-facility-title');
-        if (inFacility) inFacility.textContent = whName;
-        const inTableWh = document.getElementById('inward-table-wh');
-        if (inTableWh) inTableWh.textContent = whName;
-        const outFacility = document.getElementById('outward-facility-title');
-        if (outFacility) outFacility.textContent = whName;
-        const outTableWh = document.getElementById('outward-table-title');
-        if (outTableWh) outTableWh.textContent = whName;
-        const inDetailWh = document.getElementById('inward-detail-wh');
-        if (inDetailWh) inDetailWh.textContent = whName;
-        const outDetailWh = document.getElementById('outward-detail-wh');
-        if (outDetailWh) outDetailWh.textContent = whName;
-        const storedWh = document.getElementById('stored-page-title');
-        if (storedWh) storedWh.textContent = whName;
-        const dispWh = document.getElementById('dispatched-page-title');
-        if (dispWh) dispWh.textContent = whName;
+        onWarehouseSelectChange(whName);
       }
 
       // 5. If navigating to screen 3, switch to the requested warehouse sub-tab

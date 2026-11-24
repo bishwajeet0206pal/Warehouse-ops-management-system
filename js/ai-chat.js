@@ -247,7 +247,7 @@
         return `
           <p><strong>Inward Order ORD-IN-8821 Status:</strong></p>
           <p class="text-[12px] text-gray-600">Transporter: <em>Bhiwandi Logistics</em> · Vehicle #MH-04-GP-8821. 2,400 units of Smart LEDs arrived at Dock Bay 04.</p>
-          <p class="text-[12px] text-emerald-600 font-semibold">Stages 1–3 completed. Stage 4 (QC & POD) verified with 0 carton damage via Gemini 1.5 Flash Vision.</p>
+          <p class="text-[12px] text-emerald-600 font-semibold">Stages 1–3 completed. Stage 4 (QC & POD) verified with 0 carton damage via AI Vision.</p>
           <div class="pt-1">
             <button onclick="openInwardOrderDetail('ORD-IN-8821'); toggleAiBuddyDrawer(false);" class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer">
               ↳ Open Vertical Sequence Detail &rarr;
