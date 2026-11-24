@@ -857,6 +857,308 @@
 
       </div>
 
+      <!-- ==============================================
+           STAGE DURATION ANALYSIS — INWARD & OUTWARD (2 CARDS)
+           Stage-wise Multi-Week Trend Comparison Against Standard SLA
+           ============================================== -->
+      <div id="stage-duration-analytics" class="space-y-3 pt-2">
+        
+        <!-- Section Header & Multi-Week Legend -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#E5E7EB]">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <h2 class="text-[20px] font-bold text-[#1F2937]">Stage Duration vs Standard SLA</h2>
+            <span class="text-[11px] font-bold text-[#4B5563] font-arial bg-gray-100 border border-gray-200 px-2.5 py-0.5 rounded-full">
+              Journey Workflow Benchmark
+            </span>
+          </div>
+
+          <!-- Shared Multi-Week Legend -->
+          <div class="flex items-center gap-3 text-[11px] font-arial bg-gray-50 border border-gray-200 px-3 py-1 rounded-xl flex-wrap">
+            <span class="flex items-center gap-1.5 text-amber-700 font-semibold">
+              <span class="w-3.5 border-t-2 border-dashed border-amber-500 inline-block"></span>
+              <span>Standard SLA (Ref)</span>
+            </span>
+            <span class="text-gray-300">|</span>
+            <span class="flex items-center gap-1.5 text-gray-400 font-medium">
+              <span class="w-3.5 border-t-2 border-dotted border-gray-400 inline-block"></span>
+              <span>2 Weeks Ago</span>
+            </span>
+            <span class="text-gray-300">|</span>
+            <span class="flex items-center gap-1.5 text-gray-500 font-medium">
+              <span class="w-3.5 border-t-2 border-dashed border-[#64748B] inline-block"></span>
+              <span>Last Week (LW)</span>
+            </span>
+            <span class="text-gray-300">|</span>
+            <span class="flex items-center gap-1.5 text-gray-900 font-bold">
+              <span class="w-3.5 border-t-2 border-[#D84E55] inline-block"></span>
+              <span>This Week (TW)</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- 2 Stage Duration Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+          <!-- Card 1: Inward Journey Stage Duration -->
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 pb-1">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold text-[10.5px] font-arial border border-blue-200">INWARD JOURNEY</span>
+                    <h3 class="text-[16px] font-bold text-[#1F2937]">Inbound Stage Duration</h3>
+                  </div>
+                  <p class="text-[12px] text-gray-500 font-arial mt-1">Average time spent per stage (hrs) compared across weeks against standard SLA.</p>
+                </div>
+                <div class="text-right shrink-0">
+                  <div class="text-[20px] font-black text-[#DC2626] font-arial leading-none">6.0 hrs</div>
+                  <div class="text-[11px] font-bold text-[#DC2626] font-arial mt-0.5">+1.3h vs Standard (4.7h)</div>
+                </div>
+              </div>
+
+              <!-- SVG Line Chart (Inward) -->
+              <div class="w-full mt-3 mb-2 overflow-x-auto">
+                <svg width="100%" height="220" viewBox="0 0 540 220" class="overflow-visible min-w-[480px]">
+                  <!-- Horizontal Grid Lines & Y-Axis Labels -->
+                  <!-- 2.5 hrs (y=25) -->
+                  <text x="35" y="29" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">2.5h</text>
+                  <line x1="45" y1="25" x2="520" y2="25" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 2.0 hrs (y=55) -->
+                  <text x="35" y="59" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">2.0h</text>
+                  <line x1="45" y1="55" x2="520" y2="55" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 1.5 hrs (y=85) -->
+                  <text x="35" y="89" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">1.5h</text>
+                  <line x1="45" y1="85" x2="520" y2="85" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 1.0 hrs (y=115) -->
+                  <text x="35" y="119" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">1.0h</text>
+                  <line x1="45" y1="115" x2="520" y2="115" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 0.5 hrs (y=145) -->
+                  <text x="35" y="149" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">0.5h</text>
+                  <line x1="45" y1="145" x2="520" y2="145" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 0.0 hrs (y=175 Baseline) -->
+                  <text x="35" y="178" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
+                  <line x1="45" y1="175" x2="520" y2="175" stroke="#CBD5E1" stroke-width="1.5"/>
+
+                  <!-- Line 1: Standard SLA Reference Line (Amber Dashed) -->
+                  <polyline points="55,145 145,115 235,133 325,115 415,103 505,157" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,4"/>
+                  
+                  <!-- Line 2: 2 Weeks Ago (Gray Dotted) -->
+                  <polyline points="55,148 145,118 235,130 325,109 415,109 505,160" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="2,3"/>
+
+                  <!-- Line 3: Last Week (Slate Dashed) -->
+                  <polyline points="55,151 145,121 235,133 325,115 415,115 505,163" fill="none" stroke="#64748B" stroke-width="1.8" stroke-dasharray="4,4"/>
+
+                  <!-- Line 4: This Week (Odwen Red Solid) -->
+                  <polyline points="55,145 145,103 235,127 325,85 415,67 505,163" fill="none" stroke="#D84E55" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Reference Points: Standard (Diamond / Square) -->
+                  <rect x="52" y="142" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="142" y="112" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="232" y="130" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="322" y="112" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="412" y="100" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="502" y="154" width="6" height="6" fill="#F59E0B" rx="1"/>
+
+                  <!-- Data Points: Last Week (Hollow Slate Circles) -->
+                  <circle cx="55" cy="151" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="145" cy="121" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="235" cy="133" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="325" cy="115" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="415" cy="115" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="505" cy="163" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+
+                  <!-- Data Points: This Week (Solid Odwen Red with White Stroke) -->
+                  <circle cx="55" cy="145" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="55" y="138" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">0.5h</text>
+
+                  <circle cx="145" cy="103" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="145" y="96" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">1.2h</text>
+
+                  <circle cx="235" cy="127" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="235" y="120" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">0.8h</text>
+
+                  <circle cx="325" cy="85" r="5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="325" y="78" text-anchor="middle" font-size="9.5" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.5h</text>
+
+                  <circle cx="415" cy="67" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
+                  <text x="415" y="59" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.8h</text>
+
+                  <circle cx="505" cy="163" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="505" y="156" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">0.2h</text>
+
+                  <!-- X-Axis Stage Labels (Two Lines: Stage Number & Short Name) -->
+                  <!-- Stage 1 -->
+                  <text x="55" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 1</text>
+                  <text x="55" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Manifest</text>
+
+                  <!-- Stage 2 -->
+                  <text x="145" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 2</text>
+                  <text x="145" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Gate In</text>
+
+                  <!-- Stage 3 -->
+                  <text x="235" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 3</text>
+                  <text x="235" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Unloading</text>
+
+                  <!-- Stage 4 -->
+                  <text x="325" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 4</text>
+                  <text x="325" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">QC Check</text>
+
+                  <!-- Stage 5 -->
+                  <text x="415" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 5</text>
+                  <text x="415" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Putaway</text>
+
+                  <!-- Stage 6 -->
+                  <text x="505" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 6</text>
+                  <text x="505" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">GRN Done</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Card 1 Footer Directive -->
+            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial gap-2">
+              <div class="flex items-center gap-1.5 text-gray-700 truncate">
+                <span class="w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
+                <span class="truncate"><strong>Putaway & Binning (Stage 5)</strong> is taking 1.8h vs 1.2h standard &mdash; +50% bottleneck at Bay 04.</span>
+              </div>
+              <button onclick="goToScreen(3, 'WH-01 Bhiwandi', 'inward')" class="text-[#D84E55] font-bold hover:underline cursor-pointer shrink-0">
+                Inward Journey &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Outward Journey Stage Duration -->
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 pb-1">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 font-bold text-[10.5px] font-arial border border-purple-200">OUTWARD JOURNEY</span>
+                    <h3 class="text-[16px] font-bold text-[#1F2937]">Outbound Stage Duration</h3>
+                  </div>
+                  <p class="text-[12px] text-gray-500 font-arial mt-1">Average time spent per stage (hrs) compared across weeks against standard SLA.</p>
+                </div>
+                <div class="text-right shrink-0">
+                  <div class="text-[20px] font-black text-[#D97706] font-arial leading-none">2.9 hrs</div>
+                  <div class="text-[11px] font-bold text-[#D97706] font-arial mt-0.5">+0.3h vs Standard (2.6h)</div>
+                </div>
+              </div>
+
+              <!-- SVG Line Chart (Outward) -->
+              <div class="w-full mt-3 mb-2 overflow-x-auto">
+                <svg width="100%" height="220" viewBox="0 0 540 220" class="overflow-visible min-w-[480px]">
+                  <!-- Horizontal Grid Lines & Y-Axis Labels (0.0 to 1.5 hrs) -->
+                  <!-- 1.5 hrs (y=25) -->
+                  <text x="35" y="29" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">1.5h</text>
+                  <line x1="45" y1="25" x2="520" y2="25" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 1.0 hrs (y=75) -->
+                  <text x="35" y="79" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">1.0h</text>
+                  <line x1="45" y1="75" x2="520" y2="75" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 0.5 hrs (y=125) -->
+                  <text x="35" y="129" text-anchor="end" font-size="10.5" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="500">0.5h</text>
+                  <line x1="45" y1="125" x2="520" y2="125" stroke="#F1F5F9" stroke-width="1.2"/>
+
+                  <!-- 0.0 hrs (y=175 Baseline) -->
+                  <text x="35" y="178" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
+                  <line x1="45" y1="175" x2="520" y2="175" stroke="#CBD5E1" stroke-width="1.5"/>
+
+                  <!-- Line 1: Standard SLA Reference Line (Amber Dashed) -->
+                  <polyline points="55,135 145,100 235,125 325,145 415,125 505,160" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,4"/>
+                  
+                  <!-- Line 2: 2 Weeks Ago (Gray Dotted) -->
+                  <polyline points="55,135 145,105 235,125 325,145 415,125 505,165" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="2,3"/>
+
+                  <!-- Line 3: Last Week (Slate Dashed) -->
+                  <polyline points="55,135 145,95 235,125 325,145 415,125 505,165" fill="none" stroke="#64748B" stroke-width="1.8" stroke-dasharray="4,4"/>
+
+                  <!-- Line 4: This Week (Odwen Red Solid) -->
+                  <polyline points="55,135 145,75 235,115 325,145 415,125 505,165" fill="none" stroke="#D84E55" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Reference Points: Standard (Diamond / Square) -->
+                  <rect x="52" y="132" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="142" y="97" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="232" y="122" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="322" y="142" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="412" y="122" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <rect x="502" y="157" width="6" height="6" fill="#F59E0B" rx="1"/>
+
+                  <!-- Data Points: Last Week (Hollow Slate Circles) -->
+                  <circle cx="55" cy="135" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="145" cy="95" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="235" cy="125" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="325" cy="145" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="415" cy="125" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <circle cx="505" cy="165" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+
+                  <!-- Data Points: This Week (Solid Odwen Red with White Stroke) -->
+                  <circle cx="55" cy="135" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="55" y="128" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.4h</text>
+
+                  <circle cx="145" cy="75" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
+                  <text x="145" y="66" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.0h</text>
+
+                  <circle cx="235" cy="115" r="4.5" fill="#D97706" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="235" y="108" text-anchor="middle" font-size="9" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">0.6h</text>
+
+                  <circle cx="325" cy="145" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="325" y="138" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.3h</text>
+
+                  <circle cx="415" cy="125" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="415" y="118" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.5h</text>
+
+                  <circle cx="505" cy="165" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="505" y="158" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.1h</text>
+
+                  <!-- X-Axis Stage Labels (Two Lines: Stage Number & Short Name) -->
+                  <!-- Stage 1 -->
+                  <text x="55" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 1</text>
+                  <text x="55" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Allocated</text>
+
+                  <!-- Stage 2 -->
+                  <text x="145" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 2</text>
+                  <text x="145" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Picking</text>
+
+                  <!-- Stage 3 -->
+                  <text x="235" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 3</text>
+                  <text x="235" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Packed</text>
+
+                  <!-- Stage 4 -->
+                  <text x="325" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 4</text>
+                  <text x="325" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">QC Check</text>
+
+                  <!-- Stage 5 -->
+                  <text x="415" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 5</text>
+                  <text x="415" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Dispatched</text>
+
+                  <!-- Stage 6 -->
+                  <text x="505" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 6</text>
+                  <text x="505" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Delivered</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Card 2 Footer Directive -->
+            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial gap-2">
+              <div class="flex items-center gap-1.5 text-gray-700 truncate">
+                <span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                <span class="truncate"><strong>Picking (Stage 2)</strong> is the only outward stage slower this week (1.0h vs 0.75h SLA) &mdash; labour rebalance advised.</span>
+              </div>
+              <button onclick="goToScreen(3, 'WH-01 Bhiwandi', 'outward')" class="text-[#D84E55] font-bold hover:underline cursor-pointer shrink-0">
+                Outward Journey &rarr;
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
       <div id="warehouse-network-header" class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
         <div>
           <h1 class="text-[22px] font-bold text-[#1F2937]">Warehouse Network</h1>
