@@ -1494,10 +1494,10 @@
       <!-- VERTICAL SEQUENCE TIMELINE CONTAINER (Continuous vertical line connecting stages) -->
       <div class="relative pl-6 sm:pl-8 space-y-8 before:absolute before:top-4 before:bottom-4 before:left-3 sm:before:left-4 before:w-0.5 before:bg-[#CBD5E1]">
         
-        <!-- ================= STAGE 1 (DONE) ================= -->
+        <!-- ================= STAGE 1 ================= -->
         <div class="relative">
           <!-- Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
+          <div id="inward-stage-node-1" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
             ✓
           </div>
           
@@ -1512,9 +1512,9 @@
             </div>
 
             <!-- Stage 1 Card -->
-            <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative">
+            <div id="inward-stage-card-1" class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Manifest Verified</span>
+                <span id="inward-stage-badge-1" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Stage Completed</span>
               </div>
 
               <div class="text-[13px] space-y-2 text-[#4B5563] pr-12">
@@ -1548,15 +1548,17 @@
                   </div>
                   <p class="text-[11.5px] text-[#4B5563]">GST Inward e-Way bill #9921 cross-checked against supplier delivery challan. 0 line-item discrepancies detected.</p>
                 </div>
+
+                <div id="inward-stage-1-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 2 (DONE) ================= -->
+        <!-- ================= STAGE 2 ================= -->
         <div class="relative">
           <!-- Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
+          <div id="inward-stage-node-2" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
             ✓
           </div>
 
@@ -1571,9 +1573,9 @@
             </div>
 
             <!-- Stage 2 Card -->
-            <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative">
+            <div id="inward-stage-card-2" class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Docked at Bay 04</span>
+                <span id="inward-stage-badge-2" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Stage Completed</span>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-[13px] pr-12">
@@ -1598,14 +1600,15 @@
                   <span class="text-[11px] text-[#059669] font-bold block mt-0.5">Assigned: Inbound Bay 04</span>
                 </div>
               </div>
+              <div id="inward-stage-2-checklist" class="mt-3.5"></div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 3 (DONE) ================= -->
+        <!-- ================= STAGE 3 ================= -->
         <div class="relative">
           <!-- Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
+          <div id="inward-stage-node-3" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
             ✓
           </div>
 
@@ -1620,9 +1623,9 @@
             </div>
 
             <!-- Stage 3 Card -->
-            <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative">
+            <div id="inward-stage-card-3" class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Unloaded in 38m</span>
+                <span id="inward-stage-badge-3" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Stage Completed</span>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[13px] pr-12">
@@ -1644,14 +1647,15 @@
               <div class="mt-3 text-[12px] text-[#059669] font-bold font-arial">
                 <span>Putaway pathway cleared at Dock Bay 04 · Ready for QC verification</span>
               </div>
+              <div id="inward-stage-3-checklist" class="mt-3.5"></div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 4 (CURRENT ACTIVE) ================= -->
+        <!-- ================= STAGE 4 ================= -->
         <div class="relative">
-          <!-- Active Pulsing Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold">
+          <!-- Timeline Node on the Vertical Spine -->
+          <div id="inward-stage-node-4" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold">
             <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
           </div>
 
@@ -1663,13 +1667,13 @@
                 <h3 class="text-[15px] font-bold text-[#1F2937]">QC &amp; Proof of Delivery (POD)</h3>
                 <span class="text-[11px] text-[#2563EB] font-bold">· CURRENT STAGE</span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse">
+              <span id="inward-stage-badge-4" class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse">
                 In Progress
               </span>
             </div>
 
-            <!-- Stage 4 Active Card with Live Operational Verification Widgets -->
-            <div class="bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative">
+            <!-- Stage 4 Card -->
+            <div id="inward-stage-card-4" class="bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all">
               <div class="flex items-center justify-between pb-3 border-b border-gray-100">
                 <div class="flex items-center gap-2">
                       <strong class="text-[14px] text-[#1F2937]">Active Physical Cargo Inspection &amp; Gate Intake Sign-off</strong>
@@ -1708,68 +1712,7 @@
                 </div>
               </div>
 
-              <!-- Fixed Mandatory POD Inspection Checklist (Fixed warehouse SOP items) -->
-              <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-4 space-y-3">
-                <div class="flex items-center justify-between pb-2 border-b border-gray-200">
-                  <div>
-                    <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">SOP Verification Checklist</span>
-                    <h4 class="text-[13px] font-bold text-[#1F2937]">Mandatory POD &amp; Intake Inspection</h4>
-                  </div>
-                  <span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] text-[11px] font-bold font-arial">
-                    6/6 Items Checked
-                  </span>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-[12px]" id="inward-qc-checklist">
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">1. Container / Truck Seal</span>
-                      <span class="text-[11px] text-[#4B5563]">Seal #ODW-8821 Verified</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">2. Physical Carton Check</span>
-                      <span class="text-[11px] text-[#4B5563]">0 Crushed / 0 Damp</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">3. Pallet Stacking &amp; Wrap</span>
-                      <span class="text-[11px] text-[#4B5563]">Tight Wrap · Upright</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">4. Challan Quantity Match</span>
-                      <span class="text-[11px] text-[#4B5563]" id="inward-checklist-qty">2,400 / 2,400 Units (100%)</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">5. GS1-128 Barcode Scan</span>
-                      <span class="text-[11px] text-[#4B5563]">All Cartons Scanned</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-white border border-gray-200 shadow-2xs">
-                    <div>
-                      <span class="font-bold text-[#1F2937] block">6. Delivery Challan (POD)</span>
-                      <span class="text-[11px] text-[#4B5563]">Signed by Driver &amp; Stamped</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0">Good to Go</span>
-                  </div>
-                </div>
-              </div>
+              <div id="inward-stage-4-checklist" class="mt-3.5"></div>
 
               <!-- Signed POD Preview & Action Bar -->
               <div class="p-3.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -1797,10 +1740,10 @@
           </div>
         </div>
 
-        <!-- ================= STAGE 5 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 5 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="inward-stage-node-5" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             5
           </div>
 
@@ -1814,10 +1757,10 @@
               </div>
             </div>
 
-            <!-- Stage 5 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 5 Card -->
+            <div id="inward-stage-card-5" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending QC Sign-off</span>
+                <span id="inward-stage-badge-5" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -1848,15 +1791,16 @@
                     Initiate Putaway &rarr;
                   </button>
                 </div>
+                <div id="inward-stage-5-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 6 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 6 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="inward-stage-node-6" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             6
           </div>
 
@@ -1870,10 +1814,10 @@
               </div>
             </div>
 
-            <!-- Stage 6 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 6 Card -->
+            <div id="inward-stage-card-6" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Awaiting Stored Scan</span>
+                <span id="inward-stage-badge-6" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -1901,6 +1845,7 @@
                 <div class="pt-1 text-[11px] text-gray-400 italic">
                   No barcode confirmed in bin · Auto-posting will credit 2,400 units to Odwen available stock once physically racked.
                 </div>
+                <div id="inward-stage-6-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
@@ -1982,10 +1927,10 @@
       <!-- VERTICAL SEQUENCE TIMELINE CONTAINER (Continuous vertical line connecting stages) -->
       <div class="relative pl-6 sm:pl-8 space-y-8 before:absolute before:top-4 before:bottom-4 before:left-3 sm:before:left-4 before:w-0.5 before:bg-[#CBD5E1]">
         
-        <!-- ================= STAGE 1 (DONE) ================= -->
+        <!-- ================= STAGE 1 ================= -->
         <div class="relative">
           <!-- Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
+          <div id="outward-stage-node-1" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold">
             ✓
           </div>
           
@@ -2000,9 +1945,9 @@
             </div>
 
             <!-- Stage 1 Card -->
-            <div class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative">
+            <div id="outward-stage-card-1" class="bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Wave Released</span>
+                <span id="outward-stage-badge-1" class="text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">Stage Completed</span>
               </div>
 
               <div class="text-[13px] space-y-2 text-[#4B5563] pr-12">
@@ -2036,15 +1981,16 @@
                   </div>
                   <p class="text-[11.5px] text-[#4B5563]">Pick path sequenced across Aisles B1–B8 with minimal forklift travel distance. Zero route bottlenecks detected.</p>
                 </div>
+                <div id="outward-stage-1-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 2 (CURRENT ACTIVE) ================= -->
+        <!-- ================= STAGE 2 ================= -->
         <div class="relative">
-          <!-- Active Pulsing Timeline Node on the Vertical Spine -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold">
+          <!-- Timeline Node on the Vertical Spine -->
+          <div id="outward-stage-node-2" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold">
             <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
           </div>
 
@@ -2056,13 +2002,13 @@
                 <h3 class="text-[15px] font-bold text-[#1F2937]">Wave Picking from Shelves</h3>
                 <span class="text-[11px] text-[#2563EB] font-bold">· CURRENT STAGE</span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse">
+              <span id="outward-stage-badge-2" class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse">
                 In Progress
               </span>
             </div>
 
-            <!-- Stage 2 Active Card with Live Operational Verification Widgets -->
-            <div class="bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative">
+            <!-- Stage 2 Card -->
+            <div id="outward-stage-card-2" class="bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all">
               <div class="flex items-center justify-between pb-3 border-b border-gray-100">
                 <div class="flex items-center gap-2">
                       <strong class="text-[14px] text-[#1F2937]">Active Floor Bin Retrieval · Scanner #04 S. Rao</strong>
@@ -2123,14 +2069,15 @@
                   Ping Scanner #04 &rarr;
                 </button>
               </div>
+              <div id="outward-stage-2-checklist" class="mt-3.5"></div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 3 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 3 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="outward-stage-node-3" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             3
           </div>
 
@@ -2144,10 +2091,10 @@
               </div>
             </div>
 
-            <!-- Stage 3 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 3 Card -->
+            <div id="outward-stage-card-3" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Picking Completion</span>
+                <span id="outward-stage-badge-3" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -2178,15 +2125,16 @@
                     Start Packing &rarr;
                   </button>
                 </div>
+                <div id="outward-stage-3-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 4 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 4 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="outward-stage-node-4" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             4
           </div>
 
@@ -2200,10 +2148,10 @@
               </div>
             </div>
 
-            <!-- Stage 4 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 4 Card -->
+            <div id="outward-stage-card-4" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Pack Clearance</span>
+                <span id="outward-stage-badge-4" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -2228,48 +2176,17 @@
                   </div>
                 </div>
 
-                <!-- Fixed Pre-Dispatch QC Checklist -->
-                <div class="rounded-xl border border-gray-200 bg-white p-3 space-y-2 mt-2">
-                  <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
-                    <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial">Pre-Dispatch QC Checklist</span>
-                    <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] text-[10px] font-bold font-arial">6/6 Items Checked</span>
-                  </div>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-[11.5px]">
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">1. SKU &amp; Item Count</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">2. Protective Packaging</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">3. Scale Gross Weight</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">4. Shipping Label Scan</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">5. Box Taping &amp; Straps</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                    <div class="p-2 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
-                      <span class="text-gray-700">6. GST e-Way Bill</span>
-                      <span class="px-1.5 py-0.2 rounded bg-[#ECFDF5] text-[#059669] font-bold text-[9.5px]">Good to Go</span>
-                    </div>
-                  </div>
-                </div>
+                <!-- Outward Stage 4 Dynamic Checklist -->
+                <div id="outward-stage-4-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 5 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 5 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="outward-stage-node-5" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             5
           </div>
 
@@ -2283,10 +2200,10 @@
               </div>
             </div>
 
-            <!-- Stage 5 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 5 Card -->
+            <div id="outward-stage-card-5" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending QC Verification</span>
+                <span id="outward-stage-badge-5" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -2317,15 +2234,16 @@
                     Authorize Handover &rarr;
                   </button>
                 </div>
+                <div id="outward-stage-5-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ================= STAGE 6 (NOT DONE / GREYED OUT) ================= -->
-        <div class="relative opacity-65">
+        <!-- ================= STAGE 6 ================= -->
+        <div class="relative">
           <!-- Timeline Node on the Vertical Spine (Unfilled Circle) -->
-          <div class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
+          <div id="outward-stage-node-6" class="absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial">
             6
           </div>
 
@@ -2339,10 +2257,10 @@
               </div>
             </div>
 
-            <!-- Stage 6 Greyed-out Card (Metadata only, NO filled operational data) -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative">
+            <!-- Stage 6 Card -->
+            <div id="outward-stage-card-6" class="opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all">
               <div class="absolute top-4 right-4">
-                <span class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Awaiting Carrier Handover</span>
+                <span id="outward-stage-badge-6" class="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">Pending Prior Stage</span>
               </div>
 
               <!-- Metadata Parameters Only -->
@@ -2370,6 +2288,7 @@
                 <div class="pt-1 text-[11px] text-gray-400 italic">
                   Tracking link auto-SMS and WhatsApp notification queued for customer upon Bay 02 vehicle gate-out.
                 </div>
+                <div id="outward-stage-6-checklist" class="mt-3.5"></div>
               </div>
             </div>
           </div>
@@ -4710,6 +4629,372 @@
       }
     };
 
+    /* =========================================================================
+       FIXED WORKFLOW SOP TASK CHECKLISTS (INWARD & OUTWARD SEQUENCES)
+       Each stage is composed of sequential tasks; when all tasks are complete,
+       the stage is marked Done.
+       ========================================================================= */
+
+    const inwardStageChecklistsData = {
+      1: {
+        name: 'Manifest & ASN Ingestion',
+        tasks: [
+          { num: 1, name: 'Electronic ASN Sync', detail: 'Advance Shipping Notice parsed & validated against ERP purchase order' },
+          { num: 2, name: 'PO Line Item Verification', detail: 'Supplier item code, SKU details, and manifest quantities matched' },
+          { num: 3, name: 'GST e-Way Bill Validation', detail: 'National e-Way Bill Portal cross-check passed with 0 discrepancies' },
+          { num: 4, name: 'Dock Bay Pre-Allocation', detail: 'Dedicated inbound dock bay & material handling equipment assigned' }
+        ]
+      },
+      2: {
+        name: 'Gate Inward & Docking',
+        tasks: [
+          { num: 1, name: 'Security Gate Check-in', detail: 'Vehicle number, transporter credentials & driver identity logged' },
+          { num: 2, name: 'Gate Intake Token & LR', detail: 'Physical Lorry Receipt endorsed with gate arrival timestamp' },
+          { num: 3, name: 'Dock Bay Positioning', detail: 'Container truck reversed and docked securely at bay cushion' },
+          { num: 4, name: 'Safety Leveler & Chocks', detail: 'Dock leveler ramp engaged and wheel safety chocks locked' }
+        ]
+      },
+      3: {
+        name: 'Unloading from Vehicle',
+        tasks: [
+          { num: 1, name: 'Labour Crew Deployment', detail: 'Workforce handlers and forklift operator stationed at bay apron' },
+          { num: 2, name: 'Pallet De-stuffing', detail: 'Pallets offloaded from container truck bed onto intake staging area' },
+          { num: 3, name: 'Gross Carton Count', detail: 'Initial physical carton and pallet count tallied against gate token' },
+          { num: 4, name: 'Dock Apron Pathway Clear', detail: 'Pallets aligned in designated rows; clear pathway maintained' }
+        ]
+      },
+      4: {
+        name: 'QC & Proof of Delivery (POD)',
+        tasks: [
+          { num: 1, name: 'Container Seal Integrity', detail: 'Tamper-evident seal verified unbroken by intake inspector' },
+          { num: 2, name: 'Physical Carton Check', detail: '0 crushed, 0 damp; pallet shrink-wrap verified upright & tight' },
+          { num: 3, name: 'GS1-128 Barcode Scan', detail: 'Every pallet and master carton scanned via handheld terminal' },
+          { num: 4, name: 'Challan Quantity Reconciliation', detail: 'Physical count 100% matched against vendor invoice' },
+          { num: 5, name: 'Gemini AI Vision Audit', detail: 'Visual verification of cargo packaging integrity & label OCR' },
+          { num: 6, name: 'Signed Delivery Challan (POD)', detail: 'Consignee official stamp affixed & driver receipt signed' }
+        ]
+      },
+      5: {
+        name: 'Rack Putaway & Slotting',
+        tasks: [
+          { num: 1, name: 'WMS Storage Bin Allocation', detail: 'System designates optimal zone, aisle, and rack shelf location' },
+          { num: 2, name: 'Reach Truck Pallet Retrieval', detail: 'High-bay reach truck retrieves verified pallets from staging bay' },
+          { num: 3, name: 'Aisle Pathway Transit', detail: 'Safe transit along designated aisle with pedestrian clearance verified' },
+          { num: 4, name: 'Rack Slotting & Barcode Scan', detail: 'Pallet elevated to shelf tier; shelf bin barcode scan confirmed' }
+        ]
+      },
+      6: {
+        name: 'Final Bin Storage & ERP Sync',
+        tasks: [
+          { num: 1, name: 'Shelf Bin Location Scan', detail: 'High-rack physical location confirmed by handheld scanner' },
+          { num: 2, name: 'ERP Inventory Posting', detail: 'Units credited to live available inventory stock ledger' },
+          { num: 3, name: 'Digital GRN Notification', detail: 'Goods Receipt Note automatically transmitted to supplier' }
+        ]
+      }
+    };
+
+    const outwardStageChecklistsData = {
+      1: {
+        name: 'Order Intake & Wave Release',
+        tasks: [
+          { num: 1, name: 'ERP Order Validation', detail: 'Customer sales order validated & inventory stock locked in WMS' },
+          { num: 2, name: 'Wave Batching & Grouping', detail: 'Order batched into wave run with travel-distance optimized pick path' },
+          { num: 3, name: 'Pick List Dispatch', detail: 'Digital pick sequence transmitted to floor picker terminal' },
+          { num: 4, name: 'Tote & Cart Assignment', detail: 'Rolling cart prepped with color-coded destination tote bins' }
+        ]
+      },
+      2: {
+        name: 'Wave Picking from Racks',
+        tasks: [
+          { num: 1, name: 'Aisle Navigation', detail: 'Picker dispatched to designated warehouse zone, aisle & shelf bin' },
+          { num: 2, name: 'Bin Barcode Verification', detail: 'Scanner confirms correct rack shelf location before retrieval' },
+          { num: 3, name: 'Carton Retrieval & Count', detail: 'Ordered piece quantity verified and placed into assigned tote' },
+          { num: 4, name: 'Wave Pick Completion Scan', detail: 'Tote barcode scanned to close wave pick run for packaging' }
+        ]
+      },
+      3: {
+        name: 'Sorting & Packing',
+        tasks: [
+          { num: 1, name: 'Consolidation at Pack Station', detail: 'Picked totes transferred to designated packing workbench' },
+          { num: 2, name: 'Protective Cushioning', detail: 'Bubble wrap & void-fill added for fragile transport protection' },
+          { num: 3, name: 'Carton Sealing & Strapping', detail: 'Double-corrugated box taped & poly-strapped tamper-evident' },
+          { num: 4, name: 'Shipping Label Affixed', detail: 'Carrier Airway Bill & customer destination shipping label pasted' }
+        ]
+      },
+      4: {
+        name: 'QC, Weighing & Manifest',
+        tasks: [
+          { num: 1, name: 'Digital Gross Weighing', detail: 'Accurate parcel gross weight recorded by calibrated scale' },
+          { num: 2, name: 'Volumetric Cubic Scan', detail: 'Length, width, and height scanned by 3D optical dimensioner' },
+          { num: 3, name: 'Carrier Manifest API Sync', detail: 'Electronic shipping manifest transmitted to courier gateway' },
+          { num: 4, name: 'Security Gate Out Token', detail: 'Outbound dispatch pass generated with QR verification' }
+        ]
+      },
+      5: {
+        name: 'Dock Bay Staging & Marshalling',
+        tasks: [
+          { num: 1, name: 'Transit to Outbound Bay', detail: 'Hand pallet truck moves packed boxes to outbound dock bay' },
+          { num: 2, name: 'Route & Pincode Grouping', detail: 'Consignments sorted by carrier delivery zone and hub cluster' },
+          { num: 3, name: 'Carrier Vehicle Positioning', detail: 'Transporter container truck docked at designated bay' },
+          { num: 4, name: 'Pre-Loading Staging Audit', detail: 'Carton count tallied against driver load manifest' }
+        ]
+      },
+      6: {
+        name: 'Carrier Handover & Dispatch',
+        tasks: [
+          { num: 1, name: 'Vehicle Loading & Restraint', detail: 'Cargo loaded into carrier vehicle and strapped securely' },
+          { num: 2, name: 'Signed Proof of Dispatch', detail: 'Transporter driver signs physical delivery challan & POD copy' },
+          { num: 3, name: 'Gate Out & Tracking Live', detail: 'Truck departs facility gate; customer live tracking activated' }
+        ]
+      }
+    };
+
+    function updateInwardStageChecklists(currentStageNum) {
+      currentStageNum = parseInt(currentStageNum) || 1;
+      
+      for (let s = 1; s <= 6; s++) {
+        const data = inwardStageChecklistsData[s];
+        if (!data) continue;
+
+        const isDone = s < currentStageNum;
+        const isInProgress = s === currentStageNum;
+        const isUpcoming = s > currentStageNum;
+
+        // 1. Update Spine Node
+        const nodeEl = document.getElementById(`inward-stage-node-${s}`);
+        if (nodeEl) {
+          if (isDone) {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold';
+            nodeEl.innerHTML = '✓';
+          } else if (isInProgress) {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold';
+            nodeEl.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>';
+          } else {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial';
+            nodeEl.innerHTML = `${s}`;
+          }
+        }
+
+        // 2. Update Top Badge in Card Header
+        const badgeEl = document.getElementById(`inward-stage-badge-${s}`);
+        if (badgeEl) {
+          if (isDone) {
+            badgeEl.className = 'text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]';
+            badgeEl.textContent = 'Stage Completed · All Tasks Done';
+          } else if (isInProgress) {
+            badgeEl.className = 'px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse';
+            badgeEl.textContent = 'In Progress';
+          } else {
+            badgeEl.className = 'text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200';
+            badgeEl.textContent = 'Pending Prior Stage';
+          }
+        }
+
+        // 3. Update Card Container Styling
+        const cardEl = document.getElementById(`inward-stage-card-${s}`);
+        if (cardEl) {
+          if (isDone) {
+            cardEl.className = 'bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all';
+          } else if (isInProgress) {
+            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all';
+          } else {
+            cardEl.className = 'opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
+          }
+        }
+
+        // 4. Render Checklist Box
+        const checklistBox = document.getElementById(`inward-stage-${s}-checklist`);
+        if (checklistBox) {
+          const totalTasks = data.tasks.length;
+          let completedCount = 0;
+          let headerBadge = '';
+          
+          if (isDone) {
+            completedCount = totalTasks;
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] text-[11px] font-bold font-arial">${totalTasks}/${totalTasks} Tasks Complete · Stage Done</span>`;
+          } else if (isInProgress) {
+            completedCount = Math.max(1, totalTasks - 1);
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] text-[11px] font-bold font-arial flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse"></span> ${completedCount}/${totalTasks} Tasks Complete · In Progress</span>`;
+          } else {
+            completedCount = 0;
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-bold font-arial">0/${totalTasks} Tasks · Upcoming</span>`;
+          }
+
+          const tasksHtml = data.tasks.map((task, idx) => {
+            let taskBadge = '';
+            let taskCardClass = 'bg-white border-gray-200';
+            
+            if (isDone) {
+              taskCardClass = 'bg-[#F9FCFA] border-[#A7F3D0]';
+              taskBadge = `<span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#A7F3D0]">✓ Done</span>`;
+            } else if (isInProgress) {
+              if (idx < completedCount) {
+                taskCardClass = 'bg-[#F9FCFA] border-[#A7F3D0]';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#A7F3D0]">✓ Done</span>`;
+              } else if (idx === completedCount) {
+                taskCardClass = 'bg-[#EFF6FF] border-[#BFDBFE] shadow-2xs';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-[#DBEAFE] text-[#1E40AF] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#93C5FD]"><span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse"></span> Active</span>`;
+              } else {
+                taskCardClass = 'bg-gray-50 border-gray-200 text-gray-400';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-gray-100 text-gray-500 text-[10.5px] font-bold font-arial shrink-0">Pending</span>`;
+              }
+            } else {
+              taskCardClass = 'bg-gray-50/80 border-gray-200 text-gray-400';
+              taskBadge = `<span class="px-2 py-0.5 rounded bg-gray-100 text-gray-400 text-[10.5px] font-medium font-arial shrink-0">Upcoming</span>`;
+            }
+
+            return `
+              <div class="flex items-center justify-between p-2.5 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
+                <div>
+                  <span class="font-bold text-[#1F2937] block text-[12px]">${task.num}. ${task.name}</span>
+                  <span class="text-[11px] text-[#4B5563] block mt-0.5 leading-snug">${task.detail}</span>
+                </div>
+                ${taskBadge}
+              </div>
+            `;
+          }).join('');
+
+          checklistBox.innerHTML = `
+            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3.5 space-y-2.5">
+              <div class="flex items-center justify-between pb-2 border-b border-gray-200 flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
+                  <span class="text-[11px] text-gray-400 hidden sm:inline">· Sequential Workflow</span>
+                </div>
+                <div>${headerBadge}</div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(totalTasks, 3)} gap-2">
+                ${tasksHtml}
+              </div>
+            </div>
+          `;
+        }
+      }
+    }
+
+    function updateOutwardStageChecklists(currentStageNum) {
+      currentStageNum = parseInt(currentStageNum) || 1;
+      
+      for (let s = 1; s <= 6; s++) {
+        const data = outwardStageChecklistsData[s];
+        if (!data) continue;
+
+        const isDone = s < currentStageNum;
+        const isInProgress = s === currentStageNum;
+        const isUpcoming = s > currentStageNum;
+
+        // 1. Update Spine Node
+        const nodeEl = document.getElementById(`outward-stage-node-${s}`);
+        if (nodeEl) {
+          if (isDone) {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#10B981] text-white border-4 border-white shadow-sm flex items-center justify-center text-[11px] font-bold';
+            nodeEl.innerHTML = '✓';
+          } else if (isInProgress) {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-[#3B82F6] text-white border-4 border-white shadow-md flex items-center justify-center text-[11px] font-bold';
+            nodeEl.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>';
+          } else {
+            nodeEl.className = 'absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 rounded-full bg-white text-gray-400 border-2 border-gray-300 shadow-2xs flex items-center justify-center text-[11px] font-bold font-arial';
+            nodeEl.innerHTML = `${s}`;
+          }
+        }
+
+        // 2. Update Top Badge in Card Header
+        const badgeEl = document.getElementById(`outward-stage-badge-${s}`);
+        if (badgeEl) {
+          if (isDone) {
+            badgeEl.className = 'text-[11px] font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full border border-[#A7F3D0]';
+            badgeEl.textContent = 'Stage Completed · All Tasks Done';
+          } else if (isInProgress) {
+            badgeEl.className = 'px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[11px] font-bold border border-[#BFDBFE] animate-pulse';
+            badgeEl.textContent = 'In Progress';
+          } else {
+            badgeEl.className = 'text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200';
+            badgeEl.textContent = 'Pending Prior Stage';
+          }
+        }
+
+        // 3. Update Card Container Styling
+        const cardEl = document.getElementById(`outward-stage-card-${s}`);
+        if (cardEl) {
+          if (isDone) {
+            cardEl.className = 'bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-xs relative transition-all';
+          } else if (isInProgress) {
+            cardEl.className = 'bg-white border-2 border-[#93C5FD] rounded-2xl p-5 shadow-md space-y-4 relative transition-all';
+          } else {
+            cardEl.className = 'opacity-65 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-5 shadow-2xs relative transition-all';
+          }
+        }
+
+        // 4. Render Checklist Box
+        const checklistBox = document.getElementById(`outward-stage-${s}-checklist`);
+        if (checklistBox) {
+          const totalTasks = data.tasks.length;
+          let completedCount = 0;
+          let headerBadge = '';
+          
+          if (isDone) {
+            completedCount = totalTasks;
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] text-[11px] font-bold font-arial">${totalTasks}/${totalTasks} Tasks Complete · Stage Done</span>`;
+          } else if (isInProgress) {
+            completedCount = Math.max(1, totalTasks - 1);
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] text-[11px] font-bold font-arial flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse"></span> ${completedCount}/${totalTasks} Tasks Complete · In Progress</span>`;
+          } else {
+            completedCount = 0;
+            headerBadge = `<span class="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-bold font-arial">0/${totalTasks} Tasks · Upcoming</span>`;
+          }
+
+          const tasksHtml = data.tasks.map((task, idx) => {
+            let taskBadge = '';
+            let taskCardClass = 'bg-white border-gray-200';
+            
+            if (isDone) {
+              taskCardClass = 'bg-[#F9FCFA] border-[#A7F3D0]';
+              taskBadge = `<span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#A7F3D0]">✓ Done</span>`;
+            } else if (isInProgress) {
+              if (idx < completedCount) {
+                taskCardClass = 'bg-[#F9FCFA] border-[#A7F3D0]';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-[#ECFDF5] text-[#059669] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#A7F3D0]">✓ Done</span>`;
+              } else if (idx === completedCount) {
+                taskCardClass = 'bg-[#EFF6FF] border-[#BFDBFE] shadow-2xs';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-[#DBEAFE] text-[#1E40AF] text-[10.5px] font-bold font-arial shrink-0 flex items-center gap-1 border border-[#93C5FD]"><span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse"></span> Active</span>`;
+              } else {
+                taskCardClass = 'bg-gray-50 border-gray-200 text-gray-400';
+                taskBadge = `<span class="px-2 py-0.5 rounded bg-gray-100 text-gray-500 text-[10.5px] font-bold font-arial shrink-0">Pending</span>`;
+              }
+            } else {
+              taskCardClass = 'bg-gray-50/80 border-gray-200 text-gray-400';
+              taskBadge = `<span class="px-2 py-0.5 rounded bg-gray-100 text-gray-400 text-[10.5px] font-medium font-arial shrink-0">Upcoming</span>`;
+            }
+
+            return `
+              <div class="flex items-center justify-between p-2.5 rounded-lg border ${taskCardClass} shadow-2xs gap-2">
+                <div>
+                  <span class="font-bold text-[#1F2937] block text-[12px]">${task.num}. ${task.name}</span>
+                  <span class="text-[11px] text-[#4B5563] block mt-0.5 leading-snug">${task.detail}</span>
+                </div>
+                ${taskBadge}
+              </div>
+            `;
+          }).join('');
+
+          checklistBox.innerHTML = `
+            <div class="rounded-xl border border-gray-200 bg-[#F9FAFB] p-3.5 space-y-2.5">
+              <div class="flex items-center justify-between pb-2 border-b border-gray-200 flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider font-arial block">Stage ${s} SOP Task Checklist</span>
+                  <span class="text-[11px] text-gray-400 hidden sm:inline">· Sequential Workflow</span>
+                </div>
+                <div>${headerBadge}</div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(totalTasks, 3)} gap-2">
+                ${tasksHtml}
+              </div>
+            </div>
+          `;
+        }
+      }
+    }
+
     function openInwardOrderDetail(orderId) {
       const inDetailWh = document.getElementById('inward-detail-wh');
       if (inDetailWh) inDetailWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
@@ -4753,6 +5038,8 @@
         5: 'Stage 5 · Putaway to Racks',
         6: 'Stage 6 · Stored in Inventory'
       };
+
+      updateInwardStageChecklists(stageNumber);
 
       const cleanStageTitle = stageTitles[stageNumber] || (order.stageName ? order.stageName.replace(/^\d+\.\s*/, `Stage ${stageNumber} · `) : `Stage ${stageNumber}`);
 
@@ -5000,6 +5287,7 @@
       if (titleEl) titleEl.textContent = `${order.id} · ${order.customer}`;
 
       const outStageNum = order.stageNum || 2;
+      updateOutwardStageChecklists(outStageNum);
       const outStageTitles = {
         1: 'Stage 1 · Order Received',
         2: 'Stage 2 · Wave Picking from Shelves',
@@ -7356,6 +7644,11 @@
       }
     });
 
+  // Initialize default stage checklists for inward (Stage 4) and outward (Stage 2)
+    setTimeout(() => {
+      if (typeof updateInwardStageChecklists === 'function') updateInwardStageChecklists(4);
+      if (typeof updateOutwardStageChecklists === 'function') updateOutwardStageChecklists(2);
+    }, 50);
   </script>
 
   <!-- ==============================================
