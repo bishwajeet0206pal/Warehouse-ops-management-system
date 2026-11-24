@@ -7363,9 +7363,10 @@
           </td>
           <td class="py-3 px-3 font-arial font-semibold text-[#1F2937] whitespace-nowrap">${item.qty}</td>
           <td class="py-3 px-3 whitespace-nowrap">
-            <span class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px] font-arial">
-              ${item.location}
-            </span>
+            <button onclick="openSlotLocationModal('${item.orderId}');" class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px] font-arial hover:bg-emerald-100 hover:border-emerald-300 transition-colors cursor-pointer inline-flex items-center gap-1" title="Click to view Slot on Floor Map">
+              <span>${item.location}</span>
+              <span class="text-[9.5px] text-emerald-600 font-semibold bg-emerald-100/60 px-1 rounded">Slot ${item.slotId}</span>
+            </button>
           </td>
           <td class="py-3 px-3 text-[#4B5563] text-[12px] whitespace-nowrap">${item.time}</td>
           <td class="py-3 px-3 text-[#1F2937] font-medium text-[12px] whitespace-nowrap">${item.handler}</td>
@@ -7376,13 +7377,125 @@
             </span>
           </td>
           <td class="py-3 px-3 text-right whitespace-nowrap">
-            <button onclick="goToScreen(3, null, 'overview');" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">
-              View Slot &rarr;
+            <button onclick="openSlotLocationModal('${item.orderId}');" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer inline-flex items-center gap-1.5 font-bold hover:bg-gray-100 shadow-2xs">
+              <span>View Slot</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </td>
         `;
         tbody.appendChild(tr);
       });
+    }
+
+    
+    // ==============================================
+    // SLOT LOCATION FLOOR MAP MODAL (POP-UP HIGHLIGHT)
+    // ==============================================
+    function openSlotLocationModal(orderId) {
+      const modal = document.getElementById('slot-location-modal');
+      if (!modal) return;
+
+      const item = storedOrdersMaster.find(o => o.orderId === orderId) || storedOrdersMaster[0];
+      const targetSlot = (item.slotId || 'A4').toUpperCase();
+
+      // Populate text details
+      const titleSlotEl = document.getElementById('slot-loc-title-slot');
+      if (titleSlotEl) titleSlotEl.textContent = `Slot ${targetSlot}`;
+
+      const targetBadgeEl = document.getElementById('slot-loc-target-badge');
+      if (targetBadgeEl) targetBadgeEl.textContent = `Target Slot: ${targetSlot}`;
+
+      const subtitleEl = document.getElementById('slot-loc-subtitle');
+      if (subtitleEl) subtitleEl.textContent = `${item.orderId} · ${item.supplier} · ${item.location}`;
+
+      const whPillEl = document.getElementById('slot-loc-wh-pill');
+      if (whPillEl) whPillEl.textContent = `${currentFacilityName} · Floor 1 (Ground)`;
+
+      const slotNameEl = document.getElementById('slot-loc-slot-name');
+      if (slotNameEl) slotNameEl.textContent = `${item.location} (Slot ${targetSlot})`;
+
+      const skuNameEl = document.getElementById('slot-loc-sku-name');
+      if (skuNameEl) skuNameEl.textContent = `${item.sku} · ${item.qty}`;
+
+      const handlerNameEl = document.getElementById('slot-loc-handler-name');
+      if (handlerNameEl) handlerNameEl.textContent = `${item.handler} (${item.time})`;
+
+      const statusNameEl = document.getElementById('slot-loc-status-name');
+      if (statusNameEl) statusNameEl.innerHTML = `✓ ${item.status}`;
+
+      const tipSlotEl = document.getElementById('slot-loc-footer-tip');
+      if (tipSlotEl) tipSlotEl.textContent = targetSlot;
+
+      // Render Floor Map with Target Slot Highlighted and Every Other Space Greyed Out
+      renderSlotLocationFloorMap(targetSlot);
+
+      // Show modal
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSlotLocationModal() {
+      const modal = document.getElementById('slot-location-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function renderSlotLocationFloorMap(targetSlot) {
+      const gridContainer = document.getElementById('slot-loc-grid-container');
+      if (!gridContainer) return;
+
+      gridContainer.innerHTML = '';
+
+      // Standard Rows: A, B, C, D, E, F, and H (Heavy Bays)
+      const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'H'];
+      const targetRow = targetSlot.charAt(0);
+      const targetCol = parseInt(targetSlot.substring(1), 10);
+
+      // Build grid header: Corner empty cell + Columns 1 to 8
+      let headerHtml = '<div class="text-[10px] uppercase font-bold text-gray-400 font-arial text-center py-1">Row</div>';
+      for (let c = 1; c <= 8; c++) {
+        const isColActive = (c === targetCol);
+        headerHtml += `<div class="text-[10.5px] font-bold ${isColActive ? 'text-[#D84E55] font-black' : 'text-gray-400'} font-arial text-center py-1">Bay 0${c}</div>`;
+      }
+
+      // Build rows
+      let rowsHtml = '';
+      rows.forEach(r => {
+        const isRowActive = (r === targetRow);
+        const rowLabel = r === 'H' ? 'Bay H' : `Row ${r}`;
+        
+        // Row header on the left
+        rowsHtml += `
+          <div class="text-[11px] font-bold ${isRowActive ? 'bg-[#FEECEE] text-[#D84E55] border-[#FECDD3] font-black shadow-2xs' : 'bg-gray-50 text-gray-500 border-gray-200'} font-arial text-center py-2 px-1 rounded-lg border flex items-center justify-center whitespace-nowrap">
+            ${rowLabel}
+          </div>
+        `;
+
+        // 8 Slot Cells in this row
+        for (let c = 1; c <= 8; c++) {
+          const slotId = `${r}${c}`;
+          const isTarget = (slotId === targetSlot);
+
+          if (isTarget) {
+            // PROMINENT HIGHLIGHT FOR TARGET SLOT
+            rowsHtml += `
+              <div class="relative flex flex-col items-center justify-center h-12 rounded-xl bg-[#D84E55] text-white font-extrabold border-2 border-[#B91C1C] ring-4 ring-[#FECDD3] shadow-lg scale-105 z-10 animate-pulse transition-all select-none">
+                <span class="text-[7.5px] uppercase tracking-wider font-arial bg-white text-[#D84E55] font-black px-1 rounded-xs -mt-0.5">TARGET</span>
+                <span class="text-[13px] font-black font-arial tracking-wide">${slotId}</span>
+              </div>
+            `;
+          } else {
+            // GREYED OUT FOR EVERY OTHER SPACE
+            rowsHtml += `
+              <div class="flex items-center justify-center h-12 rounded-xl bg-[#F3F4F6] text-[#9CA3AF] border border-[#E5E7EB] opacity-35 select-none font-arial text-[11px] font-semibold cursor-default hover:opacity-50 transition-opacity">
+                <span>${slotId}</span>
+              </div>
+            `;
+          }
+        }
+      });
+
+      gridContainer.innerHTML = headerHtml + rowsHtml;
     }
 
     function filterStoredTable() {
@@ -7617,9 +7730,13 @@
     // Close on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        const modal = document.getElementById('stage-info-modal');
-        if (modal && !modal.classList.contains('hidden')) {
+        const stageModal = document.getElementById('stage-info-modal');
+        if (stageModal && !stageModal.classList.contains('hidden')) {
           closeStageDefinitionModal();
+        }
+        const slotLocModal = document.getElementById('slot-location-modal');
+        if (slotLocModal && !slotLocModal.classList.contains('hidden')) {
+          closeSlotLocationModal();
         }
       }
     });
@@ -8161,6 +8278,117 @@
           Got it
         </button>
       </div>
+    </div>
+  </div>
+
+
+  <!-- ==============================================
+       SLOT LOCATION FLOOR MAP POP-UP MODAL
+       Shows Floor Map with Target Slot Highlighted and All Others Greyed Out
+       ============================================== -->
+  <div id="slot-location-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-3 sm:p-4 backdrop-blur-xs" onclick="if(event.target===this) closeSlotLocationModal()">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto border border-[#E5E7EB] animate-in fade-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between pb-3 border-b border-[#E5E7EB]">
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h3 class="text-[17px] font-bold text-[#1F2937]">Floor Map · Slot Location: <span id="slot-loc-title-slot" class="text-[#D84E55]">Slot A4</span></h3>
+            <span id="slot-loc-target-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEECEE] text-[#D84E55] border border-[#FECDD3] flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#D84E55] animate-ping"></span> Target Slot: A4
+            </span>
+          </div>
+          <span id="slot-loc-subtitle" class="text-[12px] text-[#6B7280] font-arial block mt-1">ORD-IN-8801 · Tata AutoComp Systems · Rack A-04 · Shelf 2</span>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <span id="slot-loc-wh-pill" class="hidden sm:inline-block text-[11px] font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full border border-gray-200 font-arial">WH-01 Bhiwandi · Floor 1</span>
+          <button onclick="closeSlotLocationModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Context Info Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Physical Slot</span>
+          <strong id="slot-loc-slot-name" class="text-[#D84E55] text-[12.5px] block font-bold font-arial mt-0.5">Rack A-04 · Shelf 2</strong>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Stored Cargo</span>
+          <strong id="slot-loc-sku-name" class="text-[#1F2937] text-[12.5px] block font-arial mt-0.5 truncate">SKU-LED-60W · 450 pcs</strong>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Assigned Handler</span>
+          <strong id="slot-loc-handler-name" class="text-[#1F2937] text-[12.5px] block font-arial mt-0.5 truncate">S. Kadam (Reach Truck)</strong>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">WMS Status</span>
+          <strong id="slot-loc-status-name" class="text-[#059669] text-[12.5px] block font-arial mt-0.5 flex items-center gap-1 font-bold">✓ Verified &amp; Stored</strong>
+        </div>
+      </div>
+
+      <!-- Floor Map Visual Box -->
+      <div class="space-y-2.5 border border-[#E5E7EB] rounded-2xl p-4 bg-[#FBFBFC]">
+        <!-- Top Legend & Direction Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-gray-200">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#D84E55]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            <span class="text-[13px] font-bold text-[#1F2937]">Floor 1 Ground Layout · Pallet Rack Aisles</span>
+          </div>
+
+          <!-- Legend -->
+          <div class="flex items-center gap-3 text-[11px] font-arial flex-wrap">
+            <span class="inline-flex items-center gap-1.5 font-bold text-[#D84E55] bg-[#FEECEE] px-2 py-0.5 rounded-full border border-[#FECDD3]">
+              <span class="w-2.5 h-2.5 rounded bg-[#D84E55]"></span>
+              Highlighted (Target Slot)
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
+              <span class="w-2.5 h-2.5 rounded bg-gray-300 opacity-60"></span>
+              Greyed Out (Other Spaces)
+            </span>
+          </div>
+        </div>
+
+        <!-- The Floor Map Grid (Aisles A-H x Bays 1-8) -->
+        <div class="overflow-x-auto pb-1">
+          <div id="slot-loc-grid-container" class="grid grid-cols-[56px_repeat(8,minmax(50px,1fr))] gap-2 pt-1 min-w-[500px]">
+            <!-- Dynamically populated via renderSlotLocationFloorMap() -->
+          </div>
+        </div>
+
+        <!-- Floor Orientation Footer Bar -->
+        <div class="flex items-center justify-between text-[11px] text-[#6B7280] bg-white px-3 py-2 rounded-xl border border-gray-200 font-arial flex-wrap gap-2">
+          <span class="flex items-center gap-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Inbound Dock Bays 01–04
+          </span>
+          <span class="text-gray-400 font-medium">Forklift Transit Alley (Center Driveway)</span>
+          <span class="flex items-center gap-1">
+            Outbound Dispatch Bays 05–08
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[11.5px] text-[#6B7280] font-arial">
+          📍 Target Slot <span id="slot-loc-footer-tip" class="font-bold text-[#D84E55]">A4</span> is highlighted on the floor map. All other slots are greyed out.
+        </span>
+
+        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+          <button onclick="closeSlotLocationModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
+            Close
+          </button>
+          <button onclick="closeSlotLocationModal(); goToScreen(3, null, 'overview');" class="btn-redbus-secondary text-[12px] py-2 px-3.5 cursor-pointer font-bold inline-flex items-center gap-1">
+            <span>Open Full 3D Map</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
