@@ -859,7 +859,7 @@
 
       <!-- ==============================================
            STAGE DURATION ANALYSIS — INWARD & OUTWARD (2 CARDS)
-           Stage-wise Multi-Week Trend Comparison Against Standard SLA
+           Stage-wise Multi-Week Trend Comparison Against Standard Reference Line
            ============================================== -->
       <div id="stage-duration-analytics" class="space-y-3 pt-2">
         
@@ -873,25 +873,25 @@
           </div>
 
           <!-- Shared Multi-Week Legend -->
-          <div class="flex items-center gap-3 text-[11px] font-arial bg-gray-50 border border-gray-200 px-3 py-1 rounded-xl flex-wrap">
-            <span class="flex items-center gap-1.5 text-amber-700 font-semibold">
-              <span class="w-3.5 border-t-2 border-dashed border-amber-500 inline-block"></span>
-              <span>Standard SLA (Ref)</span>
+          <div class="flex items-center gap-3 text-[11.5px] font-arial bg-gray-50 border border-gray-200 px-3.5 py-1.5 rounded-xl flex-wrap">
+            <span class="flex items-center gap-1.5 text-gray-900 font-bold">
+              <span class="w-4 border-t-2 border-dotted border-black inline-block"></span>
+              <span>Standard Reference Line</span>
             </span>
             <span class="text-gray-300">|</span>
-            <span class="flex items-center gap-1.5 text-gray-400 font-medium">
-              <span class="w-3.5 border-t-2 border-dotted border-gray-400 inline-block"></span>
+            <span class="flex items-center gap-1.5 text-purple-700 font-semibold">
+              <span class="w-4 border-t-2 border-purple-600 inline-block"></span>
               <span>2 Weeks Ago</span>
             </span>
             <span class="text-gray-300">|</span>
-            <span class="flex items-center gap-1.5 text-gray-500 font-medium">
-              <span class="w-3.5 border-t-2 border-dashed border-[#64748B] inline-block"></span>
-              <span>Last Week (LW)</span>
+            <span class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+              <span class="w-4 border-t-2 border-emerald-600 inline-block"></span>
+              <span>Last Week</span>
             </span>
             <span class="text-gray-300">|</span>
-            <span class="flex items-center gap-1.5 text-gray-900 font-bold">
-              <span class="w-3.5 border-t-2 border-[#D84E55] inline-block"></span>
-              <span>This Week (TW)</span>
+            <span class="flex items-center gap-1.5 text-red-600 font-bold">
+              <span class="w-4 border-t-2 border-red-600 inline-block"></span>
+              <span>This Week</span>
             </span>
           </div>
         </div>
@@ -916,8 +916,30 @@
                 </div>
               </div>
 
+              <!-- Card-level Legend Indicator -->
+              <div class="flex items-center justify-between text-[11px] font-arial mt-2.5 mb-1 px-1 text-gray-600 flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 font-bold text-gray-900">
+                  <span class="w-3.5 border-t-2 border-dotted border-black inline-block"></span>
+                  <span>Standard Ref Line</span>
+                </span>
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1 text-purple-700 font-medium">
+                    <span class="w-3 border-t-2 border-purple-600 inline-block"></span>
+                    <span>2 Wks Ago</span>
+                  </span>
+                  <span class="flex items-center gap-1 text-emerald-700 font-medium">
+                    <span class="w-3 border-t-2 border-emerald-600 inline-block"></span>
+                    <span>Last Week</span>
+                  </span>
+                  <span class="flex items-center gap-1 text-red-600 font-bold">
+                    <span class="w-3 border-t-2 border-red-600 inline-block"></span>
+                    <span>This Week</span>
+                  </span>
+                </div>
+              </div>
+
               <!-- SVG Line Chart (Inward) -->
-              <div class="w-full mt-3 mb-2 overflow-x-auto">
+              <div class="w-full mb-1 overflow-x-auto">
                 <svg width="100%" height="220" viewBox="0 0 540 220" class="overflow-visible min-w-[480px]">
                   <!-- Horizontal Grid Lines & Y-Axis Labels -->
                   <!-- 2.5 hrs (y=25) -->
@@ -944,54 +966,62 @@
                   <text x="35" y="178" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
                   <line x1="45" y1="175" x2="520" y2="175" stroke="#CBD5E1" stroke-width="1.5"/>
 
-                  <!-- Line 1: Standard SLA Reference Line (Amber Dashed) -->
-                  <polyline points="55,145 145,115 235,133 325,115 415,103 505,157" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,4"/>
+                  <!-- Line 1: Standard Reference Line (ONLY DOTTED LINE — BLACK DOTTED) -->
+                  <polyline points="55,145 145,115 235,133 325,115 415,103 505,157" fill="none" stroke="#111827" stroke-width="2" stroke-dasharray="3,3"/>
                   
-                  <!-- Line 2: 2 Weeks Ago (Gray Dotted) -->
-                  <polyline points="55,148 145,118 235,130 325,109 415,109 505,160" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="2,3"/>
+                  <!-- Line 2: 2 Weeks Ago (SOLID PURPLE) -->
+                  <polyline points="55,148 145,118 235,130 325,109 415,109 505,160" fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 3: Last Week (Slate Dashed) -->
-                  <polyline points="55,151 145,121 235,133 325,115 415,115 505,163" fill="none" stroke="#64748B" stroke-width="1.8" stroke-dasharray="4,4"/>
+                  <!-- Line 3: Last Week (SOLID GREEN) -->
+                  <polyline points="55,151 145,121 235,133 325,115 415,115 505,163" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 4: This Week (Odwen Red Solid) -->
-                  <polyline points="55,145 145,103 235,127 325,85 415,67 505,163" fill="none" stroke="#D84E55" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 4: This Week (SOLID RED) -->
+                  <polyline points="55,145 145,103 235,127 325,85 415,67 505,163" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Reference Points: Standard (Diamond / Square) -->
-                  <rect x="52" y="142" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="142" y="112" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="232" y="130" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="322" y="112" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="412" y="100" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="502" y="154" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <!-- Standard Reference Markers (Black Dotted Markers) -->
+                  <circle cx="55" cy="145" r="3" fill="#111827"/>
+                  <circle cx="145" cy="115" r="3" fill="#111827"/>
+                  <circle cx="235" cy="133" r="3" fill="#111827"/>
+                  <circle cx="325" cy="115" r="3" fill="#111827"/>
+                  <circle cx="415" cy="103" r="3" fill="#111827"/>
+                  <circle cx="505" cy="157" r="3" fill="#111827"/>
 
-                  <!-- Data Points: Last Week (Hollow Slate Circles) -->
-                  <circle cx="55" cy="151" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="145" cy="121" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="235" cy="133" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="325" cy="115" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="415" cy="115" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="505" cy="163" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <!-- Data Points: 2 Weeks Ago (Purple Solid Circles) -->
+                  <circle cx="55" cy="148" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="145" cy="118" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="235" cy="130" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="325" cy="109" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="415" cy="109" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="505" cy="160" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
 
-                  <!-- Data Points: This Week (Solid Odwen Red with White Stroke) -->
-                  <circle cx="55" cy="145" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="55" y="138" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">0.5h</text>
+                  <!-- Data Points: Last Week (Green Solid Circles) -->
+                  <circle cx="55" cy="151" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="145" cy="121" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="235" cy="133" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="325" cy="115" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="415" cy="115" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="505" cy="163" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
 
-                  <circle cx="145" cy="103" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="145" y="96" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">1.2h</text>
+                  <!-- Data Points: This Week (Red Solid Circles with White Ring) -->
+                  <circle cx="55" cy="145" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="55" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.5h</text>
 
-                  <circle cx="235" cy="127" r="4.5" fill="#D84E55" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="235" y="120" text-anchor="middle" font-size="9" font-weight="bold" fill="#475569" font-family="Arial, sans-serif">0.8h</text>
+                  <circle cx="145" cy="103" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="145" y="95" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">1.2h</text>
+
+                  <circle cx="235" cy="127" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="235" y="119" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.8h</text>
 
                   <circle cx="325" cy="85" r="5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="325" y="78" text-anchor="middle" font-size="9.5" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.5h</text>
+                  <text x="325" y="77" text-anchor="middle" font-size="9.5" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.5h</text>
 
                   <circle cx="415" cy="67" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
-                  <text x="415" y="59" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.8h</text>
+                  <text x="415" y="58" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.8h</text>
 
-                  <circle cx="505" cy="163" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="505" y="156" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669" font-family="Arial, sans-serif">0.2h</text>
+                  <circle cx="505" cy="163" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="505" y="155" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.2h</text>
 
-                  <!-- X-Axis Stage Labels (Two Lines: Stage Number & Short Name) -->
+                  <!-- X-Axis Stage Labels -->
                   <!-- Stage 1 -->
                   <text x="55" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 1</text>
                   <text x="55" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Manifest</text>
@@ -1019,12 +1049,9 @@
               </div>
             </div>
 
-            <!-- Card 1 Footer Directive -->
-            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial gap-2">
-              <div class="flex items-center gap-1.5 text-gray-700 truncate">
-                <span class="w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
-                <span class="truncate"><strong>Putaway & Binning (Stage 5)</strong> is taking 1.8h vs 1.2h standard &mdash; +50% bottleneck at Bay 04.</span>
-              </div>
+            <!-- Card 1 Footer -->
+            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial">
+              <span class="text-gray-400 font-medium">Stage 1 &rarr; Stage 6 Inbound Journey</span>
               <button onclick="goToScreen(3, 'WH-01 Bhiwandi', 'inward')" class="text-[#D84E55] font-bold hover:underline cursor-pointer shrink-0">
                 Inward Journey &rarr;
               </button>
@@ -1048,8 +1075,30 @@
                 </div>
               </div>
 
+              <!-- Card-level Legend Indicator -->
+              <div class="flex items-center justify-between text-[11px] font-arial mt-2.5 mb-1 px-1 text-gray-600 flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 font-bold text-gray-900">
+                  <span class="w-3.5 border-t-2 border-dotted border-black inline-block"></span>
+                  <span>Standard Ref Line</span>
+                </span>
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1 text-purple-700 font-medium">
+                    <span class="w-3 border-t-2 border-purple-600 inline-block"></span>
+                    <span>2 Wks Ago</span>
+                  </span>
+                  <span class="flex items-center gap-1 text-emerald-700 font-medium">
+                    <span class="w-3 border-t-2 border-emerald-600 inline-block"></span>
+                    <span>Last Week</span>
+                  </span>
+                  <span class="flex items-center gap-1 text-red-600 font-bold">
+                    <span class="w-3 border-t-2 border-red-600 inline-block"></span>
+                    <span>This Week</span>
+                  </span>
+                </div>
+              </div>
+
               <!-- SVG Line Chart (Outward) -->
-              <div class="w-full mt-3 mb-2 overflow-x-auto">
+              <div class="w-full mb-1 overflow-x-auto">
                 <svg width="100%" height="220" viewBox="0 0 540 220" class="overflow-visible min-w-[480px]">
                   <!-- Horizontal Grid Lines & Y-Axis Labels (0.0 to 1.5 hrs) -->
                   <!-- 1.5 hrs (y=25) -->
@@ -1068,54 +1117,62 @@
                   <text x="35" y="178" text-anchor="end" font-size="10.5" fill="#64748B" font-family="Arial, sans-serif" font-weight="bold">0h</text>
                   <line x1="45" y1="175" x2="520" y2="175" stroke="#CBD5E1" stroke-width="1.5"/>
 
-                  <!-- Line 1: Standard SLA Reference Line (Amber Dashed) -->
-                  <polyline points="55,135 145,100 235,125 325,145 415,125 505,160" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,4"/>
+                  <!-- Line 1: Standard Reference Line (ONLY DOTTED LINE — BLACK DOTTED) -->
+                  <polyline points="55,135 145,100 235,125 325,145 415,125 505,160" fill="none" stroke="#111827" stroke-width="2" stroke-dasharray="3,3"/>
                   
-                  <!-- Line 2: 2 Weeks Ago (Gray Dotted) -->
-                  <polyline points="55,135 145,105 235,125 325,145 415,125 505,165" fill="none" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="2,3"/>
+                  <!-- Line 2: 2 Weeks Ago (SOLID PURPLE) -->
+                  <polyline points="55,135 145,105 235,125 325,145 415,125 505,165" fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 3: Last Week (Slate Dashed) -->
-                  <polyline points="55,135 145,95 235,125 325,145 415,125 505,165" fill="none" stroke="#64748B" stroke-width="1.8" stroke-dasharray="4,4"/>
+                  <!-- Line 3: Last Week (SOLID GREEN) -->
+                  <polyline points="55,135 145,95 235,125 325,145 415,125 505,165" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Line 4: This Week (Odwen Red Solid) -->
-                  <polyline points="55,135 145,75 235,115 325,145 415,125 505,165" fill="none" stroke="#D84E55" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Line 4: This Week (SOLID RED) -->
+                  <polyline points="55,135 145,75 235,115 325,145 415,125 505,165" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
 
-                  <!-- Reference Points: Standard (Diamond / Square) -->
-                  <rect x="52" y="132" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="142" y="97" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="232" y="122" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="322" y="142" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="412" y="122" width="6" height="6" fill="#F59E0B" rx="1"/>
-                  <rect x="502" y="157" width="6" height="6" fill="#F59E0B" rx="1"/>
+                  <!-- Standard Reference Markers (Black Dotted Markers) -->
+                  <circle cx="55" cy="135" r="3" fill="#111827"/>
+                  <circle cx="145" cy="100" r="3" fill="#111827"/>
+                  <circle cx="235" cy="125" r="3" fill="#111827"/>
+                  <circle cx="325" cy="145" r="3" fill="#111827"/>
+                  <circle cx="415" cy="125" r="3" fill="#111827"/>
+                  <circle cx="505" cy="160" r="3" fill="#111827"/>
 
-                  <!-- Data Points: Last Week (Hollow Slate Circles) -->
-                  <circle cx="55" cy="135" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="145" cy="95" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="235" cy="125" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="325" cy="145" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="415" cy="125" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
-                  <circle cx="505" cy="165" r="3.5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5"/>
+                  <!-- Data Points: 2 Weeks Ago (Purple Solid Circles) -->
+                  <circle cx="55" cy="135" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="145" cy="105" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="235" cy="125" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="325" cy="145" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="415" cy="125" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="505" cy="165" r="3.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="1.5"/>
 
-                  <!-- Data Points: This Week (Solid Odwen Red with White Stroke) -->
-                  <circle cx="55" cy="135" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="55" y="128" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.4h</text>
+                  <!-- Data Points: Last Week (Green Solid Circles) -->
+                  <circle cx="55" cy="135" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="145" cy="95" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="235" cy="125" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="325" cy="145" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="415" cy="125" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <circle cx="505" cy="165" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+
+                  <!-- Data Points: This Week (Red Solid Circles with White Ring) -->
+                  <circle cx="55" cy="135" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="55" y="127" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.4h</text>
 
                   <circle cx="145" cy="75" r="5.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.5"/>
-                  <text x="145" y="66" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.0h</text>
+                  <text x="145" y="65" text-anchor="middle" font-size="10" font-weight="black" fill="#DC2626" font-family="Arial, sans-serif">1.0h</text>
 
-                  <circle cx="235" cy="115" r="4.5" fill="#D97706" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="235" y="108" text-anchor="middle" font-size="9" font-weight="bold" fill="#D97706" font-family="Arial, sans-serif">0.6h</text>
+                  <circle cx="235" cy="115" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="235" y="107" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.6h</text>
 
-                  <circle cx="325" cy="145" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="325" y="138" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.3h</text>
+                  <circle cx="325" cy="145" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="325" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.3h</text>
 
-                  <circle cx="415" cy="125" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="415" y="118" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.5h</text>
+                  <circle cx="415" cy="125" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="415" y="117" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.5h</text>
 
-                  <circle cx="505" cy="165" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
-                  <text x="505" y="158" text-anchor="middle" font-size="9" font-weight="bold" fill="#10B981" font-family="Arial, sans-serif">0.1h</text>
+                  <circle cx="505" cy="165" r="4.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                  <text x="505" y="157" text-anchor="middle" font-size="9" font-weight="bold" fill="#DC2626" font-family="Arial, sans-serif">0.1h</text>
 
-                  <!-- X-Axis Stage Labels (Two Lines: Stage Number & Short Name) -->
+                  <!-- X-Axis Stage Labels -->
                   <!-- Stage 1 -->
                   <text x="55" y="193" text-anchor="middle" font-size="10" font-weight="bold" fill="#1F2937" font-family="Arial, sans-serif">Stage 1</text>
                   <text x="55" y="206" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Arial, sans-serif">Allocated</text>
@@ -1143,12 +1200,9 @@
               </div>
             </div>
 
-            <!-- Card 2 Footer Directive -->
-            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial gap-2">
-              <div class="flex items-center gap-1.5 text-gray-700 truncate">
-                <span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
-                <span class="truncate"><strong>Picking (Stage 2)</strong> is the only outward stage slower this week (1.0h vs 0.75h SLA) &mdash; labour rebalance advised.</span>
-              </div>
+            <!-- Card 2 Footer -->
+            <div class="pt-2.5 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px] font-arial">
+              <span class="text-gray-400 font-medium">Stage 1 &rarr; Stage 6 Outbound Journey</span>
               <button onclick="goToScreen(3, 'WH-01 Bhiwandi', 'outward')" class="text-[#D84E55] font-bold hover:underline cursor-pointer shrink-0">
                 Outward Journey &rarr;
               </button>
@@ -7596,1421 +7650,4 @@
         sku: 'Commercial Goods',
         qty: '1,000 units',
         stageNum: 1,
-        stageName: 'Stage 1 · Expected Cargo',
-        bay: 'Dock Bay 02',
-        isPending: true,
-        pendingDetail: 'Arrival check-in and de-stuffing pending.'
-      };
-
-      const stageNum = order.stageNum || 1;
-
-      const subEl = document.getElementById('inward-pending-modal-subtitle');
-      if (subEl) subEl.textContent = `${order.id} · ${order.transporter} (${order.sku})`;
-
-      const stageEl = document.getElementById('inward-pending-modal-stage');
-      if (stageEl) stageEl.textContent = order.stageName || `Stage ${stageNum}`;
-
-      const locEl = document.getElementById('inward-pending-modal-location');
-      if (locEl) locEl.textContent = order.bay || 'Assigned Dock Bay';
-
-      const badgeEl = document.getElementById('inward-pending-modal-status-badge');
-      if (badgeEl) {
-        badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]';
-        badgeEl.textContent = 'Pending';
-      }
-
-      const summaryEl = document.getElementById('inward-pending-modal-summary');
-      if (summaryEl) {
-        if (order.pendingDetail) {
-          summaryEl.textContent = order.pendingDetail;
-        } else if (stageNum === 1) {
-          summaryEl.textContent = 'Truck is in transit to warehouse gate. Gate pass entry, dock bay allocation, cargo de-stuffing, QC inspection, and driver delivery challan signature are pending before Proof of Delivery (POD) is issued.';
-        } else if (stageNum === 2) {
-          summaryEl.textContent = 'Truck is positioned at dock bay. Unloading workforce assignment, pallet offloading, physical barcode scan, and QC inspection are pending before Proof of Delivery (POD) can be completed.';
-        } else if (stageNum === 3) {
-          summaryEl.textContent = 'Cargo is currently being offloaded and de-stuffed from the truck. Pallet count verification, physical damage inspection, serialization scanning, and authorized receipt signing are pending.';
-        } else if (stageNum === 4) {
-          summaryEl.textContent = 'Consignment is undergoing physical QC inspection and piece verification. Barcode scanning calibration and supervisor POD signature are pending.';
-        } else {
-          summaryEl.textContent = 'Intake processing and verification steps are pending before Proof of Delivery is finalized.';
-        }
-      }
-
-      const milestones = [
-        { num: 1, name: '1. Advance Shipping Notice (ASN) & Manifest Sync', detail: 'Electronic manifest and e-Way bill synchronized with WMS' },
-        { num: 2, name: '2. Security Gate Entry & Bay Docking', detail: 'Truck check-in, gate pass issued, vehicle parked at assigned bay' },
-        { num: 3, name: '3. Cargo Unloading & Pallet De-stuffing', detail: 'Physical cargo offloading from vehicle onto dock staging area' },
-        { num: 4, name: '4. QC Inspection & Seal Verification', detail: 'Tamper-evident seal match, piece count & physical damage check' },
-        { num: 5, name: '5. Signed Proof of Delivery (POD) & GRN Generation', detail: 'Supervisor sign-off, transporter copy stamped, Goods Receipt Note created' },
-        { num: 6, name: '6. Warehouse Rack Putaway', detail: 'Reach truck transit and slotting into designated warehouse storage rack' }
-      ];
-
-      const milestonesContainer = document.getElementById('inward-pending-modal-milestones');
-      if (milestonesContainer) {
-        milestonesContainer.innerHTML = '';
-        milestones.forEach(m => {
-          let statusBadge = '';
-          let icon = '';
-          let bgClass = 'bg-white border-gray-200 text-gray-700';
-
-          const currentMilestone = stageNum;
-          if (m.num < currentMilestone) {
-            bgClass = 'bg-[#ECFDF5] border-[#A7F3D0] text-[#065F46]';
-            icon = `<span class="w-5 h-5 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">✓</span>`;
-            statusBadge = `<span class="px-2 py-0.5 rounded-md bg-[#D1FAE5] text-[#047857] text-[10px] font-bold font-arial">COMPLETED</span>`;
-          } else if (m.num === currentMilestone) {
-            bgClass = 'bg-[#FFFBEB] border-[#FDE68A] text-[#92400E] shadow-2xs';
-            icon = `<span class="w-5 h-5 rounded-full bg-[#F59E0B] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 animate-pulse">●</span>`;
-            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold font-arial flex items-center gap-1 border border-[#FCD34D]"><span class="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse"></span> IN PROGRESS</span>`;
-          } else {
-            bgClass = 'bg-gray-50 border-gray-200 text-gray-400';
-            icon = `<span class="w-5 h-5 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-[10px] font-bold flex-shrink-0">○</span>`;
-            statusBadge = `<span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 text-[10px] font-semibold font-arial">UPCOMING</span>`;
-          }
-
-          const div = document.createElement('div');
-          div.className = `flex items-center justify-between p-2.5 rounded-xl border ${bgClass} text-[12px] transition-all`;
-          div.innerHTML = `
-            <div class="flex items-center gap-2.5">
-              ${icon}
-              <div>
-                <strong class="block leading-tight text-[12.5px]">${m.name}</strong>
-                <span class="text-[11px] opacity-80 block">${m.detail}</span>
-              </div>
-            </div>
-            <div>${statusBadge}</div>
-          `;
-          milestonesContainer.appendChild(div);
-        });
-      }
-
-      const inspectBtn = document.getElementById('inward-pending-modal-inspect-btn');
-      if (inspectBtn) {
-        inspectBtn.onclick = () => {
-          closeInwardPendingModal();
-          openInwardOrderDetail(order.id);
-        };
-      }
-
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-    }
-
-    function closeDispatchPendingModal() {
-      const modal = document.getElementById('dispatch-pending-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function openDispatchPendingModal(orderId) {
-      const modal = document.getElementById('dispatch-pending-modal');
-      if (!modal) return;
-
-      const facility = warehouseOutwardData[currentFacilityName] || warehouseOutwardData['WH-01 Bhiwandi'];
-      let order = null;
-      let isIssue = false;
-
-      if (facility) {
-        if (facility.issues) {
-          order = facility.issues.find(iss => iss.orderId === orderId);
-          if (order) isIssue = true;
-        }
-        if (!order && facility.normalOrders) {
-          order = facility.normalOrders.find(o => o.orderId === orderId);
-        }
-      }
-
-      if (!order && window.outwardIssuesRegistry && window.outwardIssuesRegistry[orderId]) {
-        order = window.outwardIssuesRegistry[orderId];
-        isIssue = true;
-      }
-
-      if (!order) {
-        order = {
-          orderId: orderId,
-          customer: 'Customer Destination',
-          cargo: 'Commercial Goods',
-          stageNum: 2,
-          stage: '2. Wave Picking',
-          dockBay: 'Zone A, Aisle 01'
-        };
-      }
-
-      const stageNum = order.stageNum || (isIssue ? 5 : 2);
-
-      const subEl = document.getElementById('pending-modal-subtitle');
-      if (subEl) subEl.textContent = `${order.orderId} · ${order.customer}`;
-
-      const stageEl = document.getElementById('pending-modal-stage');
-      if (stageEl) stageEl.textContent = order.stage || `Stage ${stageNum}`;
-
-      const locEl = document.getElementById('pending-modal-location');
-      if (locEl) locEl.textContent = order.dockBay || order.picker || 'Assigned Fulfillment Zone';
-
-      const badgeEl = document.getElementById('pending-modal-status-badge');
-      if (badgeEl) {
-        if (isIssue) {
-          badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]';
-          badgeEl.textContent = 'Pending (Issue Blocked)';
-        } else {
-          badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]';
-          badgeEl.textContent = 'Pending';
-        }
-      }
-
-      const summaryEl = document.getElementById('pending-modal-summary');
-      if (summaryEl) {
-        if (isIssue) {
-          summaryEl.textContent = `Action Required: ${order.reason || 'Consignee e-way bill mismatch; manual e-way bill regen required'}. Transporter truck waiting at outbound gate. Carrier handover and signed Proof of Dispatch are on hold pending resolution.`;
-        } else if (stageNum === 1) {
-          summaryEl.textContent = 'Order is awaiting wave release to floor pickers. Physical picking, packing, QC validation, dock staging, and carrier handover must be completed before Proof of Dispatch is issued.';
-        } else if (stageNum === 2) {
-          summaryEl.textContent = 'Picker is currently retrieving cargo from warehouse bins. Sorting, packing, QC inspection, dock bay staging, and carrier handover are pending before Proof of Dispatch is issued.';
-        } else if (stageNum === 3) {
-          summaryEl.textContent = 'Cartons are at pack desk for bubble wrapping and sealing. Weighing check, dock bay staging, and carrier handover are pending.';
-        } else if (stageNum === 4) {
-          summaryEl.textContent = 'Consignment is undergoing weight calibration and QC scan. Outbound dock staging and carrier handover are pending.';
-        } else if (stageNum === 5) {
-          summaryEl.textContent = 'Consignment is staged at dock bay awaiting carrier pickup. Driver vehicle check and signed gate pass are required to complete Proof of Dispatch.';
-        } else {
-          summaryEl.textContent = 'Fulfillment steps are in progress across the warehouse floor before carrier handover.';
-        }
-      }
-
-      const milestones = [
-        { num: 1, name: '1. Order Received & Manifest Sync', detail: 'ASN validated and synced with WMS' },
-        { num: 2, name: '2. Wave Picking from Bins', detail: 'Items retrieved from rack bin locations' },
-        { num: 3, name: '3. Sorting & Packing', detail: 'Protective packaging & tamper-evident taping' },
-        { num: 4, name: '4. QC & Weighing', detail: 'Gross weight calibration & dimension check' },
-        { num: 5, name: '5. Staged at Dock Bay', detail: 'Consolidated at outbound gate bay for carrier' },
-        { num: 6, name: '6. Carrier Handover & Signed POD', detail: 'Final carrier transfer & signed delivery receipt' }
-      ];
-
-      const milestonesContainer = document.getElementById('pending-modal-milestones');
-      if (milestonesContainer) {
-        milestonesContainer.innerHTML = milestones.map(m => {
-          let statusTag = '';
-          let rowBg = 'bg-gray-50/60 border-gray-100';
-
-          if (m.num < stageNum) {
-            statusTag = '<span class="text-[10px] font-bold text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-2 py-0.5 rounded-md">Done</span>';
-            rowBg = 'bg-[#F0FDF4]/50 border-[#DCFCE7]';
-          } else if (m.num === stageNum) {
-            if (isIssue) {
-              statusTag = '<span class="text-[10px] font-bold text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] px-2 py-0.5 rounded-md">Action Required</span>';
-              rowBg = 'bg-[#FEF2F2]/60 border-[#FECACA]';
-            } else {
-              statusTag = '<span class="text-[10px] font-bold text-[#2563EB] bg-[#EFF6FF] border border-[#BFDBFE] px-2 py-0.5 rounded-md">In Progress</span>';
-              rowBg = 'bg-[#EFF6FF]/60 border-[#BFDBFE]';
-            }
-          } else {
-            statusTag = '<span class="text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-md">Pending</span>';
-          }
-
-          return `
-            <div class="flex items-center justify-between p-2.5 rounded-xl border ${rowBg} text-[12px]">
-              <div>
-                <strong class="text-[#1F2937] block leading-tight">${m.name}</strong>
-                <span class="text-[10.5px] text-[#6B7280] block">${m.detail}</span>
-              </div>
-              <div>${statusTag}</div>
-            </div>
-          `;
-        }).join('');
-      }
-
-      const inspectBtn = document.getElementById('pending-modal-inspect-btn');
-      if (inspectBtn) {
-        inspectBtn.onclick = () => {
-          closeDispatchPendingModal();
-          if (isIssue) {
-            openOutwardIssueModal(order.orderId);
-          } else {
-            openOutwardOrderDetail(order.orderId);
-          }
-        };
-      }
-
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-    }
-
-    function openPodModal() {
-      const modal = document.getElementById('pod-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      }
-    }
-
-    
-    function openOutwardPodModal() {
-      const modal = document.getElementById('outward-pod-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-      }
-    }
-
-    function closeOutwardPodModal() {
-      const modal = document.getElementById('outward-pod-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    function closePodModal() {
-      const modal = document.getElementById('pod-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-  
-    // Introductory Splash Screen Controller
-    let splashDismissed = false;
-    function dismissSplashScreen() {
-      if (splashDismissed) return;
-      splashDismissed = true;
-      const splash = document.getElementById('intro-splash-screen');
-      if (splash) {
-        splash.classList.add('opacity-0', 'pointer-events-none');
-        setTimeout(() => {
-          splash.remove();
-        }, 700);
-      }
-    }
-
-    function startSplashCountdown() {
-      const splash = document.getElementById('intro-splash-screen');
-      if (!splash) return;
-      const duration = 4000; // 4 seconds preview
-      const startTime = Date.now();
-      const progressEl = document.getElementById('splash-progress');
-      const timerText = document.getElementById('splash-timer-text');
-
-      const interval = setInterval(() => {
-        if (splashDismissed) {
-          clearInterval(interval);
-          return;
-        }
-        const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, Math.ceil((duration - elapsed) / 1000));
-        const pct = Math.min(100, (elapsed / duration) * 100);
-
-        if (progressEl) progressEl.style.width = pct + '%';
-        if (timerText) timerText.textContent = `Opening dashboard in ${remaining}s...`;
-
-        if (elapsed >= duration) {
-          clearInterval(interval);
-          dismissSplashScreen();
-        }
-      }, 50);
-    }
-
-    // Initialize Floor Map Storey 1 Heat Map & Direct Dashboard Load
-    window.addEventListener('DOMContentLoaded', function() {
-      if (typeof changeStorey === 'function') changeStorey(1);
-
-      if (typeof openInwardOrderDetail === 'function') openInwardOrderDetail('ORD-IN-8821');
-      if (typeof openOutwardOrderDetail === 'function') openOutwardOrderDetail('ORD-OUT-4521');
-      if (typeof renderInwardTable === 'function') renderInwardTable();
-      if (typeof renderOutwardJourney === 'function') renderOutwardJourney(currentFacilityName);
-      goToScreen(1);
-
-    });
-
-
-    // ==============================================
-    // STAGE 6: STORED INVENTORY DATA & FUNCTIONS
-    // ==============================================
-    const storedOrdersMaster = [
-      { orderId: 'ORD-IN-8801', supplier: 'Tata AutoComp Systems (Bhiwandi)', sku: 'SKU-LED-60W · High-Bay Floodlights', qty: '450 pcs (10 Pallets)', location: 'Rack A-04 · Shelf 2', slotId: 'A4', time: '20 Nov 2026, 11:20 AM', handler: 'S. Kadam (Reach Truck #02)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8798', supplier: 'Mahindra Logistics Hub (Chakan)', sku: 'SKU-BRK-102 · Heavy Brake Drums', qty: '80 crates (16 Pallets)', location: 'Rack B-02 · Shelf 1', slotId: 'B2', time: '20 Nov 2026, 10:45 AM', handler: 'P. Bhosale (Reach Truck #01)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8795', supplier: 'Bajaj Auto Depot (Akurdi)', sku: 'SKU-SPK-99 · Iridium Spark Plugs', qty: '200 boxes (4 Pallets)', location: 'Rack A-01 · Shelf 3', slotId: 'A1', time: '20 Nov 2026, 09:30 AM', handler: 'R. Mane (Forklift #05)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8792', supplier: 'Bosch Automotive India (Nashik)', sku: 'SKU-ECU-04 · Diesel ECU Sensors', qty: '45 kits (High Value)', location: 'Security Cage C-01', slotId: 'C1', time: 'Yesterday, 17:15', handler: 'A. Shinde (Security Marshal)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8789', supplier: 'Ceat Tyres Regional Depot', sku: 'SKU-TYR-16 · Commercial Inner Tubes', qty: '150 bundles (Bulk Bay)', location: 'Bulk Bay E-02', slotId: 'E2', time: 'Yesterday, 16:00', handler: 'D. Salve (Forklift #02)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8785', supplier: 'Hero MotoCorp Ancillary', sku: 'SKU-CHN-55 · Roller Drive Chains', qty: '90 crates (9 Pallets)', location: 'Rack C-04 · Shelf 1', slotId: 'C4', time: 'Yesterday, 14:20', handler: 'V. More (Reach Truck #03)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8782', supplier: 'TVS Motor Parts Regional', sku: 'SKU-FLT-21 · Oil Filter Cartridges', qty: '75 cartons (5 Pallets)', location: 'Rack B-06 · Shelf 2', slotId: 'B6', time: 'Yesterday, 12:40', handler: 'M. Tambe (Picker #08)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8778', supplier: 'Ashok Leyland Central Depot', sku: 'SKU-AXL-88 · Heavy Axle Hub Assemblies', qty: '50 crates (Heavy Cargo)', location: 'Heavy Bay H-01', slotId: 'H1', time: 'Yesterday, 11:10', handler: 'S. Patil (Crane Operator)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8774', supplier: 'Force Motors Chakan Plant', sku: 'SKU-RAD-12 · Radiator Cooling Fans', qty: '40 units (8 Pallets)', location: 'Rack D-02 · Shelf 1', slotId: 'D2', time: 'Yesterday, 10:00', handler: 'G. Shinde (Forklift #04)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8770', supplier: 'Hyundai Mobis Parts Hub', sku: 'SKU-LMP-03 · Projector Headlamps', qty: '60 boxes (6 Pallets)', location: 'Rack B-08 · Shelf 3', slotId: 'B8', time: '2 days ago, 18:30', handler: 'K. Raut (Reach Truck #02)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8765', supplier: 'Toyota Kirloskar Ancillary', sku: 'SKU-STR-09 · Hydraulic Steering Columns', qty: '35 crates (7 Pallets)', location: 'Heavy Bay H-02', slotId: 'H2', time: '2 days ago, 16:50', handler: 'H. Jadhav (Crane Operator)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8761', supplier: 'Skoda Auto Volkswagen India', sku: 'SKU-LCK-44 · Electronic Door Latches', qty: '110 boxes (11 Pallets)', location: 'Rack C-02 · Shelf 2', slotId: 'C2', time: '2 days ago, 15:10', handler: 'T. Gaikwad (Forklift #01)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8758', supplier: 'Renault Nissan Logistics Hub', sku: 'SKU-FLT-80 · Fuel Filter Assemblies', qty: '95 boxes (8 Pallets)', location: 'Rack A-07 · Shelf 1', slotId: 'A7', time: '2 days ago, 13:45', handler: 'L. Chavan (Reach Truck #01)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8754', supplier: 'SKF India Distribution Center', sku: 'SKU-BRG-22 · Deep Groove Ball Bearings', qty: '85 boxes (5 Pallets)', location: 'Rack A-03 · Shelf 2', slotId: 'A3', time: '2 days ago, 11:20', handler: 'B. Jagtap (Picker #04)', status: 'Verified & Stored' },
-      { orderId: 'ORD-IN-8750', supplier: 'Timken Bearings Depot Pune', sku: 'SKU-BRG-77 · Tapered Roller Bearings', qty: '60 crates (12 Pallets)', location: 'Rack C-05 · Shelf 3', slotId: 'C5', time: '2 days ago, 09:15', handler: 'N. Gite (Forklift #03)', status: 'Verified & Stored' }
-    ];
-
-    function openStoredOrdersPage(whName) {
-      if (whName) currentFacilityName = whName;
-      
-      const titleEl = document.getElementById('stored-page-title');
-      if (titleEl) titleEl.textContent = currentFacilityName;
-
-      const badgeEl = document.getElementById('stored-page-count-badge');
-      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '145' : '145'} Orders Stored in Inventory`;
-
-      renderStoredOrdersTable();
-      goToScreen('stored');
-    }
-
-    function renderStoredOrdersTable(data) {
-      const tbody = document.getElementById('stored-orders-tbody');
-      if (!tbody) return;
-
-      const list = data || storedOrdersMaster;
-      tbody.innerHTML = '';
-
-      if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" class="py-8 text-center text-gray-500 text-[13px]">No stored inventory orders found matching your criteria.</td></tr>`;
-        return;
-      }
-
-      list.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-[#F9FAFB] transition-colors';
-
-        tr.innerHTML = `
-          <td class="py-3 px-3 font-bold text-[#1F2937] font-arial whitespace-nowrap">${item.orderId}</td>
-          <td class="py-3 px-3 font-medium text-[#1F2937]">${item.supplier}</td>
-          <td class="py-3 px-3">
-            <span class="font-medium text-[#1F2937]">${item.sku.split('·')[0]}</span>
-            <span class="text-gray-500 text-[12px] block">${item.sku.split('·')[1] || ''}</span>
-          </td>
-          <td class="py-3 px-3 font-arial font-semibold text-[#1F2937] whitespace-nowrap">${item.qty}</td>
-          <td class="py-3 px-3 whitespace-nowrap">
-            <button onclick="openSlotLocationModal('${item.orderId}');" class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px] font-arial hover:bg-emerald-100 hover:border-emerald-300 transition-colors cursor-pointer inline-flex items-center gap-1" title="Click to view Slot on Floor Map">
-              <span>${item.location}</span>
-              <span class="text-[9.5px] text-emerald-600 font-semibold bg-emerald-100/60 px-1 rounded">Slot ${item.slotId}</span>
-            </button>
-          </td>
-          <td class="py-3 px-3 text-[#4B5563] text-[12px] whitespace-nowrap">${item.time}</td>
-          <td class="py-3 px-3 text-[#1F2937] font-medium text-[12px] whitespace-nowrap">${item.handler}</td>
-          <td class="py-3 px-3 whitespace-nowrap">
-            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold border border-[#A7F3D0] text-[11px] font-arial">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-              ${item.status}
-            </span>
-          </td>
-          <td class="py-3 px-3 text-right whitespace-nowrap">
-            <button onclick="openSlotLocationModal('${item.orderId}');" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer inline-flex items-center gap-1.5 font-bold hover:bg-gray-100 shadow-2xs">
-              <span>View Slot</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    
-    // ==============================================
-    // SLOT LOCATION FLOOR MAP MODAL (POP-UP HIGHLIGHT)
-    // ==============================================
-    function openSlotLocationModal(orderId) {
-      const modal = document.getElementById('slot-location-modal');
-      if (!modal) return;
-
-      const item = storedOrdersMaster.find(o => o.orderId === orderId) || storedOrdersMaster[0];
-      const targetSlot = (item.slotId || 'A4').toUpperCase();
-
-      // Populate text details
-      const titleSlotEl = document.getElementById('slot-loc-title-slot');
-      if (titleSlotEl) titleSlotEl.textContent = `Slot ${targetSlot}`;
-
-      const targetBadgeEl = document.getElementById('slot-loc-target-badge');
-      if (targetBadgeEl) targetBadgeEl.textContent = `Target Slot: ${targetSlot}`;
-
-      const subtitleEl = document.getElementById('slot-loc-subtitle');
-      if (subtitleEl) subtitleEl.textContent = `${item.orderId} · ${item.supplier} · ${item.location}`;
-
-      const whPillEl = document.getElementById('slot-loc-wh-pill');
-      if (whPillEl) whPillEl.textContent = `${currentFacilityName} · Floor 1 (Ground)`;
-
-      const slotNameEl = document.getElementById('slot-loc-slot-name');
-      if (slotNameEl) slotNameEl.textContent = `${item.location} (Slot ${targetSlot})`;
-
-      const skuNameEl = document.getElementById('slot-loc-sku-name');
-      if (skuNameEl) skuNameEl.textContent = `${item.sku} · ${item.qty}`;
-
-      const handlerNameEl = document.getElementById('slot-loc-handler-name');
-      if (handlerNameEl) handlerNameEl.textContent = `${item.handler} (${item.time})`;
-
-      const statusNameEl = document.getElementById('slot-loc-status-name');
-      if (statusNameEl) statusNameEl.innerHTML = `✓ ${item.status}`;
-
-      const tipSlotEl = document.getElementById('slot-loc-footer-tip');
-      if (tipSlotEl) tipSlotEl.textContent = targetSlot;
-
-      // Render Floor Map with Target Slot Highlighted and Every Other Space Greyed Out
-      renderSlotLocationFloorMap(targetSlot);
-
-      // Show modal
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeSlotLocationModal() {
-      const modal = document.getElementById('slot-location-modal');
-      if (modal) modal.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    function renderSlotLocationFloorMap(targetSlot) {
-      const gridContainer = document.getElementById('slot-loc-grid-container');
-      if (!gridContainer) return;
-
-      gridContainer.innerHTML = '';
-
-      // Standard Rows: A, B, C, D, E, F, and H (Heavy Bays)
-      const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'H'];
-      const targetRow = targetSlot.charAt(0);
-      const targetCol = parseInt(targetSlot.substring(1), 10);
-
-      // Build grid header: Corner empty cell + Columns 1 to 8
-      let headerHtml = '<div class="text-[10px] uppercase font-bold text-gray-400 font-arial text-center py-1">Row</div>';
-      for (let c = 1; c <= 8; c++) {
-        const isColActive = (c === targetCol);
-        headerHtml += `<div class="text-[10.5px] font-bold ${isColActive ? 'text-[#D84E55] font-black' : 'text-gray-400'} font-arial text-center py-1">Bay 0${c}</div>`;
-      }
-
-      // Build rows
-      let rowsHtml = '';
-      rows.forEach(r => {
-        const isRowActive = (r === targetRow);
-        const rowLabel = r === 'H' ? 'Bay H' : `Row ${r}`;
-        
-        // Row header on the left
-        rowsHtml += `
-          <div class="text-[11px] font-bold ${isRowActive ? 'bg-[#FEECEE] text-[#D84E55] border-[#FECDD3] font-black shadow-2xs' : 'bg-gray-50 text-gray-500 border-gray-200'} font-arial text-center py-2 px-1 rounded-lg border flex items-center justify-center whitespace-nowrap">
-            ${rowLabel}
-          </div>
-        `;
-
-        // 8 Slot Cells in this row
-        for (let c = 1; c <= 8; c++) {
-          const slotId = `${r}${c}`;
-          const isTarget = (slotId === targetSlot);
-
-          if (isTarget) {
-            // PROMINENT HIGHLIGHT FOR TARGET SLOT
-            rowsHtml += `
-              <div class="relative flex flex-col items-center justify-center h-12 rounded-xl bg-[#D84E55] text-white font-extrabold border-2 border-[#B91C1C] ring-4 ring-[#FECDD3] shadow-lg scale-105 z-10 animate-pulse transition-all select-none">
-                <span class="text-[7.5px] uppercase tracking-wider font-arial bg-white text-[#D84E55] font-black px-1 rounded-xs -mt-0.5">TARGET</span>
-                <span class="text-[13px] font-black font-arial tracking-wide">${slotId}</span>
-              </div>
-            `;
-          } else {
-            // GREYED OUT FOR EVERY OTHER SPACE
-            rowsHtml += `
-              <div class="flex items-center justify-center h-12 rounded-xl bg-[#F3F4F6] text-[#9CA3AF] border border-[#E5E7EB] opacity-35 select-none font-arial text-[11px] font-semibold cursor-default hover:opacity-50 transition-opacity">
-                <span>${slotId}</span>
-              </div>
-            `;
-          }
-        }
-      });
-
-      gridContainer.innerHTML = headerHtml + rowsHtml;
-    }
-
-    function filterStoredTable() {
-      const q = (document.getElementById('stored-search-input')?.value || '').toLowerCase().trim();
-      const zone = document.getElementById('stored-zone-filter')?.value || 'all';
-
-      const filtered = storedOrdersMaster.filter(item => {
-        const matchesQuery = !q || 
-          item.orderId.toLowerCase().includes(q) ||
-          item.supplier.toLowerCase().includes(q) ||
-          item.sku.toLowerCase().includes(q) ||
-          item.location.toLowerCase().includes(q) ||
-          item.handler.toLowerCase().includes(q);
-
-        const matchesZone = zone === 'all' || item.location.includes(zone);
-        return matchesQuery && matchesZone;
-      });
-
-      renderStoredOrdersTable(filtered);
-    }
-
-
-    // ==============================================
-    // STAGE 6: DISPATCHED & POD DATA & FUNCTIONS
-    // ==============================================
-    const dispatchedOrdersMaster = [
-      { orderId: 'ORD-BW-1088', customer: 'Maruti Suzuki Ancillary (Gurgaon Hub)', cargo: 'Clutch Plates (50 sets · 2 Pallets)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-882910-HYD', time: '20 Nov 2026, 05:40 PM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1085', customer: 'Mahindra Auto Depot (Chakan Plant)', cargo: 'Heavy Alternators (24 units · 3 Crates)', carrier: 'VRL Logistics', waybill: 'VRL-TRK-MH04-8812', time: '20 Nov 2026, 01:30 PM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1082', customer: 'Tata Motors CV Depot (Pune)', cargo: 'Leaf Springs (16 bundles · 2 Trailers)', carrier: 'Safexpress Surface', waybill: 'SAFE-MH-43-1022', time: '20 Nov 2026, 12:45 PM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1079', customer: 'Bajaj Auto Chakan Logistics', cargo: 'Piston Assemblies (100 units · 4 Pallets)', carrier: 'Delhivery Freight', waybill: 'DEL-FRT-992014', time: '20 Nov 2026, 11:20 AM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1075', customer: 'Force Motors Chakan Plant', cargo: 'Radiator Fans (22 units · 2 Pallets)', carrier: 'GATI KWE Cargo', waybill: 'GATI-EXP-44021', time: '20 Nov 2026, 10:15 AM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1071', customer: 'Ashok Leyland Depot (Nagpur Hub)', cargo: 'Axle Hubs (18 crates · Heavy Load)', carrier: 'TCI Freight', waybill: 'TCI-FRT-88102', time: '20 Nov 2026, 09:00 AM', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1068', customer: 'Eicher Motors Depot (Bhopal Hub)', cargo: 'Flywheels (10 units · 2 Crates)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-441092-BHP', time: 'Yesterday, 18:30 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1065', customer: 'Hyundai Mobis Regional Depot', cargo: 'Headlamp Assemblies (35 boxes)', carrier: 'Safexpress Surface', waybill: 'SAFE-HYU-33019', time: 'Yesterday, 17:15 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1061', customer: 'Honda Motorcycle Depot (Narsapura)', cargo: 'Carburetor Assemblies (40 boxes)', carrier: 'VRL Logistics', waybill: 'VRL-HND-99104', time: 'Yesterday, 16:00 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1058', customer: 'Kalyani Steels Regional Warehouse', cargo: 'Forged Steel Castings (14 heavy crates)', carrier: 'TCI Freight', waybill: 'TCI-STEEL-22019', time: 'Yesterday, 14:40 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1054', customer: 'Lumax Industries Distribution', cargo: 'Lighting Wiring Harness (28 kits)', carrier: 'Delhivery Freight', waybill: 'DEL-LMX-77102', time: 'Yesterday, 13:20 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1050', customer: 'Gabriel India Logistics Central', cargo: 'Shock Absorbers (30 crates · 3 Pallets)', carrier: 'Blue Dart Express', waybill: 'BLUEDART-GBR-55011', time: 'Yesterday, 11:50 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1046', customer: 'Sundram Fasteners Distribution', cargo: 'High-Tensile Fastener Bolts (60 bags)', carrier: 'TCI Freight', waybill: 'TCI-SND-44091', time: 'Yesterday, 10:30 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1042', customer: 'Uno Minda Systems Logistics', cargo: 'Alloy Wheels (20 cartons · 2 Pallets)', carrier: 'Safexpress Surface', waybill: 'SAFE-MIN-11029', time: '2 days ago, 18:00 IST', podStatus: 'Customer Signed POD' },
-      { orderId: 'ORD-BW-1038', customer: 'Subros Air Conditioning Depot', cargo: 'HVAC Ducting & Blowers (25 bundles)', carrier: 'GATI KWE Cargo', waybill: 'GATI-SBR-88201', time: '2 days ago, 15:30 IST', podStatus: 'Customer Signed POD' }
-    ];
-
-    function openDispatchedOrdersPage(whName) {
-      if (whName) currentFacilityName = whName;
-
-      const titleEl = document.getElementById('dispatched-page-title');
-      if (titleEl) titleEl.textContent = currentFacilityName;
-
-      const badgeEl = document.getElementById('dispatched-page-count-badge');
-      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '410' : '410'} Dispatches Delivered`;
-
-      renderDispatchedOrdersTable();
-      goToScreen('dispatched');
-    }
-
-    function renderDispatchedOrdersTable(data) {
-      const tbody = document.getElementById('dispatched-orders-tbody');
-      if (!tbody) return;
-
-      const list = data || dispatchedOrdersMaster;
-      tbody.innerHTML = '';
-
-      if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-500 text-[13px]">No dispatched shipments found matching your criteria.</td></tr>`;
-        return;
-      }
-
-      list.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-[#F9FAFB] transition-colors';
-
-        tr.innerHTML = `
-          <td class="py-3 px-3 font-bold text-[#1F2937] font-arial whitespace-nowrap">${item.orderId}</td>
-          <td class="py-3 px-3 font-medium text-[#1F2937]">${item.customer}</td>
-          <td class="py-3 px-3">${formatCargoCell(item.cargo)}</td>
-          <td class="py-3 px-3 whitespace-nowrap">
-            <span class="font-medium text-[#1F2937] block">${item.carrier}</span>
-            <span class="text-gray-400 font-mono text-[11px] block">${item.waybill}</span>
-          </td>
-          <td class="py-3 px-3 text-[#4B5563] text-[12px] whitespace-nowrap">${item.time}</td>
-          <td class="py-3 px-3 whitespace-nowrap">
-            <span onclick="openOutwardPodModal()" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold border border-[#A7F3D0] hover:bg-emerald-100 cursor-pointer shadow-2xs transition-all text-[11px] font-arial" title="Click to preview customer-signed POD">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-              ${item.podStatus}
-            </span>
-          </td>
-          <td class="py-3 px-3 text-right whitespace-nowrap">
-            <button onclick="openOutwardPodModal()" class="btn-redbus-secondary text-[11px] py-1 px-3 cursor-pointer">
-              View Signed POD &rarr;
-            </button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function filterDispatchedTable() {
-      const q = (document.getElementById('dispatched-search-input')?.value || '').toLowerCase().trim();
-      const carrier = document.getElementById('dispatched-carrier-filter')?.value || 'all';
-
-      const filtered = dispatchedOrdersMaster.filter(item => {
-        const matchesQuery = !q || 
-          item.orderId.toLowerCase().includes(q) ||
-          item.customer.toLowerCase().includes(q) ||
-          item.cargo.toLowerCase().includes(q) ||
-          item.carrier.toLowerCase().includes(q) ||
-          item.waybill.toLowerCase().includes(q);
-
-        const matchesCarrier = carrier === 'all' || item.carrier.includes(carrier);
-        return matchesQuery && matchesCarrier;
-      });
-
-      renderDispatchedOrdersTable(filtered);
-    }
-
-
-    // ==============================================
-    // STAGE DEFINITIONS (Plain Everyday English, No Jargon)
-    // ==============================================
-    const STAGE_DEFINITIONS = {
-      inward: {
-        1: {
-          category: 'Inward Stage 1',
-          title: '1. Expected',
-          desc: 'Goods are on their way. The supplier or delivery truck is traveling on the road to the warehouse, but has not arrived at the gate yet.',
-          action: 'The warehouse team monitors the arrival schedule to assign a dock unloading bay as soon as the vehicle pulls up.'
-        },
-        2: {
-          category: 'Inward Stage 2',
-          title: '2. At Dock',
-          desc: 'The delivery truck has reached the warehouse and is safely parked at the gate bay, waiting to be unloaded.',
-          action: 'The driver checks in their invoice and gate papers while dock workers prepare to open the vehicle.'
-        },
-        3: {
-          category: 'Inward Stage 3',
-          title: '3. Unloading',
-          desc: 'Warehouse workers are physically taking the boxes and cargo items out of the truck and placing them on the ground floor.',
-          action: 'Workers and forklifts unload pallets, count carton boxes, and arrange them neatly in the intake staging area.'
-        },
-        4: {
-          category: 'Inward Stage 4',
-          title: '4. QC & POD (Quality Check & Delivery Receipt)',
-          desc: 'Checking the items to make sure nothing is broken or missing, and signing the delivery receipt for the driver.',
-          action: 'Inspectors check carton conditions against the manifest bill. Once verified, the delivery slip (POD) is signed and stamped.'
-        },
-        5: {
-          category: 'Inward Stage 5',
-          title: '5. Putaway',
-          desc: 'Moving the checked boxes and items to their final shelves and storage racks inside the warehouse.',
-          action: 'Forklifts and pickers scan barcodes and place goods into designated storage racks so they can be quickly found later.'
-        },
-        6: {
-          category: 'Inward Stage 6',
-          title: '6. Stored',
-          desc: 'Items are safely stored on warehouse shelves, ready to be picked and sold whenever a customer places an order.',
-          action: 'Stock is officially entered into the warehouse inventory system and is ready for customer orders.'
-        }
-      },
-      outward: {
-        1: {
-          category: 'Outward Stage 1',
-          title: '1. Order Received',
-          desc: 'A customer placed an order. It is confirmed and waiting in line for warehouse staff to start gathering the items.',
-          action: 'The system creates an order pick-list and assigns it to the warehouse floor team.'
-        },
-        2: {
-          category: 'Outward Stage 2',
-          title: '2. Wave Picking',
-          desc: 'Workers walk through the warehouse aisles to find and collect the ordered items from the shelves.',
-          action: 'Pickers follow a route map with handheld barcode scanners to take items off the shelves and place them into pick carts.'
-        },
-        3: {
-          category: 'Outward Stage 3',
-          title: '3. Sorting & Packing',
-          desc: 'Collected items are brought together, safely wrapped with bubble wrap, and packed into courier boxes.',
-          action: 'Packers box the items securely, tape the cartons shut, and stick shipping address labels on the outside.'
-        },
-        4: {
-          category: 'Outward Stage 4',
-          title: '4. QC & Weighing',
-          desc: 'Weighing the packed parcel and double-checking that the right items are inside before shipping.',
-          action: 'The box is weighed on a digital scale to ensure package weight matches the shipping invoice.'
-        },
-        5: {
-          category: 'Outward Stage 5',
-          title: '5. Staged at Dock',
-          desc: 'Packed boxes are placed near the warehouse exit gate, ready for the delivery truck to load them.',
-          action: 'Boxes are stacked by transport route while security prepares the gate pass for the outbound vehicle.'
-        },
-        6: {
-          category: 'Outward Stage 6',
-          title: '6. Dispatched & POD',
-          desc: 'The truck has picked up the order, carried it to the customer, and delivered it with a signed proof of delivery receipt.',
-          action: 'The customer has received their goods and signed the delivery receipt (POD), successfully completing the order.'
-        }
-      }
-    };
-
-    window.showStageDefinition = function(type, stageNum) {
-      const stageData = STAGE_DEFINITIONS[type] && STAGE_DEFINITIONS[type][stageNum];
-      if (!stageData) return;
-
-      const modal = document.getElementById('stage-info-modal');
-      const catEl = document.getElementById('stage-info-category');
-      const titleEl = document.getElementById('stage-info-title');
-      const descEl = document.getElementById('stage-info-desc');
-      const actEl = document.getElementById('stage-info-action');
-
-      if (catEl) catEl.textContent = stageData.category;
-      if (titleEl) titleEl.textContent = stageData.title;
-      if (descEl) descEl.textContent = stageData.desc;
-      if (actEl) actEl.textContent = stageData.action;
-
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-    };
-
-    window.closeStageDefinitionModal = function(e) {
-      if (e && e.target && e.target.id !== 'stage-info-modal' && !e.target.closest('button')) {
-        return;
-      }
-      const modal = document.getElementById('stage-info-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
-    };
-
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        const stageModal = document.getElementById('stage-info-modal');
-        if (stageModal && !stageModal.classList.contains('hidden')) {
-          closeStageDefinitionModal();
-        }
-        const slotLocModal = document.getElementById('slot-location-modal');
-        if (slotLocModal && !slotLocModal.classList.contains('hidden')) {
-          closeSlotLocationModal();
-        }
-      }
-    });
-
-  // Initialize default stage checklists for inward (Stage 4) and outward (Stage 2)
-    setTimeout(() => {
-      if (typeof updateInwardStageChecklists === 'function') updateInwardStageChecklists(4);
-      if (typeof updateOutwardStageChecklists === 'function') updateOutwardStageChecklists(2);
-    }, 50);
-  </script>
-
-  <!-- ==============================================
-       PROOF OF DELIVERY (POD) MODAL PREVIEW
-       ============================================== -->
-  <div id="pod-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-[#ECFDF5] text-[#059669] flex items-center justify-center font-bold">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
-          </div>
-          <div>
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Proof of Delivery (POD) Document</h3>
-            <span class="text-[12px] text-[#6B7280]">Official Odwen Inward Consignment Receipt & Challan</span>
-          </div>
-        </div>
-        <button onclick="closePodModal()" class="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 cursor-pointer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-
-      <!-- Formal Document Replica -->
-      <div class="border-2 border-[#1F2937] p-5 rounded-xl bg-[#FEFDFB] space-y-4 font-arial text-[12px] text-[#1F2937]">
-        <!-- Document Header -->
-        <div class="flex items-start justify-between border-b-2 border-[#1F2937] pb-3">
-          <div>
-            <span class="text-[18px] font-black text-[#D84E55] tracking-tight block">odwen</span>
-            <span class="text-[11px] font-bold text-[#4B5563] uppercase tracking-wider block">WAREHOUSE INWARD DELIVERY RECEIPT (POD)</span>
-            <span class="text-[11px] text-[#6B7280]">Facility: WH-06 South Logistics Park, Hyderabad</span>
-          </div>
-          <div class="text-right">
-            <span class="font-bold block text-[13px]">LR NO: LR-BL-994201</span>
-            <span class="text-[11px] text-[#4B5563] block">Order Ref: ORD-IN-8821</span>
-            <span class="text-[11px] text-[#4B5563] block">Date: 20 Nov 2026, 09:15 AM</span>
-          </div>
-        </div>
-
-        <!-- Party Information -->
-        <div class="grid grid-cols-2 gap-4 pb-3 border-b border-[#E5E7EB]">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block">Consignor (Sender):</span>
-            <strong class="block text-[13px]">Havells India Ltd</strong>
-            <span class="text-[#4B5563] block">Plot 45, Industrial Area, Bhiwandi, MH</span>
-            <span class="text-[#4B5563] block">GSTIN: 27AABCH1234F1Z8</span>
-          </div>
-          <div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block">Consignee & Delivery Hub:</span>
-            <strong class="block text-[13px]">Odwen Facility WH-06</strong>
-            <span class="text-[#4B5563] block">Dock Bay 04, Medchal-Malkajgiri, Hyderabad</span>
-            <span class="text-[#4B5563] block">Operator: Rajesh Varma Warehousing</span>
-          </div>
-        </div>
-
-        <!-- Cargo Specification Table -->
-        <div class="border border-[#1F2937] rounded-md overflow-hidden">
-          <table class="w-full text-left text-[11px]">
-            <thead class="bg-[#1F2937] text-white uppercase">
-              <tr>
-                <th class="p-2">Item Description</th>
-                <th class="p-2">Manifest Qty</th>
-                <th class="p-2">Received Qty</th>
-                <th class="p-2">Condition</th>
-                <th class="p-2">Pallets</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#E5E7EB]">
-              <tr>
-                <td class="p-2 font-bold">SKU-LED-60W UltraSlim Smart Bulbs</td>
-                <td class="p-2">2,400 Pcs</td>
-                <td class="p-2 font-bold text-[#059669]">2,400 Pcs</td>
-                <td class="p-2 text-[#059669] font-bold">Intact / 0 Damage</td>
-                <td class="p-2">48 Pallets</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Mandatory Receiving Inspection Checklist -->
-        <div class="border border-[#1F2937] rounded-md p-3 bg-gray-50/50 space-y-2">
-          <div class="flex items-center justify-between pb-1 border-b border-gray-200">
-            <span class="text-[10.5px] uppercase font-bold text-[#1F2937] tracking-wider">Mandatory Receiving Checklist</span>
-            <span class="text-[10px] text-[#059669] font-bold font-arial">6/6 Items Checked</span>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">Container Seal</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">Carton Condition</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">Pallet Moisture</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">Quantity Count</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">Barcode Scan</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 bg-white border border-gray-200 rounded">
-              <span class="text-gray-700">POD Signature</span>
-              <span class="text-[#059669] font-bold text-[10px]">Good to Go</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carrier & Seal Notes -->
-        <div class="bg-gray-100 p-3 rounded-lg text-[11px] space-y-1">
-          <div class="flex justify-between"><span><strong>Transporter:</strong> Bhiwandi Logistics Pvt Ltd</span> <span><strong>Truck:</strong> MH-04-GP-8821</span></div>
-          <div class="flex justify-between"><span><strong>Driver:</strong> Harpreet Singh (Lic: DL-0420180092)</span> <span><strong>Container Seal:</strong> #ODW-8821 (Intact)</span></div>
-        </div>
-
-        <!-- Signatures & Stamp -->
-        <div class="pt-4 flex items-end justify-between">
-          <div class="text-center w-40">
-            <div class="font-serif italic text-[16px] text-[#1E3A8A] font-bold border-b border-[#1F2937] pb-1">
-              Harpreet Singh
-            </div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block mt-1">Driver's Signature</span>
-          </div>
-
-          <!-- Official Stamp -->
-          <div class="w-32 h-20 border-2 border-dashed border-[#059669] rounded-xl flex flex-col items-center justify-center text-center p-1 transform -rotate-3 bg-[#ECFDF5]/50">
-            <span class="text-[9px] font-black uppercase text-[#059669] tracking-wider">ODWEN LOGISTICS</span>
-            <span class="text-[11px] font-black text-[#059669]">GOODS RECEIVED</span>
-            <span class="text-[8px] text-[#059669]">20-NOV-2026 · DOCK 04</span>
-          </div>
-
-          <div class="text-center w-40">
-            <div class="font-serif italic text-[16px] text-[#1E3A8A] font-bold border-b border-[#1F2937] pb-1">
-              R. Kumar
-            </div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block mt-1">Dock Officer Signature</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center justify-end gap-3 pt-2">
-        <button onclick="closePodModal()" class="btn-redbus-secondary text-[12px] py-2 px-4">Close Preview</button>
-        <button onclick="alert('Downloading Proof of Delivery PDF (LR-BL-994201)...')" class="btn-redbus text-[12px] py-2 px-5 flex items-center gap-2">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Signed POD (PDF)
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==============================================
-       INWARD INTAKE & POD PENDING STATUS MODAL
-       Shows exact intake milestone progression and what is pending
-       ============================================== -->
-  <div id="inward-pending-modal" onclick="if(event.target===this) closeInwardPendingModal()" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Inbound Intake &amp; POD Status</h3>
-            <span id="inward-pending-modal-status-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]">Pending</span>
-          </div>
-          <span id="inward-pending-modal-subtitle" class="text-[11.5px] text-[#6B7280] font-arial block mt-0.5">ORD-IN-8827 · Gati KWE Express</span>
-        </div>
-        <button onclick="closeInwardPendingModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
-          ✕
-        </button>
-      </div>
-
-      <!-- Current Location & Stage Info -->
-      <div class="grid grid-cols-2 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Operational Stage</span>
-          <strong id="inward-pending-modal-stage" class="text-[#1F2937] text-[13px] block mt-0.5">Stage 1 · Expected Cargo</strong>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Dock Bay / Assigned Location</span>
-          <strong id="inward-pending-modal-location" class="text-[#1F2937] text-[13px] block mt-0.5">Bay 02 (ETA 11:30)</strong>
-        </div>
-      </div>
-
-      <!-- What is Pending Summary Box -->
-      <div class="p-3.5 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] space-y-1 text-[12px]">
-        <span class="text-[10.5px] font-bold text-[#B45309] uppercase tracking-wider block font-arial">What is currently pending for Proof of Delivery:</span>
-        <p id="inward-pending-modal-summary" class="text-[#92400E] leading-relaxed font-medium">
-          Vehicle is en route to gate. Gate entry, bay docking, physical offload, QC verification, and driver delivery challan signature are pending.
-        </p>
-      </div>
-
-      <!-- Fixed List of 6 Inbound Milestones -->
-      <div class="space-y-2">
-        <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block font-arial">Fixed Inbound Intake Milestones:</span>
-        <div id="inward-pending-modal-milestones" class="space-y-1.5">
-          <!-- Dynamically generated via openInwardPendingModal() -->
-        </div>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2.5">
-        <button onclick="closeInwardPendingModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
-          Close
-        </button>
-        <button id="inward-pending-modal-inspect-btn" class="btn-redbus text-[12px] py-2 px-4 cursor-pointer font-bold shadow-xs">
-          Inspect Full Inward Sequence &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==============================================
-       OUTWARD PROOF OF DELIVERY (POD) MODAL PREVIEW
-       ============================================== -->
-    <!-- ==============================================
-       DISPATCH & POD PENDING STATUS MODAL
-       Shows exact milestone progression and what is pending
-       ============================================== -->
-  <div id="dispatch-pending-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Dispatch &amp; POD Status</h3>
-            <span id="pending-modal-status-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]">Pending</span>
-          </div>
-          <span id="pending-modal-subtitle" class="text-[11.5px] text-[#6B7280] font-arial block mt-0.5">ORD-BW-1101 · Mahindra Logistics Hub</span>
-        </div>
-        <button onclick="closeDispatchPendingModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
-          ✕
-        </button>
-      </div>
-
-      <!-- Current Location & Stage Info -->
-      <div class="grid grid-cols-2 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Operational Stage</span>
-          <strong id="pending-modal-stage" class="text-[#1F2937] text-[13px] block mt-0.5">Stage 2 · Wave Picking</strong>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Location / Assigned</span>
-          <strong id="pending-modal-location" class="text-[#1F2937] text-[13px] block mt-0.5">Zone A, Aisle 01</strong>
-        </div>
-      </div>
-
-      <!-- What is Pending Summary Box -->
-      <div class="p-3.5 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] space-y-1 text-[12px]">
-        <span class="text-[10.5px] font-bold text-[#B45309] uppercase tracking-wider block font-arial">What is currently pending for Proof of Dispatch:</span>
-        <p id="pending-modal-summary" class="text-[#92400E] leading-relaxed font-medium">
-          Picker is actively collecting items from warehouse bins. Packing, QC verification, outbound dock staging, and carrier handover are pending.
-        </p>
-      </div>
-
-      <!-- Fixed List of 6 Dispatch Milestones -->
-      <div class="space-y-2">
-        <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block font-arial">Fixed Dispatch Milestones:</span>
-        <div id="pending-modal-milestones" class="space-y-1.5">
-          <!-- Dynamically generated via openDispatchPendingModal() -->
-        </div>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2.5">
-        <button onclick="closeDispatchPendingModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
-          Close
-        </button>
-        <button id="pending-modal-inspect-btn" class="btn-redbus text-[12px] py-2 px-4 cursor-pointer font-bold shadow-xs">
-          Inspect Order Journey &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="outward-pod-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-[#ECFDF5] text-[#059669] flex items-center justify-center font-bold">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
-          </div>
-          <div>
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Proof of Delivery</h3>
-          </div>
-        </div>
-        <button onclick="closeOutwardPodModal()" class="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 cursor-pointer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-
-      <!-- Formal Document Replica -->
-      <div class="border-2 border-[#1F2937] p-5 rounded-xl bg-[#FEFDFB] space-y-4 font-arial text-[12px] text-[#1F2937]">
-        <div class="flex items-start justify-between border-b-2 border-[#1F2937] pb-3">
-          <div>
-            <span class="text-[18px] font-black text-[#D84E55] tracking-tight block">odwen</span>
-            <span class="text-[11px] font-bold text-[#4B5563] uppercase tracking-wider block">CUSTOMER DELIVERY RECEIPT & PROOF OF DELIVERY (POD)</span>
-            <span class="text-[11px] text-[#6B7280]">Dispatch Facility: WH-06 South Logistics Park, Hyderabad</span>
-          </div>
-          <div class="text-right">
-            <span class="font-bold block text-[13px]">DISPATCH REF: ORD-OUT-4519</span>
-            <span class="text-[11px] text-[#4B5563] block">Airway Bill: BLUEDART-882910-HYD</span>
-            <span class="text-[11px] text-[#4B5563] block">Delivered: 20 Nov 2026, 05:40 PM</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 pb-3 border-b border-[#E5E7EB]">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block">Consignor (Shipper):</span>
-            <strong class="block text-[13px]">Acme Industries Ltd</strong>
-            <span class="text-[#4B5563] block">Stored at Odwen Facility WH-06, Hyderabad</span>
-          </div>
-          <div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block">Customer Consignee:</span>
-            <strong class="block text-[13px]">Zenith Retail Enterprises</strong>
-            <span class="text-[#4B5563] block">Plot 12, Andheri East, Mumbai, Maharashtra</span>
-          </div>
-        </div>
-
-        <div class="border border-[#1F2937] rounded-md overflow-hidden">
-          <table class="w-full text-left text-[11px]">
-            <thead class="bg-[#1F2937] text-white uppercase">
-              <tr>
-                <th class="p-2">Item Description</th>
-                <th class="p-2">Quantity</th>
-                <th class="p-2">Condition</th>
-                <th class="p-2">Status</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#E5E7EB]">
-              <tr>
-                <td class="p-2 font-bold">Industrial Parts & Connectors (SKU-IND-40)</td>
-                <td class="p-2 font-bold">12 units (3 cartons)</td>
-                <td class="p-2 text-[#059669] font-bold">✓ Intact / Sealed</td>
-                <td class="p-2 text-[#059669] font-bold">Delivered</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="bg-gray-100 p-3 rounded-lg text-[11px] space-y-1">
-          <div class="flex justify-between"><span><strong>Carrier:</strong> Blue Dart Express Surface</span> <span><strong>Van:</strong> MH-02-CP-9104</span></div>
-          <div class="flex justify-between"><span><strong>Delivery Executive:</strong> Ajay Verma</span> <span><strong>Receiver:</strong> Zenith Stores Mgr (K. Pillai)</span></div>
-        </div>
-
-        <div class="pt-4 flex items-end justify-between">
-          <div class="text-center w-40">
-            <div class="font-serif italic text-[16px] text-[#1E3A8A] font-bold border-b border-[#1F2937] pb-1">
-              K. Pillai
-            </div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block mt-1">Customer Receiver Signature</span>
-          </div>
-
-          <div class="w-32 h-20 border-2 border-dashed border-[#059669] rounded-xl flex flex-col items-center justify-center text-center p-1 transform rotate-2 bg-[#ECFDF5]/50">
-            <span class="text-[9px] font-black uppercase text-[#059669] tracking-wider">ZENITH RETAIL</span>
-            <span class="text-[11px] font-black text-[#059669]">GOODS ACCEPTED</span>
-            <span class="text-[8px] text-[#059669]">20-NOV-2026 · MUMBAI</span>
-          </div>
-
-          <div class="text-center w-40">
-            <div class="font-serif italic text-[16px] text-[#1E3A8A] font-bold border-b border-[#1F2937] pb-1">
-              Ajay Verma
-            </div>
-            <span class="text-[10px] uppercase font-bold text-[#6B7280] block mt-1">Carrier Courier Signature</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-end gap-3 pt-2">
-        <button onclick="closeOutwardPodModal()" class="btn-redbus-secondary text-[12px] py-2 px-4">Close Preview</button>
-        <button onclick="alert('Downloading Customer Signed Proof of Delivery (ORD-OUT-4519)...')" class="btn-redbus text-[12px] py-2 px-5 flex items-center gap-2">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Signed POD (PDF)
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Heat Map Slot Tooltip -->
-  <div id="slot-tooltip" class="fixed pointer-events-none z-50 hidden bg-[#1F2937] text-white p-3 rounded-xl shadow-2xl border border-[#374151] text-[12px] min-w-[190px] transition-opacity duration-150">
-    <div class="flex items-center justify-between gap-3 border-b border-[#374151] pb-1.5 mb-1.5 font-bold">
-      <span id="tt-slot" class="text-white">Slot B8</span>
-      <span id="tt-occ" class="text-[#EF4444] px-1.5 py-0.5 rounded bg-[#374151] text-[11px] font-bold">98% occupied</span>
-    </div>
-    <div class="space-y-1 text-[#E5E7EB] text-[11px]">
-      <div class="flex justify-between gap-3">
-        <span class="text-[#9CA3AF]">SKU:</span>
-        <span id="tt-sku" class="font-semibold text-white truncate max-w-[130px]">SKU-LED-60W</span>
-      </div>
-      <div class="flex justify-between gap-3">
-        <span class="text-[#9CA3AF]">Quantity:</span>
-        <span id="tt-qty" class="font-semibold text-white">50 pcs</span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ==============================================
-       OUTWARD ISSUE & BOTTLENECK DETAILS MODAL
-       ============================================== -->
-  <div id="outward-issue-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h3 class="text-[17px] font-bold text-[#1F2937]" id="issue-modal-order-id">ORD-BW-1092</h3>
-              <span id="issue-modal-priority-badge" class="px-2 py-0.5 rounded-full bg-red-100 text-[#DC2626] font-bold text-[10px] font-arial uppercase">Priority OEM</span>
-            </div>
-            <span class="text-[12px] text-[#6B7280]">Bottleneck Issue & Human Custody Chain</span>
-          </div>
-        </div>
-        <button onclick="closeOutwardIssueModal()" class="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 cursor-pointer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-
-      <!-- Alert Box with Overdue Status & Reason -->
-      <div class="p-3.5 rounded-xl bg-[#FEF2F2] border border-[#FECACA] space-y-1.5">
-        <div class="flex items-center justify-between">
-          <span id="issue-modal-stage" class="px-2.5 py-0.5 rounded-full bg-white text-[#DC2626] font-bold text-[11px] border border-[#FECACA] font-arial">
-            Stage 5 · Staged at Dock (Bay 06)
-          </span>
-          <span id="issue-modal-time-stuck" class="text-[12px] font-bold text-[#DC2626] flex items-center gap-1 font-arial">
-            1h 10m overdue
-          </span>
-        </div>
-        <div>
-          <span class="text-[11px] font-bold text-red-900 uppercase tracking-wider block font-arial">Bottleneck Root Cause:</span>
-          <p id="issue-modal-reason" class="text-[12.5px] text-red-950 font-medium leading-snug mt-0.5">
-            Consignee e-way bill mismatch with invoice tax breakdown; manual e-way bill regen required
-          </p>
-        </div>
-        <div class="text-[11px] text-[#B45309] font-medium pt-1 border-t border-red-200/60 flex items-center gap-1">
-          <span>SLA Impact:</span>
-          <span id="issue-modal-sla" class="font-bold">VRL Logistics truck waiting at outbound gate</span>
-        </div>
-      </div>
-
-      <!-- Customer & Cargo Items -->
-      <div class="grid grid-cols-2 gap-3 p-3 bg-gray-50/70 rounded-xl border border-gray-100 text-[12px]">
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block">Customer / Destination</span>
-          <span id="issue-modal-customer" class="font-bold text-[#1F2937] block mt-0.5">Tata Motors Parts Hub</span>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block">Cargo Items</span>
-          <span id="issue-modal-cargo" class="font-bold text-[#1F2937] block mt-0.5">Transmission Gears (14 units)</span>
-        </div>
-      </div>
-
-      <!-- AI Root Cause Diagnostic (If Available) -->
-      <div id="issue-modal-ai-box" class="p-3 rounded-xl bg-gradient-to-r from-[#EEF2FF] to-[#FAF5FF] border border-[#C7D2FE] space-y-1 text-[11px]">
-        <div class="flex items-center justify-between font-bold text-[#4338CA]">
-          <span class="flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-[#6366F1]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
-            AI Root-Cause Diagnostic
-          </span>
-          <span id="issue-modal-ai-confidence" class="text-[9.5px] px-1.5 py-0.2 rounded-full bg-[#E0E7FF] text-[#3730A3]">98.2% match</span>
-        </div>
-        <p id="issue-modal-ai-root-cause" class="text-[#374151] leading-tight">Tax mismatch detected between e-way bill tax breakdown and ERP invoice line-items.</p>
-        <p class="text-[#4F46E5] font-semibold text-[11px]">↳ Suggested Resolution: <span id="issue-modal-ai-recommendation">Regenerate GS1-128 e-way bill with consolidated tax slab</span></p>
-      </div>
-
-      <!-- Custody Chain -->
-      <div class="space-y-1.5">
-        <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block font-arial">Human Custody Chain:</span>
-        <div id="issue-modal-handlers" class="space-y-1 max-h-36 overflow-y-auto pr-1">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2.5">
-        <button onclick="closeOutwardIssueModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
-          Close
-        </button>
-        <button id="issue-modal-journey-btn" class="btn-redbus-secondary text-[12px] py-2 px-4 cursor-pointer font-bold">
-          View Full Journey Timeline &rarr;
-        </button>
-        <button id="issue-modal-override-btn" class="btn-redbus text-[12px] py-2 px-5 cursor-pointer font-bold shadow-xs">
-          Supervisor Manual Override &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ==============================================
-       STAGE DEFINITION INFO MODAL (Plain Simple Language, No Jargon)
-       ============================================== -->
-  <div id="stage-info-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4" onclick="closeStageDefinitionModal(event)">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-[#E5E7EB] animate-in fade-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-[#FEECEE] text-[#D84E55] flex items-center justify-center font-serif italic font-bold text-[14px] border border-[#FECACA]">
-            i
-          </div>
-          <div>
-            <span id="stage-info-category" class="text-[10px] uppercase font-bold text-[#D84E55] font-arial tracking-wider block">Inward Stage 1</span>
-            <h3 id="stage-info-title" class="text-[16px] font-bold text-[#1F2937]">Expected</h3>
-          </div>
-        </div>
-        <button onclick="closeStageDefinitionModal()" class="w-7 h-7 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg cursor-pointer transition-colors">&times;</button>
-      </div>
-
-      <div class="space-y-3.5 text-left">
-        <div class="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-3.5 space-y-1">
-          <span class="text-[10.5px] font-bold uppercase tracking-wider text-gray-500 font-arial block">What this means:</span>
-          <p id="stage-info-desc" class="text-[13px] text-[#1F2937] leading-relaxed font-medium">
-            Goods are on their way. The supplier or truck is traveling to the warehouse, but has not arrived yet.
-          </p>
-        </div>
-
-        <div class="space-y-1 px-1">
-          <span class="text-[10.5px] font-bold uppercase tracking-wider text-gray-500 font-arial block">What is happening right now:</span>
-          <p id="stage-info-action" class="text-[12px] text-[#4B5563] leading-relaxed">
-            The warehouse team is keeping track of arrival time to assign a dock bay as soon as it arrives.
-          </p>
-        </div>
-      </div>
-
-      <div class="pt-3 border-t border-[#E5E7EB] flex justify-end">
-        <button onclick="closeStageDefinitionModal()" class="px-5 py-2 rounded-xl bg-[#1F2937] hover:bg-black text-white font-bold text-[12px] shadow-2xs cursor-pointer transition-colors">
-          Got it
-        </button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ==============================================
-       SLOT LOCATION FLOOR MAP POP-UP MODAL
-       Shows Floor Map with Target Slot Highlighted and All Others Greyed Out
-       ============================================== -->
-  <div id="slot-location-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-3 sm:p-4 backdrop-blur-xs" onclick="if(event.target===this) closeSlotLocationModal()">
-    <div class="bg-white rounded-2xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto border border-[#E5E7EB] animate-in fade-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
-      
-      <!-- Modal Header -->
-      <div class="flex items-start justify-between pb-3 border-b border-[#E5E7EB]">
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <h3 class="text-[17px] font-bold text-[#1F2937]">Floor Map · Slot Location: <span id="slot-loc-title-slot" class="text-[#D84E55]">Slot A4</span></h3>
-            <span id="slot-loc-target-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEECEE] text-[#D84E55] border border-[#FECDD3] flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-[#D84E55] animate-ping"></span> Target Slot: A4
-            </span>
-          </div>
-          <span id="slot-loc-subtitle" class="text-[12px] text-[#6B7280] font-arial block mt-1">ORD-IN-8801 · Tata AutoComp Systems · Rack A-04 · Shelf 2</span>
-        </div>
-        
-        <div class="flex items-center gap-2">
-          <span id="slot-loc-wh-pill" class="hidden sm:inline-block text-[11px] font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full border border-gray-200 font-arial">WH-01 Bhiwandi · Floor 1</span>
-          <button onclick="closeSlotLocationModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
-            ✕
-          </button>
-        </div>
-      </div>
-
-      <!-- Quick Context Info Cards -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Physical Slot</span>
-          <strong id="slot-loc-slot-name" class="text-[#D84E55] text-[12.5px] block font-bold font-arial mt-0.5">Rack A-04 · Shelf 2</strong>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Stored Cargo</span>
-          <strong id="slot-loc-sku-name" class="text-[#1F2937] text-[12.5px] block font-arial mt-0.5 truncate">SKU-LED-60W · 450 pcs</strong>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Assigned Handler</span>
-          <strong id="slot-loc-handler-name" class="text-[#1F2937] text-[12.5px] block font-arial mt-0.5 truncate">S. Kadam (Reach Truck)</strong>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">WMS Status</span>
-          <strong id="slot-loc-status-name" class="text-[#059669] text-[12.5px] block font-arial mt-0.5 flex items-center gap-1 font-bold">✓ Verified &amp; Stored</strong>
-        </div>
-      </div>
-
-      <!-- Floor Map Visual Box -->
-      <div class="space-y-2.5 border border-[#E5E7EB] rounded-2xl p-4 bg-[#FBFBFC]">
-        <!-- Top Legend & Direction Bar -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-gray-200">
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-[#D84E55]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-            <span class="text-[13px] font-bold text-[#1F2937]">Floor 1 Ground Layout · Pallet Rack Aisles</span>
-          </div>
-
-          <!-- Legend -->
-          <div class="flex items-center gap-3 text-[11px] font-arial flex-wrap">
-            <span class="inline-flex items-center gap-1.5 font-bold text-[#D84E55] bg-[#FEECEE] px-2 py-0.5 rounded-full border border-[#FECDD3]">
-              <span class="w-2.5 h-2.5 rounded bg-[#D84E55]"></span>
-              Highlighted (Target Slot)
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
-              <span class="w-2.5 h-2.5 rounded bg-gray-300 opacity-60"></span>
-              Greyed Out (Other Spaces)
-            </span>
-          </div>
-        </div>
-
-        <!-- The Floor Map Grid (Aisles A-H x Bays 1-8) -->
-        <div class="overflow-x-auto pb-1">
-          <div id="slot-loc-grid-container" class="grid grid-cols-[56px_repeat(8,minmax(50px,1fr))] gap-2 pt-1 min-w-[500px]">
-            <!-- Dynamically populated via renderSlotLocationFloorMap() -->
-          </div>
-        </div>
-
-        <!-- Floor Orientation Footer Bar -->
-        <div class="flex items-center justify-between text-[11px] text-[#6B7280] bg-white px-3 py-2 rounded-xl border border-gray-200 font-arial flex-wrap gap-2">
-          <span class="flex items-center gap-1">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Inbound Dock Bays 01–04
-          </span>
-          <span class="text-gray-400 font-medium">Forklift Transit Alley (Center Driveway)</span>
-          <span class="flex items-center gap-1">
-            Outbound Dispatch Bays 05–08
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span class="text-[11.5px] text-[#6B7280] font-arial">
-          📍 Target Slot <span id="slot-loc-footer-tip" class="font-bold text-[#D84E55]">A4</span> is highlighted on the floor map. All other slots are greyed out.
-        </span>
-
-        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
-          <button onclick="closeSlotLocationModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
-            Close
-          </button>
-          <button onclick="closeSlotLocationModal(); goToScreen(3, null, 'overview');" class="btn-redbus-secondary text-[12px] py-2 px-3.5 cursor-pointer font-bold inline-flex items-center gap-1">
-            <span>Open Full 3D Map</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</body>
-</html>
+... [truncated for diff preview]
