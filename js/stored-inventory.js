@@ -26,7 +26,9 @@
       if (titleEl) titleEl.textContent = currentFacilityName;
 
       const badgeEl = document.getElementById('stored-page-count-badge');
-      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '145' : '145'} Orders Stored in Inventory`;
+      const facIn = typeof warehouseInwardData !== 'undefined' ? warehouseInwardData[currentFacilityName] : null;
+      const count = (facIn && facIn.stages && facIn.stages[6]) ? facIn.stages[6] : 145;
+      if (badgeEl) badgeEl.textContent = `${count} Orders Stored in Inventory`;
 
       renderStoredOrdersTable();
       goToScreen('stored');

@@ -120,14 +120,89 @@
       'WH-08 Delhi NCR': {
         total: 33,
         stages: { 1: 4, 2: 3, 3: 5, 4: 8, 5: 13, 6: 180 },
-        bayPrefix: 'Dock Bay 0'
+        bayPrefix: 'Dock Bay 0',
+        code: 'DL'
       },
       'WH-12 Ahmedabad': {
         total: 26,
         stages: { 1: 3, 2: 2, 3: 4, 4: 6, 5: 11, 6: 142 },
-        bayPrefix: 'Dock Bay 0'
+        bayPrefix: 'Dock Bay 0',
+        code: 'AH'
       }
     };
+
+    // Attach codes to other warehouses
+    warehouseInwardData['WH-01 Bhiwandi'].code = 'BW';
+    warehouseInwardData['WH-02 Guwahati'].code = 'GW';
+    warehouseInwardData['WH-03 Bengaluru'].code = 'BL';
+    warehouseInwardData['WH-04 Pune'].code = 'PN';
+    warehouseInwardData['WH-06 Hyderabad'].code = 'HY';
+    warehouseInwardData['WH-07 Kolkata'].code = 'KL';
+
+    const inwardWarehouseOrdersCache = {};
+
+    function getInwardOrdersForWarehouse(whName) {
+      const facility = whName || currentFacilityName || 'WH-01 Bhiwandi';
+      if (facility === 'WH-01 Bhiwandi') {
+        return inwardOrdersList;
+      }
+      if (inwardWarehouseOrdersCache[facility]) {
+        return inwardWarehouseOrdersCache[facility];
+      }
+
+      const meta = warehouseInwardData[facility] || warehouseInwardData['WH-01 Bhiwandi'];
+      const code = meta.code || 'WH';
+      const bay = meta.bayPrefix || 'Dock Bay 0';
+      const list = [];
+      const transporters = ["Blue Dart Surface", "Safexpress Logistics", "Delhivery Freight", "TCI Freight Supply", "VRL Logistics", "Gati-KWE Surface", "Spoton Express", "Rivigo Surface", "Mahindra Logistics", "Express Cargo Line"];
+      const skus = [
+        { name: "SKU-ELEC-44 Microchips", qty: "3,200 pcs", pallets: "16 pallets" },
+        { name: "SKU-MED-40K Cold Packs", qty: "600 pcs", pallets: "12 pallets" },
+        { name: "SKU-AUTO-77 Gaskets", qty: "950 pcs", pallets: "19 pallets" },
+        { name: "SKU-SOLAR-04 Inverter Kits", qty: "320 pcs", pallets: "16 pallets" },
+        { name: "SKU-FMCG-22 Home Essentials", qty: "1,800 pcs", pallets: "36 pallets" },
+        { name: "SKU-LED-60W UltraSlim", qty: "2,400 pcs", pallets: "48 pallets" },
+        { name: "SKU-CHEM-10 Liquid Drums", qty: "450 pcs", pallets: "15 pallets" },
+        { name: "SKU-IND-50 Motor Spares", qty: "900 pcs", pallets: "18 pallets" },
+        { name: "SKU-TEXT-99 Yarn Spools", qty: "2,100 pcs", pallets: "42 pallets" },
+        { name: "SKU-FOOD-08 Canned Goods", qty: "1,500 pcs", pallets: "30 pallets" },
+        { name: "SKU-PKG-15 Polybags", qty: "4,000 pcs", pallets: "20 pallets" },
+        { name: "SKU-WIRE-33 Copper Cable", qty: "2,400 pcs", pallets: "24 pallets" },
+        { name: "SKU-PLAS-04 Buckets", qty: "900 pcs", pallets: "18 pallets" }
+      ];
+
+      let ordNum = 8801;
+      const stageNames = { 1: "1. Expected", 2: "2. At Dock", 3: "3. Unloading", 4: "4. QC & POD", 5: "5. Putaway" };
+
+      for (let s = 1; s <= 5; s++) {
+        const count = (meta.stages && meta.stages[s]) || 0;
+        for (let i = 0; i < count; i++) {
+          const skuObj = skus[(ordNum + i) % skus.length];
+          const trans = transporters[(ordNum + i * 2) % transporters.length];
+          const isPending = s < 4 || (s === 4 && i < 2);
+          const bayNum = ((i % 6) + 1);
+          const bayStr = s === 1 ? `${bay}${bayNum} (ETA 1${1 + (i % 3)}:${15 * (i % 4)})` : (s === 5 ? `${bay}${bayNum} / Zone ${String.fromCharCode(65 + (i % 3))}` : `${bay}${bayNum}`);
+
+          list.push({
+            id: `ORD-${code}-${ordNum}`,
+            transporter: trans,
+            sku: skuObj.name,
+            qty: skuObj.qty,
+            pallets: skuObj.pallets,
+            bay: bayStr,
+            stageNum: s,
+            stageName: stageNames[s],
+            isPending: isPending,
+            pendingDetail: isPending ? `Intake verification active at ${bayStr}. Awaiting dock sign-off.` : undefined,
+            isPriority: s === 4 && i === 0
+          });
+          ordNum++;
+        }
+      }
+
+      inwardWarehouseOrdersCache[facility] = list;
+      return list;
+    }
 
     function renderInwardTable() {
       const whName = currentFacilityName || 'WH-01 Bhiwandi';
@@ -149,13 +224,35 @@
         }
       }
 
+      const activeOrders = getInwardOrdersForWarehouse(whName);
+
+      // Update Filter Tabs with accurate dynamic counts for this warehouse
+      const allTab = document.getElementById('inward-tab-all');
+      if (allTab) {
+        allTab.textContent = `All Active (${activeOrders.length})`;
+      }
+      [1, 2, 3, 4, 5].forEach(stNum => {
+        const tabBtn = document.getElementById(`inward-tab-${stNum}`);
+        if (tabBtn) {
+          const stageCount = activeOrders.filter(o => o.stageNum === stNum).length;
+          const stageNames = {
+            1: 'Expected',
+            2: 'At Dock',
+            3: 'Unloading',
+            4: 'QC & POD',
+            5: 'Putaway'
+          };
+          tabBtn.textContent = `${stNum}. ${stageNames[stNum]} (${stageCount})`;
+        }
+      });
+
       const tbody = document.getElementById('inward-orders-tbody');
       const badge = document.getElementById('inward-table-count-badge');
       if (!tbody) return;
 
       const filtered = currentInwardFilter === 'all'
-        ? inwardOrdersList
-        : inwardOrdersList.filter(o => o.stageNum === currentInwardFilter);
+        ? activeOrders
+        : activeOrders.filter(o => o.stageNum === currentInwardFilter);
 
       if (badge) {
         badge.textContent = `${filtered.length} Orders ${currentInwardFilter === 'all' ? 'Total' : '(Filtered)'}`;

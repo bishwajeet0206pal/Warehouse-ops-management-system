@@ -1,12 +1,34 @@
     window.onWarehouseSelectChange = function(whName) {
       if (!whName) return;
       currentFacilityName = whName;
+      currentInwardFilter = 'all';
+      currentOutwardFilter = 'all';
 
       // 1. Sync dropdown selects
       const inSel = document.getElementById('inward-warehouse-select');
       if (inSel) inSel.value = whName;
       const outSel = document.getElementById('outward-warehouse-select');
       if (outSel) outSel.value = whName;
+
+      // Reset stage filter button styles
+      ['all', 1, 2, 3, 4, 5].forEach(st => {
+        const inBtn = document.getElementById('inward-tab-' + st);
+        if (inBtn) {
+          inBtn.className = st === 'all'
+            ? 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all'
+            : (st === 4
+              ? 'px-3 py-1 rounded-lg font-semibold bg-[#FEECEE] text-[#D84E55] border border-[#FECACA] hover:bg-[#FECACA] cursor-pointer transition-all'
+              : 'px-3 py-1 rounded-lg font-medium bg-white border border-[#E5E7EB] text-gray-700 hover:bg-gray-100 cursor-pointer transition-all');
+        }
+        const outBtn = document.getElementById('outward-tab-' + st);
+        if (outBtn) {
+          outBtn.className = st === 'all'
+            ? 'px-3 py-1 rounded-lg font-bold bg-[#1F2937] text-white shadow-2xs cursor-pointer transition-all'
+            : (st === 5
+              ? 'px-3 py-1 rounded-lg font-semibold bg-[#FEECEE] text-[#D84E55] border border-[#FECACA] hover:bg-[#FECACA] cursor-pointer transition-all'
+              : 'px-3 py-1 rounded-lg font-medium bg-white border border-[#E5E7EB] text-gray-700 hover:bg-gray-100 cursor-pointer transition-all');
+        }
+      });
 
       // 2. Update all facility labels across page
       const subFacility = document.getElementById('subtab-facility-label');
@@ -478,7 +500,10 @@
       if (inDetailWh) inDetailWh.textContent = currentFacilityName || 'WH-01 Bhiwandi';
       let order = inwardOrdersMaster[orderId];
       if (!order) {
-        const found = inwardOrdersList.find(o => o.id === orderId);
+        const activeList = typeof getInwardOrdersForWarehouse === 'function'
+          ? getInwardOrdersForWarehouse(currentFacilityName)
+          : inwardOrdersList;
+        const found = activeList.find(o => o.id === orderId) || inwardOrdersList.find(o => o.id === orderId);
         if (found) {
           order = {
             id: found.id,
@@ -486,16 +511,16 @@
             stageNum: found.stageNum,
             stageName: found.stageName,
             stageLocation: found.bay,
-            stageDesc: `Operational status: ${found.podStatus} at ${found.bay}`,
+            stageDesc: `Operational status: ${found.isPending ? 'Pending' : 'Done'} at ${found.bay}`,
             sku: found.sku,
             qty: found.qty,
             pallets: found.pallets || '24 pallets',
             matchMsg: 'Electronic manifest and ASN synchronized',
-            qcNote: 'Outer seal intact on arrival. Physical verification scheduled.',
+            qcNote: found.isPending ? (found.pendingDetail || 'Physical verification scheduled.') : 'Outer seal intact on arrival. Physical verification completed with 0 errors.',
             labour: '3 workers assigned',
             forklift: 'Reach Truck #02',
             shelf: 'Zone B, Shelf B8 (Ground Tier)',
-            lrNo: 'LR-IN-' + found.id.replace('ORD-IN-', '') + '-88',
+            lrNo: 'LR-IN-' + found.id.replace(/[^0-9]/g, '') + '-88',
             vehicleNo: 'MH-04-TR-' + (Math.floor(1000 + Math.random() * 9000)),
             driver: 'Gurpreet Singh · +91 98200-88120'
           };
@@ -1770,7 +1795,8 @@
       }));
 
       // High priority blocked orders first so supervisors see them immediately
-      const allActiveOrders = [...issueOrders, ...normalOrders];
+      // Active outward orders are strictly in stages 1 to 5 (stage 6 is Dispatched)
+      const allActiveOrders = [...issueOrders, ...normalOrders].filter(o => o.stageNum >= 1 && o.stageNum <= 5);
 
       // Update Filter Tabs with accurate dynamic counts
       const allBtn = document.getElementById('outward-tab-all');

@@ -26,7 +26,9 @@
       if (titleEl) titleEl.textContent = currentFacilityName;
 
       const badgeEl = document.getElementById('dispatched-page-count-badge');
-      if (badgeEl) badgeEl.textContent = `${currentFacilityName === 'WH-01 Bhiwandi' ? '410' : '410'} Dispatches Delivered`;
+      const fac = typeof warehouseOutwardData !== 'undefined' ? warehouseOutwardData[currentFacilityName] : null;
+      const count = (fac && fac.stages && fac.stages.find(s => s.id === 6)) ? fac.stages.find(s => s.id === 6).count : 410;
+      if (badgeEl) badgeEl.textContent = `${count} Dispatches Delivered`;
 
       renderDispatchedOrdersTable();
       goToScreen('dispatched');
