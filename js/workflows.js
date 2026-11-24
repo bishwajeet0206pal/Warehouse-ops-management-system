@@ -63,13 +63,23 @@
        the stage is marked Done.
        ========================================================================= */
 
+    const commandHierarchyStaff = {
+      jaswant: { name: 'Jaswant Singh', shortName: 'Jaswant S.', role: 'Head of Operations', level: 'L1 Supreme Command', reportsTo: 'VP Supply Chain', img: 'jaswant-singh.jpg', initials: 'JS', phone: '+91 98200-88120', station: 'Command Desk' },
+      sunita: { name: 'Sunita Rao', shortName: 'Sunita Rao', role: 'Inbound Control Lead', level: 'L2 Division Lead', reportsTo: 'Jaswant Singh (L1)', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80', initials: 'SR', phone: '+91 98201-11402', station: 'Inbound Control' },
+      vikram: { name: 'Vikram Malhotra', shortName: 'Vikram M.', role: 'Shift Operations Lead', level: 'L2 Division Lead', reportsTo: 'Jaswant Singh (L1)', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80', initials: 'VM', phone: '+91 98201-11404', station: 'Floor Tower' },
+      arun: { name: 'Arun Verma', shortName: 'Arun Verma', role: 'Outbound Fulfillment Lead', level: 'L2 Division Lead', reportsTo: 'Jaswant Singh (L1)', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80', initials: 'AV', phone: '+91 98202-11102', station: 'Dispatch Tower' },
+      pooja: { name: 'Pooja Gupta', shortName: 'Pooja Gupta', role: 'Inward Quality Supervisor', level: 'L3 Field Supervisor', reportsTo: 'Sunita Rao (L2)', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80', initials: 'PG', phone: '+91 98231-44910', station: 'Desk QC-04' },
+      rajesh: { name: 'Rajesh Kumar', shortName: 'Rajesh Kumar', role: 'Dock Master & Safety', level: 'L3 Field Supervisor', reportsTo: 'Vikram Malhotra (L2)', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80', initials: 'RK', phone: '+91 98200-88121', station: 'Dock Apron' },
+      deepak: { name: 'Deepak Sharma', shortName: 'Deepak S.', role: 'Reach Truck Lead', level: 'L3 Field Supervisor', reportsTo: 'Vikram Malhotra (L2)', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80', initials: 'DS', phone: '+91 98201-22501', station: 'Dock Bay 04' },
+      amit: { name: 'Amit Patel', shortName: 'Amit Patel', role: 'Putaway Supervisor', level: 'L3 Field Supervisor', reportsTo: 'Sunita Rao (L2)', img: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80', initials: 'AP', phone: '+91 98201-44701', station: 'Aisle Hub B' },
+      manoj: { name: 'Manoj Tiwari', shortName: 'Manoj Tiwari', role: 'Wave Pick Supervisor', level: 'L3 Field Supervisor', reportsTo: 'Arun Verma (L2)', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80', initials: 'MT', phone: '+91 98202-22201', station: 'Pick Zone C' },
+      kavita: { name: 'Kavita Desai', shortName: 'Kavita Desai', role: 'Packaging & Dispatch Lead', level: 'L3 Field Supervisor', reportsTo: 'Arun Verma (L2)', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80', initials: 'KD', phone: '+91 98202-33301', station: 'Pack Station 6' }
+    };
+
     const inwardStageChecklistsData = {
       1: {
         name: 'Manifest & ASN Ingestion',
-        pocs: [
-          { initials: 'AV', name: 'Amit Verma', role: 'EDI Manifest Specialist', station: 'Inbound Desk 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-11401', walkie: 'Ch 1 (Intake)', duty: 'On Duty' },
-          { initials: 'RN', name: 'Ramesh Nair', role: 'Inbound Shift Lead', station: 'Floor Office 1', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11402', walkie: 'Ch 1 (Intake)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.pooja, commandHierarchyStaff.sunita],
         tasks: [
           { num: 1, name: 'Electronic ASN Sync', detail: 'Advance Shipping Notice parsed & validated against ERP purchase order' },
           { num: 2, name: 'PO Line Item Verification', detail: 'Supplier item code, SKU details, and manifest quantities matched' },
@@ -79,10 +89,7 @@
       },
       2: {
         name: 'Gate Inward & Docking',
-        pocs: [
-          { initials: 'GS', name: 'Gurpreet Singh', role: 'Gate Marshal', station: 'Security Gate 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98200-88120', walkie: 'Ch 2 (Gate)', duty: 'On Duty' },
-          { initials: 'JS', name: 'Jaswant Singh', role: 'Dock Master', station: 'Dock Apron A', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 2 (Gate)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.rajesh, commandHierarchyStaff.vikram],
         tasks: [
           { num: 1, name: 'Security Gate Check-in', detail: 'Vehicle number, transporter credentials & driver identity logged' },
           { num: 2, name: 'Gate Intake Token & LR', detail: 'Physical Lorry Receipt endorsed with gate arrival timestamp' },
@@ -92,10 +99,7 @@
       },
       3: {
         name: 'Unloading from Vehicle',
-        pocs: [
-          { initials: 'MM', name: 'Manoj Mane', role: 'Lead Forklift Operator', station: 'Dock Bay 04', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-22501', walkie: 'Ch 3 (Yard)', duty: 'On Duty' },
-          { initials: 'DP', name: 'Dinesh Patil', role: 'Apron Supervisor', station: 'Dock Control 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-22502', walkie: 'Ch 3 (Yard)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.deepak, commandHierarchyStaff.sunita],
         tasks: [
           { num: 1, name: 'Labour Crew Deployment', detail: 'Workforce handlers and forklift operator stationed at bay apron' },
           { num: 2, name: 'Pallet De-stuffing', detail: 'Pallets offloaded from container truck bed onto intake staging area' },
@@ -105,10 +109,7 @@
       },
       4: {
         name: 'QC & Proof of Delivery (POD)',
-        pocs: [
-          { initials: 'RK', name: 'Rajesh Kumar', role: 'Senior QC Inspector', station: 'Desk QC-04', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98231-44910', walkie: 'Ch 4 (Quality)', duty: 'On Duty' },
-          { initials: 'PS', name: 'Priya Sharma', role: 'Quality Lead', station: 'QC Lab Office', shift: 'General (08:00 - 17:00)', phone: '+91 98201-33601', walkie: 'Ch 4 (Quality)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.pooja, commandHierarchyStaff.sunita],
         tasks: [
           { num: 1, name: 'Container Seal Integrity', detail: 'Tamper-evident seal verified unbroken by intake inspector' },
           { num: 2, name: 'Physical Carton Check', detail: '0 crushed, 0 damp; pallet shrink-wrap verified upright & tight' },
@@ -120,10 +121,7 @@
       },
       5: {
         name: 'Rack Putaway & Slotting',
-        pocs: [
-          { initials: 'SP', name: 'Sachin Pawar', role: 'Reach Truck Operator', station: 'High-Bay Aisle 03', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-44701', walkie: 'Ch 5 (Putaway)', duty: 'On Duty' },
-          { initials: 'VJ', name: 'Vikram Joshi', role: 'Inventory Controller', station: 'Zone B Control', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-44702', walkie: 'Ch 5 (Putaway)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.amit, commandHierarchyStaff.sunita],
         tasks: [
           { num: 1, name: 'WMS Storage Bin Allocation', detail: 'System designates optimal zone, aisle, and rack shelf location' },
           { num: 2, name: 'Reach Truck Pallet Retrieval', detail: 'High-bay reach truck retrieves verified pallets from staging bay' },
@@ -133,10 +131,7 @@
       },
       6: {
         name: 'Final Bin Storage & ERP Sync',
-        pocs: [
-          { initials: 'AK', name: 'Anand Kulkarni', role: 'WMS Inventory Clerk', station: 'System Terminal B', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98201-55801', walkie: 'Ch 6 (Storage)', duty: 'On Duty' },
-          { initials: 'NS', name: 'Nidhi Shinde', role: 'Warehouse Controller', station: 'Central Ops Room', shift: 'General (08:00 - 17:00)', phone: '+91 98201-55802', walkie: 'Ch 6 (Storage)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.amit, commandHierarchyStaff.jaswant],
         tasks: [
           { num: 1, name: 'Shelf Bin Location Scan', detail: 'High-rack physical location confirmed by handheld scanner' },
           { num: 2, name: 'ERP Inventory Posting', detail: 'Units credited to live available inventory stock ledger' },
@@ -148,10 +143,7 @@
     const outwardStageChecklistsData = {
       1: {
         name: 'Order Intake & Wave Release',
-        pocs: [
-          { initials: 'KT', name: 'Kunal Tiwari', role: 'Wave Batching Specialist', station: 'Planning Desk 01', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-11101', walkie: 'Ch 7 (Planning)', duty: 'On Duty' },
-          { initials: 'RS', name: 'Rahul Saxena', role: 'Dispatch Planning Lead', station: 'Ops Tower 1', shift: 'General (08:00 - 17:00)', phone: '+91 98202-11102', walkie: 'Ch 7 (Planning)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.manoj, commandHierarchyStaff.arun],
         tasks: [
           { num: 1, name: 'ERP Order Validation', detail: 'Customer sales order validated & inventory stock locked in WMS' },
           { num: 2, name: 'Wave Batching & Grouping', detail: 'Order batched into wave run with travel-distance optimized pick path' },
@@ -161,10 +153,7 @@
       },
       2: {
         name: 'Wave Picking from Racks',
-        pocs: [
-          { initials: 'SD', name: 'Sandeep Dsouza', role: 'Senior Wave Picker', station: 'Fast-Pick Zone C', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-22201', walkie: 'Ch 8 (Picking)', duty: 'On Duty' },
-          { initials: 'AK', name: 'Ashok Kamble', role: 'Pick Floor Marshall', station: 'Zone C Aisle Hub', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-22202', walkie: 'Ch 8 (Picking)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.manoj, commandHierarchyStaff.arun],
         tasks: [
           { num: 1, name: 'Aisle Navigation', detail: 'Picker dispatched to designated warehouse zone, aisle & shelf bin' },
           { num: 2, name: 'Bin Barcode Verification', detail: 'Scanner confirms correct rack shelf location before retrieval' },
@@ -174,10 +163,7 @@
       },
       3: {
         name: 'Sorting & Packing',
-        pocs: [
-          { initials: 'SG', name: 'Sunita Gaikwad', role: 'Pack Station Lead', station: 'Packing Bench 06', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-33301', walkie: 'Ch 9 (Packing)', duty: 'On Duty' },
-          { initials: 'VR', name: 'Vinay Rawat', role: 'Packline Supervisor', station: 'Conveyor Junction 2', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-33302', walkie: 'Ch 9 (Packing)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.kavita, commandHierarchyStaff.arun],
         tasks: [
           { num: 1, name: 'Consolidation at Pack Station', detail: 'Picked totes transferred to designated packing workbench' },
           { num: 2, name: 'Protective Cushioning', detail: 'Bubble wrap & void-fill added for fragile transport protection' },
@@ -187,10 +173,7 @@
       },
       4: {
         name: 'QC, Weighing & Manifest',
-        pocs: [
-          { initials: 'HK', name: 'Harish Karkera', role: 'Weight & Dimension Auditor', station: 'Scan Weigh Bench 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-44401', walkie: 'Ch 10 (Dispatch QC)', duty: 'On Duty' },
-          { initials: 'MD', name: 'Meera Deshmukh', role: 'Outward Compliance Lead', station: 'QC QA Station', shift: 'General (08:00 - 17:00)', phone: '+91 98202-44402', walkie: 'Ch 10 (Dispatch QC)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.kavita, commandHierarchyStaff.vikram],
         tasks: [
           { num: 1, name: 'Digital Gross Weighing', detail: 'Accurate parcel gross weight recorded by calibrated scale' },
           { num: 2, name: 'Volumetric Cubic Scan', detail: 'Length, width, and height scanned by 3D optical dimensioner' },
@@ -200,10 +183,7 @@
       },
       5: {
         name: 'Dock Bay Staging & Marshalling',
-        pocs: [
-          { initials: 'BK', name: 'Bharat Kadam', role: 'Dock Staging Coordinator', station: 'Dock Bay 06 Staging', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-55501', walkie: 'Ch 11 (Outward Dock)', duty: 'On Duty' },
-          { initials: 'JS', name: 'Jaswant Singh', role: 'Head of Operations', station: 'Central Floor Control', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 11 (Outward Dock)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.rajesh, commandHierarchyStaff.arun],
         tasks: [
           { num: 1, name: 'Transit to Outbound Bay', detail: 'Hand pallet truck moves packed boxes to outbound dock bay' },
           { num: 2, name: 'Route & Pincode Grouping', detail: 'Consignments sorted by carrier delivery zone and hub cluster' },
@@ -213,10 +193,7 @@
       },
       6: {
         name: 'Carrier Handover & Dispatch',
-        pocs: [
-          { initials: 'PB', name: 'Pravin Bhosle', role: 'Carrier Handover Clerk', station: 'Outbound Gate 02', shift: 'Shift A (06:00 - 14:30)', phone: '+91 98202-66601', walkie: 'Ch 12 (Gate Handover)', duty: 'On Duty' },
-          { initials: 'JS', name: 'Jaswant Singh', role: 'Head of Operations', station: 'Central Floor Control', shift: 'General (08:00 - 17:00)', phone: '+91 98201-11403', walkie: 'Ch 12 (Gate Handover)', duty: 'On Duty' }
-        ],
+        pocs: [commandHierarchyStaff.kavita, commandHierarchyStaff.jaswant],
         tasks: [
           { num: 1, name: 'Vehicle Loading & Restraint', detail: 'Cargo loaded into carrier vehicle and strapped securely' },
           { num: 2, name: 'Signed Proof of Dispatch', detail: 'Transporter driver signs physical delivery challan & POD copy' },
@@ -227,60 +204,53 @@
 
     function renderPocAvatarsHtml(pocs) {
       if (!pocs || !pocs.length) return '';
-      const avatarsHtml = pocs.map((poc, idx) => {
-        const bgClass = idx === 0 ? 'bg-[#1F2937]' : 'bg-[#D84E55]';
-        return `
-          <div class="relative group/poc cursor-pointer">
-            <div class="w-6 h-6 rounded-full ${bgClass} text-white font-bold text-[9px] flex items-center justify-center font-arial ring-2 ring-white shadow-2xs select-none">
-              ${poc.initials}
-            </div>
+      const pocsHtml = pocs.map(poc => `
+        <div class="relative group/poc cursor-pointer flex flex-col items-center text-center">
+          <div class="relative">
+            <img src="${poc.img}" alt="${poc.name}" class="w-8 h-8 rounded-full object-cover border-2 border-white shadow-xs shrink-0" onerror="this.outerHTML='<div class=\\'w-8 h-8 rounded-full bg-gray-200 text-[#1F2937] font-bold flex items-center justify-center text-[10px]\\'>${poc.initials}</div>';" />
             <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#10B981] ring-1 ring-white"></span>
+          </div>
+          <span class="text-[10px] font-bold text-[#1F2937] mt-0.5 leading-tight truncate max-w-[72px] block">${poc.shortName}</span>
 
-            <!-- Tooltip Popover (Zero Icons · Clean Pareto Layout) -->
-            <div class="pointer-events-none group-hover/poc:pointer-events-auto opacity-0 group-hover/poc:opacity-100 transition-all duration-150 absolute right-0 top-full mt-2 w-64 bg-white border border-[#E5E7EB] rounded-xl shadow-xl p-3 z-50 text-left font-arial text-[11px] text-[#1F2937]">
-              <div class="flex items-start justify-between pb-2 border-b border-[#E5E7EB]">
-                <div>
-                  <div class="font-bold text-[12px] text-[#1F2937] leading-tight">${poc.name}</div>
-                  <div class="text-[10px] font-semibold text-[#D84E55] mt-0.5">${poc.role}</div>
-                </div>
-                <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] shrink-0">On Duty</span>
+          <!-- Tooltip: Simple & Effective hierarchy focus -->
+          <div class="pointer-events-none group-hover/poc:pointer-events-auto opacity-0 group-hover/poc:opacity-100 transition-all duration-150 absolute right-0 top-full mt-2 w-60 bg-white border border-[#E5E7EB] rounded-xl shadow-xl p-3 z-50 text-left font-arial text-[11px] text-[#1F2937]">
+            <div class="flex items-center gap-2 pb-2 border-b border-[#F3F4F6]">
+              <img src="${poc.img}" class="w-8 h-8 rounded-full object-cover border border-gray-200 shrink-0" onerror="this.outerHTML='<div class=\\'w-8 h-8 rounded-full bg-gray-100 text-[#1F2937] font-bold flex items-center justify-center text-[10px]\\'>${poc.initials}</div>';" />
+              <div class="min-w-0 flex-1">
+                <div class="font-bold text-[12px] text-[#1F2937] leading-tight truncate">${poc.name}</div>
+                <div class="text-[10px] font-semibold text-[#D84E55] truncate">${poc.role}</div>
               </div>
+            </div>
 
-              <div class="py-2 space-y-1 text-[10.5px] border-b border-[#E5E7EB]">
-                <div class="flex items-center justify-between">
-                  <span class="text-gray-400 font-medium">Station</span>
-                  <span class="font-bold text-gray-700">${poc.station}</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-gray-400 font-medium">Shift</span>
-                  <span class="font-medium text-gray-700">${poc.shift}</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-gray-400 font-medium">Walkie</span>
-                  <span class="font-medium text-gray-700">${poc.walkie}</span>
-                </div>
+            <!-- Hierarchy Focus -->
+            <div class="py-2 space-y-1.5 text-[10.5px] border-b border-[#F3F4F6]">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400 font-medium">Hierarchy Level</span>
+                <span class="font-bold text-[#2563EB]">${poc.level}</span>
               </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400 font-medium">Reports To</span>
+                <span class="font-bold text-gray-800">${poc.reportsTo}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400 font-medium">Station</span>
+                <span class="font-medium text-gray-700">${poc.station}</span>
+              </div>
+            </div>
 
-              <div class="pt-2 flex items-center justify-between">
-                <div>
-                  <span class="text-gray-400 text-[9.5px] block font-medium">Mobile</span>
-                  <span class="font-bold text-[10.5px] text-gray-900 font-arial">${poc.phone}</span>
-                </div>
-                <button onclick="event.stopPropagation(); alert('Connecting to ${poc.name} (${poc.role}) at ${poc.phone}...')" class="px-2.5 py-0.5 rounded-lg bg-[#1F2937] hover:bg-black text-white font-bold text-[10px] cursor-pointer transition-colors shadow-2xs">
-                  Call
-                </button>
-              </div>
+            <div class="pt-2 flex items-center justify-between text-[10px]">
+              <span class="text-gray-600 font-arial font-semibold">${poc.phone}</span>
+              <button onclick="event.stopPropagation(); alert('Connecting to ${poc.name} (${poc.role}) at ${poc.phone}...')" class="px-2.5 py-0.5 rounded bg-[#1F2937] hover:bg-black text-white font-bold cursor-pointer transition-colors shadow-2xs">
+                Call
+              </button>
             </div>
           </div>
-        `;
-      }).join('');
+        </div>
+      `).join('');
 
       return `
-        <div class="flex items-center gap-1.5">
-          <span class="text-[10px] uppercase font-bold text-gray-400 font-arial tracking-wider hidden sm:inline">POC</span>
-          <div class="flex items-center -space-x-1.5">
-            ${avatarsHtml}
-          </div>
+        <div class="flex items-center gap-3">
+          ${pocsHtml}
         </div>
       `;
     }
