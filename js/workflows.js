@@ -2723,6 +2723,66 @@
         document.body.classList.remove('overflow-hidden');
       }
     }
+
+    function openDocModal(name, ref, stage, status, format, source, date, note) {
+      const modal = document.getElementById('doc-modal');
+      if (!modal) return;
+
+      const nameEl = document.getElementById('doc-modal-name');
+      const stageEl = document.getElementById('doc-modal-stage');
+      const refEl = document.getElementById('doc-modal-ref');
+      const dateEl = document.getElementById('doc-modal-date');
+      const statusBadge = document.getElementById('doc-modal-status-badge');
+      const formatBadge = document.getElementById('doc-modal-format-badge');
+      const sourceBadge = document.getElementById('doc-modal-source-badge');
+      const noteWrap = document.getElementById('doc-modal-note-wrap');
+      const noteEl = document.getElementById('doc-modal-note');
+
+      if (nameEl) nameEl.textContent = name || 'Document';
+      if (stageEl) stageEl.textContent = stage || '—';
+      if (refEl) refEl.textContent = ref || '—';
+      if (dateEl) dateEl.textContent = date || '—';
+      if (formatBadge) formatBadge.textContent = format || 'PDF';
+      if (sourceBadge) sourceBadge.textContent = source || 'System';
+
+      if (statusBadge) {
+        statusBadge.textContent = status || 'Verified';
+        if (status === 'Verified' || status === 'Signed' || status === 'Matched' || status === 'Posted' || status === 'Pass') {
+          statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0]';
+        } else if (status === 'Pending' || status === 'Draft' || status === 'Uploaded' || status === 'In Progress') {
+          statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#D97706] border border-[#FDE68A]';
+        } else if (status === 'Rejected' || status === 'Fail') {
+          statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEE2E2] text-[#DC2626] border border-[#FECACA]';
+        } else {
+          statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-500 border border-gray-200';
+        }
+      }
+
+      if (noteWrap && noteEl) {
+        if (note) {
+          noteEl.textContent = note;
+          noteWrap.classList.remove('hidden');
+        } else {
+          noteWrap.classList.add('hidden');
+        }
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeDocModal() {
+      const modal = document.getElementById('doc-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    window.openDocModal = openDocModal;
+    window.closeDocModal = closeDocModal;
   
     // Introductory Splash Screen Controller
     let splashDismissed = false;
