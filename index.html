@@ -315,24 +315,23 @@
     <div id="screen-1" class="screen-view space-y-5">
       
             <!-- ==============================================
-           OPS MANAGER DASHBOARD — 6 CORE METRICS (GRAPHS VIEW)
+           OPS MANAGER DASHBOARD — 8 CORE METRICS (CLEAN & ORGANIZED)
+           Matching Warehouse Network & Equipment Grid (4x2 Responsive Layout)
            ============================================== -->
-      <!-- ==============================================
-           OPS MANAGER DASHBOARD — 6 CORE METRICS (ODWEN UI STYLE)
-           ============================================== -->
-      <div id="ops-manager-metrics" class="bg-white rounded-2xl border border-[#E5E7EB] p-5 sm:p-6 shadow-xs space-y-4">
+      <div id="ops-manager-metrics" class="space-y-4">
         
-        <!-- Header & Timeframe Filter -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E5E7EB]">
+        <!-- Header & Timeframe Filter (Clean, matching Warehouse Network Header) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
           <div>
             <div class="flex items-center gap-2.5">
-              <h2 class="text-[20px] sm:text-[22px] font-bold text-[#1F2937] tracking-tight">Ops Manager Dashboard &mdash; 6 Core Metrics</h2>
-              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEECEE] text-[#D84E55] border border-[#FECACA]">Network Health</span>
+              <h2 class="text-[20px] sm:text-[22px] font-bold text-[#1F2937] tracking-tight">Network Operational Metrics</h2>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEECEE] text-[#D84E55] border border-[#FECACA]">8 Core Metrics</span>
             </div>
-            <p class="text-[12.5px] text-[#6B7280] mt-1 font-arial">
-              Real-time operational pulse across all 38 facilities. Each metric includes live status, graphic breakdown, and supervisor directives.
+            <p class="text-[12px] text-[#6B7280] mt-0.5 font-arial">
+              Real-time operational pulse across all 38 facilities. Metrics lead with actionable directives and live status.
             </p>
           </div>
+          
           <!-- Timeframe Selector -->
           <div class="flex items-center gap-2">
             <span class="text-[12px] font-bold text-[#4B5563] hidden md:inline font-arial">Timeframe:</span>
@@ -344,277 +343,327 @@
           </div>
         </div>
 
-        <!-- 6 Metrics Grid — Clean, Organized & Identical Card Dimensions Matching Warehouse Network Style -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 8 Metrics Cards Grid (4x2 Responsive Grid — Same card size & layout as Equipment across network) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
           <!-- Card 1: Inbound : Outbound Ratio -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">1. Inbound : Outbound Ratio</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]">1.4 : 1 · HEAVY</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">1. In : Out Ratio</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[10.5px] font-arial border border-[#FECACA]">1.4 : 1 · HEAVY</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#1F2937] font-arial leading-none">1.4 : 1</span>
-                <span class="text-[12px] font-medium text-[#DC2626] font-arial">+40% Surplus Inflow</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">1.4 : 1</span>
+                <span class="text-[11.5px] font-medium text-[#DC2626] font-arial">+40% Inflow</span>
               </div>
             </div>
 
-            <!-- Clean Graphic Bars -->
-            <div class="space-y-2 py-1">
+            <!-- Visual Bar Breakdown -->
+            <div class="space-y-2 py-1 my-auto">
               <div>
-                <div class="flex justify-between text-[11.5px] text-[#4B5563] mb-1 font-arial">
-                  <span class="font-medium">Inbound Volume</span>
+                <div class="flex justify-between text-[11px] text-[#4B5563] mb-1 font-arial">
+                  <span>Inbound</span>
                   <span class="font-bold text-[#1F2937]">1,420 units (58%)</span>
                 </div>
-                <div class="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
                   <div class="h-full bg-[#0D9488] rounded-full" style="width: 58%"></div>
                 </div>
               </div>
               <div>
-                <div class="flex justify-between text-[11.5px] text-[#4B5563] mb-1 font-arial">
-                  <span class="font-medium">Outbound Volume</span>
+                <div class="flex justify-between text-[11px] text-[#4B5563] mb-1 font-arial">
+                  <span>Outbound</span>
                   <span class="font-bold text-[#1F2937]">1,014 units (42%)</span>
                 </div>
-                <div class="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
                   <div class="h-full bg-[#0284C7] rounded-full" style="width: 42%"></div>
                 </div>
               </div>
-            </div>
-
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#DC2626] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> 3 West Zone sites over 85% full. Pause bookings and divert inbound to Central Zone.</span>
+              <div class="text-[11px] text-[#991B1B] bg-[#FEF2F2] px-2 py-1 rounded-lg border border-[#FEE2E2] flex items-center gap-1.5 font-medium leading-tight mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0"></span>
+                <span class="truncate">Divert West inbound to Central Hub</span>
+              </div>
             </div>
 
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Target: 1.0 : 1 Balanced</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Target 1.0 : 1</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Facilities &rarr;
               </button>
             </div>
           </div>
 
           <!-- Card 2: Days of Inventory (DOI) -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">2. Days of Inventory (DOI)</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]">18 DAYS · HEALTHY</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">2. Days of Inventory</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[10.5px] font-arial border border-[#A7F3D0]">18 DAYS · HEALTHY</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#1F2937] font-arial leading-none">18 Days</span>
-                <span class="text-[12px] font-medium text-[#059669] font-arial">Optimal Band 14&ndash;25d</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">18 Days</span>
+                <span class="text-[11.5px] font-medium text-[#059669] font-arial">Band 14&ndash;25d</span>
               </div>
             </div>
 
             <!-- Segmented Gauge Runway -->
-            <div class="py-1 space-y-1.5">
-              <div class="relative h-3 w-full bg-gray-100 rounded-full flex overflow-hidden">
+            <div class="space-y-2 py-1 my-auto">
+              <div class="relative h-2.5 w-full bg-gray-100 rounded-full flex overflow-hidden">
                 <div class="h-full bg-[#FCA5A5] w-1/4" title="Low Stockout Risk (<14d)"></div>
                 <div class="h-full bg-[#86EFAC] w-1/2" title="Healthy Band (14-25d)"></div>
                 <div class="h-full bg-[#FDE68A] w-1/4" title="Excess Idle Stock (>25d)"></div>
               </div>
-              <div class="relative flex justify-between text-[10.5px] text-gray-500 font-arial font-medium px-0.5">
+              <div class="flex justify-between text-[10px] text-gray-500 font-arial font-medium px-0.5">
                 <span class="text-red-500 font-bold">&lt;14d Risk</span>
-                <span class="text-emerald-700 font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#059669]"></span> Current: 18d</span>
+                <span class="text-emerald-700 font-bold">18d Current</span>
                 <span class="text-amber-600 font-bold">&gt;25d Excess</span>
+              </div>
+              <div class="text-[11px] text-[#92400E] bg-[#FFFBEB] px-2 py-1 rounded-lg border border-[#FEF3C7] flex items-center gap-1.5 font-medium leading-tight mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97706] shrink-0"></span>
+                <span class="truncate">WH-04 &amp; WH-09 under 5d buffer</span>
               </div>
             </div>
 
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#D97706] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> WH-04 Pune and WH-09 are under 5 days. Schedule replenishment before stockout.</span>
-            </div>
-
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Outflow: 1,840 units/day</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Daily Outflow 1.8k</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Inventory &rarr;
               </button>
             </div>
           </div>
 
           <!-- Card 3: Pick-First List (FEFO Expiry) -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">3. Pick-First List (Expiry)</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]">2 BATCHES URGENT</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">3. Pick-First (Expiry)</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[10.5px] font-arial border border-[#FECACA]">2 URGENT</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#1F2937] font-arial leading-none">FEFO Active</span>
-                <span class="text-[12px] font-medium text-[#DC2626] font-arial">Expiring &le; 4 Days</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">FEFO Active</span>
+                <span class="text-[11.5px] font-medium text-[#DC2626] font-arial">Expiring &le; 4d</span>
               </div>
             </div>
 
             <!-- Clean Mini Expiry Table -->
-            <div class="border border-[#E5E7EB] rounded-xl overflow-hidden bg-white text-[11.5px] font-arial">
-              <div class="grid grid-cols-12 bg-gray-50 text-gray-500 font-bold px-2.5 py-1 text-[10px] uppercase border-b border-[#E5E7EB]">
-                <span class="col-span-6">Item / SKU</span>
-                <span class="col-span-3 text-center">Expires</span>
-                <span class="col-span-3 text-right">Site</span>
-              </div>
-              <div class="divide-y divide-gray-100">
-                <div class="grid grid-cols-12 px-2.5 py-1.5 items-center">
-                  <span class="col-span-6 font-bold text-[#1F2937] truncate">SKU-MED-40K Cold</span>
-                  <span class="col-span-3 text-center"><span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[10px]">2 days</span></span>
-                  <span class="col-span-3 text-right text-gray-500 font-medium">WH-04</span>
+            <div class="space-y-1.5 py-1 my-auto">
+              <div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50 text-[11px] font-arial">
+                <div class="flex justify-between items-center px-2 py-1">
+                  <span class="font-bold text-[#1F2937] truncate max-w-[110px]">Cold Packs</span>
+                  <span class="text-gray-500 text-[10px]">WH-04</span>
+                  <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[9.5px]">2 days</span>
                 </div>
-                <div class="grid grid-cols-12 px-2.5 py-1.5 items-center">
-                  <span class="col-span-6 font-bold text-[#1F2937] truncate">SKU-LMP-03 Lamps</span>
-                  <span class="col-span-3 text-center"><span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[10px]">4 days</span></span>
-                  <span class="col-span-3 text-right text-gray-500 font-medium">WH-01</span>
+                <div class="flex justify-between items-center px-2 py-1">
+                  <span class="font-bold text-[#1F2937] truncate max-w-[110px]">Headlamps</span>
+                  <span class="text-gray-500 text-[10px]">WH-01</span>
+                  <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-bold text-[9.5px]">4 days</span>
                 </div>
               </div>
-            </div>
-
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#DC2626] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> Assign 2 urgent batches for wave picking today ahead of newer stock.</span>
+              <div class="text-[11px] text-[#991B1B] bg-[#FEF2F2] px-2 py-1 rounded-lg border border-[#FEE2E2] flex items-center gap-1.5 font-medium leading-tight">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0"></span>
+                <span class="truncate">Assign to wave picking today</span>
+              </div>
             </div>
 
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Protocol: First-Expiry-First-Out</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">FEFO Enforcement</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Expiry List &rarr;
               </button>
             </div>
           </div>
 
           <!-- Card 4: Dock-to-Stock Time -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">4. Dock-to-Stock Time</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[11px] font-arial border border-[#FECACA]">+2.2H SLA LAG</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">4. Dock-to-Stock Time</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#DC2626] font-bold text-[10.5px] font-arial border border-[#FECACA]">+2.2H LAG</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#DC2626] font-arial leading-none">6.2 hrs</span>
-                <span class="text-[12px] font-medium text-gray-500 font-arial">Target SLA: &le; 4.0 hrs</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#DC2626] font-arial leading-none">6.2 hrs</span>
+                <span class="text-[11.5px] font-medium text-gray-500 font-arial">Target &le; 4.0h</span>
               </div>
             </div>
 
-            <!-- Clean SLA Target Comparison Bar -->
-            <div class="py-1 space-y-1.5">
+            <!-- SLA Target Comparison Bar -->
+            <div class="space-y-2 py-1 my-auto">
               <div class="flex justify-between text-[11px] text-[#4B5563] font-arial">
-                <span>Inbound Offload &amp; Intake</span>
-                <span class="font-bold text-[#DC2626]">6.2 hrs (+55% SLA overage)</span>
+                <span>Intake &amp; Offload</span>
+                <span class="font-bold text-[#DC2626]">6.2 hrs (+55%)</span>
               </div>
-              <div class="relative h-3 w-full bg-gray-100 rounded-full overflow-hidden">
+              <div class="relative h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
                 <div class="h-full bg-gradient-to-r from-[#059669] via-[#F59E0B] to-[#DC2626] rounded-full" style="width: 85%"></div>
               </div>
-              <div class="flex justify-between text-[10.5px] text-gray-500 font-arial">
+              <div class="flex justify-between text-[10px] text-gray-500 font-arial">
                 <span class="text-emerald-700 font-bold">Target: &le; 4.0 hrs</span>
-                <span class="text-red-600 font-bold">Current Avg: 6.2 hrs</span>
+                <span class="text-red-600 font-bold">Avg: 6.2 hrs</span>
               </div>
-            </div>
-
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#DC2626] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> WH-04 &amp; WH-09 driving intake delays. Reassign 4 floor crew to dock bays.</span>
+              <div class="text-[11px] text-[#991B1B] bg-[#FEF2F2] px-2 py-1 rounded-lg border border-[#FEE2E2] flex items-center gap-1.5 font-medium leading-tight mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0"></span>
+                <span class="truncate">WH-04 &amp; WH-09 intake bottleneck</span>
+              </div>
             </div>
 
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Network SLA: 4.0 hrs max</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">SLA 4.0 hrs max</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 Inspect Inward &rarr;
               </button>
             </div>
           </div>
 
           <!-- Card 5: On-Time Dispatch Rate -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">5. On-Time Dispatch Rate</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[11px] font-arial border border-[#FDE68A]">91% · ATTENTION</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">5. On-Time Dispatch</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#D97706] font-bold text-[10.5px] font-arial border border-[#FDE68A]">91% · ATTENTION</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#1F2937] font-arial leading-none">91%</span>
-                <span class="text-[12px] font-medium text-[#D97706] font-arial">Benchmark &ge; 95%</span>
-              </div>
-            </div>
-
-            <!-- Radial Gauge + Key Breakdown -->
-            <div class="flex items-center gap-4 py-0.5">
-              <div class="shrink-0">
-                <svg width="68" height="68" viewBox="0 0 80 80">
-                  <circle cx="40" cy="40" r="32" fill="none" stroke="#E5E7EB" stroke-width="8"/>
-                  <circle cx="40" cy="40" r="32" fill="none" stroke="#10B981" stroke-width="8" stroke-dasharray="201" stroke-dashoffset="18" stroke-linecap="round" transform="rotate(-90 40 40)"/>
-                  <text x="40" y="45" text-anchor="middle" font-size="16" font-weight="900" fill="#1F2937" font-family="Arial, sans-serif">91%</text>
-                </svg>
-              </div>
-              <div class="space-y-1 text-[11.5px] font-arial text-[#4B5563]">
-                <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#10B981]"></span> On-Time: <strong class="text-[#1F2937]">418 orders</strong></div>
-                <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#DC2626]"></span> Delayed: <strong class="text-[#DC2626]">41 orders</strong></div>
-                <div class="text-[10.5px] text-gray-400">Carrier SLA: 98.4% target</div>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">91%</span>
+                <span class="text-[11.5px] font-medium text-[#D97706] font-arial">Target &ge; 95%</span>
               </div>
             </div>
 
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#D97706] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> WH-06 caused most misses from late carrier arrival. Contact transporter coordinator.</span>
+            <!-- Radial Gauge + Stats -->
+            <div class="space-y-1.5 py-1 my-auto">
+              <div class="flex items-center justify-between px-1">
+                <div class="shrink-0">
+                  <svg width="52" height="52" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#E5E7EB" stroke-width="8"/>
+                    <circle cx="40" cy="40" r="32" fill="none" stroke="#10B981" stroke-width="8" stroke-dasharray="201" stroke-dashoffset="18" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                    <text x="40" y="45" text-anchor="middle" font-size="16" font-weight="900" fill="#1F2937" font-family="Arial, sans-serif">91%</text>
+                  </svg>
+                </div>
+                <div class="space-y-1 text-[11px] font-arial text-[#4B5563] text-right">
+                  <div>On-Time: <strong class="text-[#1F2937]">418 orders</strong></div>
+                  <div>Delayed: <strong class="text-[#DC2626]">41 orders</strong></div>
+                </div>
+              </div>
+              <div class="text-[11px] text-[#92400E] bg-[#FFFBEB] px-2 py-1 rounded-lg border border-[#FEF3C7] flex items-center gap-1.5 font-medium leading-tight">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97706] shrink-0"></span>
+                <span class="truncate">WH-06 late carrier pickup</span>
+              </div>
             </div>
 
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Standard SLA: &ge;95%</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Benchmark &ge;95%</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 Inspect Outward &rarr;
               </button>
             </div>
           </div>
 
           <!-- Card 6: Space Utilization -->
-          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between h-[310px] space-y-3">
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
             <div>
               <div class="flex items-center justify-between pb-1">
-                <h3 class="text-[15px] font-bold text-[#1F2937]">6. Network Space Utilization</h3>
-                <span class="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[11px] font-arial border border-[#A7F3D0]">78% · OPTIMAL</span>
+                <h3 class="text-[14px] font-bold text-[#1F2937]">6. Space Utilization</h3>
+                <span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] font-bold text-[10.5px] font-arial border border-[#A7F3D0]">78% · OPTIMAL</span>
               </div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span class="text-[26px] font-extrabold text-[#1F2937] font-arial leading-none">78%</span>
-                <span class="text-[12px] font-medium text-[#059669] font-arial">38.4k / 49.2k Pallets</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-[#1F2937] font-arial leading-none">78%</span>
+                <span class="text-[11.5px] font-medium text-[#059669] font-arial">38.4k Pallets</span>
               </div>
             </div>
 
-            <!-- Clean Threshold Bar -->
-            <div class="py-1 space-y-1.5">
+            <!-- Progress Bar -->
+            <div class="space-y-2 py-1 my-auto">
               <div class="flex justify-between text-[11px] text-[#4B5563] font-arial">
-                <span>Total Pallet Capacity</span>
+                <span>Pallet Capacity</span>
                 <span class="font-bold text-[#1F2937]">78% Stored</span>
               </div>
-              <div class="relative h-3 w-full bg-gray-100 rounded-full overflow-hidden">
+              <div class="relative h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
                 <div class="h-full bg-[#10B981] rounded-full" style="width: 78%"></div>
               </div>
-              <div class="flex justify-between text-[10.5px] text-gray-500 font-arial">
-                <span class="text-emerald-700 font-bold">Optimal Band: 70&ndash;85%</span>
-                <span class="text-red-500 font-bold">90% Near-Full Threshold</span>
+              <div class="flex justify-between text-[10px] text-gray-500 font-arial">
+                <span class="text-emerald-700 font-bold">Optimal 70&ndash;85%</span>
+                <span class="text-red-500 font-bold">90% Threshold</span>
               </div>
-            </div>
-
-            <!-- Action Directive Box -->
-            <div class="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] text-[11.5px] text-[#374151] flex items-start gap-2 leading-relaxed">
-              <span class="w-2 h-2 rounded-full bg-[#DC2626] mt-1 shrink-0"></span>
-              <span><strong>Action:</strong> WH-02 is at 94% occupancy. Freeze incoming cargo until cleared under 85%.</span>
+              <div class="text-[11px] text-[#991B1B] bg-[#FEF2F2] px-2 py-1 rounded-lg border border-[#FEE2E2] flex items-center gap-1.5 font-medium leading-tight mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0"></span>
+                <span class="truncate">WH-02 at 94% · Freeze inflow</span>
+              </div>
             </div>
 
             <!-- Footer -->
-            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11.5px]">
-              <span class="text-gray-400 font-arial font-medium">Free Capacity: 10,800 Pallets</span>
-              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-1 font-arial">
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Free: 10.8k Pallets</span>
+              <button onclick="scrollToWarehouseNetwork()" class="text-[#D84E55] font-bold hover:underline cursor-pointer flex items-center gap-0.5 font-arial">
                 View Floor Plans &rarr;
               </button>
+            </div>
+          </div>
+
+          <!-- Card 7: Placeholder 1 (Configurable Metric Slot 07) -->
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div>
+              <div class="flex items-center justify-between pb-1">
+                <h3 class="text-[14px] font-bold text-[#1F2937]">7. Metric Placeholder</h3>
+                <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-bold text-[10.5px] font-arial border border-gray-200">PLACEHOLDER</span>
+              </div>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-gray-400 font-arial leading-none">Slot 07</span>
+                <span class="text-[11.5px] font-medium text-gray-400 font-arial">Configurable</span>
+              </div>
+            </div>
+
+            <!-- Placeholder Box -->
+            <div class="space-y-2 py-1 my-auto">
+              <div class="border-2 border-dashed border-gray-200 rounded-xl p-2.5 bg-gray-50/50 flex flex-col items-center justify-center text-center space-y-1">
+                <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-[11px]">+</div>
+                <span class="text-[11.5px] font-bold text-gray-600 font-arial">Custom KPI Slot</span>
+                <span class="text-[10px] text-gray-400 leading-tight">e.g. Order Pick Accuracy / DPMO</span>
+              </div>
+              <div class="text-[11px] text-gray-500 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200 flex items-center gap-1.5 font-medium leading-tight">
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
+                <span class="truncate">Telemetry endpoint ready</span>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Slot #7 Reserved</span>
+              <span class="text-gray-400 font-bold font-arial">Available Slot</span>
+            </div>
+          </div>
+
+          <!-- Card 8: Placeholder 2 (Configurable Metric Slot 08) -->
+          <div class="bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-2xl p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-[300px]">
+            <div>
+              <div class="flex items-center justify-between pb-1">
+                <h3 class="text-[14px] font-bold text-[#1F2937]">8. Metric Placeholder</h3>
+                <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-bold text-[10.5px] font-arial border border-gray-200">PLACEHOLDER</span>
+              </div>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span class="text-[22px] font-black text-gray-400 font-arial leading-none">Slot 08</span>
+                <span class="text-[11.5px] font-medium text-gray-400 font-arial">Configurable</span>
+              </div>
+            </div>
+
+            <!-- Placeholder Box -->
+            <div class="space-y-2 py-1 my-auto">
+              <div class="border-2 border-dashed border-gray-200 rounded-xl p-2.5 bg-gray-50/50 flex flex-col items-center justify-center text-center space-y-1">
+                <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-[11px]">+</div>
+                <span class="text-[11.5px] font-bold text-gray-600 font-arial">Custom KPI Slot</span>
+                <span class="text-[10px] text-gray-400 leading-tight">e.g. Dock Turnaround Time (TAT)</span>
+              </div>
+              <div class="text-[11px] text-gray-500 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200 flex items-center gap-1.5 font-medium leading-tight">
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
+                <span class="truncate">Telemetry endpoint ready</span>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
+              <span class="text-gray-400 font-arial font-medium">Slot #8 Reserved</span>
+              <span class="text-gray-400 font-bold font-arial">Available Slot</span>
             </div>
           </div>
 
@@ -622,7 +671,6 @@
 
       </div>
 
-      <!-- Back & Filter Header -->
       <div id="warehouse-network-header" class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E5E7EB]">
         <div>
           <h1 class="text-[22px] font-bold text-[#1F2937]">Warehouse Network</h1>
