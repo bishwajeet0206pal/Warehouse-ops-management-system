@@ -4125,56 +4125,6 @@
        SCREEN SWITCHER & SLIDE PANEL SCRIPT
        ============================================== -->
   <script>
-    function openCustomerDetail(name, status, desc, hubs) {
-      document.getElementById('modal-cust-name').textContent = name;
-      document.getElementById('modal-cust-desc').textContent = desc;
-      document.getElementById('modal-cust-icon').textContent = name.substring(0, 2).toUpperCase();
-
-      const statusEl = document.getElementById('modal-cust-status');
-      if (status === 'Critical') {
-        statusEl.className = 'text-[12px] font-bold font-arial uppercase text-[#DC2626]';
-        statusEl.textContent = '● Critical State (Action Required)';
-      } else if (status === 'Attention') {
-        statusEl.className = 'text-[12px] font-bold font-arial uppercase text-[#D97706]';
-        statusEl.textContent = '● Needs Attention';
-      } else {
-        statusEl.className = 'text-[12px] font-bold font-arial uppercase text-[#059669]';
-        statusEl.textContent = '● Optimal Operations';
-      }
-
-      const hubsContainer = document.getElementById('modal-cust-hubs');
-      hubsContainer.innerHTML = '';
-      hubs.forEach(hub => {
-        const item = document.createElement('div');
-        item.className = 'p-3 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] flex items-center justify-between';
-        
-        let badgeColor = 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]';
-        if (hub.status === 'Critical') badgeColor = 'bg-[#FEF2F2] text-[#DC2626] border-[#FECACA] animate-pulse';
-        if (hub.status === 'Attention') badgeColor = 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]';
-
-        item.innerHTML = `
-          <div>
-            <div class="flex items-center gap-2">
-              <strong class="text-[13px] text-[#1F2937] font-arial">${hub.code} ${hub.name}</strong>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold font-arial border ${badgeColor}">${hub.status}</span>
-            </div>
-            <span class="text-[11px] text-[#6B7280]">Region: ${hub.zone}</span>
-          </div>
-          <button onclick="closeCustomerModal(); goToScreen(3, '${hub.code} ${hub.name}')" class="btn-redbus text-[11px] py-1 px-3">
-            Open Floor Plan &rarr;
-          </button>
-        `;
-        hubsContainer.appendChild(item);
-      });
-
-      const modal = document.getElementById('customer-modal');
-      const backdrop = document.getElementById('customer-modal-backdrop');
-      backdrop.classList.remove('opacity-0', 'pointer-events-none');
-      backdrop.classList.add('opacity-100');
-      modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
-      modal.classList.add('opacity-100', 'scale-100');
-    }
-
     function closeCustomerModal() {
       const modal = document.getElementById('customer-modal');
       const backdrop = document.getElementById('customer-modal-backdrop');
@@ -4884,35 +4834,6 @@
             }
           }
         });
-
-        // Update Screen 1 Radar Banner
-        const banner = document.getElementById('ai-radar-banner');
-        if (banner) {
-          banner.className = 'rounded-2xl border border-[#A7F3D0] bg-gradient-to-r from-[#ECFDF5] to-[#F0FDF4] p-4 sm:p-5 shadow-xs transition-all relative overflow-hidden';
-          banner.innerHTML = `
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-[#059669] text-white flex items-center justify-center font-bold shadow-sm">
-                  ✓
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-0.5 rounded-full bg-[#059669] text-white font-bold text-[11px] font-arial">
-                      ✦ AI RADAR RESOLVED
-                    </span>
-                    <strong class="text-[14px] text-[#1F2937]">Guwahati WH-02 Carrier SLA Secured</strong>
-                  </div>
-                  <p class="text-[12px] text-[#4B5563] mt-0.5">
-                    Tare offset applied (-3.4kg) &amp; Buffer R-12 cold stock allocated. Both orders cleared for 16:30 Indigo Air Cargo flight 6E-882.
-                  </p>
-                </div>
-              </div>
-              <button onclick="goToScreen(3, 'WH-02 Guwahati', 'outward')" class="px-3.5 py-1.5 rounded-xl bg-white border border-[#A7F3D0] text-[#059669] hover:bg-[#ECFDF5] font-bold text-[12px] transition-all shrink-0 cursor-pointer">
-                View Cleared Funnel &rarr;
-              </button>
-            </div>
-          `;
-        }
 
         // If inside Guwahati Outward tab, re-render
         if (currentFacilityName === 'WH-02 Guwahati') {
@@ -7593,15 +7514,6 @@
       if (skuEl) {
         const heatLabel = heat === 'empty' ? 'Available' : `${pct} occupied`;
         skuEl.textContent = `${sku} · ${heatLabel}`;
-      }
-    }
-
-    function selectSlot(slotCode, isOccupied) {
-      document.querySelectorAll('.floor-slot').forEach(s => s.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
-      const nameEl = document.getElementById('slot-name');
-      if (nameEl) {
-        nameEl.textContent = `${slotCode} (${isOccupied ? 'Occupied · SKU-LED-60W' : 'Available · Empty Shelf'})`;
       }
     }
 

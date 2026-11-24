@@ -1,9 +1,10 @@
 import http.server
-import socketserver
 import os
+import socketserver
 
 PORT = 8080
-DIRECTORY = "/Users/bishwajeet0206palgmail.com/Odwen"
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+
 
 class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -15,8 +16,9 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Expires', '0')
         super().end_headers()
 
-socketserver.TCPServer.allow_reuse_address = True
-with socketserver.TCPServer(("", PORT), NoCacheHTTPRequestHandler) as httpd:
-    print(f"Serving HTTP on port {PORT} with strict NO-CACHE headers...")
-    httpd.serve_forever()
 
+socketserver.TCPServer.allow_reuse_address = True
+# Bind to loopback only so the dev server isn't exposed on the local network.
+with socketserver.TCPServer(("127.0.0.1", PORT), NoCacheHTTPRequestHandler) as httpd:
+    print(f"Serving {DIRECTORY} on http://127.0.0.1:{PORT} with strict NO-CACHE headers...")
+    httpd.serve_forever()
