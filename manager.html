@@ -5877,16 +5877,21 @@
 
             const stageDisplay = order.stage.includes('.') ? order.stage : `${order.stageNum}. ${order.stage}`;
 
-            // Clean compact tag for status (No icons, clean text tag)
-            const statusContent = order.isIssue ? `
-              <span onclick="event.stopPropagation(); openOutwardIssueModal('${order.orderId}')" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-red-100 cursor-pointer shadow-2xs transition-all whitespace-nowrap" title="Click to view issue details">
-                ${order.pod}
+            // Clean fixed status for Proof of Dispatch: "Done" or "Pending"
+            const isPodDone = order.stageNum === 6 || (order.pod && (order.pod.toLowerCase().includes('signed') || order.pod.toLowerCase().includes('delivered')));
+            const statusContent = isPodDone ? `
+              <span onclick="event.stopPropagation(); openOutwardPodModal()" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#ECFDF5] text-[#059669] border border-[#A7F3D0] hover:bg-emerald-100 cursor-pointer transition-colors shadow-2xs whitespace-nowrap" title="Proof of Dispatch completed · Click to view signed POD">
+                Done
+              </span>
+            ` : (order.isIssue ? `
+              <span onclick="event.stopPropagation(); openDispatchPendingModal('${order.orderId}')" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-red-100 cursor-pointer transition-colors shadow-2xs whitespace-nowrap" title="Click to see what is pending">
+                Pending
               </span>
             ` : `
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial border ${podClass}">
-                ${order.pod}
+              <span onclick="event.stopPropagation(); openDispatchPendingModal('${order.orderId}')" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A] hover:bg-amber-100 cursor-pointer transition-colors shadow-2xs whitespace-nowrap" title="Click to see what is pending">
+                Pending
               </span>
-            `;
+            `);
 
             tr.innerHTML = `
               <td class="py-3 px-3 font-bold ${order.isIssue ? 'text-[#DC2626]' : 'text-[#1F2937]'} font-arial whitespace-nowrap">
@@ -6463,6 +6468,147 @@
       }
     }
 
+    function closeDispatchPendingModal() {
+      const modal = document.getElementById('dispatch-pending-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function openDispatchPendingModal(orderId) {
+      const modal = document.getElementById('dispatch-pending-modal');
+      if (!modal) return;
+
+      const facility = warehouseOutwardData[currentFacilityName] || warehouseOutwardData['WH-01 Bhiwandi'];
+      let order = null;
+      let isIssue = false;
+
+      if (facility) {
+        if (facility.issues) {
+          order = facility.issues.find(iss => iss.orderId === orderId);
+          if (order) isIssue = true;
+        }
+        if (!order && facility.normalOrders) {
+          order = facility.normalOrders.find(o => o.orderId === orderId);
+        }
+      }
+
+      if (!order && window.outwardIssuesRegistry && window.outwardIssuesRegistry[orderId]) {
+        order = window.outwardIssuesRegistry[orderId];
+        isIssue = true;
+      }
+
+      if (!order) {
+        order = {
+          orderId: orderId,
+          customer: 'Customer Destination',
+          cargo: 'Commercial Goods',
+          stageNum: 2,
+          stage: '2. Wave Picking',
+          dockBay: 'Zone A, Aisle 01'
+        };
+      }
+
+      const stageNum = order.stageNum || (isIssue ? 5 : 2);
+
+      const subEl = document.getElementById('pending-modal-subtitle');
+      if (subEl) subEl.textContent = `${order.orderId} · ${order.customer}`;
+
+      const stageEl = document.getElementById('pending-modal-stage');
+      if (stageEl) stageEl.textContent = order.stage || `Stage ${stageNum}`;
+
+      const locEl = document.getElementById('pending-modal-location');
+      if (locEl) locEl.textContent = order.dockBay || order.picker || 'Assigned Fulfillment Zone';
+
+      const badgeEl = document.getElementById('pending-modal-status-badge');
+      if (badgeEl) {
+        if (isIssue) {
+          badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]';
+          badgeEl.textContent = 'Pending (Issue Blocked)';
+        } else {
+          badgeEl.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]';
+          badgeEl.textContent = 'Pending';
+        }
+      }
+
+      const summaryEl = document.getElementById('pending-modal-summary');
+      if (summaryEl) {
+        if (isIssue) {
+          summaryEl.textContent = `Action Required: ${order.reason || 'Consignee e-way bill mismatch; manual e-way bill regen required'}. Transporter truck waiting at outbound gate. Carrier handover and signed Proof of Dispatch are on hold pending resolution.`;
+        } else if (stageNum === 1) {
+          summaryEl.textContent = 'Order is awaiting wave release to floor pickers. Physical picking, packing, QC validation, dock staging, and carrier handover must be completed before Proof of Dispatch is issued.';
+        } else if (stageNum === 2) {
+          summaryEl.textContent = 'Picker is currently retrieving cargo from warehouse bins. Sorting, packing, QC inspection, dock bay staging, and carrier handover are pending before Proof of Dispatch is issued.';
+        } else if (stageNum === 3) {
+          summaryEl.textContent = 'Cartons are at pack desk for bubble wrapping and sealing. Weighing check, dock bay staging, and carrier handover are pending.';
+        } else if (stageNum === 4) {
+          summaryEl.textContent = 'Consignment is undergoing weight calibration and QC scan. Outbound dock staging and carrier handover are pending.';
+        } else if (stageNum === 5) {
+          summaryEl.textContent = 'Consignment is staged at dock bay awaiting carrier pickup. Driver vehicle check and signed gate pass are required to complete Proof of Dispatch.';
+        } else {
+          summaryEl.textContent = 'Fulfillment steps are in progress across the warehouse floor before carrier handover.';
+        }
+      }
+
+      const milestones = [
+        { num: 1, name: '1. Order Received & Manifest Sync', detail: 'ASN validated and synced with WMS' },
+        { num: 2, name: '2. Wave Picking from Bins', detail: 'Items retrieved from rack bin locations' },
+        { num: 3, name: '3. Sorting & Packing', detail: 'Protective packaging & tamper-evident taping' },
+        { num: 4, name: '4. QC & Weighing', detail: 'Gross weight calibration & dimension check' },
+        { num: 5, name: '5. Staged at Dock Bay', detail: 'Consolidated at outbound gate bay for carrier' },
+        { num: 6, name: '6. Carrier Handover & Signed POD', detail: 'Final carrier transfer & signed delivery receipt' }
+      ];
+
+      const milestonesContainer = document.getElementById('pending-modal-milestones');
+      if (milestonesContainer) {
+        milestonesContainer.innerHTML = milestones.map(m => {
+          let statusTag = '';
+          let rowBg = 'bg-gray-50/60 border-gray-100';
+
+          if (m.num < stageNum) {
+            statusTag = '<span class="text-[10px] font-bold text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-2 py-0.5 rounded-md">Done</span>';
+            rowBg = 'bg-[#F0FDF4]/50 border-[#DCFCE7]';
+          } else if (m.num === stageNum) {
+            if (isIssue) {
+              statusTag = '<span class="text-[10px] font-bold text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] px-2 py-0.5 rounded-md">Action Required</span>';
+              rowBg = 'bg-[#FEF2F2]/60 border-[#FECACA]';
+            } else {
+              statusTag = '<span class="text-[10px] font-bold text-[#2563EB] bg-[#EFF6FF] border border-[#BFDBFE] px-2 py-0.5 rounded-md">In Progress</span>';
+              rowBg = 'bg-[#EFF6FF]/60 border-[#BFDBFE]';
+            }
+          } else {
+            statusTag = '<span class="text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-md">Pending</span>';
+          }
+
+          return `
+            <div class="flex items-center justify-between p-2.5 rounded-xl border ${rowBg} text-[12px]">
+              <div>
+                <strong class="text-[#1F2937] block leading-tight">${m.name}</strong>
+                <span class="text-[10.5px] text-[#6B7280] block">${m.detail}</span>
+              </div>
+              <div>${statusTag}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const inspectBtn = document.getElementById('pending-modal-inspect-btn');
+      if (inspectBtn) {
+        inspectBtn.onclick = () => {
+          closeDispatchPendingModal();
+          if (isIssue) {
+            openOutwardIssueModal(order.orderId);
+          } else {
+            openOutwardOrderDetail(order.orderId);
+          }
+        };
+      }
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
     function openPodModal() {
       const modal = document.getElementById('pod-modal');
       if (modal) {
@@ -7027,6 +7173,65 @@
   <!-- ==============================================
        OUTWARD PROOF OF DELIVERY (POD) MODAL PREVIEW
        ============================================== -->
+    <!-- ==============================================
+       DISPATCH & POD PENDING STATUS MODAL
+       Shows exact milestone progression and what is pending
+       ============================================== -->
+  <div id="dispatch-pending-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
+      <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="text-[17px] font-bold text-[#1F2937]">Dispatch &amp; POD Status</h3>
+            <span id="pending-modal-status-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-arial bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A]">Pending</span>
+          </div>
+          <span id="pending-modal-subtitle" class="text-[11.5px] text-[#6B7280] font-arial block mt-0.5">ORD-BW-1101 · Mahindra Logistics Hub</span>
+        </div>
+        <button onclick="closeDispatchPendingModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors cursor-pointer border border-[#E5E7EB]">
+          ✕
+        </button>
+      </div>
+
+      <!-- Current Location & Stage Info -->
+      <div class="grid grid-cols-2 gap-2.5 p-3 bg-gray-50 rounded-xl border border-gray-100 text-[12px]">
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Operational Stage</span>
+          <strong id="pending-modal-stage" class="text-[#1F2937] text-[13px] block mt-0.5">Stage 2 · Wave Picking</strong>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block font-arial">Current Location / Assigned</span>
+          <strong id="pending-modal-location" class="text-[#1F2937] text-[13px] block mt-0.5">Zone A, Aisle 01</strong>
+        </div>
+      </div>
+
+      <!-- What is Pending Summary Box -->
+      <div class="p-3.5 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] space-y-1 text-[12px]">
+        <span class="text-[10.5px] font-bold text-[#B45309] uppercase tracking-wider block font-arial">What is currently pending for Proof of Dispatch:</span>
+        <p id="pending-modal-summary" class="text-[#92400E] leading-relaxed font-medium">
+          Picker is actively collecting items from warehouse bins. Packing, QC verification, outbound dock staging, and carrier handover are pending.
+        </p>
+      </div>
+
+      <!-- Fixed List of 6 Dispatch Milestones -->
+      <div class="space-y-2">
+        <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block font-arial">Fixed Dispatch Milestones:</span>
+        <div id="pending-modal-milestones" class="space-y-1.5">
+          <!-- Dynamically generated via openDispatchPendingModal() -->
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2.5">
+        <button onclick="closeDispatchPendingModal()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-[12px] font-bold hover:bg-gray-100 cursor-pointer">
+          Close
+        </button>
+        <button id="pending-modal-inspect-btn" class="btn-redbus text-[12px] py-2 px-4 cursor-pointer font-bold shadow-xs">
+          Inspect Order Journey &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="outward-pod-modal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E5E7EB]">
       <div class="flex items-center justify-between pb-3 border-b border-[#E5E7EB]">
